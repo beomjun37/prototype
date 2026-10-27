@@ -1,0 +1,523 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}[hidden]{display:none!important}</style></head><body>
+<title>퇴근 후 연애 유형</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow phone column; each screen is a "사내 문서" sheet — quiz as meeting invites, result as an ID-badge card */
+:root {
+  --bg: #EEF0F6;
+  --sheet: #FFFFFF;
+  --ink: #1D2140;
+  --muted: #5F6482;
+  --line: #D9DCE8;
+  --accent: #D0365F;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #FDE3EA;
+  --mint: #1F7D66;
+  --mint-soft: #DDF3EC;
+  --sun: #F6C445;
+  --sun-soft: #FDF2D3;
+  --lock: #F4F5FA;
+  --f-display: "Jua", "IBM Plex Sans KR", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141629; --sheet: #1E2138; --ink: #ECEDF7; --muted: #A3A7C4; --line: #33375A;
+    --accent: #FF7193; --accent-ink: #1A0B12; --accent-soft: #3A2133;
+    --mint: #56D1B0; --mint-soft: #193A36; --sun: #F6C445; --sun-soft: #3A3320; --lock: #252946;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141629; --sheet: #1E2138; --ink: #ECEDF7; --muted: #A3A7C4; --line: #33375A;
+  --accent: #FF7193; --accent-ink: #1A0B12; --accent-soft: #3A2133;
+  --mint: #56D1B0; --mint-soft: #193A36; --sun: #F6C445; --sun-soft: #3A3320; --lock: #252946;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body {
+  color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 40px;
+}
+.wrap { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; margin: 0; text-wrap: balance; line-height: 1.25; }
+p { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.label { font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+
+.sheet { background: var(--sheet); border: 1px solid var(--line); border-radius: 18px; padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; }
+.btn { border: 0; border-radius: 14px; padding: 15px 18px; font-weight: 700; font-size: 16px; width: 100%; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: transparent; border: 1.5px solid var(--line); color: var(--ink); }
+.btn-mint { background: var(--mint); color: var(--sheet); }
+.row { display: flex; gap: 10px; }
+.row > * { flex: 1; min-width: 0; }
+
+/* intro */
+.intro-hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding-top: 8px; }
+.intro-hero h1 { font-size: 34px; }
+.intro-hero h1 em { font-style: normal; color: var(--accent); }
+.timechip { display: inline-flex; gap: 6px; align-items: center; background: var(--sun-soft); color: var(--ink); border-radius: 999px; padding: 4px 12px; font-size: 13px; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.fact { text-align: center; background: var(--bg); border-radius: 12px; padding: 10px 4px; }
+.fact b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 20px; }
+.fact span { font-size: 12px; color: var(--muted); }
+
+/* quiz */
+.qtop { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); }
+.bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; transition: width .3s ease; }
+.invite { border-left: 4px solid var(--accent); padding-left: 12px; display: flex; flex-direction: column; gap: 4px; }
+.invite .when { font-size: 12px; color: var(--muted); }
+.invite h2 { font-size: 22px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt { text-align: left; background: var(--sheet); border: 1.5px solid var(--line); border-radius: 14px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; transition: border-color .15s, background .15s; }
+.opt:hover { border-color: var(--accent); }
+.opt.picked { border-color: var(--accent); background: var(--accent-soft); }
+.opt .k { flex: none; width: 26px; height: 26px; border-radius: 8px; background: var(--bg); display: grid; place-items: center; font-family: var(--f-mono); font-size: 13px; }
+.opt.picked .k { background: var(--accent); color: var(--accent-ink); }
+.back { background: none; border: 0; color: var(--muted); font-size: 14px; padding: 4px 0; align-self: flex-start; }
+
+/* loading */
+.loading { align-items: center; text-align: center; padding-block: 40px; }
+.stamp { width: 88px; height: 88px; border-radius: 50%; border: 3px solid var(--accent); color: var(--accent); display: grid; place-items: center; font-family: var(--f-display); font-size: 22px; transform: rotate(-12deg); animation: stamp .9s ease-in-out infinite alternate; }
+@keyframes stamp { from { transform: rotate(-12deg) scale(.92); } to { transform: rotate(-6deg) scale(1.04); } }
+
+/* result badge */
+.badge { background: var(--sheet); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; position: relative; }
+.lanyard { height: 44px; background: var(--tc, var(--accent)); position: relative; }
+.lanyard::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 54px; height: 16px; margin-left: -27px; background: var(--sheet); border-radius: 8px; border: 1px solid var(--line); }
+.badge-body { padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 14px; }
+.badge-head { display: flex; gap: 14px; align-items: center; }
+.badge-head svg { flex: none; width: 92px; height: 92px; }
+.badge-head .who { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.badge-head h1 { font-size: 26px; }
+.code { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.tagline { font-size: 15px; }
+.avail { display: flex; flex-direction: column; gap: 4px; background: var(--bg); border-radius: 14px; padding: 12px 14px; }
+.avail .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.avail .hrs { font-family: var(--f-display); font-size: 22px; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.week > div { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; color: var(--muted); min-width: 0; }
+.week em { font-style: normal; font-size: 10px; }
+.week .col { width: 100%; height: 56px; border-radius: 6px; background: var(--line); display: flex; align-items: flex-end; overflow: hidden; }
+.week .fill { width: 100%; background: var(--tc, var(--accent)); border-radius: 6px 6px 0 0; }
+.bignum { font-family: var(--f-display); font-size: 34px; line-height: 1.1; color: var(--tc, var(--accent)); }
+.avail .note b, .pair-out .note b { color: var(--ink); }
+details.calc { padding: 14px 20px; gap: 8px; }
+details.calc summary { cursor: pointer; font-size: 14px; font-weight: 700; color: var(--muted); }
+details.calc ul { margin: 8px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.pform { display: flex; flex-direction: column; gap: 12px; }
+.pq { display: flex; flex-direction: column; gap: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1.5px solid var(--line); background: var(--sheet); border-radius: 999px; padding: 6px 12px; font-size: 14px; }
+.chip.on { border-color: var(--mint); background: var(--mint-soft); font-weight: 700; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.pair-out { display: flex; flex-direction: column; gap: 6px; background: var(--mint-soft); border-radius: 14px; padding: 14px; --tc: var(--mint); }
+.traits { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.traits li { display: flex; gap: 10px; }
+.traits li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--tc, var(--accent)); margin-top: 9px; }
+.match { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.match > div { border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.match .good { background: var(--mint-soft); }
+.match .bad { background: var(--sun-soft); }
+.match b { font-family: var(--f-display); font-weight: 400; font-size: 16px; line-height: 1.3; }
+.match small { font-size: 12px; color: var(--muted); }
+.date-tip { border-top: 1px dashed var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 4px; }
+.foot-brand { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+
+/* locked + fake doors */
+.locked { background: var(--lock); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.locked li { color: var(--muted); }
+.locked ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.blur { filter: blur(4px); user-select: none; }
+.price { font-family: var(--f-display); font-size: 22px; color: var(--accent); }
+.note { font-size: 13px; color: var(--muted); }
+.done { background: var(--mint-soft); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+.door h2 { font-size: 22px; }
+.pill { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 99px; background: var(--accent-soft); color: var(--ink); align-self: flex-start; }
+
+/* team panel */
+details.team { border: 1.5px dashed var(--line); border-radius: 16px; padding: 12px 16px; }
+details.team summary { cursor: pointer; font-weight: 700; font-size: 14px; color: var(--muted); }
+.team-body { display: flex; flex-direction: column; gap: 12px; padding-top: 12px; font-size: 14px; }
+.stats { width: 100%; border-collapse: collapse; font-size: 14px; }
+.stats td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.stats td:last-child { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.typegrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.typegrid button { background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; padding: 8px; font-size: 13px; text-align: left; min-height: 44px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 12px; font-size: 14px; max-width: calc(100% - 32px); z-index: 20; }
+@media (prefers-reduced-motion: reduce) { .stamp { animation: none; } .bar i { transition: none; } }
+</style>
+
+<div class="wrap" id="app"></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+// ---------- 데이터 ----------
+// 축 A(칼퇴 C / 야근 Y)는 감으로 묻지 않고, 퇴근 시각·통근·야근·주말근무로 계산한 '평일 연애 가용 시간'으로 정한다.
+// 축 B: F 수시 연락 / B 몰아서 연락, 축 C: N 동네 루틴 / E 이벤트형
+const NUMQ = [
+  { key: "leave", when: "월~금 · 퇴근 체크", q: "보통 몇 시에 회사를 나와?", a: [["17:00", 1020], ["18:00", 1080], ["18:30", 1110], ["19:00", 1140], ["20:00 이후", 1200]] },
+  { key: "commute", when: "출퇴근 · 편도 기준", q: "퇴근길은 얼마나 걸려?", a: [["30분 이내", 25], ["30분~1시간", 45], ["1시간 넘게", 75]] },
+  { key: "ot", when: "이번 달 · 야근 현황", q: "밤 9시 넘어 퇴근하는 날은 일주일에 며칠?", a: [["거의 없음", 0], ["1~2일", 2], ["3일 이상", 4]] },
+  { key: "wk", when: "토요일 · 단톡방 알림", q: "주말에도 일하는 편이야?", a: [["주말은 완전히 쉰다", 0], ["가끔 노트북을 연다", 1], ["거의 매주 일한다", 2]] },
+];
+const TQ = [
+  { when: "화 10:30 · 회의 중", q: "연인에게 카톡이 왔다. 회의는 40분 남았다.", a: ["테이블 밑으로 짧게라도 답장한다", "끝나고 한 번에 길게 답한다"], axis: 1 },
+  { when: "목 12:40 · 점심시간", q: "오늘 점심 제육이 꽤 맛있었다.", a: ["사진 찍어서 바로 보낸다", "저녁 통화 때 하루 얘기로 몰아서 한다"], axis: 1 },
+  { when: "금 14:00 · 마감 직전", q: "연인에게서 3시간째 연락이 없다.", a: ["조금 서운하다. 뭐 하는지 궁금하다", "바쁜가 보다. 나도 바쁘다"], axis: 1 },
+  { when: "화 19:00 · 퇴근 직후", q: "평일 저녁, 딱 1시간 볼 수 있다면?", a: ["집 근처 산책하고 편의점 아이스크림", "미리 찾아둔 맛집 예약해 두기"], axis: 2 },
+  { when: "다음 주 · 연차 승인 완료", q: "갑자기 연차가 하루 생겼다.", a: ["동네 카페에서 둘이 늘어지기", "근교 당일치기 코스 짜기"], axis: 2 },
+  { when: "D-7 · 사귄 지 100일", q: "100일이 다가온다. 준비는?", a: ["평소처럼 보내고, 편지 한 장 쓴다", "동선까지 정리해서 서프라이즈한다"], axis: 2 },
+];
+const QUESTIONS = [...NUMQ.map(x => ({ ...x, num: true })), ...TQ];
+
+const TYPES = {
+  CFN: { name: "6시 반 정문 대기형", color: "#F2557A", tag: "퇴근하자마자 회사 앞에서 만나는 생활밀착 연애",
+    traits: ["평일 저녁을 연애 시간으로 지켜내는 편이에요", "하루 종일 짧은 톡을 주고받으며 같이 있는 기분을 내요", "특별한 날보다 매일의 작은 루틴이 더 중요해요"],
+    date: "퇴근길 회사 근처 분식집 → 한 정거장 걸어서 귀가", good: "CBN", bad: "YBE" },
+  CFE: { name: "칼퇴 로맨티스트", color: "#E9667D", tag: "평일 저녁에도 작은 이벤트를 챙기는 사람",
+    traits: ["칼퇴는 사랑을 위한 거라고 믿어요", "새로 생긴 가게, 팝업을 먼저 찾아서 공유해요", "연락이 자주 오면 마음이 놓여요"],
+    date: "수요일 저녁 7시, 미리 예약한 작은 와인바", good: "YFE", bad: "YBN" },
+  CBN: { name: "저녁 산책 두 바퀴형", color: "#2FA88A", tag: "연락은 적어도 만나면 깊게, 동네 산책 한 바퀴가 최고",
+    traits: ["낮에는 일에 집중하고 연락은 퇴근 후에 몰아서 해요", "거창한 데이트보다 같이 걷는 시간이 좋아요", "만나는 날만큼은 휴대폰을 잘 안 봐요"],
+    date: "저녁 먹고 동네 하천 산책 두 바퀴 + 편의점 디저트", good: "CFN", bad: "CFE" },
+  CBE: { name: "금요일 7시 예약러", color: "#4C7BE0", tag: "평일은 담백하게, 금요일 저녁은 확실하게",
+    traits: ["데이트 날짜를 미리 정해 두면 마음이 편해요", "연락은 하루 한두 번이면 충분해요", "한 번 만날 때 제대로 준비하는 편이에요"],
+    date: "금요일 7시, 한 달 전에 잡아둔 오마카세", good: "YBE", bad: "YFN" },
+  YFN: { name: "메신저 틈새 연애러", color: "#9B6BE0", tag: "야근 중에도 톡으로 함께하는 생존형 연애",
+    traits: ["못 만나는 대신 틈날 때마다 연락해요", "야근 끝나고 통화 10분이 하루의 낙이에요", "만나면 집 근처에서 편하게 쉬고 싶어요"],
+    date: "토요일 늦은 아침, 집 근처 브런치 → 낮잠", good: "CFN", bad: "CBE" },
+  YFE: { name: "야근 끝 서프라이즈형", color: "#E07A3C", tag: "바빠도 마음은 크게, 몰래 준비한 한 방이 있다",
+    traits: ["바쁜 와중에도 연락은 꾸준히 이어가요", "자주 못 보는 미안함을 이벤트로 갚아요", "주말 데이트 코스를 틈틈이 메모해 둬요"],
+    date: "야근한 금요일 밤, 퇴근길에 꽃 한 송이 들고 깜짝 방문", good: "CFE", bad: "CBN" },
+  YBN: { name: "주말 몰아보기형", color: "#3C9BB5", tag: "평일엔 각자 생존, 주말엔 하루 종일 같이",
+    traits: ["평일에 연락이 뜸해도 서로 이해하는 사이가 편해요", "주말에 밀린 얘기를 한꺼번에 나눠요", "익숙한 동네, 익숙한 가게가 제일 좋아요"],
+    date: "일요일 오후, 동네 단골 카페 창가 자리에서 각자 책 읽기", good: "YBE", bad: "CFE" },
+  YBE: { name: "마감 후 플렉스형", color: "#C2496E", tag: "프로젝트 끝나는 날이 곧 기념일",
+    traits: ["마감 기간에는 연락이 끊겨도 서로 믿어요", "일이 끝나면 여행이나 큰 데이트로 보상해요", "계획 세우는 것 자체를 즐겨요"],
+    date: "분기 마감 다음 날 연차 쓰고 근교 1박", good: "CBE", bad: "CFN" },
+};
+const DAYS = ["월","화","수","목","금","토","일"];
+
+// ---------- 연애 가용 시간 계산 ----------
+const CURFEW = 22 * 60;        // 다음 날 출근을 위해 평일은 22:00에 헤어진다고 가정
+const OT_EXTRA = 150;          // 야근일은 퇴근이 2시간 30분 늦어진다고 가정
+const OT_ORDER = [3, 1, 2, 0, 4]; // 야근은 목·화·수·월·금 순으로 배치
+const WEEKEND = 240;           // 주말 하루 최대 4시간 (밀린 잠·집안일 제외)
+const WEEKEND_START = 13 * 60;
+
+function schedule(p) {
+  const otDays = new Set(OT_ORDER.slice(0, p.ot));
+  const days = [];
+  for (let d = 0; d < 5; d++) {
+    const start = p.leave + p.commute + (otDays.has(d) ? OT_EXTRA : 0);
+    const m = CURFEW - start;
+    days.push({ start, min: m >= 30 ? m : 0 }); // 30분 미만은 만나기 어렵다고 보고 0
+  }
+  const sat = p.wk === 0 ? WEEKEND : p.wk === 1 ? 120 : 0;
+  days.push({ start: WEEKEND_START, min: sat }, { start: WEEKEND_START, min: WEEKEND });
+  const weekday = days.slice(0, 5).reduce((s, x) => s + x.min, 0);
+  const weekend = days[5].min + days[6].min;
+  return { days, weekday, weekend, total: weekday + weekend };
+}
+function overlap(a, b) {
+  const A = schedule(a), B = schedule(b);
+  const days = A.days.map((x, i) => {
+    const y = B.days[i];
+    if (i >= 5) return { start: WEEKEND_START, min: Math.min(x.min, y.min) };
+    const start = Math.max(x.start, y.start);
+    const m = CURFEW - start;
+    return { start, min: x.min && y.min && m >= 30 ? m : 0 };
+  });
+  return { days, total: days.reduce((s, x) => s + x.min, 0) };
+}
+function bestSlot(days) { // 평일 우선, 동률이면 금요일 쪽
+  let bi = -1;
+  days.forEach((d, i) => { if (i < 5 && d.min > 0 && (bi < 0 || d.min >= days[bi].min)) bi = i; });
+  if (bi < 0) days.forEach((d, i) => { if (d.min > 0 && (bi < 0 || d.min > days[bi].min)) bi = i; });
+  if (bi < 0) return null;
+  const d = days[bi], end = bi < 5 ? CURFEW : d.start + d.min;
+  return `${DAYS[bi]} ${clock(d.start)}~${clock(end)}`;
+}
+const clock = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+const dur = m => { const h = Math.floor(m / 60), r = m % 60; return h && r ? `${h}시간 ${r}분` : h ? `${h}시간` : `${r}분`; };
+const short = m => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, "0")}`;
+
+// ---------- 상태 ----------
+let step = 0, answers = [], code = null, profile = null;
+const partner = {};
+
+function stat(key) {
+  try { const s = JSON.parse(localStorage.getItem("lovetype-stats") || "{}"); s[key] = (s[key] || 0) + 1; localStorage.setItem("lovetype-stats", JSON.stringify(s)); } catch (e) {}
+}
+function readStats() { try { return JSON.parse(localStorage.getItem("lovetype-stats") || "{}"); } catch (e) { return {}; } }
+
+const app = document.getElementById("app");
+function toast(msg) {
+  const t = document.getElementById("toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2200);
+}
+
+// ---------- 자체 캐릭터: 말랑 사원 ----------
+function mascot(color, night) {
+  const acc = night
+    ? `<path d="M78 14a10 10 0 1 0 8 15 8 8 0 0 1-8-15z" fill="#F6C445"/>`
+    : `<circle cx="80" cy="20" r="8" fill="#F6C445"/><g stroke="#F6C445" stroke-width="2" stroke-linecap="round"><path d="M80 6v3M80 31v3M66 20h3M91 20h3"/></g>`;
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">
+    ${acc}
+    <path d="M18 62c0-22 14-38 32-38s32 16 32 38c0 16-12 26-32 26S18 78 18 62z" fill="${color}"/>
+    <path d="M36 70l14 9 14-9" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>
+    <rect x="44" y="78" width="12" height="9" rx="2" fill="#FFFFFF"/>
+    <rect x="46.5" y="81" width="7" height="2" rx="1" fill="${color}"/>
+    <circle cx="40" cy="52" r="3.2" fill="#1D2140"/><circle cx="60" cy="52" r="3.2" fill="#1D2140"/>
+    <ellipse cx="34" cy="59" rx="4" ry="2.4" fill="#FFFFFF" opacity=".45"/><ellipse cx="66" cy="59" rx="4" ry="2.4" fill="#FFFFFF" opacity=".45"/>
+    <path d="M46 58q4 3 8 0" fill="none" stroke="#1D2140" stroke-width="2" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// ---------- 화면 ----------
+function renderIntro() {
+  code = null;
+  app.innerHTML = `
+    <section class="sheet">
+      <div class="intro-hero">
+        ${mascot("#F2557A", false).replace("<svg", '<svg width="110" height="110"')}
+        <span class="timechip mono">약 1분 · 10문항</span>
+        <h1>이번 주 나의<br><em>연애 가용 시간</em>은?</h1>
+        <p class="note">퇴근 시각, 퇴근길, 야근 횟수로 실제로 연애할 수 있는 시간을 분 단위로 계산하고, 연락·데이트 성향으로 직장인 연애 유형을 알려드려요.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>분 단위</b><span>시간 계산</span></div>
+        <div class="fact"><b>8</b><span>연애 유형</span></div>
+        <div class="fact"><b>둘이서</b><span>겹치는 시간</span></div>
+      </div>
+      <button class="btn btn-primary" id="start">내 시간 계산하기</button>
+    </section>
+    ${teamPanel()}`;
+  document.getElementById("start").onclick = () => { stat("시작"); step = 0; answers = []; renderQ(); };
+  bindTeam();
+}
+
+function renderQ() {
+  const Q = QUESTIONS[step];
+  const pct = Math.round(step / QUESTIONS.length * 100);
+  const part = Q.num ? "시간 계산" : "연애 성향";
+  const opts = Q.num ? Q.a.map(x => x[0]) : Q.a;
+  app.innerHTML = `
+    <section class="sheet">
+      <div class="qtop"><span class="mono">Q${step + 1} / ${QUESTIONS.length}</span><span>${part} · <span class="mono">${pct}%</span></span></div>
+      <div class="bar"><i style="width:${pct}%"></i></div>
+      <div class="invite"><span class="when">${Q.when}</span><h2>${Q.q}</h2></div>
+      <div class="opts">
+        ${opts.map((t, i) => `<button class="opt${answers[step] === i ? " picked" : ""}" data-i="${i}"><span class="k">${"ABCDE"[i]}</span><span>${t}</span></button>`).join("")}
+      </div>
+      ${step > 0 ? `<button class="back" id="back">← 이전 질문</button>` : ""}
+    </section>`;
+  app.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    answers[step] = +b.dataset.i; b.classList.add("picked");
+    setTimeout(() => { step++; step < QUESTIONS.length ? renderQ() : renderLoading(); }, 180);
+  });
+  const back = document.getElementById("back");
+  if (back) back.onclick = () => { step--; renderQ(); };
+  window.scrollTo(0, 0);
+}
+
+function profileFrom(ans) {
+  const p = {};
+  NUMQ.forEach((Q, i) => p[Q.key] = Q.a[ans[i]][1]);
+  return p;
+}
+function computeCode(p, ans) {
+  const s = schedule(p);
+  const score = { 1: 0, 2: 0 };
+  TQ.forEach((Q, i) => { if (ans[NUMQ.length + i] === 0) score[Q.axis]++; });
+  return (s.weekday >= 480 ? "C" : "Y") + (score[1] >= 2 ? "F" : "B") + (score[2] >= 2 ? "N" : "E");
+}
+
+function renderLoading() {
+  profile = profileFrom(answers);
+  code = computeCode(profile, answers); stat("완주"); stat("유형 " + code);
+  app.innerHTML = `<section class="sheet loading"><div class="stamp">결재</div><h2>연애 가용 시간 정산 중…</h2><p class="note">야근 수당은 안 나오지만 계산은 정확하게</p></section>`;
+  setTimeout(() => renderResult(code, profile), 1300);
+}
+
+function weekBars(days, color) {
+  const max = 300;
+  return `<div class="week">${days.map((d, i) => `<div>
+    <em class="mono">${d.min ? short(d.min) : "–"}</em>
+    <span class="col"><span class="fill" style="height:${Math.min(100, d.min / max * 100)}%;${color ? `background:${color}` : ""}"></span></span>${DAYS[i]}</div>`).join("")}</div>`;
+}
+
+function badgeHTML(c, p) {
+  const T = TYPES[c], G = TYPES[T.good], B = TYPES[T.bad], S = schedule(p);
+  const slot = bestSlot(S.days);
+  return `
+  <article class="badge" style="--tc:${T.color}" id="badge">
+    <div class="lanyard"></div>
+    <div class="badge-body">
+      <div class="badge-head">
+        ${mascot(T.color, c[0] === "Y")}
+        <div class="who">
+          <span class="code">연애 유형 사원증 · ${c}</span>
+          <h1>${T.name}</h1>
+        </div>
+      </div>
+      <p class="tagline">${T.tag}</p>
+      <div class="avail">
+        <span class="label">이번 주 연애 가용 시간</span>
+        <span class="bignum">${dur(S.total)}</span>
+        <span class="note">평일 ${dur(S.weekday) || "0분"} · 주말 ${dur(S.weekend) || "0분"}${slot ? ` · 가장 여유 있는 때 <b>${slot}</b>` : ""}</span>
+        ${weekBars(S.days)}
+      </div>
+      <ul class="traits">${T.traits.map(t => `<li>${t}</li>`).join("")}</ul>
+      <div class="match">
+        <div class="good"><small>찰떡 궁합</small><b>${G.name}</b></div>
+        <div class="bad"><small>일정 조율 필요</small><b>${B.name}</b></div>
+      </div>
+      <div class="date-tip"><span class="label">바쁜 우리에게 맞는 데이트</span><p>${T.date}</p></div>
+      <div class="foot-brand"><span>퇴근 후 연애 유형 테스트</span><span class="mono">2026 연말 에디션</span></div>
+    </div>
+  </article>`;
+}
+
+function partnerForm() {
+  return NUMQ.map(Q => `
+    <div class="pq"><span class="label">${Q.q.replace("?", "")}</span>
+      <div class="chips">${Q.a.map((x, i) => `<button class="chip${partner[Q.key] === x[1] ? " on" : ""}" data-k="${Q.key}" data-v="${x[1]}">${x[0]}</button>`).join("")}</div>
+    </div>`).join("");
+}
+
+function renderResult(c, p) {
+  code = c; profile = p;
+  const T = TYPES[c];
+  app.innerHTML = `
+    ${badgeHTML(c, p)}
+    <div class="row">
+      <button class="btn btn-primary" id="share">결과 공유하기</button>
+      <button class="btn btn-ghost" id="retry">다시 하기</button>
+    </div>
+    <details class="sheet calc">
+      <summary>이 시간은 이렇게 계산했어요</summary>
+      <ul class="note">
+        <li>평일은 퇴근 시각에 퇴근길 시간을 더한 때부터 밤 10시까지 (다음 날 출근 고려)</li>
+        <li>야근하는 날은 퇴근이 2시간 30분 늦어진다고 봤고, 30분이 안 남는 날은 0으로 쳤어요</li>
+        <li>주말은 밀린 잠과 집안일을 빼고 하루 최대 4시간</li>
+      </ul>
+    </details>
+
+    <section class="sheet door" id="pair">
+      <span class="pill">둘이서 해보기</span>
+      <h2>썸·연인과 겹치는 시간 계산</h2>
+      <p class="note">상대의 퇴근 정보만 고르면, 둘이 실제로 만날 수 있는 시간과 가장 좋은 데이트 시간대를 알려드려요.</p>
+      <div id="pform" class="pform">${partnerForm()}</div>
+      <button class="btn btn-primary" id="calc" disabled>겹치는 시간 계산하기</button>
+      <div id="pout"></div>
+      <p class="note">출시 버전에서는 링크를 보내면 상대가 직접 테스트하고 결과가 합쳐져요.</p>
+    </section>
+
+    <section class="sheet door" id="paid">
+      <span class="pill">상세 리포트</span>
+      <h2>${T.name}의 연애 사용설명서</h2>
+      <div class="locked">
+        <ul>
+          <li>요일별 가용 시간에 맞춘 한 달 데이트 캘린더</li>
+          <li>야근 주간에 연락 끊기지 않는 메시지 5개</li>
+          <li>찰떡 유형 TOP 3와 첫 만남 대화 주제</li>
+        </ul>
+        <p class="blur note">이 유형은 연락 빈도보다 약속을 지키는 일관성에서 신뢰를 느끼며, 특히 목요일 저녁…</p>
+      </div>
+      <div id="paid-cta">
+        <div class="row" style="align-items:center"><span class="price">990원</span><button class="btn btn-primary" id="buy">상세 리포트 열기</button></div>
+      </div>
+    </section>
+
+    <section class="sheet door" id="wait">
+      <span class="pill">준비 중</span>
+      <h2>스펙 말고, 퇴근 시간이 맞는 사람 소개받기</h2>
+      <p>내 연애 가용 시간과 많이 겹치는 직장인끼리 소개해 주는 서비스를 준비하고 있어요. 오픈하면 가장 먼저 알려드릴게요.</p>
+      <div id="wait-cta"><button class="btn btn-mint" id="waitbtn">오픈하면 알려주세요</button></div>
+    </section>
+
+    <button class="btn btn-ghost" id="boss">내 상사와의 궁합도 보기</button>
+    ${teamPanel()}`;
+
+  const S = schedule(p);
+  document.getElementById("share").onclick = async () => {
+    stat("공유 클릭");
+    const text = `이번 주 내 연애 가용 시간은 ${dur(S.total)}, 유형은 '${T.name}'! 너는 몇 시간이야?`;
+    try { await navigator.clipboard.writeText(text); toast("공유 문구를 복사했어요"); }
+    catch (e) { toast("복사가 막혀 있어요. 결과 카드를 캡처해 공유해 주세요"); }
+  };
+  document.getElementById("retry").onclick = () => renderIntro();
+
+  const calcBtn = document.getElementById("calc");
+  const ready = () => calcBtn.disabled = !NUMQ.every(Q => Q.key in partner);
+  app.querySelectorAll(".chip").forEach(b => b.onclick = () => {
+    partner[b.dataset.k] = +b.dataset.v;
+    app.querySelectorAll(`.chip[data-k="${b.dataset.k}"]`).forEach(x => x.classList.toggle("on", x === b));
+    ready();
+  });
+  ready();
+  calcBtn.onclick = () => {
+    stat("겹치는 시간 계산");
+    const O = overlap(p, partner), slot = bestSlot(O.days);
+    document.getElementById("pout").innerHTML = `
+      <div class="pair-out">
+        <span class="label">둘이 만날 수 있는 시간</span>
+        <span class="bignum">${O.total ? "주 " + dur(O.total) : "이번 주는 0분"}</span>
+        <span class="note">${slot ? `추천 데이트 시간 <b>${slot}</b>` : "평일도 주말도 겹치는 시간이 없어요. 점심 데이트를 노려보세요."}</span>
+        ${weekBars(O.days, "var(--mint)")}
+      </div>`;
+  };
+
+  document.getElementById("buy").onclick = () => {
+    stat("990원 클릭");
+    document.getElementById("paid-cta").innerHTML = `<div class="done">아직 결제를 열지 않았어요. 상세 리포트가 나오면 결과 화면에서 바로 볼 수 있게 할게요. 관심 표시 고마워요!</div>`;
+  };
+  document.getElementById("waitbtn").onclick = () => {
+    stat("소개받기 대기 신청");
+    document.getElementById("wait-cta").innerHTML = `<div class="done">대기 신청을 받았어요. 지금은 프로토타입이라 연락처는 받지 않고, 누른 횟수만 세고 있어요.</div>`;
+  };
+  document.getElementById("boss").onclick = () => { stat("상사궁합 클릭"); toast("상사 궁합 테스트는 곧 열려요"); };
+  bindTeam();
+  window.scrollTo(0, 0);
+}
+
+// ---------- 팀 확인용 ----------
+const SAMPLE = { C: { leave: 1080, commute: 45, ot: 0, wk: 0 }, Y: { leave: 1140, commute: 75, ot: 4, wk: 1 } };
+function teamPanel() {
+  const s = readStats();
+  const rows = ["시작","완주","공유 클릭","겹치는 시간 계산","990원 클릭","소개받기 대기 신청","상사궁합 클릭"].map(k => `<tr><td>${k}</td><td>${s[k] || 0}</td></tr>`).join("");
+  return `
+  <details class="team">
+    <summary>팀 확인용 (실서비스에서는 숨김)</summary>
+    <div class="team-body">
+      <p class="note">이 브라우저에서 누른 횟수만 세요. 실제 수요 측정은 출시 때 분석 도구로 바꿀 자리예요.</p>
+      <table class="stats"><tbody>${rows}</tbody></table>
+      <span class="label">8개 결과 카드 바로 보기 (예시 근무 조건)</span>
+      <div class="typegrid">${Object.keys(TYPES).map(k => `<button data-type="${k}"><span class="mono">${k}</span> ${TYPES[k].name}</button>`).join("")}</div>
+      <button class="btn btn-ghost" id="reset">카운트 초기화</button>
+    </div>
+  </details>`;
+}
+function bindTeam() {
+  app.querySelectorAll("[data-type]").forEach(b => b.onclick = () => renderResult(b.dataset.type, SAMPLE[b.dataset.type[0]]));
+  const r = document.getElementById("reset");
+  if (r) r.onclick = () => { try { localStorage.removeItem("lovetype-stats"); } catch (e) {} toast("카운트를 초기화했어요"); code ? renderResult(code, profile) : renderIntro(); };
+}
+
+renderIntro();
+</script>
+</body></html>

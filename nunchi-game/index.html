@@ -1,0 +1,783 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}[hidden]{display:none!important}</style></head><body>
+<title>월급루팡 눈치게임</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;700&display=swap">
+<style>
+/* Layout: 한 화면짜리 스프레드시트 창. 위장 자체가 디자인이라 라이트 단일 테마로 고정. */
+:root{
+  --frame:#e9ecea;      /* 창 바깥, 리본 */
+  --sheet:#ffffff;
+  --grid:#dfe3e0;
+  --hdr:#f2f4f2;
+  --hdr-fg:#5d655f;
+  --fg:#1f2421;
+  --muted:#6b736d;
+  --brand:#1d6b45;      /* 스프레드시트 초록 */
+  --brand-soft:#e3f1e8;
+  --sel:#1d7a4c;
+  --warn:#c9741c;
+  --warn-soft:#fdf0e1;
+  --bad:#c23a2e;
+  --bad-soft:#fbe5e2;
+  --ink:#2a2f2c;        /* 토스트 배경 */
+  --f-ui:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
+  --f-display:"Black Han Sans","Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+  color-scheme:light;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--frame);color:var(--fg);font-family:var(--f-ui);overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+button{font:inherit;color:inherit}
+button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
+
+.app{height:100%;display:flex;flex-direction:column;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:8px;box-sizing:border-box;gap:0;position:relative}
+.win{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--sheet);border:1px solid #cfd5d1;border-radius:6px;overflow:hidden;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+
+.titlebar{display:flex;align-items:center;gap:8px;background:var(--brand);color:#fff;padding:6px 10px;font-size:12px;min-height:30px;box-sizing:border-box}
+.titlebar .doc{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.titlebar .saved{opacity:.9;white-space:nowrap}
+.titlebar .dots{display:flex;gap:10px;opacity:.85}
+.titlebar .dots i{display:block;width:9px;height:1.5px;background:#fff;margin-top:4px}
+.ribbon{display:flex;gap:16px;padding:6px 10px 0;font-size:12px;color:var(--hdr-fg);background:var(--frame);border-bottom:1px solid #d3d8d5;overflow:hidden;white-space:nowrap}
+.ribbon span{padding-bottom:5px}
+.ribbon span.on{color:var(--brand);border-bottom:2px solid var(--brand);font-weight:700}
+.fx{display:flex;align-items:center;gap:8px;font-size:12px;padding:4px 8px;border-bottom:1px solid var(--grid);background:var(--sheet)}
+.fx .ref{width:52px;flex:none;border:1px solid var(--grid);padding:2px 6px;color:var(--hdr-fg);font-variant-numeric:tabular-nums}
+.fx .fxi{color:var(--muted);font-style:italic;flex:none}
+.fx .formula{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+
+.gridwrap{flex:1;min-height:0;position:relative;overflow:hidden}
+.grid{display:grid;height:100%;font-size:12px;font-variant-numeric:tabular-nums}
+.c{border-right:1px solid var(--grid);border-bottom:1px solid var(--grid);padding:0 5px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;min-width:0;box-sizing:border-box;position:relative}
+.c.h{background:var(--hdr);color:var(--hdr-fg);justify-content:center;font-size:11px}
+.c.num{justify-content:flex-end}
+.c.b{font-weight:700}
+.c.th{background:var(--brand-soft);font-weight:700;justify-content:center}
+.c.tot{border-top:1.5px double var(--fg);font-weight:700}
+.c.selc{outline:2px solid var(--sel);outline-offset:-2px;z-index:1}
+.c.item{cursor:pointer;background:var(--brand-soft);color:var(--brand);font-weight:700;animation:pop .14s ease-out}
+.c.item::after{content:"";position:absolute;right:0;top:0;border-style:solid;border-width:0 7px 7px 0;border-color:transparent var(--sel) transparent transparent}
+.c.item.badi{background:var(--bad-soft);color:var(--bad)}
+.c.item.badi::after{border-color:transparent var(--bad) transparent transparent}
+.c.item.fading{opacity:.45}
+.c.got{background:transparent;color:var(--muted);font-weight:400}
+@keyframes pop{from{transform:scale(.85)}to{transform:scale(1)}}
+
+.tabs{display:flex;align-items:stretch;gap:2px;background:var(--frame);border-top:1px solid #d3d8d5;padding:0 6px;min-height:44px}
+.tab{border:0;background:transparent;padding:0 14px;font-size:13px;color:var(--hdr-fg);cursor:pointer;border-bottom:3px solid transparent;min-height:44px}
+.tab.on{background:var(--sheet);color:var(--brand);font-weight:700;border-bottom-color:var(--brand)}
+.tab.bosskey{margin-left:auto;color:var(--fg);font-weight:700}
+.tab.bosskey .k{font-size:11px;color:var(--hdr-fg);margin-left:6px;font-weight:400}
+.status{display:flex;gap:12px;align-items:center;font-size:12.5px;color:var(--hdr-fg);background:var(--frame);padding:4px 8px;border-top:1px solid #d3d8d5;min-height:24px;font-variant-numeric:tabular-nums}
+.status .left{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status .right{display:flex;gap:12px;white-space:nowrap}
+.status b{color:var(--fg)}
+
+/* 신호, 부장님 */
+.toast{position:absolute;right:10px;top:10px;width:min(270px,calc(100% - 20px));background:var(--ink);color:#fff;border-radius:6px;padding:10px 12px;font-size:14px;line-height:1.45;box-shadow:0 6px 18px rgba(0,0,0,.22);transform:translateY(-8px);opacity:0;transition:transform .15s,opacity .15s;pointer-events:none;z-index:5}
+.toast.show{transform:none;opacity:1}
+.toast .who{font-size:12px;opacity:.8;margin-bottom:2px;display:flex;justify-content:space-between}
+.toast.ok{background:var(--brand)}
+.toast.badt{background:var(--bad)}
+.vign{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 0 rgba(201,116,28,0);transition:box-shadow .2s;z-index:3}
+.alert .vign{box-shadow:inset 0 0 60px 6px rgba(201,116,28,.38)}
+.boss{position:absolute;right:-120px;bottom:0;width:110px;height:180px;transition:right .35s ease-out;z-index:4;pointer-events:none}
+.boss.in{right:4px}
+.bubble{position:absolute;right:96px;bottom:150px;background:#fff;border:1.5px solid var(--fg);border-radius:10px;padding:6px 10px;font-size:14px;white-space:nowrap;opacity:0;transition:opacity .15s}
+.boss.say .bubble{opacity:1}
+.flash{position:absolute;inset:0;background:var(--bad);opacity:0;pointer-events:none;z-index:6;transition:opacity .3s}
+.flash.on{opacity:.22;transition:none}
+.shake{animation:shake .32s}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.shake{animation:none}.c.item{animation:none}.boss{transition:none}}
+
+/* 대화상자 */
+.scrim{position:absolute;inset:0;background:rgba(31,36,33,.38);display:flex;align-items:center;justify-content:center;z-index:20;padding:12px;box-sizing:border-box}
+.dlg{background:var(--sheet);border-radius:8px;width:min(440px,100%);max-height:100%;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.25);font-size:14.5px;line-height:1.6}
+.dlg .dh{display:flex;align-items:center;justify-content:space-between;background:var(--frame);padding:0 0 0 12px;min-height:44px;font-size:13px;color:var(--hdr-fg);border-bottom:1px solid #d3d8d5;position:sticky;top:0}
+.dlg .db{padding:16px;display:flex;flex-direction:column;gap:14px}
+.logo{font-family:var(--f-display);font-size:34px;line-height:1.1;color:var(--brand);letter-spacing:.5px}
+.logo small{display:block;font-family:var(--f-ui);font-size:13px;color:var(--muted);letter-spacing:0;margin-top:6px;font-weight:400}
+.how{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.how kbd{font-family:inherit;border:1px solid #c6ccc8;border-bottom-width:2px;border-radius:3px;padding:0 5px;font-size:12px;background:var(--hdr)}
+.sec{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:-6px}
+.items{display:flex;flex-direction:column;border:1px solid var(--grid);border-radius:6px}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 10px;border-bottom:1px solid var(--grid);align-items:center}
+.it:last-child{border-bottom:0}
+.it .nm{font-weight:700}
+.it .ds{grid-column:1;font-size:13px;color:var(--muted)}
+.it .act{grid-row:1/3;grid-column:2}
+.price{border:1px solid var(--brand);color:var(--brand);background:var(--sheet);border-radius:4px;padding:6px 12px;font-weight:700;cursor:pointer;min-height:44px;font-variant-numeric:tabular-nums}
+.price.eq{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{flex:1;min-width:120px;min-height:44px;border-radius:5px;border:1px solid var(--brand);background:var(--brand);color:#fff;font-weight:700;cursor:pointer;padding:0 12px}
+.btn.ghost{background:var(--sheet);color:var(--brand)}
+.btn[disabled]{opacity:.45;cursor:default}
+.note{font-size:13px;color:var(--muted)}
+.stamp{display:flex;justify-content:space-between;align-items:center;background:var(--hdr);border-radius:5px;padding:8px 10px;font-size:13.5px}
+.stamp b{color:var(--brand)}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px;padding:0;min-height:44px;align-self:flex-start}
+.card-img{width:100%;max-width:100%;border-radius:6px;display:block;border:1px solid var(--grid);-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:default}
+.teaser{border:1px dashed var(--brand);border-radius:6px;padding:10px 12px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.teaser b{display:block}
+.teaser span{font-size:13px;color:var(--muted)}
+.done{color:var(--brand);font-weight:700}
+.x{background:none;border:0;width:44px;height:44px;font-size:16px;color:var(--hdr-fg);cursor:pointer}
+/* 오늘의 부장님 */
+.bosses{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bz{border:1.5px solid var(--grid);background:var(--sheet);border-radius:6px;padding:8px 10px;text-align:left;cursor:pointer;min-height:44px;display:flex;flex-direction:column;gap:2px}
+.bz b{font-size:14px}
+.bz span{font-size:12.5px;color:var(--hdr-fg);line-height:1.4}
+.bz[aria-pressed=true]{border-color:var(--brand);background:var(--brand-soft)}
+.bz[aria-pressed=true] b{color:var(--brand)}
+.goal{border-left:4px solid var(--warn);background:var(--warn-soft);padding:9px 12px;border-radius:4px;font-size:14px}
+.goal b{color:var(--warn)}
+.cd{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:88px;color:var(--brand);z-index:8;pointer-events:none;text-shadow:0 2px 0 #fff}
+</style>
+
+<div class="app" id="app">
+  <div class="win" id="win">
+    <div class="titlebar">
+      <div class="doc" id="docname">2026_4분기_예산안_최종_v3(진짜최종).xlsx</div>
+      <div class="saved">자동 저장됨</div>
+      <div class="dots" aria-hidden="true"><i></i><i></i></div>
+    </div>
+    <div class="ribbon" aria-hidden="true"><span>파일</span><span class="on">홈</span><span>삽입</span><span>수식</span><span>데이터</span><span>검토</span><span>보기</span></div>
+    <div class="fx"><div class="ref" id="ref">A1</div><div class="fxi">fx</div><div class="formula" id="formula">=SUM(C4:E4)</div></div>
+    <div class="gridwrap" id="gw">
+      <div class="grid" id="grid"></div>
+      <div class="vign"></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"><div class="who"><span id="tWho"></span><span>방금</span></div><div id="tMsg"></div></div>
+      <div class="boss" id="boss" aria-hidden="true">
+        <div class="bubble" id="bubble">지금 뭐 해요?</div>
+        <svg viewBox="0 0 110 180" width="110" height="180">
+          <ellipse cx="62" cy="48" rx="27" ry="30" fill="#f1d3b5"/>
+          <path d="M35 40 q4 -26 27 -26 q24 0 27 26 q-8 -10 -27 -10 q-19 0 -27 10z" fill="#3b3f3c"/>
+          <rect x="44" y="40" width="14" height="10" rx="2" fill="none" stroke="#2a2f2c" stroke-width="2"/>
+          <rect x="64" y="40" width="14" height="10" rx="2" fill="none" stroke="#2a2f2c" stroke-width="2"/>
+          <line x1="58" y1="45" x2="64" y2="45" stroke="#2a2f2c" stroke-width="2"/>
+          <path d="M53 64 q9 4 18 0" stroke="#2a2f2c" stroke-width="2" fill="none"/>
+          <path d="M14 180 q2 -82 48 -84 q46 2 48 84z" fill="#4a5a6a"/>
+          <path d="M50 97 l12 12 l12 -12 l-12 -2z" fill="#ffffff"/>
+          <path d="M58 104 l4 48 l4 -48 l-4 -6z" fill="#c23a2e"/>
+          <rect x="72" y="118" width="16" height="12" rx="1" fill="#e9ecea" transform="rotate(-8 80 124)"/>
+        </svg>
+      </div>
+      <div class="flash" id="flash"></div>
+      <div class="cd" id="cd" hidden></div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab on" id="tabGame" role="tab">Sheet1</button>
+      <button class="tab" id="tabWork" role="tab">4분기_예산</button>
+      <button class="tab bosskey" id="bossKey" aria-label="보스 키: 업무 화면으로 숨기기">숨기기<span class="k">Space</span></button>
+    </div>
+    <div class="status">
+      <div class="left" id="stLeft">준비</div>
+      <div class="right"><span>남은 <b id="stTime">3:00</b></span><span>합계 <b id="stScore">0</b></span><span>들킴 <b id="stCaught">0</b></span></div>
+    </div>
+
+    <!-- 시작 -->
+    <div class="scrim" id="dlgStart">
+      <div class="dlg" role="dialog" aria-labelledby="ttl">
+        <div class="dh"><span>셀 서식</span></div>
+        <div class="db">
+          <div class="logo" id="ttl">월급루팡<small>엑셀인 척 3분 버티기. 부장님 오기 전에 숨기면 성공.</small></div>
+          <div class="goal" id="goal" hidden></div>
+          <ol class="how">
+            <li>초록 칸(딴짓)을 눌러 점수를 모아요. 빨간 <b>회신 요망</b>은 누르면 감점.</li>
+            <li>오른쪽 위 알림을 읽고 <b>부장님이 오는 신호</b>면 <b>숨기기</b> 탭(PC는 <kbd>Space</kbd>)으로 업무 화면 전환.</li>
+            <li>부장님이 떠날 때까지 기다렸다가 <b>Sheet1</b>로 복귀. 괜히 숨으면 시간만 손해예요.</li>
+          </ol>
+          <div class="sec">오늘의 부장님 (상사궁합 캐릭터)</div>
+          <div class="bosses" id="bosses"></div>
+          <div class="stamp"><span id="stampTxt">출근 도장 1일째</span><span id="playsTxt">오늘 남은 판 <b>1</b></span></div>
+          <div class="row">
+            <button class="btn" id="startBtn">출근하기 (3분)</button>
+            <button class="btn ghost" id="shortBtn">1분만 해보기</button>
+          </div>
+          <button class="link" id="testMore" hidden>프로토 테스트용: 그래도 한 판 더</button>
+          <div class="sec">아이템 (판매 예정)</div>
+          <div class="items" id="items"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 가짜 문 -->
+    <div class="scrim" id="dlgDoor" hidden>
+      <div class="dlg" role="dialog" aria-labelledby="doorTtl">
+        <div class="dh"><span>구매</span><button class="x" id="doorX" aria-label="닫기">✕</button></div>
+        <div class="db">
+          <div><b id="doorTtl" style="font-size:16px">이어폰</b> · 990원</div>
+          <div id="doorDesc" class="note"></div>
+          <div>결제는 아직 준비 중이에요. 출시되면 가장 먼저 알려드릴게요.</div>
+          <div class="row">
+            <button class="btn" id="notifyBtn">출시 알림 받기</button>
+            <button class="btn ghost" id="trialBtn">이번 판 체험으로 쓰기</button>
+          </div>
+          <div class="note" id="doorNote">체험으로 쓴 판은 결과 카드에 아이템 사용 판으로 표시돼요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 결과 -->
+    <div class="scrim" id="dlgResult" hidden>
+      <div class="dlg" role="dialog" aria-label="결과">
+        <div class="dh"><span>퇴근 보고서</span></div>
+        <div class="db">
+          <div class="goal" id="vs" hidden></div>
+          <img class="card-img" id="cardImg" alt="오늘의 월급루팡 지수 결과 카드">
+          <div class="note" id="saveHint">카드 이미지를 길게 누르면 저장할 수 있어요.</div>
+          <div class="row">
+            <button class="btn" id="copyBtn">도전장 복사</button>
+            <button class="btn ghost" id="againBtn">처음으로</button>
+          </div>
+          <textarea id="copyFallback" hidden rows="3" style="width:100%;box-sizing:border-box;font:inherit;font-size:12px"></textarea>
+          <div class="teaser">
+            <div><b>나랑 우리 부장님 궁합은?</b><span>상사 궁합 테스트 준비 중</span></div>
+            <button class="price" id="teaserBtn">알림 받기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+// 공유 링크: 게시 후 채움
+const SHARE_URL = "https://claude.ai/artifact/H3J6TBPPGP5TbaowXk3cT1";
+
+const $ = id => document.getElementById(id);
+const grid = $("grid"), gw = $("gw"), app = $("app"), win = $("win");
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const lerp = (a, b, t) => a + (b - a) * Math.min(1, Math.max(0, t));
+const fmt = s => { s = Math.max(0, Math.ceil(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("lupang:" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("lupang:" + k, JSON.stringify(v)); } catch (e) {} }
+};
+const today = () => { const d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); };
+
+// ---------- 오늘의 부장님: 상사궁합 4유형이 그대로 난이도가 된다 ----------
+const BOSSES = {
+  TB: { name: "철컥이", code: "똑부", tip: "자주, 빨리 와요. 낚시는 적어요", lv: "어려움",
+        gap: 0.75, fake: 0.15, win: -0.2, stay: [1.6, 2.2], pass: "음, 진행 잘 되네요", say: ["진행 상황 공유 부탁해요", "그 파일 지금 보여줄래요?"] },
+  TG: { name: "느긋컵", code: "똑게", tip: "가끔 오지만 한번 오면 오래 봐요", lv: "보통",
+        gap: 1.3, fake: 0.25, win: 0.2, stay: [3.0, 4.2], pass: "천천히 다 보고 갈게요", say: ["그건 업무 아니죠?", "커피 식겠네, 근데 그 화면은 뭐예요?"] },
+  MB: { name: "붙임이", code: "멍부", tip: "알림이 엄청 많아요. 반은 낚시", lv: "까다로움",
+        gap: 0.85, fake: 0.5, win: -0.1, stay: [1.4, 2.2], pass: "아 그거 나도 하려 했는데!", say: ["어? 그거 뭐예요? 나도 보여줘요", "일단 이거 같이 봐요"] },
+  MG: { name: "광합이", code: "멍게", tip: "거의 안 와요. 대신 오면 수다가 길어요", lv: "쉬움",
+        gap: 1.5, fake: 0.3, win: 0.4, stay: [2.4, 3.4], pass: "날씨 좋죠? 열심히 하네요", say: ["어머, 그거 재밌어요?", "나도 그 웹툰 봐요"] }
+};
+let bossId = store.get("boss", "TB");
+// 도전장 링크(#c=점수.부장님)로 들어오면 목표 점수와 같은 부장님으로 시작
+const challenge = (() => { const m = /[#&]c=(\d{1,3})\.(TB|TG|MB|MG)/.exec(location.hash); return m ? { idx: +m[1], boss: m[2] } : null; })();
+if (challenge) bossId = challenge.boss;
+if (!BOSSES[bossId]) bossId = "TB";
+function renderBosses() {
+  $("bosses").innerHTML = Object.entries(BOSSES).map(([id, b]) => `
+    <button class="bz" data-boss="${id}" aria-pressed="${id === bossId}"><b>${b.name} · ${b.code}</b><span>${b.tip} (${b.lv})</span></button>`).join("");
+  const g = $("goal");
+  if (challenge) { g.hidden = false; g.innerHTML = `도전장이 왔어요. <b>${BOSSES[challenge.boss].name}</b> 부장님 상대로 <b>${challenge.idx}점</b>을 넘겨보세요.`; }
+}
+$("bosses").addEventListener("click", e => {
+  const b = e.target.closest("[data-boss]"); if (!b) return;
+  bossId = b.dataset.boss; store.set("boss", bossId); renderBosses();
+});
+
+// ---------- 아이템 (확정형, 990원 가짜 문) ----------
+const ITEMS = [
+  { id: "earphone", name: "이어폰", desc: "부장님 신호가 0.5초 일찍 들려요." },
+  { id: "partition", name: "칸막이", desc: "한 판에 한 번, 들켜도 안 들킨 걸로 쳐줘요." },
+  { id: "halfday", name: "반차권", desc: "오늘 한 판을 더 할 수 있어요." }
+];
+const equipped = new Set();
+let doorItem = null;
+
+function renderItems() {
+  $("items").innerHTML = ITEMS.map(it => `
+    <div class="it"><div class="nm">${it.name}</div><div class="ds">${it.desc}</div>
+    <div class="act"><button class="price ${equipped.has(it.id) ? "eq" : ""}" data-item="${it.id}">${equipped.has(it.id) ? "체험 중" : "990원"}</button></div></div>`).join("");
+}
+$("items").addEventListener("click", e => {
+  const b = e.target.closest("[data-item]"); if (!b) return;
+  const it = ITEMS.find(i => i.id === b.dataset.item);
+  if (equipped.has(it.id)) { equipped.delete(it.id); renderItems(); refreshPlays(); return; }
+  doorItem = it;
+  $("doorTtl").textContent = it.name; $("doorDesc").textContent = it.desc;
+  const asked = store.get("notify", {});
+  $("notifyBtn").textContent = asked[it.id] ? "알림 신청됨" : "출시 알림 받기";
+  $("notifyBtn").disabled = !!asked[it.id];
+  $("dlgDoor").hidden = false;
+});
+$("doorX").onclick = () => { $("dlgDoor").hidden = true; };
+$("notifyBtn").onclick = () => {
+  const asked = store.get("notify", {}); asked[doorItem.id] = Date.now(); store.set("notify", asked);
+  $("notifyBtn").textContent = "알림 신청됨"; $("notifyBtn").disabled = true;
+  $("doorNote").textContent = "신청을 받았어요. 프로토라 실제 알림은 가지 않아요.";
+};
+$("trialBtn").onclick = () => { equipped.add(doorItem.id); $("dlgDoor").hidden = true; renderItems(); refreshPlays(); };
+
+// ---------- 출근 도장, 하루 판 수 ----------
+function refreshPlays() {
+  const d = store.get("day", { date: "", plays: 0 });
+  const plays = d.date === today() ? d.plays : 0;
+  const allowed = 1 + (equipped.has("halfday") ? 1 : 0);
+  const left = Math.max(0, allowed - plays);
+  $("playsTxt").innerHTML = `오늘 남은 판 <b>${left}</b>`;
+  const st = store.get("streak", { last: "", n: 0 });
+  $("stampTxt").textContent = `출근 도장 ${Math.max(1, st.n + (st.last === today() ? 0 : 1))}일째`;
+  const over = left === 0;
+  $("startBtn").disabled = over; $("shortBtn").disabled = over;
+  $("startBtn").textContent = over ? "오늘 근무 끝. 내일 또 출근" : "출근하기 (3분)";
+  $("testMore").hidden = !over;
+  return over;
+}
+function countPlay() {
+  const t = today();
+  const d = store.get("day", { date: "", plays: 0 });
+  store.set("day", { date: t, plays: (d.date === t ? d.plays : 0) + 1 });
+  const st = store.get("streak", { last: "", n: 0 });
+  if (st.last !== t) {
+    const y = new Date(); y.setDate(y.getDate() - 1);
+    const ys = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
+    store.set("streak", { last: t, n: st.last === ys ? st.n + 1 : 1 });
+  }
+}
+
+// ---------- 시트 ----------
+let COLS = 6, ROWS = 12, cells = [];
+const WORK = [
+  ["", "4분기 부서 운영비 집행 현황", "", "", "", ""],
+  [],
+  ["", "항목", "10월", "11월", "12월", "합계"],
+  ["", "인건비(파견)", 4200000, 4200000, 4350000],
+  ["", "회의비", 312000, 287500, 498000],
+  ["", "출장 여비", 860000, 1120000, 640000],
+  ["", "소모품", 154300, 98700, 211000],
+  ["", "교육훈련비", 0, 550000, 300000],
+  ["", "통신비", 88000, 88000, 88000],
+  ["", "업무추진비", 420000, 395000, 780000],
+  ["", "합계"]
+];
+const n = v => typeof v === "number" ? v.toLocaleString("ko-KR") : v;
+function colName(i) { return String.fromCharCode(65 + i); }
+
+function layout() {
+  const w = gw.clientWidth, h = gw.clientHeight;
+  COLS = Math.max(5, Math.min(12, Math.floor((w - 34) / 86)));
+  ROWS = Math.max(8, Math.floor((h - 22) / 30));
+  grid.style.gridTemplateColumns = `34px repeat(${COLS}, minmax(0,1fr))`;
+  grid.style.gridTemplateRows = `22px repeat(${ROWS}, minmax(0,1fr))`;
+  let html = '<div class="c h"></div>';
+  for (let c = 0; c < COLS; c++) html += `<div class="c h">${colName(c)}</div>`;
+  for (let r = 0; r < ROWS; r++) {
+    html += `<div class="c h">${r + 1}</div>`;
+    for (let c = 0; c < COLS; c++) html += `<div class="c" data-r="${r}" data-c="${c}"></div>`;
+  }
+  grid.innerHTML = html;
+  cells = [];
+  grid.querySelectorAll(".c[data-r]").forEach(el => { (cells[+el.dataset.r] ||= [])[+el.dataset.c] = el; });
+  paint();
+}
+
+function paintWork() {
+  const sums = [0, 0, 0];
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    const el = cells[r][c]; el.className = "c"; el.textContent = "";
+    const row = WORK[r]; if (!row) continue;
+    let v = row[c];
+    if (r >= 3 && r <= 9) {
+      if (c >= 2 && c <= 4) sums[c - 2] += v || 0;
+      if (c === 5) v = row[2] + row[3] + row[4];
+    }
+    if (r === 10 && c >= 2 && c <= 5) v = c === 5 ? sums[0] + sums[1] + sums[2] : sums[c - 2];
+    if (v === undefined || v === "") continue;
+    el.textContent = n(v);
+    if (typeof v === "number") el.classList.add("num");
+    if (r === 0) el.classList.add("b");
+    if (r === 2 && c >= 1) el.classList.add("th");
+    if (r === 10 && c >= 1) el.classList.add("tot");
+  }
+  if (cells[4] && cells[4][5]) cells[4][5].classList.add("selc");
+  $("ref").textContent = "F5"; $("formula").textContent = "=SUM(C5:E5)";
+}
+function paintGameBlank() {
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) { const el = cells[r][c]; el.className = "c"; el.textContent = ""; }
+  // 위장용 고정 머리글 몇 칸
+  const hdr = ["일자", "구분", "적요", "금액", "비고", "확인"];
+  for (let c = 0; c < Math.min(COLS, hdr.length); c++) { cells[0][c].textContent = hdr[c]; cells[0][c].classList.add("th"); }
+}
+function paint() {
+  if (!cells.length) return;
+  if (G && G.hidden || !G) { if (G && G.hidden) paintWork(); else paintWork(); }
+  if (G && !G.hidden) { paintGameBlank(); for (const it of G.items) drawItem(it); }
+  $("tabGame").classList.toggle("on", !(G && G.hidden));
+  $("tabWork").classList.toggle("on", !!(G && G.hidden));
+}
+
+// ---------- 게임 ----------
+const GOOD = [
+  { t: "장바구니", p: 3 }, { t: "웹툰 1화", p: 3 }, { t: "코인 시세", p: 4 },
+  { t: "여행 검색", p: 4 }, { t: "단톡 확인", p: 2 }, { t: "간식 주문", p: 3 },
+  { t: "숏폼 보기", p: 5 }, { t: "연차 계산", p: 2 }, { t: "점심 메뉴", p: 2 }
+];
+const BAD = { t: "회신 요망", p: -5, bad: true };
+const REAL = [
+  { who: "발소리", msg: "저벅… 저벅… 부장님 쪽에서 가까워져요" },
+  { who: "부장님", msg: "잠깐 자리에 있어요? 지금 갈게요" },
+  { who: "옆자리 동료", msg: "(속삭임) 부장님 이쪽으로 와요!" },
+  { who: "회의실", msg: "부장님 회의 일찍 끝나고 나오는 중" },
+  { who: "부장님", msg: "보고서 어디까지 됐는지 직접 볼게요" }
+];
+const FAKE = [
+  { who: "발소리", msg: "저벅… 탕비실 쪽으로 멀어져요" },
+  { who: "옆자리 동료", msg: "오늘 점심 뭐 먹을래요?" },
+  { who: "택배", msg: "1층에 택배 도착했어요" },
+  { who: "부장님", msg: "오늘 외근이라 자리 비워요" },
+  { who: "인사팀", msg: "연말정산 안내 메일 확인 부탁드려요" }
+];
+const GRADES = [
+  { min: 85, name: "전설의 루팡", line: "부장님도 당신이 일하는 줄 알아요." },
+  { min: 65, name: "부장급 루팡", line: "눈치가 직급을 앞질렀어요." },
+  { min: 40, name: "대리급 루팡", line: "딴짓과 업무 사이 줄타기 합격." },
+  { min: 0, name: "신입 루팡", line: "아직은 일하는 게 더 편해요." }
+];
+
+let G = null, raf = 0, last = 0, toastT = 0;
+
+function newGame(duration) {
+  return {
+    duration, gt: 0, hidden: false, paused: false,
+    items: [], nextSpawn: 0.6, lupang: 0, pts: 0, collected: 0,
+    caught: 0, dodged: 0, falseHide: 0, reacts: [], shield: equipped.has("partition"), shieldUsed: false,
+    ev: null, nextEv: rand(5, 8) * BOSSES[bossId].gap, boss: bossId,
+    used: [...equipped], earphone: equipped.has("earphone")
+  };
+}
+
+function start(duration) {
+  if (refreshPlays() && !start.force) return;
+  start.force = false;
+  countPlay();
+  $("dlgStart").hidden = true;
+  G = newGame(duration);
+  layout();
+  updateHud();
+  countdown(() => { last = performance.now(); raf = requestAnimationFrame(tick); setLeft("Sheet1 · 딴짓 시작"); });
+}
+function countdown(done) {
+  const cd = $("cd"); cd.hidden = false; let k = 3;
+  const step = () => { if (k === 0) { cd.hidden = true; done(); return; } cd.textContent = k--; setTimeout(step, 550); };
+  step();
+}
+
+function freeCell() {
+  for (let i = 0; i < 30; i++) {
+    const r = 1 + Math.floor(Math.random() * (ROWS - 1)), c = Math.floor(Math.random() * COLS);
+    if (!G.items.some(it => it.r === r && it.c === c)) return [r, c];
+  }
+  return null;
+}
+function spawn() {
+  const pos = freeCell(); if (!pos) return;
+  const prog = G.gt / G.duration;
+  const base = Math.random() < lerp(0.08, 0.2, prog) ? BAD : pick(GOOD);
+  G.items.push({ ...base, r: pos[0], c: pos[1], born: G.gt, life: lerp(2.4, 1.5, prog) });
+  drawItem(G.items[G.items.length - 1]);
+}
+function drawItem(it) {
+  const el = cells[it.r] && cells[it.r][it.c]; if (!el) return;
+  el.className = "c item" + (it.bad ? " badi" : ""); el.textContent = it.t;
+}
+function clearItem(it, got) {
+  const el = cells[it.r] && cells[it.r][it.c]; if (!el) return;
+  el.className = "c" + (got ? " got" : ""); el.textContent = got ? (it.p > 0 ? "+" + it.p : String(it.p)) : "";
+  if (got) setTimeout(() => { if (G && !G.hidden && !G.items.some(o => o.r === it.r && o.c === it.c)) { el.className = "c"; el.textContent = ""; } }, 380);
+}
+
+grid.addEventListener("pointerdown", e => {
+  if (!G || G.hidden || G.paused || G.over) return;
+  const el = e.target.closest(".c[data-r]"); if (!el) return;
+  const r = +el.dataset.r, c = +el.dataset.c;
+  const i = G.items.findIndex(it => it.r === r && it.c === c);
+  $("ref").textContent = colName(c) + (r + 1);
+  if (i < 0) return;
+  const it = G.items.splice(i, 1)[0];
+  G.pts += it.p; if (it.p > 0) G.collected++;
+  $("formula").textContent = it.bad ? "=회신필요(부장님)  " + it.p : `=딴짓("${it.t}")  +${it.p}`;
+  clearItem(it, true); updateHud();
+});
+
+function setHidden(h) {
+  if (!G || G.over || G.paused) return;
+  if (G.hidden === h) return;
+  G.hidden = h;
+  if (h) {
+    for (const it of G.items) clearItem(it, false);
+    G.items = [];
+    if (G.ev && G.ev.kind === "signal" && !G.ev.fake && G.ev.hideAt == null) G.ev.hideAt = G.gt;
+    paint();
+    setLeft("4분기_예산 · 업무 중인 척");
+  } else {
+    paint();
+    if (G.ev && G.ev.kind === "boss") caughtNow("숨었다가 너무 빨리 돌아왔어요");
+    else setLeft("Sheet1 · 딴짓 재개");
+    $("ref").textContent = "A1"; $("formula").textContent = "";
+  }
+}
+$("bossKey").onclick = () => setHidden(true);
+$("tabWork").onclick = () => setHidden(true);
+$("tabGame").onclick = () => setHidden(false);
+document.addEventListener("keydown", e => {
+  if (!G || G.over) return;
+  if (e.code === "Space" || e.code === "Escape") { e.preventDefault(); setHidden(e.code === "Escape" ? true : !G.hidden); }
+});
+document.addEventListener("visibilitychange", () => {
+  if (!G || G.over) return;
+  if (document.hidden) { G.paused = true; } else { G.paused = false; last = performance.now(); }
+});
+
+function setLeft(t) { $("stLeft").textContent = t; }
+function showToast(who, msg, cls, ms) {
+  const t = $("toast");
+  $("tWho").textContent = who; $("tMsg").textContent = msg;
+  t.className = "toast show" + (cls ? " " + cls : "");
+  clearTimeout(toastT);
+  if (ms) toastT = setTimeout(() => t.classList.remove("show"), ms);
+}
+function hideToast() { $("toast").classList.remove("show"); }
+
+function bossIn(say) {
+  const b = $("boss"); b.classList.add("in");
+  $("bubble").textContent = say || "";
+  b.classList.toggle("say", !!say);
+}
+function bossOut() { const b = $("boss"); b.classList.remove("in", "say"); }
+
+function caughtNow(why) {
+  if (G.ev) G.ev.caughtDone = true;
+  if (G.shield && !G.shieldUsed) {
+    G.shieldUsed = true;
+    bossIn("…음, 칸막이 때문에 잘 안 보이네");
+    showToast("칸막이", "칸막이 덕분에 이번 한 번은 안 들켰어요", "ok", 1600);
+    return;
+  }
+  G.caught++; G.pts -= 10;
+  bossIn(pick(["지금 뭐 하는 거예요?", ...BOSSES[G.boss].say]));
+  showToast("들킴", why + " · 합계 -10", "badt", 1600);
+  const f = $("flash"); f.classList.add("on"); setTimeout(() => f.classList.remove("on"), 30);
+  win.classList.remove("shake"); void win.offsetWidth; win.classList.add("shake");
+  updateHud();
+}
+
+function events(dt) {
+  const prog = G.gt / G.duration;
+  if (!G.ev) {
+    if (G.gt >= G.nextEv && G.duration - G.gt > 3) {
+      const B = BOSSES[G.boss];
+      const fake = Math.random() < B.fake;
+      const cue = pick(fake ? FAKE : REAL);
+      const win_ = Math.max(0.7, lerp(1.7, 1.0, prog) + B.win) + (G.earphone ? 0.5 : 0);
+      G.ev = { kind: "signal", fake, at: G.gt, arrive: G.gt + win_, hideAt: G.hidden ? G.gt : null };
+      showToast(cue.who, cue.msg, "", 0);
+      app.classList.add("alert");
+      setLeft(G.earphone ? "이어폰으로 먼저 들었어요" : "알림");
+    }
+    return;
+  }
+  const ev = G.ev;
+  if (ev.kind === "signal" && G.gt >= ev.arrive) {
+    app.classList.remove("alert");
+    if (ev.fake) {
+      if (G.hidden) { G.falseHide++; showToast("아무 일 없음", "괜히 숨었어요. 돌아가도 돼요", "", 1400); }
+      else hideToast();
+      G.ev = null; G.nextEv = G.gt + rand(3, 7) * lerp(1, 0.65, prog) * BOSSES[G.boss].gap;
+      return;
+    }
+    // 부장님 도착
+    const st = BOSSES[G.boss].stay;
+    G.ev = { kind: "boss", until: G.gt + rand(st[0], st[1]), caughtDone: false };
+    if (G.hidden) {
+      G.dodged++; if (ev.hideAt != null) G.reacts.push(ev.hideAt - ev.at);
+      bossIn(BOSSES[G.boss].pass);
+      showToast("무사통과", BOSSES[G.boss].name + " 부장님이 예산 시트를 보고 지나가요. 떠날 때까지 기다려요", "ok", 0);
+      setLeft("부장님 뒤에 있음");
+    } else {
+      caughtNow("부장님한테 딴짓 화면을 보였어요");
+    }
+    return;
+  }
+  if (ev.kind === "boss" && G.gt >= ev.until) {
+    bossOut(); G.ev = null;
+    showToast("부장님", "자리로 돌아갔어요", "ok", 1200);
+    setLeft(G.hidden ? "이제 Sheet1로 돌아가도 돼요" : "Sheet1");
+    G.nextEv = G.gt + rand(4, 9) * lerp(1, 0.6, prog) * BOSSES[G.boss].gap;
+  }
+}
+
+function tick(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now;
+  if (!G || G.over) return;
+  if (!G.paused) {
+    G.gt += dt;
+    if (!G.hidden && !(G.ev && G.ev.kind === "boss")) G.lupang += dt;
+    if (!G.hidden) {
+      G.nextSpawn -= dt;
+      if (G.nextSpawn <= 0) { spawn(); G.nextSpawn = rand(0.45, 1.0) * lerp(1, 0.7, G.gt / G.duration); }
+      for (let i = G.items.length - 1; i >= 0; i--) {
+        const it = G.items[i], age = G.gt - it.born;
+        if (age > it.life) { G.items.splice(i, 1); clearItem(it, false); }
+        else if (age > it.life * 0.7) { const el = cells[it.r][it.c]; if (el) el.classList.add("fading"); }
+      }
+    }
+    events(dt);
+    updateHud();
+    if (G.gt >= G.duration) { finish(); return; }
+  }
+  raf = requestAnimationFrame(tick);
+}
+
+function updateHud() {
+  if (!G) return;
+  $("stTime").textContent = fmt(G.duration - G.gt);
+  $("stScore").textContent = Math.round(G.pts + G.lupang);
+  $("stCaught").textContent = G.caught;
+}
+
+function scoreOf(g) {
+  const k = g.duration / 180;
+  const v = (g.lupang / g.duration) * 45 + Math.min(1, Math.max(0, g.pts) / (130 * k)) * 45 + Math.min(10, g.dodged * 2) - g.caught * 15;
+  return Math.max(0, Math.min(100, Math.round(v)));
+}
+function gradeOf(idx, caught) {
+  if (caught >= 3) return { name: "현행범 루팡", line: "부장님 메모장에 이름이 적혔어요." };
+  return GRADES.find(g => idx >= g.min);
+}
+
+function finish() {
+  G.over = true; cancelAnimationFrame(raf);
+  app.classList.remove("alert"); bossOut(); hideToast();
+  G.hidden = false; G.items = []; paint(); setLeft("퇴근");
+  const idx = scoreOf(G), gr = gradeOf(idx, G.caught);
+  const res = {
+    idx, grade: gr.name, line: gr.line, lupang: G.lupang, caught: G.caught, dodged: G.dodged,
+    falseHide: G.falseHide, collected: G.collected, used: G.used, short: G.duration < 180, boss: G.boss,
+    react: G.reacts.length ? G.reacts.reduce((a, b) => a + b, 0) / G.reacts.length : null,
+    top: Math.max(1, Math.min(99, Math.round(100 - idx * 0.95)))
+  };
+  G.result = res;
+  drawCard(res).then(url => { $("cardImg").src = url; });
+  const vs = $("vs");
+  if (challenge && challenge.boss === res.boss) {
+    vs.hidden = false;
+    vs.innerHTML = idx > challenge.idx ? `도전 성공. 목표 <b>${challenge.idx}점</b>보다 <b>${idx - challenge.idx}점</b> 높아요.` : `아깝네요. 목표 <b>${challenge.idx}점</b>까지 <b>${challenge.idx - idx + 1}점</b> 남았어요.`;
+  } else vs.hidden = true;
+  $("copyFallback").hidden = true;
+  $("copyBtn").textContent = "도전장 복사";
+  $("dlgResult").hidden = false;
+  equipped.clear(); renderItems();
+}
+
+// ---------- 결과 카드 ----------
+function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+function mascot(ctx, x, y, s) {
+  // 셀군: 스프레드시트 칸 모양 자체 캐릭터
+  ctx.save(); ctx.translate(x, y);
+  ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#1d6b45"; ctx.lineWidth = 6;
+  rr(ctx, 0, 0, s, s, 22); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = "#cfe3d6"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(s / 2, 8); ctx.lineTo(s / 2, s - 8); ctx.moveTo(8, s / 2); ctx.lineTo(s - 8, s / 2); ctx.stroke();
+  ctx.fillStyle = "#1f2421";
+  ctx.beginPath(); ctx.ellipse(s * 0.34, s * 0.42, 9, 4, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(s * 0.66, s * 0.42, 9, 4, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#1f2421"; ctx.lineWidth = 5; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.moveTo(s * 0.4, s * 0.66); ctx.quadraticCurveTo(s * 0.5, s * 0.72, s * 0.6, s * 0.64); ctx.stroke();
+  ctx.fillStyle = "#c9741c"; rr(ctx, s * 0.72, -22, 54, 40, 8); ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.font = "700 24px 'Noto Sans KR', sans-serif"; ctx.textAlign = "center"; ctx.fillText("쉿", s * 0.72 + 27, 6);
+  ctx.restore();
+}
+async function drawCard(r) {
+  // 한글 글꼴은 글자 묶음별로 나뉘어 있어서, 카드에 쓸 글자를 넘겨 그 묶음까지 받아 둔다
+  const glyphs = "오늘의 월급루팡 지수 나보다 오래 버텨봐 루팡 시간 들킨 횟수 무사통과 괜히 숨음 회 0123456789:/" + GRADES.map(g => g.name).join("") + "현행범 루팡";
+  const body = r.line + "월일 1분 추정 상위 % 맨손 판 아이템 없음 사용 쉿 vs 부장님 " + Object.values(BOSSES).map(b => b.name + b.code).join("") + " " + ITEMS.map(i => i.name).join("·") + "0123456789";
+  try { await Promise.all([document.fonts.load("80px 'Black Han Sans'", glyphs), document.fonts.load("400 30px 'Noto Sans KR'", body), document.fonts.load("700 30px 'Noto Sans KR'", body)]); } catch (e) {}
+  const W = 1080, H = 1350, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d");
+  const D = "'Black Han Sans','Noto Sans KR',sans-serif", U = "'Noto Sans KR','Apple SD Gothic Neo',sans-serif";
+  ctx.fillStyle = "#f7f8f6"; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = "#e3e7e4"; ctx.lineWidth = 2;
+  for (let x = 0; x <= W; x += 135) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+  for (let y = 0; y <= H; y += 54) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  ctx.fillStyle = "#1d6b45"; ctx.fillRect(0, 0, W, 150);
+  ctx.fillStyle = "#fff"; ctx.textAlign = "left"; ctx.font = `64px ${D}`; ctx.fillText("오늘의 월급루팡 지수", 70, 100);
+  const d = new Date();
+  ctx.font = `400 30px ${U}`; ctx.globalAlpha = .8; ctx.textAlign = "right";
+  ctx.fillText(`${d.getMonth() + 1}월 ${d.getDate()}일${r.short ? " · 1분" : ""}`, W - 70, 98); ctx.globalAlpha = 1;
+  const bz = BOSSES[r.boss];
+  ctx.fillStyle = "#5d655f"; ctx.font = `700 32px ${U}`; ctx.textAlign = "left";
+  ctx.fillText(`vs ${bz.name} 부장님 (${bz.code} · ${bz.lv})`, 70, 190);
+
+  ctx.fillStyle = "#fff"; ctx.strokeStyle = "#cfd5d1"; ctx.lineWidth = 3; rr(ctx, 60, 220, W - 120, 540, 26); ctx.fill(); ctx.stroke();
+  ctx.textAlign = "left"; ctx.fillStyle = "#1d6b45"; ctx.font = `260px ${D}`;
+  ctx.fillText(String(r.idx), 110, 500);
+  const nw = ctx.measureText(String(r.idx)).width;
+  ctx.fillStyle = "#8a938d"; ctx.font = `70px ${D}`; ctx.fillText("/100", 120 + nw, 500);
+  mascot(ctx, W - 300, 270, 170);
+  ctx.fillStyle = "#1f2421"; ctx.font = `92px ${D}`; ctx.fillText(r.grade, 110, 640);
+  ctx.fillStyle = "#5d655f"; ctx.font = `400 36px ${U}`; ctx.fillText(r.line, 112, 705);
+
+  const stats = [
+    ["루팡 시간", fmt(r.lupang)], ["들킨 횟수", r.caught + "회"],
+    ["무사통과", r.dodged + "회"], ["괜히 숨음", r.falseHide + "회"]
+  ];
+  stats.forEach((s, i) => {
+    const x = 60 + (i % 2) * ((W - 140) / 2 + 20), y = 800 + Math.floor(i / 2) * 170, w = (W - 140) / 2;
+    ctx.fillStyle = "#fff"; ctx.strokeStyle = "#cfd5d1"; ctx.lineWidth = 3; rr(ctx, x, y, w, 150, 20); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#6b736d"; ctx.font = `400 30px ${U}`; ctx.textAlign = "left"; ctx.fillText(s[0], x + 34, y + 54);
+    ctx.fillStyle = i === 1 && r.caught ? "#c23a2e" : "#1f2421"; ctx.font = `66px ${D}`; ctx.fillText(s[1], x + 34, y + 124);
+  });
+
+  const usedNames = r.used.map(id => (ITEMS.find(i => i.id === id) || {}).name).filter(Boolean);
+  const tag = usedNames.length ? usedNames.join("·") + " 사용 판" : "맨손 판 · 아이템 없음";
+  ctx.font = `700 32px ${U}`;
+  const tw = ctx.measureText(tag).width + 56;
+  ctx.fillStyle = usedNames.length ? "#fdf0e1" : "#e3f1e8"; ctx.strokeStyle = usedNames.length ? "#c9741c" : "#1d6b45"; ctx.lineWidth = 3;
+  rr(ctx, 60, 1160, tw, 64, 32); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = usedNames.length ? "#c9741c" : "#1d6b45"; ctx.fillText(tag, 88, 1203);
+  ctx.fillStyle = "#5d655f"; ctx.font = `400 30px ${U}`; ctx.textAlign = "right";
+  ctx.fillText(`추정 상위 ${r.top}%`, W - 64, 1203);
+  ctx.fillStyle = "#1f2421"; ctx.font = `44px ${D}`; ctx.textAlign = "left";
+  ctx.fillText("나보다 오래 버텨봐", 60, 1300);
+  ctx.fillStyle = "#1d6b45"; ctx.textAlign = "right"; ctx.fillText("월급루팡", W - 64, 1300);
+  return cv.toDataURL("image/png");
+}
+
+$("copyBtn").onclick = () => {
+  const r = G && G.result; if (!r) return;
+  const used = r.used.length ? " (아이템 사용 판)" : "";
+  const bz = BOSSES[r.boss];
+  const txt = `오늘의 월급루팡 지수 ${r.idx}점, ${r.grade}${used}\nvs ${bz.name} 부장님(${bz.code}) · 들킴 ${r.caught}회 · 무사통과 ${r.dodged}회\n같은 부장님 상대로 ${r.idx}점 넘겨봐${SHARE_URL ? "\n" + SHARE_URL + "#c=" + r.idx + "." + r.boss : ""}`;
+  const ok = () => { $("copyBtn").textContent = "복사했어요"; };
+  const fail = () => { const t = $("copyFallback"); t.hidden = false; t.value = txt; t.focus(); t.select(); $("copyBtn").textContent = "아래 글을 복사하세요"; };
+  try { navigator.clipboard.writeText(txt).then(ok, fail); } catch (e) { fail(); }
+};
+$("againBtn").onclick = () => { $("dlgResult").hidden = true; G = null; layout(); $("dlgStart").hidden = false; refreshPlays(); setLeft("준비"); $("stTime").textContent = "3:00"; $("stScore").textContent = "0"; $("stCaught").textContent = "0"; };
+$("teaserBtn").onclick = () => {
+  const asked = store.get("notify", {}); asked.compat = Date.now(); store.set("notify", asked);
+  $("teaserBtn").textContent = "신청됨"; $("teaserBtn").disabled = true;
+};
+$("startBtn").onclick = () => start(180);
+$("shortBtn").onclick = () => start(60);
+$("testMore").onclick = () => { start.force = true; start(180); };
+if (/Mobi|Android|iPhone|iPad/.test(navigator.userAgent) === false) $("saveHint").textContent = "카드 이미지를 우클릭해서 저장할 수 있어요.";
+
+addEventListener("resize", () => { layout(); });
+renderBosses(); renderItems(); refreshPlays(); layout();
+})();
+</script>
+</body></html>

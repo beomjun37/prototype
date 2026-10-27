@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LCP 프로토타입</title>
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--ink:#1d1d1f;--sub:#6b6b70;--line:#e3e1dc;--accent:#2f6fed}
+@media (prefers-color-scheme:dark){:root{--bg:#141416;--card:#1f1f23;--ink:#f2f2f4;--sub:#a0a0a8;--line:#2e2e34;--accent:#7aa2ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.6}
+main{max-width:520px;margin:0 auto;padding:32px 16px 48px}
+h1{font-size:24px;margin:0 0 6px}
+p.lead{color:var(--sub);margin:0 0 24px;font-size:15px}
+a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:12px;text-decoration:none;color:inherit}
+a.card:active{transform:scale(.99)}
+.num{color:var(--accent);font-weight:700;font-size:13px}
+.name{font-size:19px;font-weight:700;margin:2px 0 4px}
+.desc{color:var(--sub);font-size:14px;margin:0}
+footer{color:var(--sub);font-size:13px;margin-top:24px}
+</style>
+</head>
+<body>
+<main>
+<h1>LCP 프로토타입 3개</h1>
+<p class="lead">눌러서 직접 해 보고, 느낀 점을 단톡방에 남겨 주세요.</p>
+
+<a class="card" href="boss-fit/">
+<div class="num">1</div>
+<div class="name">상사궁합 결산 2026</div>
+<p class="desc">질문 10개에 답하면 나와 상사의 궁합을 연말 결산서로 보여 줘요.</p>
+</a>
+
+<a class="card" href="love-type/">
+<div class="num">2</div>
+<div class="name">퇴근 후 연애 유형</div>
+<p class="desc">직장인의 연애 스타일을 알아보는 테스트예요.</p>
+</a>
+
+<a class="card" href="nunchi-game/">
+<div class="num">3</div>
+<div class="name">월급루팡 눈치게임</div>
+<p class="desc">엑셀 화면처럼 숨어서 3분 동안 즐기는 눈치 게임이에요.</p>
+</a>
+
+<footer>아직 시험판이에요. 결제는 되지 않아요.</footer>
+</main>
+</body>
+</html>
