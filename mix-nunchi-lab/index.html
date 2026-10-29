@@ -195,7 +195,7 @@ const TYPES = {
 };
 // 궁합 [나][상사]
 const MATCH = {
-  TB:{TB:[82,'회의가 15분 만에 끝나는 사이. 둘 다 쉬지 않아서 팀원들이 숨 막혀 할 수 있어요.'],
+  TB:{TB:[82,'둘 다 안 쉬어서 회의가 15분 만에 끝나는 사이. 팀원들만 숨이 막혀요.'],
       TG:[95,'올해 최고의 조합. 상사는 방향만, 당신은 실행. 올해 성과는 당신 이름으로 남아요.'],
       MB:[38,'상사가 만든 일을 당신이 수습한 1년. 올해 야근의 절반은 상사의 열정에서 왔습니다.'],
       MG:[61,'결재만 받으면 자유. 대신 공은 위로 올라가니 한 일은 꼭 기록해 두세요.']},
@@ -422,7 +422,7 @@ function analyze(){
 let R=null;
 function result(){
   const a=analyze(), me=a.me, boss=bossId, T=TYPES[me], B=TYPES[boss], [sc,line]=MATCH[me][boss];
-  R={...a,sc,boss,hook:line.split(/(?<=[.!?])\s/)[0],caught:G.caught,dodged:G.dodged,falseHide:G.falseHide,tapped:G.tapped,
+  R={...a,sc,boss,hook:(q=>q[0].length<12&&q[1]?q[0]+' '+q[1]:q[0])(line.split(/(?<=[.!?])\s/)),caught:G.caught,dodged:G.dodged,falseHide:G.falseHide,tapped:G.tapped,
      why:`${a.me[0]==='T'?'상사 신호에 평균 '+(a.react*100|0)+'% 지점에서 숨었어요. 미리 보는 계획파.':'상사 신호를 늦게 알아채는 직진파.'} ${a.me[1]==='B'?'초록 칸을 '+(a.rate*100|0)+'% 잡았어요. 손이 빠른 부지런파.':'초록 칸을 '+(a.rate*100|0)+'%만 잡았어요. 여유로운 느긋파.'}`};
   const gradeLine = G.caught>=3?'현행범 루팡':a.idx>=85?'전설의 루팡':a.idx>=65?'부장급 루팡':a.idx>=40?'대리급 루팡':'신입 루팡';
   R.grade=gradeLine;
