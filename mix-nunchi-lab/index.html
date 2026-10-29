@@ -72,7 +72,7 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 .bz[aria-pressed=true]{border-color:var(--ink);background:var(--soft)}
 
 /* 게임 */
-.game{display:flex;flex-direction:column;gap:10px;height:calc(100dvh - 32px);min-height:520px;position:relative}
+.game{display:flex;flex-direction:column;gap:10px;height:calc(100dvh - 60px);min-height:520px;position:relative}
 .hud{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
 .hud b{font-size:18px}
 .hud .caught b{color:var(--stamp)}
@@ -83,6 +83,7 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 .feed .dot{width:44px;height:44px;flex-shrink:0;border-radius:50%;background:var(--soft);display:grid;place-items:center;color:var(--muted);font-size:20px}
 .feed .who{font-size:13px;font-weight:700;color:var(--muted);display:block}
 .feed.alert{border-color:var(--stamp);box-shadow:0 0 0 3px color-mix(in srgb,var(--stamp) 30%,transparent);animation:buzz .5s ease-in-out infinite}
+.feed.alert .dot{background:var(--stamp);color:#fff;font-weight:700;font-size:24px}
 .feed.boss{border-color:var(--stamp);background:var(--bad-soft)}
 .feed.safe{border-color:var(--ok);background:var(--ok-soft)}
 @keyframes buzz{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
@@ -217,7 +218,7 @@ const STAMP = s => s>=85?'천생연분':s>=70?'결재 승인':s>=50?'보류':'�
 const BOSSES = {
   MG:{rc:.31,tc:.25,lv:'쉬움',tip:'잘 안 오는데, 오면 수다가 길어요',gap:1.5,fake:.3,win:.4,stay:[2.2,3.0],pass:'날씨 좋죠? 열심히 하네요',say:['어머, 그거 재밌어요?','나도 그 웹툰 봐요']},
   TG:{rc:.39,tc:.26,lv:'보통',tip:'조용히 뒤에 서서 한참 봐요',gap:1.25,fake:.25,win:.2,stay:[2.6,3.4],pass:'천천히 다 보고 갈게요',say:['그건 업무 아니죠?','커피 식겠네, 근데 그 화면은 뭐예요?']},
-  MB:{rc:.51,tc:.26,lv:'까다로움',tip:'“나도 보여줘요” 하며 옆에 앉아요',gap:.85,fake:.5,win:-.1,stay:[1.4,2.2],pass:'아 그거 나도 하려 했는데!',say:['어? 그거 뭐예요? 나도 보여줘요','일단 이거 같이 봐요']},
+  MB:{rc:.51,tc:.22,lv:'까다로움',tip:'“나도 보여줘요” 하며 옆에 앉아요',gap:.85,fake:.5,win:-.1,stay:[1.4,2.2],pass:'아 그거 나도 하려 했는데!',say:['어? 그거 뭐예요? 나도 보여줘요','일단 이거 같이 봐요']},
   TB:{rc:.52,tc:.20,lv:'어려움',tip:'“아직이야?” 말이 끝나기 전에 와요',gap:.75,fake:.15,win:-.2,stay:[1.6,2.2],pass:'음, 진행 잘 되네요',say:['진행 상황 공유 부탁해요','그 파일 지금 보여줄래요?']}
 };
 const REAL=[['발소리','저벅… 저벅… 가까워져요'],['상사','잠깐 자리에 있어요? 지금 갈게요'],['옆자리 동료','(속삭임) 이쪽으로 와요!'],['회의실','회의 일찍 끝나고 나오는 중'],['상사','진행 상황 직접 볼게요']];
