@@ -1,5 +1,5 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}[hidden]{display:none!important}</style></head><body>
-<title>상사 눈치 결산 2026</title>
+<title>상사 몰래 딴짓</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,7 +162,7 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 <div class="toast" id="toast" hidden></div>
 <div class="card-pop" id="pop" hidden>
   <div class="card-box" role="dialog" aria-label="결과 카드 이미지">
-    <img id="popImg" alt="내 상사 눈치 결산 결과 카드">
+    <img id="popImg" alt="상사 몰래 딴짓 결과 이미지">
     <p class="fine" id="popHint">이미지를 길게 누르면 저장할 수 있어요.</p>
     <button class="btn ghost" id="popX">닫기</button>
   </div>
@@ -180,16 +180,16 @@ const CHAR = {
 
 // ── 유형 (상사 궁합 결산과 동일) ──
 const TYPES = {
-  TB:{code:'똑부',def:'계획파 + 부지런',name:'철컥이',obj:'스테이플러',line:'일은 찍으면 끝난다',
-      desc:'일정과 결론이 머릿속에 이미 서 있는 사람. 남들이 회의록을 열 때 당신은 액션 아이템을 보내고 있어요. 문제는 다들 당신에게만 일을 몰아준다는 것.',
-      total:'일을 덜 받는 연습. 거절도 실력이에요.'},
-  TG:{code:'똑게',def:'계획파 + 느긋',name:'느긋컵',obj:'머그컵',line:'할 건 하고, 식기 전에 마신다',
-      desc:'일을 덜 하는 게 아니라 덜 하게 만드는 사람. 반복 업무는 이미 자동화했고, 퇴근 10분 전엔 책상이 깨끗해요. 단, 바빠 보이지 않아서 오해를 받기도.',
+  TB:{code:'똑부',def:'계획을 먼저 세우고 부지런히 챙기는',name:'철컥이',obj:'스테이플러',line:'일은 찍으면 끝난다',
+      desc:'일정과 결론이 머릿속에 이미 서 있는 사람. 남들이 회의록을 열 때 당신은 액션 아이템을 보내고 있어요. 문제는 다들 당신에게만 일을 몰아준다는 거예요.',
+      total:'일을 덜 받는 연습을 해 보세요. 거절도 실력이에요.'},
+  TG:{code:'똑게',def:'계획은 세우되 여유 있게 움직이는',name:'느긋컵',obj:'머그컵',line:'할 건 하고, 식기 전에 마신다',
+      desc:'일을 덜 하는 게 아니라 덜 하게 만드는 사람. 반복 업무는 이미 자동화했고, 퇴근 10분 전엔 책상이 깨끗해요. 단, 바빠 보이지 않아서 오해를 받기도 해요.',
       total:'가끔은 진행 상황을 먼저 공유해 주세요.'},
-  MB:{code:'멍부',def:'직진파 + 부지런',name:'붙임이',obj:'포스트잇',line:'일단 붙고 본다',
-      desc:'누구보다 먼저 손을 들고, 누구보다 늦게 퇴근하는 열정 담당. 방향이 살짝 틀릴 때도 있지만 팀에서 제일 믿음직한 엔진이에요. 내년엔 질문 하나 더 하기.',
-      total:'시작하기 전에 질문 하나만 먼저.'},
-  MG:{code:'멍게',def:'직진파 + 느긋',name:'광합이',obj:'사무실 화분',line:'존재만으로 공기를 맑게',
+  MB:{code:'멍부',def:'일단 부딪히고 부지런히 뛰는',name:'붙임이',obj:'포스트잇',line:'일단 붙고 본다',
+      desc:'누구보다 먼저 손을 들고, 누구보다 늦게 퇴근하는 열정 담당. 방향이 살짝 틀릴 때도 있지만 팀에서 제일 믿음직한 엔진이에요. 내년엔 질문을 하나만 더 해 보세요.',
+      total:'시작하기 전에 질문을 하나만 먼저 해 보세요.'},
+  MG:{code:'멍게',def:'일단 부딪히고 여유 있게 움직이는',name:'광합이',obj:'사무실 화분',line:'존재만으로 공기를 맑게',
       desc:'급할 것 없는 평화주의자. 마감 전날 몰아치는 집중력은 아무도 못 따라가요. 팀이 날 서 있을 때 분위기를 풀어주는 건 늘 당신입니다.',
       total:'마감 알람을 하루 일찍 맞춰 두세요.'}
 };
@@ -243,14 +243,14 @@ function intro(){
   cancelAnimationFrame(raf); G=null;
   const order=['TB','TG','MB','MG'];
   app.innerHTML=`
-  <h1 class="hero-title">올해 상사 눈치,<br><span class="mark">몇 점</span>이었을까?</h1>
-  <p class="hero-sub">상사가 오기 전에 화면만 숨기면 돼요. ${DURATION}초.</p>
-  <p class="label" style="margin-top:4px">우리 상사는?</p>
+  <h1 class="hero-title">상사 몰래 딴짓,<br><span class="mark">안 들킬</span> 자신 있어요?</h1>
+  <p class="hero-sub">엑셀 화면에서 딴짓하다가 상사가 오면 숨기세요. ${DURATION}초 뒤에 나와 상사의 궁합이 나와요.</p>
+  <p class="label" style="margin-top:4px">우리 상사와 닮은 캐릭터를 골라 주세요</p>
   <div class="bosses" id="bosses">
     ${order.map(k=>`<button class="bz" data-b="${k}" aria-pressed="${k===bossId}">${CHAR[k]}<b>${TYPES[k].code} ${TYPES[k].name}</b><span class="lv">난이도 ${BOSSES[k].lv}</span><span class="tip">${BOSSES[k].tip}</span></button>`).join('')}
   </div>
   <button class="btn stamp" id="go">출근하기</button>
-  <p class="fine">로그인 없음 · 결과 무료</p>`;
+  <p class="fine">로그인 없이 무료로 할 수 있어요.</p>`;
   $('bosses').onclick=e=>{const b=e.target.closest('[data-b]');if(!b)return;bossId=b.dataset.b;app.querySelectorAll('.bz').forEach(x=>x.setAttribute('aria-pressed',x===b))};
   $('go').onclick=startGame;
   window.scrollTo(0,0);
@@ -265,11 +265,11 @@ function startGame(){
      ev:null,nextEv:rand(3,4.5)*B.gap,bossHere:false,over:false,paused:true,fed:null};
   app.innerHTML=`
   <div class="game" id="game">
-    <div class="hud"><span>남은 <b id="hT">${fmt(DURATION)}</b></span><span>딴짓 <b id="hS">0</b></span><span class="caught">들킴 <b id="hC">0</b></span></div>
+    <div class="hud"><span>시간 <b id="hT">${fmt(DURATION)}</b></span><span>점수 <b id="hS">0</b></span><span class="caught">들킨 횟수 <b id="hC">0</b></span></div>
     <div class="timebar"><i id="bar" style="width:100%"></i></div>
     <div class="feed" id="feed"></div>
     <div class="xl" id="xl"><div class="xl-title" id="xlT">2026_4분기_예산안_최종_v3(진짜최종).xlsx</div><div class="grid" id="grid"></div></div>
-    <button class="btn hide" id="hideBtn">숨기기 (업무 화면)</button>
+    <button class="btn hide" id="hideBtn">숨기기</button>
     <p class="how-mini" id="howMini">초록 칸을 눌러 딴짓하세요. 빨간 칸은 감점!</p>
     <div class="cd" id="cd">3</div>
   </div>`;
@@ -331,11 +331,11 @@ function setHidden(h){
   if(h){
     for(const it of G.items) clearItem(it,false); G.items=[];
     paintWork(); $('xlT').textContent='4분기_예산 · 업무 중인 척';
-    b.textContent='돌아가기 (딴짓 화면)'; b.classList.add('back-on');
+    b.textContent='다시 딴짓하기'; b.classList.add('back-on');
     if(G.ev&&G.ev.kind==='signal'&&!G.ev.fake&&G.ev.hideAt==null) G.ev.hideAt=G.t;
   }else{
     buildGrid(); $('xlT').textContent='2026_4분기_예산안_최종_v3(진짜최종).xlsx';
-    b.textContent='숨기기 (업무 화면)'; b.classList.remove('back-on');
+    b.textContent='숨기기'; b.classList.remove('back-on');
     if(G.bossHere) caught('상사가 있는데 너무 빨리 돌아왔어요');
   }
 }
@@ -346,7 +346,7 @@ function caught(why){
   if(!G.ev) return; if(G.ev.caughtDone) return;
   G.ev.caughtDone=true; G.caught++; G.pts-=10;
   const B=BOSSES[bossId];
-  setFeed('boss','들킴 · 합계 -10',`${why}<br>“${pick(B.say)}”`,CHAR[bossId]);
+  setFeed('boss','들켰어요! 10점 깎여요',`${why}<br>“${pick(B.say)}”`,CHAR[bossId]);
   const gm=$('game'); gm.classList.remove('shake'); void gm.offsetWidth; gm.classList.add('shake');
   hud();
 }
@@ -364,13 +364,13 @@ function events(){
   const ev=G.ev;
   if(ev.kind==='signal'&&G.t>=ev.arrive){
     if(ev.fake){
-      if(G.hidden){G.falseHide++;setFeed('', '아무 일 없음','괜히 숨었어요. 돌아가도 돼요')}else setFeed();
+      if(G.hidden){G.falseHide++;setFeed('', '아무 일 없음','괜히 숨었어요. 다시 딴짓해도 돼요')}else setFeed();
       G.ev=null; G.nextEv=G.t+rand(3,6)*lerp(1,.7,prog)*B.gap; return;
     }
     G.bossHere=true;
     const st=B.stay; G.ev={kind:'boss',until:G.t+rand(st[0],st[1]),caughtDone:false};
     const react = ev.hideAt!=null ? Math.min(1,(ev.hideAt-ev.at)/ev.win) : 1; G.reacts.push(react);
-    if(G.hidden){ G.dodged++; setFeed('safe','무사통과',`“${B.pass}”<br>떠날 때까지 기다려요`,CHAR[bossId]); }
+    if(G.hidden){ G.dodged++; setFeed('safe','안 들켰어요',`“${B.pass}”<br>상사가 갈 때까지 기다리세요`,CHAR[bossId]); }
     else caught('상사한테 딴짓 화면을 보였어요');
     return;
   }
@@ -408,7 +408,7 @@ function tick(now){
 /* 4. 결과 계산: 플레이 습관이 곧 유형 */
 function finish(){
   G.over=true; cancelAnimationFrame(raf);
-  app.innerHTML=`<div class="loading"><div class="seal">결재</div><h2>상사에게 결재 올리는 중…</h2><p class="hero-sub">반려되지 않기를 빌어요</p></div>`;
+  app.innerHTML=`<div class="loading"><div class="seal">결재</div><h2>결과를 계산하고 있어요</h2><p class="hero-sub">상사와의 궁합도 함께 봐요</p></div>`;
   setTimeout(result,1300);
 }
 function analyze(){
@@ -423,46 +423,46 @@ let R=null;
 function result(){
   const a=analyze(), me=a.me, boss=bossId, T=TYPES[me], B=TYPES[boss], [sc,line]=MATCH[me][boss];
   R={...a,sc,boss,hook:(q=>q[0].length<12&&q[1]?q[0]+' '+q[1]:q[0])(line.split(/(?<=[.!?])\s/)),caught:G.caught,dodged:G.dodged,falseHide:G.falseHide,tapped:G.tapped,
-     why:`${a.me[0]==='T'?'상사 신호에 평균 '+(a.react*100|0)+'% 지점에서 숨었어요. 미리 보는 계획파.':'상사 신호를 늦게 알아채는 직진파.'} ${a.me[1]==='B'?'초록 칸을 '+(a.rate*100|0)+'% 잡았어요. 손이 빠른 부지런파.':'초록 칸을 '+(a.rate*100|0)+'%만 잡았어요. 여유로운 느긋파.'}`};
+     why:`${a.me[0]==='T'?'상사 알림이 뜨자마자 숨었어요.':'상사 알림을 보고 한 박자 늦게 숨었어요.'} ${a.me[1]==='B'?'딴짓 칸을 10개 중 '+Math.round(a.rate*10)+'개 눌렀어요. 손이 빠른 편이에요.':'딴짓 칸을 10개 중 '+Math.round(a.rate*10)+'개만 눌렀어요. 여유로운 편이에요.'}`};
   const gradeLine = G.caught>=3?'현행범 루팡':a.idx>=85?'전설의 루팡':a.idx>=65?'부장급 루팡':a.idx>=40?'대리급 루팡':'신입 루팡';
   R.grade=gradeLine;
   app.innerHTML=`
-  <div class="summary"><p>나의 2026 상사 눈치 결산</p><h1>나는 ${T.code} ${T.name},<br>상사 궁합은 ${sc}점</h1></div>
+  <div class="summary"><p>내 결과</p><h1>나는 ${T.code} ${T.name},<br>상사와 궁합은 ${sc}점</h1></div>
   <section class="sheet">
     <div class="res-top">${CHAR[me]}
       <div style="min-width:0"><p class="res-type">${T.obj} 캐릭터</p><h2 class="res-name">${T.name}</h2><p class="res-line">“${T.line}”</p></div>
     </div>
-    <p class="why"><b>${T.code}</b> = ${T.def}<br>${R.why}</p>
+    <p class="why"><b>${T.code}</b>는 ${T.def} 유형이에요.<br>${R.why}</p>
     <p class="desc">${T.desc}</p>
-    <div class="slip-cap"><p class="label">이번 판 명세서</p></div>
+    <div class="slip-cap"><p class="label">이번 판 기록</p></div>
     <div class="slip">
-      <div class="slip-row"><span>월급루팡 지수 (${gradeLine})</span><span>${a.idx}점</span></div>
-      <div class="slip-row"><span>딴짓 성공 / 무사통과</span><span>${G.tapped}회 / ${G.dodged}회</span></div>
-      <div class="slip-row"><span>들킨 횟수 / 괜히 숨음</span><span>${G.caught}회 / ${G.falseHide}회</span></div>
-      <div class="slip-row total"><span>2027 한 줄 조언</span><span>${T.total}</span></div>
+      <div class="slip-row"><span>딴짓 점수 (${gradeLine} 등급)</span><span>${a.idx}점</span></div>
+      <div class="slip-row"><span>딴짓한 횟수 / 안 들킨 횟수</span><span>${G.tapped}회 / ${G.dodged}회</span></div>
+      <div class="slip-row"><span>들킨 횟수 / 괜히 숨은 횟수</span><span>${G.caught}회 / ${G.falseHide}회</span></div>
+      <div class="slip-row total"><span>내년에 해 볼 것</span><span>${T.total}</span></div>
     </div>
   </section>
 
   <section class="sheet match">
     <span class="big-stamp">${STAMP(sc)}</span>
-    <p class="label">상사 궁합 (100점 만점)</p>
+    <p class="label">나와 상사의 궁합 (100점 만점)</p>
     <div class="match-head" style="margin-top:8px">
       <div class="score">${sc}<small>점</small></div>
       <div class="duo">${CHAR[me]}<em>×</em>${CHAR[boss]}</div>
     </div>
     <div class="gauge"><i style="width:${sc}%"></i></div>
-    <p class="verdict">나 ${T.code} × 상사 ${B.code} · 결과 <b style="color:var(--stamp)">${STAMP(sc)}</b></p>
+    <p class="verdict">${T.code}인 나와 ${B.code}인 상사, 궁합 도장은 <b style="color:var(--stamp)">${STAMP(sc)}</b>${(STAMP(sc).charCodeAt(STAMP(sc).length-1)-0xAC00)%28?'이에요':'예요'}.</p>
     <p class="desc" style="margin-top:6px">${line}</p>
   </section>
 
   <div class="row2">
     <button class="btn stamp" id="share">동료에게 보내기</button>
-    <button class="btn" id="cardBtn">카드 이미지 저장</button>
+    <button class="btn" id="cardBtn">결과 이미지 저장</button>
   </div>
 
   <section class="sheet locked">
     <p class="label">더 자세한 풀이 · 유료</p>
-    <h3 style="font-size:22px;margin-top:6px">우리 상사 공략집 2027</h3>
+    <h3 style="font-size:22px;margin-top:6px">2027 우리 상사 공략집</h3>
     <ol>
       <li>${B.code} 상사에게 먹히는 보고 타이밍</li>
       <li>절대 하면 안 되는 말 3가지</li>
@@ -476,8 +476,8 @@ function result(){
   </section>
 
   <div class="row2">
-    <button class="btn ghost" id="again">같은 상사로 다시</button>
-    <button class="btn ghost" id="other">상사 바꿔서 해보기</button>
+    <button class="btn ghost" id="again">한 판 더 하기</button>
+    <button class="btn ghost" id="other">다른 상사 고르기</button>
   </div>`;
   window.scrollTo(0,0);
 
@@ -485,7 +485,7 @@ function result(){
   $('share').onclick=()=>{
     const base=/^https?:/.test(location.protocol)?location.origin+location.pathname+'#b='+boss:'';
     const hook=R.hook;
-    const txt=`우리 상사랑 궁합 ${sc}점 “${STAMP(sc)}” 나왔다. ${hook}\n나는 ${T.code} ${T.name}, 월급루팡 지수 ${a.idx}점.${base?'\n너도 해봐 '+base:''}`;
+    const txt=`우리 상사랑 궁합 ${sc}점 “${STAMP(sc)}” 나왔다. ${hook}\n나는 ${T.code} ${T.name}, 딴짓 점수 ${a.idx}점.${base?'\n너도 해봐 '+base:''}`;
     const copy=()=>{try{navigator.clipboard.writeText(txt).then(()=>toast('문구를 복사했어요. 톡방에 붙여 넣으세요'),()=>toast(txt))}catch(e){toast(txt)}};
     if(navigator.share){navigator.share({text:txt}).catch(e=>{if(e&&e.name!=='AbortError')copy()})}else copy();
   };
@@ -518,13 +518,13 @@ function svgImg(svg,px){return new Promise(res=>{const i=new Image();i.onload=()
   i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg.replace('<svg ',`<svg xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" `))})}
 async function drawCard(r){
   const T=TYPES[r.me], B=TYPES[r.boss];
-  const glyphs='상사 눈치 결산 2026 궁합 점 월급루팡 지수 들킴 무사통과 회 0123456789×/ 나보다 오래 버텨봐'+Object.values(TYPES).map(t=>t.code+t.name+t.line).join('')+['천생연분','결재 승인','보류','반려','전설의 부장급 대리급 신입 현행범'].join('')+r.hook;
+  const glyphs='상사 몰래 딴짓 결과 나와 의 궁합 점수 들킴 안 회 0123456789×/()'+Object.values(TYPES).map(t=>t.code+t.name+t.line).join('')+['천생연분','결재 승인','보류','반려','전설의 부장급 대리급 신입 현행범'].join('')+r.hook;
   try{await Promise.all([document.fonts.load("80px 'Do Hyeon'",glyphs),document.fonts.load("400 30px 'IBM Plex Sans KR'",glyphs),document.fonts.load("700 30px 'IBM Plex Sans KR'",glyphs)])}catch(e){}
   const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
   const D="'Do Hyeon','IBM Plex Sans KR',sans-serif",U="'IBM Plex Sans KR','Apple SD Gothic Neo',sans-serif";
   x.fillStyle='#F6F7F9';x.fillRect(0,0,W,H);
   x.fillStyle='#1E2740';x.fillRect(0,0,W,150);
-  x.fillStyle='#fff';x.textAlign='left';x.font=`68px ${D}`;x.fillText('2026 상사 눈치 결산',70,100);
+  x.fillStyle='#fff';x.textAlign='left';x.font=`68px ${D}`;x.fillText('상사 몰래 딴짓 결과',70,100);
   x.font=`400 30px ${U}`;x.globalAlpha=.8;x.textAlign='right';const d=new Date();x.fillText(`${d.getMonth()+1}월 ${d.getDate()}일`,W-70,98);x.globalAlpha=1;
   // 내 유형
   x.fillStyle='#fff';x.strokeStyle='#D9DDE6';x.lineWidth=3;rr(x,60,190,W-120,420,26);x.fill();x.stroke();
@@ -532,10 +532,10 @@ async function drawCard(r){
   x.textAlign='left';x.fillStyle='#D23A2E';x.font=`700 34px ${U}`;x.fillText(`${T.obj} 캐릭터 · ${T.code}`,430,290);
   x.fillStyle='#1E2740';x.font=`120px ${D}`;x.fillText(T.name,430,420);
   x.fillStyle='#626B82';x.font=`400 36px ${U}`;x.fillText(`“${T.line}”`,432,490);
-  x.font=`400 32px ${U}`;x.fillText(`월급루팡 지수 ${r.idx}점 · ${r.grade}`,432,550);
+  x.font=`400 32px ${U}`;x.fillText(`딴짓 점수 ${r.idx}점 · ${r.grade}`,432,550);
   // 궁합
   x.fillStyle='#fff';rr(x,60,640,W-120,430,26);x.fill();x.stroke();
-  x.fillStyle='#626B82';x.font=`700 32px ${U}`;x.fillText('상사 궁합',100,700);
+  x.fillStyle='#626B82';x.font=`700 32px ${U}`;x.fillText('나와 상사의 궁합',100,700);
   x.fillStyle='#1E2740';x.font=`230px ${D}`;x.fillText(String(r.sc),96,900);
   const nw=x.measureText(String(r.sc)).width;x.fillStyle='#8A93A6';x.font=`70px ${D}`;x.fillText('점',110+nw,900);
   const a=await svgImg(CHAR[r.me],130),b=await svgImg(CHAR[r.boss],130);
@@ -543,7 +543,7 @@ async function drawCard(r){
   x.fillStyle='#D23A2E';x.font=`60px ${D}`;x.fillText('×',705,800);
   if(b)x.drawImage(b,770,700,130,130);
   x.fillStyle='#EEF1F6';rr(x,100,940,W-200,22,11);x.fill();x.fillStyle='#D23A2E';rr(x,100,940,(W-200)*r.sc/100,22,11);x.fill();
-  x.fillStyle='#1E2740';x.font=`700 34px ${U}`;x.fillText(`나 ${T.code} × 상사 ${B.code}`,100,1030);
+  x.fillStyle='#1E2740';x.font=`700 34px ${U}`;x.fillText(`나(${T.code}) × 상사(${B.code})`,100,1030);
   // 도장
   x.save();x.translate(W-260,1025);x.rotate(.15);x.strokeStyle='#D23A2E';x.fillStyle='#D23A2E';x.lineWidth=8;rr(x,-150,-52,300,104,14);x.stroke();
   x.textAlign='center';x.font=`72px ${D}`;x.fillText(STAMP(r.sc),0,26);x.restore();
@@ -553,8 +553,8 @@ async function drawCard(r){
   for(const w of words){const t=ln?ln+' '+w:w;if(x.measureText(t).width>W-140&&ln){x.fillText(ln,70,ly);ly+=64;ln=w}else ln=t}
   x.fillText(ln,70,ly);
   x.fillStyle='#626B82';x.font=`400 30px ${U}`;
-  x.fillText(`딴짓 ${r.tapped}회 · 무사통과 ${r.dodged}회 · 들킴 ${r.caught}회`,70,1290);
-  x.fillStyle='#D23A2E';x.textAlign='right';x.font=`44px ${D}`;x.fillText('상사 눈치 결산',W-64,1308);
+  x.fillText(`딴짓 ${r.tapped}회 · 안 들킴 ${r.dodged}회 · 들킴 ${r.caught}회`,70,1290);
+  x.fillStyle='#D23A2E';x.textAlign='right';x.font=`44px ${D}`;x.fillText('상사 몰래 딴짓',W-64,1308);
   return cv.toDataURL('image/png');
 }
 
