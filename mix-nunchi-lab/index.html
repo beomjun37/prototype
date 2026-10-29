@@ -122,8 +122,8 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 .summary{text-align:center;display:flex;flex-direction:column;gap:4px}
 .summary h1{font-size:28px;line-height:1.3}
 .summary p{color:var(--muted);font-size:15px}
-.typedef{margin-top:14px;font-size:14px;color:var(--muted)}
-.why{margin-top:10px;font-size:14px;background:var(--soft);border-radius:6px;padding:10px 12px;color:var(--ink)}
+
+.why{margin-top:14px;font-size:14px;background:var(--soft);border-radius:6px;padding:10px 12px;color:var(--ink)}
 .desc{margin-top:16px;font-size:16px}
 .slip{margin-top:6px;border-top:2px solid var(--ink)}
 .slip-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:15px}
@@ -421,7 +421,7 @@ function analyze(){
 let R=null;
 function result(){
   const a=analyze(), me=a.me, boss=bossId, T=TYPES[me], B=TYPES[boss], [sc,line]=MATCH[me][boss];
-  R={...a,sc,boss,caught:G.caught,dodged:G.dodged,falseHide:G.falseHide,tapped:G.tapped,
+  R={...a,sc,boss,hook:line.split(/(?<=[.!?])\s/)[0],caught:G.caught,dodged:G.dodged,falseHide:G.falseHide,tapped:G.tapped,
      why:`${a.me[0]==='T'?'상사 신호에 평균 '+(a.react*100|0)+'% 지점에서 숨었어요. 미리 보는 계획파.':'상사 신호를 늦게 알아채는 직진파.'} ${a.me[1]==='B'?'초록 칸을 '+(a.rate*100|0)+'% 잡았어요. 손이 빠른 부지런파.':'초록 칸을 '+(a.rate*100|0)+'%만 잡았어요. 여유로운 느긋파.'}`};
   const gradeLine = G.caught>=3?'현행범 루팡':a.idx>=85?'전설의 루팡':a.idx>=65?'부장급 루팡':a.idx>=40?'대리급 루팡':'신입 루팡';
   R.grade=gradeLine;
@@ -431,10 +431,9 @@ function result(){
     <div class="res-top">${CHAR[me]}
       <div style="min-width:0"><p class="res-type">${T.obj} 캐릭터</p><h2 class="res-name">${T.name}</h2><p class="res-line">“${T.line}”</p></div>
     </div>
-    <p class="typedef"><b>${T.code}</b> = ${T.def} 유형</p>
-    <p class="why">${R.why}</p>
+    <p class="why"><b>${T.code}</b> = ${T.def}<br>${R.why}</p>
     <p class="desc">${T.desc}</p>
-    <div class="slip-cap"><p class="label">이번 판 명세서</p><span>재미로 보는 수치예요</span></div>
+    <div class="slip-cap"><p class="label">이번 판 명세서</p></div>
     <div class="slip">
       <div class="slip-row"><span>월급루팡 지수 (${gradeLine})</span><span>${a.idx}점</span></div>
       <div class="slip-row"><span>딴짓 성공 / 무사통과</span><span>${G.tapped}회 / ${G.dodged}회</span></div>
@@ -478,15 +477,16 @@ function result(){
   <div class="row2">
     <button class="btn ghost" id="again">같은 상사로 다시</button>
     <button class="btn ghost" id="other">상사 바꿔서 해보기</button>
-  </div>
-  <p class="fine">‘동료에게 보내기’를 누르면 결과 문구가 복사돼요. 메신저에 붙여 넣어 보세요.</p>`;
+  </div>`;
   window.scrollTo(0,0);
 
   $('again').onclick=startGame; $('other').onclick=pickBoss;
   $('share').onclick=()=>{
     const base=/^https?:/.test(location.protocol)?location.origin+location.pathname+'#b='+boss:'';
-    const txt=`나는 ${T.code} ${T.name}, 상사 궁합 ${sc}점(${STAMP(sc)}) 나왔어. 월급루팡 지수 ${a.idx}점.${base?'\n너도 상사 앞에서 눈치 게임 해봐 '+base:'\n너도 해봐'}`;
-    try{navigator.clipboard.writeText(txt).then(()=>toast('공유 문구를 복사했어요'),()=>toast(txt))}catch(e){toast(txt)}
+    const hook=R.hook;
+    const txt=`우리 상사랑 궁합 ${sc}점 “${STAMP(sc)}” 나왔다. ${hook}\n나는 ${T.code} ${T.name}, 월급루팡 지수 ${a.idx}점.${base?'\n너도 해봐 '+base:''}`;
+    const copy=()=>{try{navigator.clipboard.writeText(txt).then(()=>toast('문구를 복사했어요. 톡방에 붙여 넣으세요'),()=>toast(txt))}catch(e){toast(txt)}};
+    if(navigator.share){navigator.share({text:txt}).catch(e=>{if(e&&e.name!=='AbortError')copy()})}else copy();
   };
   $('cardBtn').onclick=async()=>{ $('cardBtn').disabled=true; const url=await drawCard(R); $('popImg').src=url; $('pop').hidden=false; $('cardBtn').disabled=false;
     if(!/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) $('popHint').textContent='이미지를 우클릭해서 저장할 수 있어요.'; };
@@ -517,7 +517,7 @@ function svgImg(svg,px){return new Promise(res=>{const i=new Image();i.onload=()
   i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg.replace('<svg ',`<svg xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" `))})}
 async function drawCard(r){
   const T=TYPES[r.me], B=TYPES[r.boss];
-  const glyphs='상사 눈치 결산 2026 궁합 점 월급루팡 지수 들킴 무사통과 회 0123456789×/ 나보다 오래 버텨봐'+Object.values(TYPES).map(t=>t.code+t.name+t.line).join('')+['천생연분','결재 승인','보류','반려','전설의 부장급 대리급 신입 현행범'].join('');
+  const glyphs='상사 눈치 결산 2026 궁합 점 월급루팡 지수 들킴 무사통과 회 0123456789×/ 나보다 오래 버텨봐'+Object.values(TYPES).map(t=>t.code+t.name+t.line).join('')+['천생연분','결재 승인','보류','반려','전설의 부장급 대리급 신입 현행범'].join('')+r.hook;
   try{await Promise.all([document.fonts.load("80px 'Do Hyeon'",glyphs),document.fonts.load("400 30px 'IBM Plex Sans KR'",glyphs),document.fonts.load("700 30px 'IBM Plex Sans KR'",glyphs)])}catch(e){}
   const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
   const D="'Do Hyeon','IBM Plex Sans KR',sans-serif",U="'IBM Plex Sans KR','Apple SD Gothic Neo',sans-serif";
@@ -546,11 +546,14 @@ async function drawCard(r){
   // 도장
   x.save();x.translate(W-260,1025);x.rotate(.15);x.strokeStyle='#D23A2E';x.fillStyle='#D23A2E';x.lineWidth=8;rr(x,-150,-52,300,104,14);x.stroke();
   x.textAlign='center';x.font=`72px ${D}`;x.fillText(STAMP(r.sc),0,26);x.restore();
-  // 통계
-  x.textAlign='left';x.fillStyle='#626B82';x.font=`400 32px ${U}`;
-  x.fillText(`딴짓 성공 ${r.tapped}회 · 무사통과 ${r.dodged}회 · 들킴 ${r.caught}회`,70,1190);
-  x.fillStyle='#1E2740';x.font=`56px ${D}`;x.fillText('올해 우리 상사 앞에서, 나는?',60,1250);
-  x.fillStyle='#D23A2E';x.textAlign='right';x.font=`44px ${D}`;x.fillText('상사 눈치 결산',W-64,1310);
+  // 한 줄 평 (톡에서 제일 웃긴 부분이라 카드에 크게)
+  x.textAlign='left';x.fillStyle='#1E2740';x.font=`700 46px ${U}`;
+  const words=r.hook.split(' ');let ln='',ly=1172;
+  for(const w of words){const t=ln?ln+' '+w:w;if(x.measureText(t).width>W-140&&ln){x.fillText(ln,70,ly);ly+=64;ln=w}else ln=t}
+  x.fillText(ln,70,ly);
+  x.fillStyle='#626B82';x.font=`400 30px ${U}`;
+  x.fillText(`딴짓 ${r.tapped}회 · 무사통과 ${r.dodged}회 · 들킴 ${r.caught}회`,70,1290);
+  x.fillStyle='#D23A2E';x.textAlign='right';x.font=`44px ${D}`;x.fillText('상사 눈치 결산',W-64,1308);
   return cv.toDataURL('image/png');
 }
 
