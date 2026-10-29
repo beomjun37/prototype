@@ -293,7 +293,7 @@ function intro(){
     ${order.map(k=>`<button class="bz" data-b="${k}" aria-pressed="${k===bossId}">${CHAR[k]}<b>${NAME[k]}</b><span class="lv">난이도 ${BOSSES[k].lv}</span><span class="tip">${BOSSES[k].tip}</span></button>`).join('')}
   </div>
   <button class="btn stamp" id="go">출근하기</button>
-  <p class="fine">로그인 없이 무료로 할 수 있어요.</p>`;
+  <p class="fine">로그인 없이 무료로 할 수 있어요.<br>lab v7.1</p>`;
   $('bosses').onclick=e=>{const b=e.target.closest('[data-b]');if(!b)return;bossId=b.dataset.b;app.querySelectorAll('.bz').forEach(x=>x.setAttribute('aria-pressed',x===b))};
   $('go').onclick=startGame;
   window.scrollTo(0,0);
