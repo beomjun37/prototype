@@ -109,6 +109,20 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 @keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
 .how-mini{font-size:14px;color:var(--muted);text-align:center}
 
+/* 진짜 궁합 테스트 */
+.next{border:2px solid var(--stamp)}
+.next-title{font-size:26px;line-height:1.3;margin-top:6px}
+.progress{display:flex;align-items:center;gap:10px}
+.qbar{flex:1;height:6px;background:var(--soft);border-radius:3px;overflow:hidden}
+.qbar i{display:block;height:100%;background:var(--ink);transition:width .25s}
+.count{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.section-tag{align-self:flex-start;font-size:13px;font-weight:700;padding:3px 8px;border-radius:4px;background:var(--soft);color:var(--muted)}
+.section-tag.boss{background:var(--stamp);color:#fff}
+.q{font-size:26px;line-height:1.35}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.opt{text-align:left;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:16px;font-size:17px;line-height:1.45;min-height:60px}
+.opt.picked{border-color:var(--ink);background:var(--soft)}
+
 /* 로딩 */
 .loading{text-align:center;padding:60px 0}
 .loading .seal{width:72px;height:72px;font-size:22px;margin:0 auto 18px;animation:thump .9s ease-in-out infinite}
@@ -208,6 +222,38 @@ const FATE={ // [85점 이상, 70점 이상, 50점 이상, 50점 미만] 각각 
 };
 const NEXT={TB:'보고는 묻기 전에 먼저 하세요. “아직이야?”가 줄어요.',TG:'진행 상황을 가끔 먼저 공유해 주세요. 믿음이 더 단단해져요.',
   MB:'시작하기 전에 “이거 꼭 지금 해야 하나요?” 하나만 물어보세요.',MG:'수다는 5분에서 끊고, 웃으며 자리로 돌아가세요.'};
+// ── 진짜 궁합 테스트: 질문 8개 (나 4개, 상사 4개). s=계획(+)/직진(-), d=챙김(+)/여유(-) ──
+const QS=[
+  {who:'me',ax:'d',w:1.5,q:'금요일 오후 5시 40분, 갑자기 업무 요청이 왔어요. 나는?',a:['지금 끝내고 마음 편히 퇴근해요','월요일 아침 첫 일정으로 잡아 둬요']},
+  {who:'me',ax:'s',w:1.5,q:'처음 맡은 일, 어떻게 시작해요?',a:['지난 자료부터 찾아보고 계획을 세워요','일단 해 보면서 감을 잡아요']},
+  {who:'me',ax:'d',w:1,q:'회의가 끝났어요. 회의록은 누가 써요?',a:['제가 이미 쓰고 있어요','누군가 쓰겠죠…']},
+  {who:'me',ax:'s',w:1,q:'상사가 "이거 좀 알아서 해 줘"라고 해요. 나는?',a:['의도와 마감부터 되물어요','일단 열심히 알아서 해 봐요']},
+  {who:'boss',ax:'s',w:1.5,q:'우리 상사의 업무 지시는 어때요?',a:['방향이 분명하고 잘 안 바뀌어요','자주 바뀌어서 다시 하게 돼요']},
+  {who:'boss',ax:'d',w:1.5,q:'우리 상사는 일을 어떻게 맡겨요?',a:['직접 챙기고 수시로 확인해요','맡겨 두고 결과만 봐요']},
+  {who:'boss',ax:'s',w:1,q:'회의에서 우리 상사는?',a:['마지막에 결론을 딱 정리해 줘요','이야기가 길어지고 결론이 흐려져요']},
+  {who:'boss',ax:'d',w:1,q:'퇴근 30분 전, 우리 상사는?',a:['"오늘 그거 어떻게 됐어요?" 하고 물어봐요','먼저 퇴근하거나 조용해요']}
+];
+const ME_T={TB:['먼저 끝내는 사람','계획을 세우고 부지런히 먼저 끝내요.'],TG:['똑똑하게 아끼는 사람','계획은 세우되 힘은 아껴 써요.'],
+  MB:['일단 뛰는 사람','생각보다 손이 먼저 나가는 열정파예요.'],MG:['마감에 강한 사람','평소엔 느긋하다가 마감 직전에 몰아쳐요.']};
+const MATCH={ // [나][상사] = [점수, 한 줄]
+  TB:{TB:[82,'둘 다 안 쉬어서 회의가 15분 만에 끝나는 사이예요. 팀원들만 숨이 막혀요.'],
+      TG:[95,'올해 최고의 조합이에요. 팀장님은 방향만, 당신은 실행. 올해 성과는 당신 이름으로 남아요.'],
+      MB:[38,'과장님이 벌인 일을 당신이 수습한 1년이에요. 올해 야근의 절반은 과장님의 열정에서 왔어요.'],
+      MG:[61,'결재만 받으면 자유예요. 대신 공이 위로 올라가니, 한 일은 꼭 기록해 두세요.']},
+  TG:{TB:[64,'부장님은 "아직이야?" 묻는데, 당신은 이미 끝내 놨어요. 보고 타이밍만 맞추면 평화예요.'],
+      TG:[88,'말 안 해도 통하는 효율 콤비예요. 팀 전체가 칼퇴하는 기적이 일어나요.'],
+      MB:[29,'효율적으로 끝낸 일을 과장님이 다시 하자고 해요. 올해 제일 많이 한 말은 "네, 알겠습니다"예요.'],
+      MG:[73,'서로 건드리지 않는 평화조약을 맺은 사이예요. 큰 사고만 없으면 연말까지 무사해요.']},
+  MB:{TB:[70,'열심히 달리는데 방향이 자꾸 틀어져요. 부장님이 잡아 주면 내년에 크게 성장해요.'],
+      TG:[80,'팀장님이 방향을 주면 당신이 달려요. 묻는 걸 부끄러워하지만 않으면 최고의 팀이에요.'],
+      MB:[44,'둘 다 열정이 넘쳐요. 일은 많은데 왜 늘었는지 아무도 모르는 한 해였어요.'],
+      MG:[52,'아무도 안 시킨 일을 만드는 당신과 아무것도 안 시키는 차장님이에요. 그래도 팀은 굴러가요.']},
+  MG:{TB:[33,'부장님의 "확인 부탁드려요"가 제일 무서웠던 1년이에요. 메신저 알림에 놀란 횟수는 셀 수 없어요.'],
+      TG:[77,'팀장님이 알아서 정리해 줘서 편했던 해예요. 내년엔 하나만 먼저 해 보세요.'],
+      MB:[41,'과장님의 열정을 온몸으로 받아낸 1년이에요. 버틴 것만으로 우수사원이에요.'],
+      MG:[68,'세상 평화로운 팀이에요. 마감 전날만 빼고요.']}
+};
+const SURVIVE=s=>s>=85?'무사 퇴근':s>=70?'아슬아슬':s>=50?'경고':'적발';
 const band=s=>s>=85?0:s>=70?1:s>=50?2:3;
 const STAMP = s => s>=85?'천생연분':s>=70?'결재 승인':s>=50?'보류':'반려';
 
@@ -241,7 +287,7 @@ function intro(){
   const order=['TB','TG','MB','MG'];
   app.innerHTML=`
   <h1 class="hero-title">상사 몰래 딴짓,<br><span class="mark">안 들킬</span> 자신 있어요?</h1>
-  <p class="hero-sub">엑셀 화면에서 딴짓하다가 상사가 오면 숨기세요. ${DURATION}초 뒤에 나와 상사의 궁합이 나와요.</p>
+  <p class="hero-sub">엑셀 화면에서 딴짓하다가 상사가 오면 숨기세요. 게임이 끝나면 질문 8개로 진짜 상사 궁합도 볼 수 있어요.</p>
   <p class="label" style="margin-top:4px">우리 상사와 닮은 캐릭터를 골라 주세요</p>
   <div class="bosses" id="bosses">
     ${order.map(k=>`<button class="bz" data-b="${k}" aria-pressed="${k===bossId}">${CHAR[k]}<b>${NAME[k]}</b><span class="lv">난이도 ${BOSSES[k].lv}</span><span class="tip">${BOSSES[k].tip}</span></button>`).join('')}
@@ -421,31 +467,47 @@ function analyze(){
   return {sc,band:band(sc),idx,react,rate,falseHide:G.falseHide};
 }
 const josa=(w,a,b)=>(w.charCodeAt(w.length-1)-0xAC00)%28?a:b;
-let R=null;
+let R=null, GR=null;
+function popCard(r){ return async()=>{ const b=$('cardBtn'); b.disabled=true; const url=await drawCard(r); $('popImg').src=url; $('pop').hidden=false; b.disabled=false;
+  if(!/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) $('popHint').textContent='이미지를 우클릭해서 저장할 수 있어요.'; } }
+function shareText(txt){
+  const copy=()=>{try{navigator.clipboard.writeText(txt).then(()=>toast('문구를 복사했어요. 톡방에 붙여 넣으세요'),()=>toast(txt))}catch(e){toast(txt)}};
+  if(navigator.share){navigator.share({text:txt}).catch(e=>{if(e&&e.name!=='AbortError')copy()})}else copy();
+}
+const link=()=>/^https?:/.test(location.protocol)?location.origin+location.pathname:'';
+$('popX').onclick=()=>{$('pop').hidden=true};
+
+/* 4-1. 게임 결과: 이 상사 밑에서 살아남은 점수 */
 function result(){
-  const a=analyze(), boss=bossId, sc=a.sc, [title,line]=FATE[boss][a.band], nm=NAME[boss], st=STAMP(sc);
+  const a=analyze(), boss=bossId, sc=a.sc, [title,line]=FATE[boss][a.band], nm=NAME[boss], st=SURVIVE(sc);
   const grade = G.caught>=3?'현행범 루팡':a.idx>=85?'전설의 루팡':a.idx>=65?'부장급 루팡':a.idx>=40?'대리급 루팡':'신입 루팡';
   const story = `${nm} 밑에서 ${DURATION}초 동안 ${G.dodged}번 피하고 ${G.caught}번 들켰어요.`;
-  R={...a,boss,title,hook:line,story,grade,caught:G.caught,dodged:G.dodged,tapped:G.tapped};
+  GR={sc,boss,title,story,line};
+  R={kicker:'내 별명',title,story,box:`${nm} 밑에서 생존 점수`,sc,stamp:st,left:'ME',right:boss,hook:line};
   app.innerHTML=`
-  <div class="summary"><p>내 결과</p><h1>${title}</h1><p>${story}</p></div>
+  <div class="summary"><p>게임 결과</p><h1>${title}</h1><p>${story}</p></div>
 
   <section class="sheet match">
     <span class="big-stamp">${st}</span>
-    <p class="label">${nm}${josa(nm,'과','와')} 나의 궁합 (100점 만점)</p>
+    <p class="label">생존 점수 (100점 만점)</p>
     <div class="match-head" style="margin-top:8px">
       <div class="score">${sc}<small>점</small></div>
       <div class="duo">${CHAR.ME}<em>×</em>${CHAR[boss]}</div>
     </div>
     <div class="gauge"><i style="width:${sc}%"></i></div>
-    <p class="verdict">궁합 도장은 <b style="color:var(--stamp)">${st}</b>${josa(st,'이에요','예요')}.</p>
-    <p class="desc" style="margin-top:6px">${line}</p>
-    <p class="why">이 상사가 올 때 빨리 숨고 안 들킬수록, 딴짓을 많이 할수록 궁합이 높아요.</p>
+    <p class="desc" style="margin-top:14px">${line}</p>
+  </section>
+
+  <section class="sheet next">
+    <p class="label">게임은 여기까지예요</p>
+    <h2 class="next-title">그럼 진짜 우리 상사와<br>궁합은 몇 점일까요?</h2>
+    <p class="hero-sub">나에 대해 4개, 상사에 대해 4개. 질문 8개면 1분 안에 나와요.</p>
+    <button class="btn stamp" id="toTest" style="margin-top:14px">진짜 궁합 보기</button>
   </section>
 
   <div class="row2">
-    <button class="btn stamp" id="share">동료에게 보내기</button>
-    <button class="btn" id="cardBtn">결과 이미지 저장</button>
+    <button class="btn ghost" id="share">게임 결과 보내기</button>
+    <button class="btn ghost" id="cardBtn">결과 이미지 저장</button>
   </div>
 
   <section class="sheet">
@@ -454,9 +516,68 @@ function result(){
       <div class="slip-row"><span>딴짓 점수 (${grade} 등급)</span><span>${a.idx}점</span></div>
       <div class="slip-row"><span>딴짓한 횟수 / 피한 횟수</span><span>${G.tapped}회 / ${G.dodged}회</span></div>
       <div class="slip-row"><span>들킨 횟수 / 괜히 숨은 횟수</span><span>${G.caught}회 / ${G.falseHide}회</span></div>
-      <div class="slip-row total"><span>내년에 해 볼 것</span><span>${NEXT[boss]}</span></div>
     </div>
   </section>
+
+  <div class="row2">
+    <button class="btn ghost" id="again">한 판 더 하기</button>
+    <button class="btn ghost" id="other">다른 상사 고르기</button>
+  </div>`;
+  window.scrollTo(0,0);
+  $('again').onclick=startGame; $('other').onclick=pickBoss; $('toTest').onclick=()=>quiz(0);
+  $('cardBtn').onclick=popCard(R);
+  $('share').onclick=()=>shareText(`${nm} 밑에서 생존 점수 ${sc}점 “${st}” 나왔다. 내 별명은 ${title}.\n${line}${link()?'\n너네 상사로도 해봐 '+link()+'#b='+boss:''}`);
+}
+
+/* 4-2. 진짜 궁합 테스트: 한 화면에 질문 하나 */
+let ans=[];
+function quiz(i){
+  if(i===0) ans=[];
+  if(i>=QS.length) return matchResult();
+  const Q=QS[i], boss=Q.who==='boss';
+  app.innerHTML=`
+  <div class="progress"><div class="qbar"><i style="width:${i/QS.length*100}%"></i></div><span class="count">${i+1} / ${QS.length}</span></div>
+  ${i>0?'<button class="back" id="qback">← 이전 질문</button>':''}
+  <span class="section-tag ${boss?'boss':''}">${boss?'상사에 대해':'나에 대해'}</span>
+  <h2 class="q">${Q.q}</h2>
+  <div class="opts">${Q.a.map((t,k)=>`<button class="opt ${ans[i]===k?'picked':''}" data-k="${k}">${t}</button>`).join('')}</div>`;
+  if(i>0) $('qback').onclick=()=>quiz(i-1);
+  app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k; b.classList.add('picked'); setTimeout(()=>quiz(i+1),160)});
+  window.scrollTo(0,0);
+}
+function scoreQuiz(){
+  const v={me:{s:0,d:0},boss:{s:0,d:0}};
+  QS.forEach((Q,i)=>{v[Q.who][Q.ax]+=(ans[i]===0?1:-1)*Q.w});
+  const t=o=>(o.s>0?'T':'M')+(o.d>0?'B':'G');
+  return {me:t(v.me),boss:t(v.boss)};
+}
+
+/* 4-3. 진짜 궁합 결과 */
+function matchResult(){
+  const {me,boss}=scoreQuiz(), [sc,line]=MATCH[me][boss], st=STAMP(sc), nm=NAME[boss], [mt,md]=ME_T[me];
+  const same=GR&&GR.boss===boss;
+  const story=`우리 상사는 ${nm}에 가까워요.`;
+  R={kicker:'나는',title:mt,story,box:'우리 상사와 진짜 궁합',sc,stamp:st,left:'ME',right:boss,hook:line};
+  app.innerHTML=`
+  <div class="summary"><p>진짜 궁합 결과</p><h1>나는 ${mt},<br>상사와 궁합은 ${sc}점</h1></div>
+
+  <section class="sheet match">
+    <span class="big-stamp">${st}</span>
+    <p class="label">우리 상사와 나의 궁합 (100점 만점)</p>
+    <div class="match-head" style="margin-top:8px">
+      <div class="score">${sc}<small>점</small></div>
+      <div class="duo">${CHAR.ME}<em>×</em>${CHAR[boss]}</div>
+    </div>
+    <div class="gauge"><i style="width:${sc}%"></i></div>
+    <p class="verdict">궁합 도장은 <b style="color:var(--stamp)">${st}</b>${josa(st,'이에요','예요')}.</p>
+    <p class="desc" style="margin-top:6px">${line}</p>
+    <p class="why">나는 <b>${mt}</b>이에요. ${md}<br>우리 상사는 <b>${nm}</b>에 가까워요.${GR?(same?' 게임에서 고른 상사와 같아요.':' 게임에서 고른 '+NAME[GR.boss]+'과는 달라요.'):''}</p>
+  </section>
+
+  <div class="row2">
+    <button class="btn stamp" id="share">동료에게 보내기</button>
+    <button class="btn" id="cardBtn">결과 이미지 저장</button>
+  </div>
 
   <section class="sheet locked">
     <p class="label">더 자세한 풀이 · 유료</p>
@@ -474,21 +595,13 @@ function result(){
   </section>
 
   <div class="row2">
-    <button class="btn ghost" id="again">한 판 더 하기</button>
-    <button class="btn ghost" id="other">다른 상사 고르기</button>
+    <button class="btn ghost" id="retest">질문 다시 하기</button>
+    <button class="btn ghost" id="home">처음으로</button>
   </div>`;
   window.scrollTo(0,0);
-
-  $('again').onclick=startGame; $('other').onclick=pickBoss;
-  $('share').onclick=()=>{
-    const base=/^https?:/.test(location.protocol)?location.origin+location.pathname+'#b='+boss:'';
-    const txt=`${nm}${josa(nm,'과','와')} 궁합 ${sc}점 “${st}” 나왔다. 내 별명은 ${title}.\n${R.hook}${base?'\n너네 상사로도 해봐 '+base:''}`;
-    const copy=()=>{try{navigator.clipboard.writeText(txt).then(()=>toast('문구를 복사했어요. 톡방에 붙여 넣으세요'),()=>toast(txt))}catch(e){toast(txt)}};
-    if(navigator.share){navigator.share({text:txt}).catch(e=>{if(e&&e.name!=='AbortError')copy()})}else copy();
-  };
-  $('cardBtn').onclick=async()=>{ $('cardBtn').disabled=true; const url=await drawCard(R); $('popImg').src=url; $('pop').hidden=false; $('cardBtn').disabled=false;
-    if(!/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) $('popHint').textContent='이미지를 우클릭해서 저장할 수 있어요.'; };
-  $('popX').onclick=()=>{$('pop').hidden=true};
+  $('retest').onclick=()=>quiz(0); $('home').onclick=intro;
+  $('cardBtn').onclick=popCard(R);
+  $('share').onclick=()=>shareText(`우리 상사(${nm})랑 진짜 궁합 ${sc}점 “${st}” 나왔다. 나는 ${mt}.\n${line}${link()?'\n너도 해봐 '+link():''}`);
   $('buy').onclick=()=>{
     const f=$('fake'); f.hidden=false; $('buy').hidden=true;
     const asked=store.get('notify',null);
@@ -514,8 +627,7 @@ function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w
 function svgImg(svg,px){return new Promise(res=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>res(null);
   i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg.replace('<svg ',`<svg xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" `))})}
 async function drawCard(r){
-  const nm=NAME[r.boss];
-  const glyphs='상사 몰래 딴짓 결과 나와 의 궁합 점수 들킴 피함 회 번 밑에서 초 동안 피하고 들켰어요 0123456789×/().'+nm+r.title+r.hook+STAMP(r.sc);
+  const glyphs='상사 몰래 딴짓 결과 나는 내 별명 우리 와 의 진짜 궁합 생존 점수 밑에서 0123456789×/().'+r.title+r.story+r.box+r.hook+r.stamp;
   try{await Promise.all([document.fonts.load("80px 'Do Hyeon'",glyphs),document.fonts.load("400 30px 'IBM Plex Sans KR'",glyphs),document.fonts.load("700 30px 'IBM Plex Sans KR'",glyphs)])}catch(e){}
   const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
   const D="'Do Hyeon','IBM Plex Sans KR',sans-serif",U="'IBM Plex Sans KR','Apple SD Gothic Neo',sans-serif";
@@ -525,22 +637,22 @@ async function drawCard(r){
   x.fillStyle='#fff';x.textAlign='left';x.font=`68px ${D}`;x.fillText('상사 몰래 딴짓 결과',70,100);
   x.font=`400 30px ${U}`;x.globalAlpha=.8;x.textAlign='right';const d=new Date();x.fillText(`${d.getMonth()+1}월 ${d.getDate()}일`,W-70,98);x.globalAlpha=1;
   // 별명 + 사연
-  x.textAlign='left';x.fillStyle='#D23A2E';x.font=`700 36px ${U}`;x.fillText('내 별명',70,240);
+  x.textAlign='left';x.fillStyle='#D23A2E';x.font=`700 36px ${U}`;x.fillText(r.kicker,70,240);
   x.fillStyle='#1E2740';x.font=`96px ${D}`;const ty=wrap(r.title,66,340,W-140,104);
   x.fillStyle='#4A536A';x.font=`400 36px ${U}`;wrap(r.story,70,ty+70,W-140,50);
   // 궁합 상자
   const top=560;
   x.fillStyle='#fff';x.strokeStyle='#D9DDE6';x.lineWidth=3;rr(x,60,top,W-120,470,26);x.fill();x.stroke();
-  x.fillStyle='#626B82';x.font=`700 32px ${U}`;x.fillText(`${nm}${josa(nm,'과','와')}의 궁합`,100,top+64);
+  x.fillStyle='#626B82';x.font=`700 32px ${U}`;x.fillText(r.box,100,top+64);
   x.fillStyle='#1E2740';x.font=`230px ${D}`;x.fillText(String(r.sc),96,top+270);
   const nw=x.measureText(String(r.sc)).width;x.fillStyle='#8A93A6';x.font=`70px ${D}`;x.fillText('점',110+nw,top+270);
-  const a=await svgImg(CHAR.ME,170),b=await svgImg(CHAR[r.boss],170);
+  const a=await svgImg(CHAR[r.left],170),b=await svgImg(CHAR[r.right],170);
   if(a)x.drawImage(a,520,top+80,170,170);
   x.fillStyle='#D23A2E';x.font=`60px ${D}`;x.fillText('×',702,top+190);
   if(b)x.drawImage(b,760,top+80,170,170);
   x.fillStyle='#EEF1F6';rr(x,100,top+320,W-200,22,11);x.fill();x.fillStyle='#D23A2E';rr(x,100,top+320,(W-200)*r.sc/100,22,11);x.fill();
   x.save();x.translate(W-250,top+410);x.rotate(.12);x.strokeStyle='#D23A2E';x.fillStyle='#D23A2E';x.lineWidth=8;rr(x,-150,-52,300,104,14);x.stroke();
-  x.textAlign='center';x.font=`72px ${D}`;x.fillText(STAMP(r.sc),0,26);x.restore();
+  x.textAlign='center';x.font=`72px ${D}`;x.fillText(r.stamp,0,26);x.restore();
   // 한 줄 평
   x.textAlign='left';x.fillStyle='#1E2740';x.font=`700 44px ${U}`;wrap(r.hook,70,1110,W-140,62);
   x.fillStyle='#D23A2E';x.textAlign='right';x.font=`44px ${D}`;x.fillText('상사 몰래 딴짓',W-64,1308);
