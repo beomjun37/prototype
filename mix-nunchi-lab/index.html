@@ -170,56 +170,53 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 
 <script>
 // ── 캐릭터 (자체 제작: 사무용품 4종) ──
-const FACE = (x,y,c)=>`<circle cx="${x-9}" cy="${y}" r="3.2" fill="${c}"/><circle cx="${x+9}" cy="${y}" r="3.2" fill="${c}"/>`;
+// 사람 캐릭터 공통: 어깨, 목, 얼굴, 귀
+const SKIN='#F3C9A5', SKIN2='#E5B08A';
+const BODY=(c)=>`<path d="M16 122 Q18 90 60 87 Q102 90 104 122 Z" fill="${c}"/><rect x="52" y="72" width="16" height="17" fill="${SKIN2}"/><circle cx="36" cy="56" r="5" fill="${SKIN2}"/><circle cx="84" cy="56" r="5" fill="${SKIN2}"/><circle cx="60" cy="54" r="24" fill="${SKIN}"/>`;
 const CHAR = {
-  TB:`<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="14" y="70" width="92" height="22" rx="8" fill="#3A4A7A"/><path d="M18 70 Q20 44 60 42 L100 46 Q106 48 104 60 L102 70 Z" fill="#5468A8"/><rect x="92" y="60" width="14" height="10" rx="3" fill="#C9CFDD"/>${FACE(52,58,'#fff')}<path d="M45 66 h14" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M68 34 l6 -10 M78 38 l10 -8" stroke="#D23A2E" stroke-width="3" stroke-linecap="round"/></svg>`,
-  TG:`<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M48 22 q-6 -8 0 -14 M62 24 q-6 -8 0 -14" stroke="#9BA3B8" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M84 52 h8 a14 14 0 0 1 0 28 h-8" stroke="#E8A33A" stroke-width="7" fill="none"/><rect x="26" y="36" width="60" height="62" rx="10" fill="#F2B544"/><rect x="26" y="36" width="60" height="10" rx="5" fill="#D9962C"/><path d="M40 64 q5 -4 10 0 M62 64 q5 -4 10 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M50 78 q6 5 12 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`,
-  MB:`<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M20 22 h80 v58 l-20 20 h-60 z" fill="#FFE14D"/><path d="M100 80 l-20 20 v-20 z" fill="#E5C42F"/>${FACE(60,54,'#1E2740')}<path d="M50 66 q10 10 20 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M96 14 l6 -6 M104 22 l8 -2 M88 10 l0 -6" stroke="#D23A2E" stroke-width="3" stroke-linecap="round"/></svg>`,
-  MG:`<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M60 54 q-26 -6 -30 -30 q24 2 30 30 M60 54 q24 -10 34 -32 q-26 0 -34 32" fill="#4FA36A"/><path d="M60 58 v-10" stroke="#3B8454" stroke-width="4"/><path d="M30 58 h60 l-8 44 h-44 z" fill="#C8734A"/><rect x="26" y="54" width="68" height="10" rx="3" fill="#B0603A"/><path d="M44 80 h8 M68 80 h8" stroke="#1E2740" stroke-width="3" stroke-linecap="round"/><path d="M56 90 h8" stroke="#1E2740" stroke-width="3" stroke-linecap="round"/></svg>`
+  // 나: 평범한 직원, 후드티
+  ME:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#8C96AD')}<path d="M44 88 Q60 100 76 88" stroke="#6F7890" stroke-width="4" fill="none"/><path d="M35 52 Q34 28 60 27 Q86 28 85 52 Q78 40 60 40 Q42 40 35 52 Z" fill="#3A3F4E"/><circle cx="50" cy="56" r="3" fill="#1E2740"/><circle cx="70" cy="56" r="3" fill="#1E2740"/><path d="M55 67 q5 3 10 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`,
+  // 아직이야 부장: 단정한 가르마, 안경, 넥타이, 치켜뜬 눈썹
+  TB:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#33427A')}<path d="M50 88 L60 106 L70 88 Z" fill="#fff"/><path d="M57.5 91 h5 l2 15 -4.5 5 -4.5 -5 z" fill="#D23A2E"/><path d="M35 52 Q34 27 60 26 Q86 26 85 52 Q82 38 66 36 Q50 37 38 47 Z" fill="#262B38"/><rect x="43" y="50" width="14" height="10" rx="3" fill="none" stroke="#1E2740" stroke-width="2.5"/><rect x="63" y="50" width="14" height="10" rx="3" fill="none" stroke="#1E2740" stroke-width="2.5"/><path d="M57 54 h6" stroke="#1E2740" stroke-width="2.5"/><circle cx="50" cy="55" r="2.2" fill="#1E2740"/><circle cx="70" cy="55" r="2.2" fill="#1E2740"/><path d="M43 45 l12 3 M77 45 l-12 3" stroke="#262B38" stroke-width="3" stroke-linecap="round"/><path d="M54 68 h12" stroke="#1E2740" stroke-width="3" stroke-linecap="round"/><path d="M92 22 l5 -8 M100 30 l9 -4" stroke="#D23A2E" stroke-width="3" stroke-linecap="round"/></svg>`,
+  // 알아서 해 팀장: 부스스한 머리, 반쯤 감은 눈, 가디건, 머그컵
+  TG:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#B98B5E')}<path d="M52 88 L60 100 L68 88 Z" fill="#EDE6DA"/><path d="M35 54 Q32 28 58 26 Q86 23 86 52 Q80 40 71 43 Q63 33 54 41 Q44 37 35 54 Z" fill="#6B4A35"/><path d="M45 56 q5 3 10 0 M65 56 q5 3 10 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M45 50 h9 M66 50 h9" stroke="#6B4A35" stroke-width="2.5" stroke-linecap="round"/><path d="M54 67 q6 4 12 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="82" y="92" width="18" height="20" rx="3" fill="#F2B544"/><path d="M100 97 h3 a5 5 0 0 1 0 10 h-3" stroke="#D9962C" stroke-width="3" fill="none"/><path d="M88 86 q-3 -4 0 -8 M94 86 q-3 -4 0 -8" stroke="#9BA3B8" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`,
+  // 일단 해보자 과장: 삐죽 머리, 크게 벌린 입, 걷은 소매, 번쩍 든 주먹
+  MB:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#F4C430')}<path d="M52 88 L60 98 L68 88 Z" fill="#fff"/><path d="M96 120 L100 90" stroke="${SKIN2}" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="84" r="9" fill="${SKIN}"/><path d="M36 48 L38 30 L46 38 L52 24 L59 36 L66 23 L72 36 L80 28 L84 48 Q72 38 60 38 Q46 38 36 48 Z" fill="#1F2430"/><circle cx="50" cy="55" r="3.2" fill="#1E2740"/><circle cx="70" cy="55" r="3.2" fill="#1E2740"/><path d="M44 47 q6 -4 11 -1 M65 46 q5 -3 11 1" stroke="#1F2430" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M50 63 q10 13 20 0 Z" fill="#7A2E2E"/><path d="M85 40 q4 6 0 9 q-4 -3 0 -9 Z" fill="#7FC3F0"/><path d="M14 70 l8 2 M16 80 l8 -1" stroke="#D23A2E" stroke-width="3" stroke-linecap="round"/></svg>`,
+  // 허허 차장: 숱 적은 머리, 웃는 눈, 볼터치, 니트 조끼
+  MG:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#4E9A67')}<path d="M50 88 L60 100 L70 88 Z" fill="#E8F0E4"/><path d="M36 56 Q35 44 40 40 L42 54 Z M84 56 Q85 44 80 40 L78 54 Z" fill="#8C8C8C"/><path d="M56 31 q2 -6 6 -7 M62 31 q3 -5 7 -5" stroke="#8C8C8C" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M45 55 q5 -5 10 0 M65 55 q5 -5 10 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="44" cy="63" r="4" fill="#F29B8E" opacity=".7"/><circle cx="76" cy="63" r="4" fill="#F29B8E" opacity=".7"/><path d="M50 64 q10 10 20 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`
 };
 
-// ── 유형 (상사 궁합 결산과 동일) ──
-const TYPES = {
-  TB:{code:'똑부',def:'계획을 먼저 세우고 부지런히 챙기는',name:'철컥이',obj:'스테이플러',line:'일은 찍으면 끝난다',
-      desc:'일정과 결론이 머릿속에 이미 서 있는 사람. 남들이 회의록을 열 때 당신은 액션 아이템을 보내고 있어요. 문제는 다들 당신에게만 일을 몰아준다는 거예요.',
-      total:'일을 덜 받는 연습을 해 보세요. 거절도 실력이에요.'},
-  TG:{code:'똑게',def:'계획은 세우되 여유 있게 움직이는',name:'느긋컵',obj:'머그컵',line:'할 건 하고, 식기 전에 마신다',
-      desc:'일을 덜 하는 게 아니라 덜 하게 만드는 사람. 반복 업무는 이미 자동화했고, 퇴근 10분 전엔 책상이 깨끗해요. 단, 바빠 보이지 않아서 오해를 받기도 해요.',
-      total:'가끔은 진행 상황을 먼저 공유해 주세요.'},
-  MB:{code:'멍부',def:'일단 부딪히고 부지런히 뛰는',name:'붙임이',obj:'포스트잇',line:'일단 붙고 본다',
-      desc:'누구보다 먼저 손을 들고, 누구보다 늦게 퇴근하는 열정 담당. 방향이 살짝 틀릴 때도 있지만 팀에서 제일 믿음직한 엔진이에요. 내년엔 질문을 하나만 더 해 보세요.',
-      total:'시작하기 전에 질문을 하나만 먼저 해 보세요.'},
-  MG:{code:'멍게',def:'일단 부딪히고 여유 있게 움직이는',name:'광합이',obj:'사무실 화분',line:'존재만으로 공기를 맑게',
-      desc:'급할 것 없는 평화주의자. 마감 전날 몰아치는 집중력은 아무도 못 따라가요. 팀이 날 서 있을 때 분위기를 풀어주는 건 늘 당신입니다.',
-      total:'마감 알람을 하루 일찍 맞춰 두세요.'}
+// ── 상사 4명 이름과, 상사별 결과 16개 (궁합 구간 4개 x 상사 4명) ──
+const NAME={TB:'아직이야 부장',TG:'알아서 해 팀장',MB:'일단 해보자 과장',MG:'허허 차장'};
+const FATE={ // [85점 이상, 70점 이상, 50점 이상, 50점 미만] 각각 [별명, 한 줄]
+  TB:[['부장님 레이더 해독자','“아직이야?” 소리가 나기 전에 이미 숨어 있었어요. 부장님 발소리를 1년 동안 외운 사람이에요.'],
+      ['보고 타이밍 장인','부장님이 오기 직전에 딱 업무 화면이었어요. 올해 “진행 잘 되네요”를 제일 많이 들은 사람이에요.'],
+      ['반쯤 들킨 사람','부장님은 아직 확신이 없어요. 다만 당신 모니터를 보는 시간이 점점 길어지고 있어요.'],
+      ['부장님 단골손님','“그 파일 지금 보여줄래요?”를 올해만 몇 번 들었는지 셀 수 없어요. 내년엔 자리부터 바꿔 보세요.']],
+  TG:[['팀장님과 평화조약','팀장님이 뒤에 서 있어도 흔들리지 않았어요. 서로 건드리지 않는 완벽한 사이예요.'],
+      ['믿고 맡기는 사이','팀장님은 결과만 나오면 뭘 하든 OK예요. 당신은 딱 그 선을 지킬 줄 알아요.'],
+      ['등 뒤가 서늘한 사람','팀장님이 조용히 서 있다 간 적이 있었죠. 아무 말도 안 한 게 더 무서워요.'],
+      ['팀장님 수첩에 적힌 사람','“그건 업무 아니죠?” 한마디가 올해 평가에 들어갔을지도 몰라요.']],
+  MB:[['과장님 낚시 면역','가짜 알림에도 진짜 알림에도 침착했어요. 과장님의 열정을 피해 가는 법을 아는 사람이에요.'],
+      ['과장님 속도 조절러','과장님이 “나도 보여줘요” 하기 전에 화면을 바꿨어요. 같이 야근할 확률이 낮아요.'],
+      ['과장님 옆자리 당첨','가끔 과장님이 옆에 앉아 같이 봤어요. 그러다 일이 하나 늘었죠.'],
+      ['과장님 열정 수신자','과장님의 “일단 이거 같이 봐요”에 매번 걸렸어요. 올해 야근의 절반은 여기서 왔어요.']],
+  MG:[['차장님 최애 후배','차장님이 와도 웃으며 넘겼어요. 수다는 짧게, 딴짓은 길게 할 줄 알아요.'],
+      ['평화로운 팀의 기둥','차장님과 날씨 얘기만 하고 끝나는 사이예요. 세상 편한 1년이었어요.'],
+      ['수다에 붙잡힌 사람','차장님 웹툰 얘기에 15분을 썼어요. 들키진 않았지만 퇴근이 늦어졌죠.'],
+      ['순한 상사한테도 들킨 사람','제일 순한 차장님한테 들켰어요. “어머, 그거 재밌어요?”가 올해의 명대사예요.']]
 };
-// 궁합 [나][상사]
-const MATCH = {
-  TB:{TB:[82,'둘 다 안 쉬어서 회의가 15분 만에 끝나는 사이. 팀원들만 숨이 막혀요.'],
-      TG:[95,'올해 최고의 조합. 상사는 방향만, 당신은 실행. 올해 성과는 당신 이름으로 남아요.'],
-      MB:[38,'상사가 만든 일을 당신이 수습한 1년. 올해 야근의 절반은 상사의 열정에서 왔습니다.'],
-      MG:[61,'결재만 받으면 자유. 대신 공은 위로 올라가니 한 일은 꼭 기록해 두세요.']},
-  TG:{TB:[64,'상사는 "아직이야?" 묻고, 당신은 이미 끝내놨다. 보고 타이밍만 맞추면 평화.'],
-      TG:[88,'말 안 해도 통하는 효율 콤비. 팀 전체가 칼퇴하는 기적이 일어납니다.'],
-      MB:[29,'효율적으로 끝낸 일을 상사가 다시 하라고 한다. 올해 제일 많이 한 말은 "네 알겠습니다".'],
-      MG:[73,'서로 건드리지 않는 평화조약. 큰 사고만 없으면 연말까지 무사합니다.']},
-  MB:{TB:[70,'열심히 달리는데 방향이 자꾸 틀어진다. 상사가 잡아주면 내년에 크게 성장해요.'],
-      TG:[80,'상사가 방향을 주면 당신이 달린다. 묻는 걸 부끄러워하지만 않으면 최고의 팀.'],
-      MB:[44,'둘 다 열정 만렙. 일은 많은데 왜 늘었는지 아무도 모르는 한 해.'],
-      MG:[52,'아무도 안 시킨 일을 만드는 당신, 아무것도 안 시키는 상사. 그래도 팀은 굴러갑니다.']},
-  MG:{TB:[33,'상사의 "확인 부탁드려요"가 제일 무서웠던 1년. 메신저 알림에 놀란 횟수 측정 불가.'],
-      TG:[77,'상사가 알아서 정리해줘서 편했던 해. 내년엔 하나만 먼저 해보세요.'],
-      MB:[41,'상사의 열정을 온몸으로 받아낸 1년. 버틴 것만으로 우수사원입니다.'],
-      MG:[68,'세상 평화로운 팀. 마감 전날만 빼고요.']}
-};
+const NEXT={TB:'보고는 묻기 전에 먼저 하세요. “아직이야?”가 줄어요.',TG:'진행 상황을 가끔 먼저 공유해 주세요. 믿음이 더 단단해져요.',
+  MB:'시작하기 전에 “이거 꼭 지금 해야 하나요?” 하나만 물어보세요.',MG:'수다는 5분에서 끊고, 웃으며 자리로 돌아가세요.'};
+const band=s=>s>=85?0:s>=70?1:s>=50?2:3;
 const STAMP = s => s>=85?'천생연분':s>=70?'결재 승인':s>=50?'보류':'반려';
 
 // ── 상사 = 게임 난이도 ──
 const BOSSES = {
-  MG:{rc:.31,tc:.25,lv:'쉬움',tip:'잘 안 오는데, 오면 수다가 길어요',gap:1.5,fake:.3,win:.4,stay:[2.2,3.0],pass:'날씨 좋죠? 열심히 하네요',say:['어머, 그거 재밌어요?','나도 그 웹툰 봐요']},
-  TG:{rc:.39,tc:.26,lv:'보통',tip:'조용히 뒤에 서서 한참 봐요',gap:1.25,fake:.25,win:.2,stay:[2.6,3.4],pass:'천천히 다 보고 갈게요',say:['그건 업무 아니죠?','커피 식겠네, 근데 그 화면은 뭐예요?']},
-  MB:{rc:.51,tc:.22,lv:'까다로움',tip:'“나도 보여줘요” 하며 옆에 앉아요',gap:.85,fake:.5,win:-.1,stay:[1.4,2.2],pass:'아 그거 나도 하려 했는데!',say:['어? 그거 뭐예요? 나도 보여줘요','일단 이거 같이 봐요']},
-  TB:{rc:.52,tc:.20,lv:'어려움',tip:'“아직이야?” 말이 끝나기 전에 와요',gap:.75,fake:.15,win:-.2,stay:[1.6,2.2],pass:'음, 진행 잘 되네요',say:['진행 상황 공유 부탁해요','그 파일 지금 보여줄래요?']}
+  MG:{lv:'쉬움',tip:'잘 안 오는데, 오면 수다가 길어요',gap:1.5,fake:.3,win:.4,stay:[2.2,3.0],pass:'날씨 좋죠? 열심히 하네요',say:['어머, 그거 재밌어요?','나도 그 웹툰 봐요']},
+  TG:{lv:'보통',tip:'조용히 뒤에 서서 한참 봐요',gap:1.25,fake:.25,win:.2,stay:[2.6,3.4],pass:'천천히 다 보고 갈게요',say:['그건 업무 아니죠?','커피 식겠네, 근데 그 화면은 뭐예요?']},
+  MB:{lv:'까다로움',tip:'“나도 보여줘요” 하며 옆에 앉아요',gap:.85,fake:.5,win:-.1,stay:[1.4,2.2],pass:'아 그거 나도 하려 했는데!',say:['어? 그거 뭐예요? 나도 보여줘요','일단 이거 같이 봐요']},
+  TB:{lv:'어려움',tip:'“아직이야?” 말이 끝나기 전에 와요',gap:.75,fake:.15,win:-.2,stay:[1.6,2.2],pass:'음, 진행 잘 되네요',say:['진행 상황 공유 부탁해요','그 파일 지금 보여줄래요?']}
 };
 const REAL=[['발소리','저벅… 저벅… 가까워져요'],['상사','잠깐 자리에 있어요? 지금 갈게요'],['옆자리 동료','(속삭임) 이쪽으로 와요!'],['회의실','회의 일찍 끝나고 나오는 중'],['상사','진행 상황 직접 볼게요']];
 const FAKE=[['발소리','저벅… 탕비실 쪽으로 멀어져요'],['옆자리 동료','오늘 점심 뭐 먹을래요?'],['택배','1층에 택배 도착했어요'],['상사','오늘 외근이라 자리 비워요'],['인사팀','연말정산 안내 메일 확인 부탁드려요']];
@@ -247,7 +244,7 @@ function intro(){
   <p class="hero-sub">엑셀 화면에서 딴짓하다가 상사가 오면 숨기세요. ${DURATION}초 뒤에 나와 상사의 궁합이 나와요.</p>
   <p class="label" style="margin-top:4px">우리 상사와 닮은 캐릭터를 골라 주세요</p>
   <div class="bosses" id="bosses">
-    ${order.map(k=>`<button class="bz" data-b="${k}" aria-pressed="${k===bossId}">${CHAR[k]}<b>${TYPES[k].code} ${TYPES[k].name}</b><span class="lv">난이도 ${BOSSES[k].lv}</span><span class="tip">${BOSSES[k].tip}</span></button>`).join('')}
+    ${order.map(k=>`<button class="bz" data-b="${k}" aria-pressed="${k===bossId}">${CHAR[k]}<b>${NAME[k]}</b><span class="lv">난이도 ${BOSSES[k].lv}</span><span class="tip">${BOSSES[k].tip}</span></button>`).join('')}
   </div>
   <button class="btn stamp" id="go">출근하기</button>
   <p class="fine">로그인 없이 무료로 할 수 있어요.</p>`;
@@ -405,54 +402,45 @@ function tick(now){
   raf=requestAnimationFrame(tick);
 }
 
-/* 4. 결과 계산: 플레이 습관이 곧 유형 */
+/* 4. 결과 계산: 이 상사 밑에서 살아남은 만큼이 궁합 */
 function finish(){
   G.over=true; cancelAnimationFrame(raf);
-  app.innerHTML=`<div class="loading"><div class="seal">결재</div><h2>결과를 계산하고 있어요</h2><p class="hero-sub">상사와의 궁합도 함께 봐요</p></div>`;
+  app.innerHTML=`<div class="loading"><div class="seal">결재</div><h2>결과를 계산하고 있어요</h2><p class="hero-sub">상사가 오는 동안 얼마나 버텼는지 봐요</p></div>`;
   setTimeout(result,1300);
 }
+// 궁합 = 피한 비율 35% + 알림 보고 숨는 속도 35% + 딴짓한 양 30%, 들킬 때와 괜히 숨을 때 감점.
+// 원점수를 곡선으로 펴서 봇 160판 기준 네 구간(85+, 70+, 50+, 50 미만)이 고르게 나오게 맞췄어요.
+const CURVE=[[-30,5],[60,50],[66,70],[76,85],[92,99]];
+function curve(v){if(v<=CURVE[0][0])return CURVE[0][1];for(let i=1;i<CURVE.length;i++)if(v<=CURVE[i][0]){const[a,b]=CURVE[i-1],[c,d]=CURVE[i];return b+(d-b)*(v-a)/(c-a)}return 99}
 function analyze(){
-  const react=G.reacts.length?G.reacts.reduce((a,b)=>a+b,0)/G.reacts.length:1; // 0=신호 즉시 숨음, 1=못 숨음
-  const rate=G.good?G.tapped/G.good:0;
-  const Bz=BOSSES[bossId], s=react<=Bz.rc?'T':'M', d=rate>=Bz.tc?'B':'G'; // 기준값은 상사 난이도별 봇 시뮬레이션 중앙값 (rc 반응, tc 손속도)
-  const lupFrac=G.lupang/DURATION;
-  const idx=Math.max(0,Math.min(100,Math.round(lupFrac*45+Math.min(1,Math.max(0,G.pts)/60)*35+Math.min(15,G.dodged*4)-G.caught*12)));
-  return {me:s+d,react,rate,idx,lup:G.lupang};
+  const meet=G.dodged+G.caught, evade=meet?G.dodged/meet:1;
+  const react=G.reacts.length?G.reacts.reduce((x,y)=>x+y,0)/G.reacts.length:1, rate=G.good?G.tapped/G.good:0;
+  const raw=100*(.35*evade+.35*(1-react)+.3*Math.min(1,rate/.5))-3*G.falseHide-6*G.caught;
+  const sc=Math.max(5,Math.min(99,Math.round(curve(raw))));
+  const idx=Math.max(0,Math.min(100,Math.round(G.lupang/DURATION*45+Math.min(1,Math.max(0,G.pts)/60)*35+Math.min(15,G.dodged*4)-G.caught*12)));
+  return {sc,band:band(sc),idx,react,rate,falseHide:G.falseHide};
 }
+const josa=(w,a,b)=>(w.charCodeAt(w.length-1)-0xAC00)%28?a:b;
 let R=null;
 function result(){
-  const a=analyze(), me=a.me, boss=bossId, T=TYPES[me], B=TYPES[boss], [sc,line]=MATCH[me][boss];
-  R={...a,sc,boss,hook:(q=>q[0].length<12&&q[1]?q[0]+' '+q[1]:q[0])(line.split(/(?<=[.!?])\s/)),caught:G.caught,dodged:G.dodged,falseHide:G.falseHide,tapped:G.tapped,
-     why:`${a.me[0]==='T'?'상사 알림이 뜨자마자 숨었어요.':'상사 알림을 보고 한 박자 늦게 숨었어요.'} ${a.me[1]==='B'?'딴짓 칸을 10개 중 '+Math.round(a.rate*10)+'개 눌렀어요. 손이 빠른 편이에요.':'딴짓 칸을 10개 중 '+Math.round(a.rate*10)+'개만 눌렀어요. 여유로운 편이에요.'}`};
-  const gradeLine = G.caught>=3?'현행범 루팡':a.idx>=85?'전설의 루팡':a.idx>=65?'부장급 루팡':a.idx>=40?'대리급 루팡':'신입 루팡';
-  R.grade=gradeLine;
+  const a=analyze(), boss=bossId, sc=a.sc, [title,line]=FATE[boss][a.band], nm=NAME[boss], st=STAMP(sc);
+  const grade = G.caught>=3?'현행범 루팡':a.idx>=85?'전설의 루팡':a.idx>=65?'부장급 루팡':a.idx>=40?'대리급 루팡':'신입 루팡';
+  const story = `${nm} 밑에서 ${DURATION}초 동안 ${G.dodged}번 피하고 ${G.caught}번 들켰어요.`;
+  R={...a,boss,title,hook:line,story,grade,caught:G.caught,dodged:G.dodged,tapped:G.tapped};
   app.innerHTML=`
-  <div class="summary"><p>내 결과</p><h1>나는 ${T.code} ${T.name},<br>상사와 궁합은 ${sc}점</h1></div>
-  <section class="sheet">
-    <div class="res-top">${CHAR[me]}
-      <div style="min-width:0"><p class="res-type">${T.obj} 캐릭터</p><h2 class="res-name">${T.name}</h2><p class="res-line">“${T.line}”</p></div>
-    </div>
-    <p class="why"><b>${T.code}</b>는 ${T.def} 유형이에요.<br>${R.why}</p>
-    <p class="desc">${T.desc}</p>
-    <div class="slip-cap"><p class="label">이번 판 기록</p></div>
-    <div class="slip">
-      <div class="slip-row"><span>딴짓 점수 (${gradeLine} 등급)</span><span>${a.idx}점</span></div>
-      <div class="slip-row"><span>딴짓한 횟수 / 안 들킨 횟수</span><span>${G.tapped}회 / ${G.dodged}회</span></div>
-      <div class="slip-row"><span>들킨 횟수 / 괜히 숨은 횟수</span><span>${G.caught}회 / ${G.falseHide}회</span></div>
-      <div class="slip-row total"><span>내년에 해 볼 것</span><span>${T.total}</span></div>
-    </div>
-  </section>
+  <div class="summary"><p>내 결과</p><h1>${title}</h1><p>${story}</p></div>
 
   <section class="sheet match">
-    <span class="big-stamp">${STAMP(sc)}</span>
-    <p class="label">나와 상사의 궁합 (100점 만점)</p>
+    <span class="big-stamp">${st}</span>
+    <p class="label">${nm}${josa(nm,'과','와')} 나의 궁합 (100점 만점)</p>
     <div class="match-head" style="margin-top:8px">
       <div class="score">${sc}<small>점</small></div>
-      <div class="duo">${CHAR[me]}<em>×</em>${CHAR[boss]}</div>
+      <div class="duo">${CHAR.ME}<em>×</em>${CHAR[boss]}</div>
     </div>
     <div class="gauge"><i style="width:${sc}%"></i></div>
-    <p class="verdict">${T.code}인 나와 ${B.code}인 상사, 궁합 도장은 <b style="color:var(--stamp)">${STAMP(sc)}</b>${(STAMP(sc).charCodeAt(STAMP(sc).length-1)-0xAC00)%28?'이에요':'예요'}.</p>
+    <p class="verdict">궁합 도장은 <b style="color:var(--stamp)">${st}</b>${josa(st,'이에요','예요')}.</p>
     <p class="desc" style="margin-top:6px">${line}</p>
+    <p class="why">이 상사가 올 때 빨리 숨고 안 들킬수록, 딴짓을 많이 할수록 궁합이 높아요.</p>
   </section>
 
   <div class="row2">
@@ -460,16 +448,26 @@ function result(){
     <button class="btn" id="cardBtn">결과 이미지 저장</button>
   </div>
 
+  <section class="sheet">
+    <div class="slip-cap" style="margin-top:0"><p class="label">이번 판 기록</p></div>
+    <div class="slip">
+      <div class="slip-row"><span>딴짓 점수 (${grade} 등급)</span><span>${a.idx}점</span></div>
+      <div class="slip-row"><span>딴짓한 횟수 / 피한 횟수</span><span>${G.tapped}회 / ${G.dodged}회</span></div>
+      <div class="slip-row"><span>들킨 횟수 / 괜히 숨은 횟수</span><span>${G.caught}회 / ${G.falseHide}회</span></div>
+      <div class="slip-row total"><span>내년에 해 볼 것</span><span>${NEXT[boss]}</span></div>
+    </div>
+  </section>
+
   <section class="sheet locked">
     <p class="label">더 자세한 풀이 · 유료</p>
-    <h3 style="font-size:22px;margin-top:6px">2027 우리 상사 공략집</h3>
+    <h3 style="font-size:22px;margin-top:6px">2027 ${nm} 공략집</h3>
     <ol>
-      <li>${B.code} 상사에게 먹히는 보고 타이밍</li>
+      <li>${nm}에게 먹히는 보고 타이밍</li>
       <li>절대 하면 안 되는 말 3가지</li>
       <li>2027 상반기 내 직장운 흐름</li>
       <li>나와 잘 맞는 동료 유형</li>
     </ol>
-    <p class="blur" aria-hidden="true">${B.code} 상사는 월요일 오전보다 목요일 오후 보고에 관대합니다. 결론을 먼저 말하고 대안을 두 개 들고 가면…</p>
+    <p class="blur" aria-hidden="true">${nm}${josa(nm,'은','는')} 월요일 오전보다 목요일 오후 보고에 관대합니다. 결론을 먼저 말하고 대안을 두 개 들고 가면…</p>
     <div class="price"><b>990원</b><span class="fine">12월 오픈 예정</span></div>
     <button class="btn stamp" id="buy" style="margin-top:12px">990원에 전체 풀이 보기</button>
     <div id="fake" hidden></div>
@@ -484,8 +482,7 @@ function result(){
   $('again').onclick=startGame; $('other').onclick=pickBoss;
   $('share').onclick=()=>{
     const base=/^https?:/.test(location.protocol)?location.origin+location.pathname+'#b='+boss:'';
-    const hook=R.hook;
-    const txt=`우리 상사랑 궁합 ${sc}점 “${STAMP(sc)}” 나왔다. ${hook}\n나는 ${T.code} ${T.name}, 딴짓 점수 ${a.idx}점.${base?'\n너도 해봐 '+base:''}`;
+    const txt=`${nm}${josa(nm,'과','와')} 궁합 ${sc}점 “${st}” 나왔다. 내 별명은 ${title}.\n${R.hook}${base?'\n너네 상사로도 해봐 '+base:''}`;
     const copy=()=>{try{navigator.clipboard.writeText(txt).then(()=>toast('문구를 복사했어요. 톡방에 붙여 넣으세요'),()=>toast(txt))}catch(e){toast(txt)}};
     if(navigator.share){navigator.share({text:txt}).catch(e=>{if(e&&e.name!=='AbortError')copy()})}else copy();
   };
@@ -517,43 +514,35 @@ function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w
 function svgImg(svg,px){return new Promise(res=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>res(null);
   i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg.replace('<svg ',`<svg xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" `))})}
 async function drawCard(r){
-  const T=TYPES[r.me], B=TYPES[r.boss];
-  const glyphs='상사 몰래 딴짓 결과 나와 의 궁합 점수 들킴 안 회 0123456789×/()'+Object.values(TYPES).map(t=>t.code+t.name+t.line).join('')+['천생연분','결재 승인','보류','반려','전설의 부장급 대리급 신입 현행범'].join('')+r.hook;
+  const nm=NAME[r.boss];
+  const glyphs='상사 몰래 딴짓 결과 나와 의 궁합 점수 들킴 피함 회 번 밑에서 초 동안 피하고 들켰어요 0123456789×/().'+nm+r.title+r.hook+STAMP(r.sc);
   try{await Promise.all([document.fonts.load("80px 'Do Hyeon'",glyphs),document.fonts.load("400 30px 'IBM Plex Sans KR'",glyphs),document.fonts.load("700 30px 'IBM Plex Sans KR'",glyphs)])}catch(e){}
   const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
   const D="'Do Hyeon','IBM Plex Sans KR',sans-serif",U="'IBM Plex Sans KR','Apple SD Gothic Neo',sans-serif";
+  const wrap=(t,X,Y,maxW,lh)=>{let ln='',y=Y;for(const w of t.split(' ')){const s=ln?ln+' '+w:w;if(x.measureText(s).width>maxW&&ln){x.fillText(ln,X,y);y+=lh;ln=w}else ln=s}x.fillText(ln,X,y);return y};
   x.fillStyle='#F6F7F9';x.fillRect(0,0,W,H);
   x.fillStyle='#1E2740';x.fillRect(0,0,W,150);
   x.fillStyle='#fff';x.textAlign='left';x.font=`68px ${D}`;x.fillText('상사 몰래 딴짓 결과',70,100);
   x.font=`400 30px ${U}`;x.globalAlpha=.8;x.textAlign='right';const d=new Date();x.fillText(`${d.getMonth()+1}월 ${d.getDate()}일`,W-70,98);x.globalAlpha=1;
-  // 내 유형
-  x.fillStyle='#fff';x.strokeStyle='#D9DDE6';x.lineWidth=3;rr(x,60,190,W-120,420,26);x.fill();x.stroke();
-  const me=await svgImg(CHAR[r.me],300); if(me) x.drawImage(me,100,230,300,300);
-  x.textAlign='left';x.fillStyle='#D23A2E';x.font=`700 34px ${U}`;x.fillText(`${T.obj} 캐릭터 · ${T.code}`,430,290);
-  x.fillStyle='#1E2740';x.font=`120px ${D}`;x.fillText(T.name,430,420);
-  x.fillStyle='#626B82';x.font=`400 36px ${U}`;x.fillText(`“${T.line}”`,432,490);
-  x.font=`400 32px ${U}`;x.fillText(`딴짓 점수 ${r.idx}점 · ${r.grade}`,432,550);
-  // 궁합
-  x.fillStyle='#fff';rr(x,60,640,W-120,430,26);x.fill();x.stroke();
-  x.fillStyle='#626B82';x.font=`700 32px ${U}`;x.fillText('나와 상사의 궁합',100,700);
-  x.fillStyle='#1E2740';x.font=`230px ${D}`;x.fillText(String(r.sc),96,900);
-  const nw=x.measureText(String(r.sc)).width;x.fillStyle='#8A93A6';x.font=`70px ${D}`;x.fillText('점',110+nw,900);
-  const a=await svgImg(CHAR[r.me],130),b=await svgImg(CHAR[r.boss],130);
-  if(a)x.drawImage(a,560,700,130,130);
-  x.fillStyle='#D23A2E';x.font=`60px ${D}`;x.fillText('×',705,800);
-  if(b)x.drawImage(b,770,700,130,130);
-  x.fillStyle='#EEF1F6';rr(x,100,940,W-200,22,11);x.fill();x.fillStyle='#D23A2E';rr(x,100,940,(W-200)*r.sc/100,22,11);x.fill();
-  x.fillStyle='#1E2740';x.font=`700 34px ${U}`;x.fillText(`나(${T.code}) × 상사(${B.code})`,100,1030);
-  // 도장
-  x.save();x.translate(W-260,1025);x.rotate(.15);x.strokeStyle='#D23A2E';x.fillStyle='#D23A2E';x.lineWidth=8;rr(x,-150,-52,300,104,14);x.stroke();
+  // 별명 + 사연
+  x.textAlign='left';x.fillStyle='#D23A2E';x.font=`700 36px ${U}`;x.fillText('내 별명',70,240);
+  x.fillStyle='#1E2740';x.font=`96px ${D}`;const ty=wrap(r.title,66,340,W-140,104);
+  x.fillStyle='#4A536A';x.font=`400 36px ${U}`;wrap(r.story,70,ty+70,W-140,50);
+  // 궁합 상자
+  const top=560;
+  x.fillStyle='#fff';x.strokeStyle='#D9DDE6';x.lineWidth=3;rr(x,60,top,W-120,470,26);x.fill();x.stroke();
+  x.fillStyle='#626B82';x.font=`700 32px ${U}`;x.fillText(`${nm}${josa(nm,'과','와')}의 궁합`,100,top+64);
+  x.fillStyle='#1E2740';x.font=`230px ${D}`;x.fillText(String(r.sc),96,top+270);
+  const nw=x.measureText(String(r.sc)).width;x.fillStyle='#8A93A6';x.font=`70px ${D}`;x.fillText('점',110+nw,top+270);
+  const a=await svgImg(CHAR.ME,170),b=await svgImg(CHAR[r.boss],170);
+  if(a)x.drawImage(a,520,top+80,170,170);
+  x.fillStyle='#D23A2E';x.font=`60px ${D}`;x.fillText('×',702,top+190);
+  if(b)x.drawImage(b,760,top+80,170,170);
+  x.fillStyle='#EEF1F6';rr(x,100,top+320,W-200,22,11);x.fill();x.fillStyle='#D23A2E';rr(x,100,top+320,(W-200)*r.sc/100,22,11);x.fill();
+  x.save();x.translate(W-250,top+410);x.rotate(.12);x.strokeStyle='#D23A2E';x.fillStyle='#D23A2E';x.lineWidth=8;rr(x,-150,-52,300,104,14);x.stroke();
   x.textAlign='center';x.font=`72px ${D}`;x.fillText(STAMP(r.sc),0,26);x.restore();
-  // 한 줄 평 (톡에서 제일 웃긴 부분이라 카드에 크게)
-  x.textAlign='left';x.fillStyle='#1E2740';x.font=`700 46px ${U}`;
-  const words=r.hook.split(' ');let ln='',ly=1172;
-  for(const w of words){const t=ln?ln+' '+w:w;if(x.measureText(t).width>W-140&&ln){x.fillText(ln,70,ly);ly+=64;ln=w}else ln=t}
-  x.fillText(ln,70,ly);
-  x.fillStyle='#626B82';x.font=`400 30px ${U}`;
-  x.fillText(`딴짓 ${r.tapped}회 · 안 들킴 ${r.dodged}회 · 들킴 ${r.caught}회`,70,1290);
+  // 한 줄 평
+  x.textAlign='left';x.fillStyle='#1E2740';x.font=`700 44px ${U}`;wrap(r.hook,70,1110,W-140,62);
   x.fillStyle='#D23A2E';x.textAlign='right';x.font=`44px ${D}`;x.fillText('상사 몰래 딴짓',W-64,1308);
   return cv.toDataURL('image/png');
 }
