@@ -8,17 +8,17 @@
 /* Layout: 결재 서류 + 엑셀 위장 게임. 게임이 곧 테스트라서 질문 없이 플레이로 유형이 정해진다. */
 :root{
   --paper:#F6F7F9; --sheet:#FFFFFF; --ink:#1E2740; --muted:#5C657C; --line:#D9DDE6;
-  --stamp:#D23A2E; --marker:#FFE14D; --soft:#EEF1F6; --ok:#1D6B45; --ok-soft:#E3F1E8; --bad-soft:#FBE5E2;
+  --stamp:#D23A2E; --lv:#B3291F; --stamp-btn:#D23A2E; --marker:#FFE14D; --soft:#EEF1F6; --ok:#1D6B45; --ok-soft:#E3F1E8; --bad-soft:#FBE5E2;
   --display:"Do Hyeon","IBM Plex Sans KR",system-ui,sans-serif;
   --body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#121725; --sheet:#1B2234; --ink:#E9ECF3; --muted:#A0A8BC; --line:#2E3750;
-  --stamp:#F0675B; --marker:#F5D63D; --soft:#232B40; --ok:#6FD39A; --ok-soft:#1F3A2D; --bad-soft:#40222A; color-scheme:dark}}
+  --stamp:#F0675B; --lv:#F28A80; --stamp-btn:#B8322A; --marker:#F5D63D; --soft:#232B40; --ok:#6FD39A; --ok-soft:#1F3A2D; --bad-soft:#40222A; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#121725; --sheet:#1B2234; --ink:#E9ECF3; --muted:#A0A8BC; --line:#2E3750;
-  --stamp:#F0675B; --marker:#F5D63D; --soft:#232B40; --ok:#6FD39A; --ok-soft:#1F3A2D; --bad-soft:#40222A; color-scheme:dark}
+  --stamp:#F0675B; --lv:#F28A80; --stamp-btn:#B8322A; --marker:#F5D63D; --soft:#232B40; --ok:#6FD39A; --ok-soft:#1F3A2D; --bad-soft:#40222A; color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -36,7 +36,7 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 .btn:active{transform:translateY(1px)}
 .btn:disabled{opacity:.45;cursor:default}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
-.btn.stamp{background:var(--stamp);color:#fff}
+.btn.stamp{background:var(--stamp-btn);color:#fff}
 .fine{font-size:13px;color:var(--muted);text-align:center}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
@@ -67,7 +67,7 @@ button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 .bz{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;background:var(--sheet);border:2px solid var(--line);border-radius:6px;padding:14px 10px;min-height:44px}
 .bz svg{width:64px;height:auto}
 .bz b{font-size:16px}
-.bz .lv{font-family:var(--mono);font-size:13px;color:color-mix(in srgb,var(--stamp) 78%,var(--ink))}
+.bz .lv{font-family:var(--mono);font-size:13px;color:var(--lv)}
 .bz .tip{font-size:14px;color:var(--muted);line-height:1.45}
 .bz[aria-pressed=true]{border-color:var(--ink);background:var(--soft)}
 
