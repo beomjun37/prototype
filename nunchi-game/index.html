@@ -51,7 +51,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outli
 .gridwrap{flex:1;min-height:0;position:relative;overflow:hidden}
 .grid{display:grid;height:100%;font-size:12px;font-variant-numeric:tabular-nums}
 .c{border-right:1px solid var(--grid);border-bottom:1px solid var(--grid);padding:0 5px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;min-width:0;box-sizing:border-box;position:relative}
-.c.h{background:var(--hdr);color:var(--hdr-fg);justify-content:center;font-size:11px}
+.c.h{background:var(--hdr);color:var(--hdr-fg);justify-content:center;font-size:12px}
 .c.num{justify-content:flex-end}
 .c.b{font-weight:700}
 .c.th{background:var(--brand-soft);font-weight:700;justify-content:center}
@@ -65,11 +65,11 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outli
 .c.got{background:transparent;color:var(--muted);font-weight:400}
 @keyframes pop{from{transform:scale(.85)}to{transform:scale(1)}}
 
-.tabs{display:flex;align-items:stretch;gap:2px;background:var(--frame);border-top:1px solid #d3d8d5;padding:0 6px;min-height:44px}
+.tabs{display:flex;align-items:stretch;gap:2px;background:var(--frame);border-top:1px solid #d3d8d5;padding:4px 8px;min-height:44px}
 .tab{border:0;background:transparent;padding:0 14px;font-size:13px;color:var(--hdr-fg);cursor:pointer;border-bottom:3px solid transparent;min-height:44px}
 .tab.on{background:var(--sheet);color:var(--brand);font-weight:700;border-bottom-color:var(--brand)}
 .tab.bosskey{margin-left:auto;color:var(--fg);font-weight:700}
-.tab.bosskey .k{font-size:11px;color:var(--hdr-fg);margin-left:6px;font-weight:400}
+.tab.bosskey .k{font-size:12px;color:var(--hdr-fg);margin-left:6px;font-weight:400}
 .status{display:flex;gap:12px;align-items:center;font-size:12.5px;color:var(--hdr-fg);background:var(--frame);padding:4px 8px;border-top:1px solid #d3d8d5;min-height:24px;font-variant-numeric:tabular-nums}
 .status .left{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .status .right{display:flex;gap:12px;white-space:nowrap}
@@ -82,7 +82,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outli
 .toast.ok{background:var(--brand)}
 .toast.badt{background:var(--bad)}
 .vign{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 0 rgba(201,116,28,0);transition:box-shadow .2s;z-index:3}
-.alert .vign{box-shadow:inset 0 0 60px 6px rgba(201,116,28,.38)}
+.alert .vign{box-shadow:inset 0 0 0 4px rgba(201,116,28,.9)}
 .boss{position:absolute;right:-120px;bottom:0;width:110px;height:180px;transition:right .35s ease-out;z-index:4;pointer-events:none}
 .boss.in{right:4px}
 .bubble{position:absolute;right:96px;bottom:150px;background:#fff;border:1.5px solid var(--fg);border-radius:10px;padding:6px 10px;font-size:14px;white-space:nowrap;opacity:0;transition:opacity .15s}
@@ -96,15 +96,15 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outli
 /* 대화상자 */
 .scrim{position:absolute;inset:0;background:rgba(31,36,33,.38);display:flex;align-items:center;justify-content:center;z-index:20;padding:12px;box-sizing:border-box}
 .dlg{background:var(--sheet);border-radius:8px;width:min(440px,100%);max-height:100%;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.25);font-size:14.5px;line-height:1.6}
-.dlg .dh{display:flex;align-items:center;justify-content:space-between;background:var(--frame);padding:0 0 0 12px;min-height:44px;font-size:13px;color:var(--hdr-fg);border-bottom:1px solid #d3d8d5;position:sticky;top:0}
+.dlg .dh{display:flex;align-items:center;justify-content:space-between;background:var(--frame);padding:6px 6px 6px 12px;min-height:44px;font-size:13px;color:var(--hdr-fg);border-bottom:1px solid #d3d8d5;position:sticky;top:0}
 .dlg .db{padding:16px;display:flex;flex-direction:column;gap:14px}
 .logo{font-family:var(--f-display);font-size:34px;line-height:1.1;color:var(--brand);letter-spacing:.5px}
 .logo small{display:block;font-family:var(--f-ui);font-size:13px;color:var(--muted);letter-spacing:0;margin-top:6px;font-weight:400}
 .how{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
 .how kbd{font-family:inherit;border:1px solid #c6ccc8;border-bottom-width:2px;border-radius:3px;padding:0 5px;font-size:12px;background:var(--hdr)}
 .sec{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:-6px}
-.items{display:flex;flex-direction:column;border:1px solid var(--grid);border-radius:6px}
-.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 10px;border-bottom:1px solid var(--grid);align-items:center}
+.items{display:flex;flex-direction:column;border-top:1px solid var(--grid);border-bottom:1px solid var(--grid)}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 0;border-bottom:1px solid var(--grid);align-items:center}
 .it:last-child{border-bottom:0}
 .it .nm{font-weight:700}
 .it .ds{grid-column:1;font-size:13px;color:var(--muted)}
@@ -116,11 +116,11 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outli
 .btn.ghost{background:var(--sheet);color:var(--brand)}
 .btn[disabled]{opacity:.45;cursor:default}
 .note{font-size:13px;color:var(--muted)}
-.stamp{display:flex;justify-content:space-between;align-items:center;background:var(--hdr);border-radius:5px;padding:8px 10px;font-size:13.5px}
+.stamp{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--grid);padding:8px 0;font-size:13.5px}
 .stamp b{color:var(--brand)}
 .link{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px;padding:0;min-height:44px;align-self:flex-start}
 .card-img{width:100%;max-width:100%;border-radius:6px;display:block;border:1px solid var(--grid);-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:default}
-.teaser{border:1px dashed var(--brand);border-radius:6px;padding:10px 12px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.teaser{border-top:1px dashed var(--brand);padding:12px 0 0;display:flex;gap:10px;align-items:center;justify-content:space-between}
 .teaser b{display:block}
 .teaser span{font-size:13px;color:var(--muted)}
 .done{color:var(--brand);font-weight:700}
@@ -132,7 +132,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outli
 .bz span{font-size:12.5px;color:var(--hdr-fg);line-height:1.4}
 .bz[aria-pressed=true]{border-color:var(--brand);background:var(--brand-soft)}
 .bz[aria-pressed=true] b{color:var(--brand)}
-.goal{border-left:4px solid var(--warn);background:var(--warn-soft);padding:9px 12px;border-radius:4px;font-size:14px}
+.goal{border:1px solid var(--warn);background:var(--warn-soft);padding:9px 12px;border-radius:4px;font-size:14px}
 .goal b{color:var(--warn)}
 .cd{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:88px;color:var(--brand);z-index:8;pointer-events:none;text-shadow:0 2px 0 #fff}
 </style>
@@ -227,7 +227,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--sel);outli
         <div class="dh"><span>퇴근 보고서</span></div>
         <div class="db">
           <div class="goal" id="vs" hidden></div>
-          <img class="card-img" id="cardImg" alt="오늘의 월급루팡 지수 결과 카드">
+          <img class="card-img" id="cardImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="오늘의 월급루팡 지수 결과 카드">
           <div class="note" id="saveHint">카드 이미지를 길게 누르면 저장할 수 있어요.</div>
           <div class="row">
             <button class="btn" id="copyBtn">도전장 복사</button>
