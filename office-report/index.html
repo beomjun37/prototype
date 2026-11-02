@@ -1,0 +1,635 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}[hidden]{display:none!important}</style></head><body>
+<title>삼킨 말 오피스 리포트</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: 결재 서류 한 장. 장면 6개를 고르면 결과 카드(삼킨 말 개수 + 내 유형 + 상사 궁합 도장)가 나온다. */
+:root{
+  --paper:#F6F7F9; --sheet:#FFFFFF; --ink:#1E2740; --muted:#5C657C; --line:#D9DDE6;
+  --stamp:#D23A2E; --marker:#FFE14D; --soft:#EEF1F6; --ok:#1D6B45; --ok-soft:#E3F1E8; --bad-soft:#FBE5E2;
+  --display:"Do Hyeon","IBM Plex Sans KR",system-ui,sans-serif;
+  --body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121725; --sheet:#1B2234; --ink:#E9ECF3; --muted:#A0A8BC; --line:#2E3750;
+  --stamp:#F0675B; --marker:#F5D63D; --soft:#232B40; --ok:#6FD39A; --ok-soft:#1F3A2D; --bad-soft:#40222A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121725; --sheet:#1B2234; --ink:#E9ECF3; --muted:#A0A8BC; --line:#2E3750;
+  --stamp:#F0675B; --marker:#F5D63D; --soft:#232B40; --ok:#6FD39A; --ok-soft:#1F3A2D; --bad-soft:#40222A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;word-break:keep-all;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+.mark{background:linear-gradient(transparent 55%,var(--marker) 55%);color:inherit;padding:0 2px}
+.label{font-size:13px;font-weight:700;color:var(--muted)}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:22px 20px}
+.btn{display:block;width:100%;min-height:52px;border:0;border-radius:6px;padding:14px 16px;font-size:17px;font-weight:700;background:var(--ink);color:var(--sheet);text-align:center}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.btn.stamp{background:var(--stamp);color:#fff}
+.fine{font-size:13px;color:var(--muted);text-align:center}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* 인트로 */
+.doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.docno{font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.5}
+.approval{display:grid;grid-template-columns:repeat(3,48px);border:1px solid var(--ink);flex-shrink:0}
+.approval div{border-left:1px solid var(--ink);text-align:center;font-size:13px}
+.approval div:first-child{border-left:0}
+.approval span{display:block;border-bottom:1px solid var(--ink);padding:2px 0;background:var(--soft)}
+.approval i{display:grid;place-items:center;height:38px;font-style:normal}
+.seal{width:30px;height:30px;border:2px solid var(--stamp);border-radius:50%;color:var(--stamp);font-family:var(--display);font-size:13px;display:grid;place-items:center;transform:rotate(-12deg)}
+.hero-title{font-size:36px;line-height:1.2;margin-top:18px}
+.hero-sub{color:var(--muted);margin-top:10px}
+.cast{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
+.cast figure{margin:0;text-align:center;font-size:13px;line-height:1.4;color:var(--muted)}
+.cast figcaption b{display:block;color:var(--ink);font-size:15px}
+.cast svg{width:100%;max-width:72px;height:auto;display:block;margin:0 auto 4px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}
+.step{background:var(--soft);border-radius:6px;padding:10px 8px;text-align:center;font-size:14px;line-height:1.4}
+.step b{display:block;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.meta-row{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted);margin-top:16px}
+
+/* 상사 고르기 */
+.back{background:none;border:0;min-height:44px;padding:0;color:var(--muted);font-size:14px;align-self:flex-start}
+.pick-title{font-size:28px;line-height:1.3}
+.bosses{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bz{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;background:var(--sheet);border:2px solid var(--line);border-radius:6px;padding:14px 10px;min-height:44px}
+.bz svg{width:64px;height:auto}
+.bz b{font-size:16px}
+.bz .tip{font-size:14px;color:var(--muted);line-height:1.45}
+.bz[aria-pressed=true]{border-color:var(--ink);background:var(--soft)}
+
+/* 장면 */
+.prog{display:flex;flex-direction:column;gap:8px}
+.prog-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;color:var(--muted)}
+.prog-top b{color:var(--ink)}
+.segs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.segs i{height:6px;border-radius:3px;background:var(--soft)}
+.segs i.on{background:var(--ink)}
+.segs i.now{background:var(--stamp)}
+.timer{position:relative;height:30px;margin-top:2px}
+.timer .trk{position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:var(--soft);overflow:hidden}
+.timer .trk i{display:block;height:100%;background:var(--stamp);width:100%}
+.timer .who{position:absolute;top:0;width:30px;height:30px;margin-left:-15px}
+.timer .who svg{width:30px;height:30px;display:block}
+.when{font-family:var(--mono);font-size:14px;color:var(--stamp);font-weight:600}
+.sit{font-size:22px;line-height:1.4;margin-top:6px}
+.said{display:flex;gap:12px;align-items:flex-start;margin-top:16px;padding:12px;background:var(--soft);border-radius:6px}
+.said svg{width:48px;height:48px;flex-shrink:0}
+.said span{display:block;font-size:13px;font-weight:700;color:var(--muted)}
+.choices{display:flex;flex-direction:column;gap:10px}
+.ch{display:block;width:100%;text-align:left;background:var(--sheet);border:2px solid var(--line);border-radius:6px;padding:14px 16px;min-height:64px}
+.ch b{display:block;font-size:13px;color:var(--muted);margin-bottom:2px}
+.ch span{font-size:16px;line-height:1.5}
+.ch:active{background:var(--soft)}
+.ch.sel{border-color:var(--ink);background:var(--soft)}
+.ch.dim{opacity:.55}
+.inner{padding:14px 16px;border:1px dashed var(--stamp);border-radius:6px;background:var(--bad-soft)}
+.inner.none{background:var(--ok-soft);border-color:var(--ok)}
+.inner .label{color:var(--stamp)}
+.inner.none .label{color:var(--ok)}
+.inner p{margin-top:2px;font-size:16px}
+
+/* 로딩 */
+.loading{text-align:center;padding:60px 0}
+.loading .seal{width:72px;height:72px;font-size:22px;margin:0 auto 18px;animation:thump .9s ease-in-out infinite}
+@keyframes thump{0%,100%{transform:rotate(-12deg) scale(1)}50%{transform:rotate(-12deg) scale(.86)}}
+
+/* 결과 */
+.summary{text-align:center;display:flex;flex-direction:column;gap:4px}
+.summary p{color:var(--muted);font-size:15px}
+.big{font-family:var(--display);font-size:96px;line-height:1;color:var(--stamp);font-variant-numeric:tabular-nums}
+.big small{font-size:32px;color:var(--ink);margin-left:4px}
+.summary h1{font-size:26px;line-height:1.3}
+.res-top{display:flex;gap:14px;align-items:center}
+.res-top svg{width:92px;height:auto;flex-shrink:0}
+.res-type{font-size:14px;font-weight:700;color:var(--stamp)}
+.res-name{font-size:30px;line-height:1.15;margin-top:2px}
+.res-line{margin-top:6px;font-size:16px}
+.why{margin-top:14px;font-size:14px;background:var(--soft);border-radius:6px;padding:10px 12px}
+.desc{margin-top:14px;font-size:16px}
+.tipbox{margin-top:14px;padding-top:12px;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:2px}
+.tipbox span:last-child{color:var(--stamp);font-weight:700}
+.match{position:relative}
+.duo{display:flex;align-items:center;gap:6px;margin-top:8px}
+.duo svg{width:52px;height:auto}
+.duo em{font-style:normal;font-family:var(--display);font-size:20px;color:var(--stamp)}
+.duo .nm{font-size:15px;margin-left:6px;line-height:1.4}
+.verdict{margin-top:14px;font-size:16px}
+.big-stamp{position:absolute;right:12px;top:14px;border:3px solid var(--stamp);color:var(--stamp);font-family:var(--display);font-size:24px;padding:4px 12px;border-radius:6px;transform:rotate(8deg);background:var(--sheet)}
+.recap{display:flex;flex-direction:column}
+.rc{padding:10px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.rc:last-child{border-bottom:0}
+.rc b{font-weight:700}
+.rc .tg{float:right;font-size:13px;font-weight:700;padding:1px 8px;border-radius:10px;background:var(--bad-soft);color:var(--stamp)}
+.rc .tg.ok{background:var(--ok-soft);color:var(--ok)}
+.rc p{clear:both;font-size:14px;color:var(--muted);margin-top:2px}
+.try{margin-top:10px;font-size:18px;font-weight:700;padding:14px 16px;background:var(--soft);border-radius:6px;line-height:1.55}
+.locked ol{margin:12px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:16px}
+.locked .blur{filter:blur(5px);user-select:none;color:var(--muted);margin-top:12px;font-size:14px}
+.price{display:flex;align-items:baseline;gap:8px;margin-top:16px}
+.price b{font-family:var(--mono);font-size:26px}
+.fake{margin-top:14px;padding:16px;border:1px dashed var(--stamp);border-radius:6px;display:flex;flex-direction:column;gap:10px}
+.fake input{width:100%;min-height:48px;font:inherit;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--sheet);color:var(--ink)}
+.fake input:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+.card-pop{position:fixed;inset:0;background:rgba(10,14,26,.7);display:flex;align-items:center;justify-content:center;padding:16px;z-index:30}
+.card-box{background:var(--sheet);border-radius:8px;padding:14px;max-width:420px;width:100%;max-height:100%;overflow:auto;display:flex;flex-direction:column;gap:10px}
+.card-box img{width:100%;height:auto;border-radius:6px;display:block;-webkit-touch-callout:default;user-select:auto}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--sheet);padding:10px 16px;border-radius:6px;font-size:14px;z-index:40;max-width:calc(100% - 32px)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.q{margin:16px 0}.q .qt{font-weight:700;margin:0 0 8px}.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{min-height:44px;padding:8px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--sheet);color:var(--ink);font:inherit;font-size:15px;cursor:pointer;text-align:left}
+.opt[aria-pressed="true"]{border-color:var(--stamp);background:var(--bad-soft);font-weight:700}
+.rp{margin:14px 0}.rp h4{margin:0 0 4px;font-size:17px}.rp p{margin:0}
+.rp .blur{filter:blur(5px);user-select:none;margin-top:4px}
+.review{background:var(--soft);border-radius:12px;padding:10px 12px;font-size:14px;color:var(--muted);margin-top:12px}
+</style>
+
+<div class="wrap" id="app"></div>
+<div class="toast" id="toast" hidden></div>
+<div class="card-pop" id="pop" hidden>
+  <div class="card-box" role="dialog" aria-label="결과 카드 이미지">
+    <img id="popImg" alt="올해 내가 삼킨 말 결과 카드">
+    <p class="fine" id="popHint">이미지를 길게 누르면 저장할 수 있어요.</p>
+    <button class="btn ghost" id="popX">닫기</button>
+  </div>
+</div>
+
+<script>
+// 사람 캐릭터 공통: 어깨, 목, 얼굴, 귀
+const SKIN='#F3C9A5', SKIN2='#E5B08A';
+const BODY=(c)=>`<path d="M16 122 Q18 90 60 87 Q102 90 104 122 Z" fill="${c}"/><rect x="52" y="72" width="16" height="17" fill="${SKIN2}"/><circle cx="36" cy="56" r="5" fill="${SKIN2}"/><circle cx="84" cy="56" r="5" fill="${SKIN2}"/><circle cx="60" cy="54" r="24" fill="${SKIN}"/>`;
+const CHAR = {
+  // 나: 평범한 직원, 후드티
+  ME:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#8C96AD')}<path d="M44 88 Q60 100 76 88" stroke="#6F7890" stroke-width="4" fill="none"/><path d="M35 52 Q34 28 60 27 Q86 28 85 52 Q78 40 60 40 Q42 40 35 52 Z" fill="#3A3F4E"/><circle cx="50" cy="56" r="3" fill="#1E2740"/><circle cx="70" cy="56" r="3" fill="#1E2740"/><path d="M55 67 q5 3 10 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`,
+  // 아직이야 부장: 단정한 가르마, 안경, 넥타이, 치켜뜬 눈썹
+  TB:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#33427A')}<path d="M50 88 L60 106 L70 88 Z" fill="#fff"/><path d="M57.5 91 h5 l2 15 -4.5 5 -4.5 -5 z" fill="#D23A2E"/><path d="M35 52 Q34 27 60 26 Q86 26 85 52 Q82 38 66 36 Q50 37 38 47 Z" fill="#262B38"/><rect x="43" y="50" width="14" height="10" rx="3" fill="none" stroke="#1E2740" stroke-width="2.5"/><rect x="63" y="50" width="14" height="10" rx="3" fill="none" stroke="#1E2740" stroke-width="2.5"/><path d="M57 54 h6" stroke="#1E2740" stroke-width="2.5"/><circle cx="50" cy="55" r="2.2" fill="#1E2740"/><circle cx="70" cy="55" r="2.2" fill="#1E2740"/><path d="M43 45 l12 3 M77 45 l-12 3" stroke="#262B38" stroke-width="3" stroke-linecap="round"/><path d="M54 68 h12" stroke="#1E2740" stroke-width="3" stroke-linecap="round"/><path d="M92 22 l5 -8 M100 30 l9 -4" stroke="#D23A2E" stroke-width="3" stroke-linecap="round"/></svg>`,
+  // 알아서 해 팀장: 부스스한 머리, 반쯤 감은 눈, 가디건, 머그컵
+  TG:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#B98B5E')}<path d="M52 88 L60 100 L68 88 Z" fill="#EDE6DA"/><path d="M35 54 Q32 28 58 26 Q86 23 86 52 Q80 40 71 43 Q63 33 54 41 Q44 37 35 54 Z" fill="#6B4A35"/><path d="M45 56 q5 3 10 0 M65 56 q5 3 10 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M45 50 h9 M66 50 h9" stroke="#6B4A35" stroke-width="2.5" stroke-linecap="round"/><path d="M54 67 q6 4 12 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="82" y="92" width="18" height="20" rx="3" fill="#F2B544"/><path d="M100 97 h3 a5 5 0 0 1 0 10 h-3" stroke="#D9962C" stroke-width="3" fill="none"/><path d="M88 86 q-3 -4 0 -8 M94 86 q-3 -4 0 -8" stroke="#9BA3B8" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`,
+  // 일단 해보자 과장: 삐죽 머리, 크게 벌린 입, 걷은 소매, 번쩍 든 주먹
+  MB:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#F4C430')}<path d="M52 88 L60 98 L68 88 Z" fill="#fff"/><path d="M96 120 L100 90" stroke="${SKIN2}" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="84" r="9" fill="${SKIN}"/><path d="M36 48 L38 30 L46 38 L52 24 L59 36 L66 23 L72 36 L80 28 L84 48 Q72 38 60 38 Q46 38 36 48 Z" fill="#1F2430"/><circle cx="50" cy="55" r="3.2" fill="#1E2740"/><circle cx="70" cy="55" r="3.2" fill="#1E2740"/><path d="M44 47 q6 -4 11 -1 M65 46 q5 -3 11 1" stroke="#1F2430" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M50 63 q10 13 20 0 Z" fill="#7A2E2E"/><path d="M85 40 q4 6 0 9 q-4 -3 0 -9 Z" fill="#7FC3F0"/><path d="M14 70 l8 2 M16 80 l8 -1" stroke="#D23A2E" stroke-width="3" stroke-linecap="round"/></svg>`,
+  // 허허 차장: 숱 적은 머리, 웃는 눈, 볼터치, 니트 조끼
+  MG:`<svg viewBox="0 0 120 120" aria-hidden="true">${BODY('#4E9A67')}<path d="M50 88 L60 100 L70 88 Z" fill="#E8F0E4"/><path d="M36 56 Q35 44 40 40 L42 54 Z M84 56 Q85 44 80 40 L78 54 Z" fill="#8C8C8C"/><path d="M56 31 q2 -6 6 -7 M62 31 q3 -5 7 -5" stroke="#8C8C8C" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M45 55 q5 -5 10 0 M65 55 q5 -5 10 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="44" cy="63" r="4" fill="#F29B8E" opacity=".7"/><circle cx="76" cy="63" r="4" fill="#F29B8E" opacity=".7"/><path d="M50 64 q10 10 20 0" stroke="#1E2740" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`
+};
+
+
+
+// 상사 4유형 (캐릭터 = 상사 성향)
+const BOSS = {
+  TB:{name:'아직이야 부장',tip:'“아직이야?” 하고 진행 상황을 자주 묻는 상사'},
+  TG:{name:'알아서 해 팀장',tip:'“알아서 해 줘” 하고 일을 맡겨 두는 상사'},
+  MB:{name:'일단 해보자 과장',tip:'일단 시작부터 하자고 밀어붙이는 열정 상사'},
+  MG:{name:'허허 차장',tip:'허허 웃으며 넘기는 평화로운 상사'}
+};
+const meOf=(c,n)=>CHAR.ME.replace('#8C96AD',c);
+// 내 유형 4종 (삼킨 정도 × 돌려 말하는 정도). 캐릭터 그림은 같은 사무용품을 쓴다.
+const ME = {
+  CK:{name:'그 자리에서 말하는 사람',svg:meOf('#E0644F'),line:'할 말은 그 자리에서 한다',
+      desc:'참는 것보다 말하는 쪽을 고르는 사람. 하고 싶은 말을 바로 꺼내서 일이 쌓이지 않아요. 다만 말이 짧아서 상대가 가끔 놀랄 수 있어요.',
+      tip:'결론 앞에 한 문장만 더 붙여 보세요.'},
+  BI:{name:'돌려서 말하는 사람',svg:meOf('#F2C94C'),line:'시간과 대안을 붙여서 말한다',
+      desc:'부딪히지 않고 돌려서 전하는 사람. 시간이나 대안을 먼저 꺼내 상대가 받아들이기 쉽게 말해요. 대신 정말 중요한 말이 돌리다가 흐려질 수 있어요.',
+      tip:'가장 중요한 한 가지는 돌리지 말고 그대로 말해 보세요.'},
+  NG:{name:'삼키고 식히는 사람',svg:meOf('#C9A27A'),line:'삼키고, 식은 뒤에 한마디',
+      desc:'대부분 참지만 꼭 필요한 순간에는 부드럽게 한마디를 꺼내는 사람. 속에는 많이 쌓이는데 겉은 평화로워요. 쌓인 말이 한꺼번에 터지지 않게 가끔 풀어 주세요.',
+      tip:'일주일에 한 번, 삼킨 말을 메모에 적어 두세요.'},
+  GH:{name:'조용히 삼키는 사람',svg:meOf('#6FAE86'),line:'말없이 참고 한 해를 버틴다',
+      desc:'말을 아끼고 상황을 받아들이는 사람. 팀 분위기는 지키지만 정작 내 사정은 상사가 잘 몰라요. 한 번도 하지 않은 말은 상대가 알 수 없어요.',
+      tip:'올해 안에 작은 부탁 하나를 먼저 말해 보세요.'}
+};
+// 궁합 [내 유형][상사] = [도장, 한 줄]
+const MATCH = {
+  CK:{TB:['결재 승인','회의가 짧게 끝나는 사이예요. 둘 다 직설이라 한 번 부딪히면 크게 울리니, 의견이 갈릴 땐 한 박자 쉬세요.'],
+      TG:['천생연분','할 말은 하는 당신과 맡겨 두는 상사. 눈치 볼 일이 가장 적은 조합이에요.'],
+      MB:['보류','상사가 벌인 일에 당신이 "그건 어렵습니다"를 말해 주는 사이예요. 말투만 부드러우면 서로 도움이 돼요.'],
+      MG:['결재 승인','말해도 화내지 않는 상사예요. 당신의 말이 그대로 통과돼요.']},
+  BI:{TB:['보류','상사가 결론을 원하는데 당신은 돌려 말해요. 핵심 한 줄을 먼저 말하면 훨씬 편해져요.'],
+      TG:['결재 승인','돌려 말해도 기다려 주는 상사예요. 대화가 천천히 가도 결국 통해요.'],
+      MB:['결재 승인','상사가 열정으로 밀어붙여도 당신이 시간과 대안을 붙여 길을 만들어 줘요.'],
+      MG:['천생연분','돌려 말해도 알아서 받아 주는 평화로운 상사예요. 올해 눈치 볼 일이 거의 없었어요.']},
+  NG:{TB:['천생연분','상사가 먼저 물어봐 주면 당신의 한마디가 나와요. 속마음이 쌓일 틈이 적은 조합이에요.'],
+      TG:['결재 승인','서로 조용해서 편하지만, 말하지 않은 건 전해지지 않아요. 한 달에 한 번은 먼저 말해 보세요.'],
+      MB:['보류','상사의 열정을 받아내느라 삼킨 말이 늘어나는 사이예요. 한마디를 일찍 꺼내는 게 중요해요.'],
+      MG:['결재 승인','부딪힐 일이 없는 평화로운 팀이에요. 마감 전날만 조심하세요.']},
+  GH:{TB:['보류','상사는 자주 확인하는데 당신은 말을 아껴요. 서로 오해가 쌓이기 쉬우니 진행 상황을 먼저 알려 주세요.'],
+      TG:['천생연분','시키는 말이 적은 상사라 삼킬 말도 적어요. 조용히 오래 가는 조합이에요.'],
+      MB:['반려','상사의 열정을 온몸으로 받아내다 삼킨 말이 가장 많이 쌓이는 조합이에요. 올해 버틴 것만으로도 대단해요.'],
+      MG:['결재 승인','서로 재촉하지 않아 평화로워요. 단, 필요한 말도 같이 안 나올 수 있어요.']}
+};
+
+// 장면 6개. a=참는다(말 2개 삼킴) b=돌려 말한다(1개) c=그냥 말한다(0개)
+const SCENES = [
+ {when:'17:50',sit:'퇴근 10분 전, 가방을 챙기는데 상사가 다가와요.',
+  q:{TB:'잠깐 얘기 좀 해요. 오늘 안에 정리할 게 있어서요.',TG:'잠깐 얘기 좀 해요. 급한 건 아닌데 오늘 들으면 좋겠어요.',MB:'잠깐 얘기 좀! 방금 아이디어가 떠올랐거든요.',MG:'아, 퇴근하려고요? 잠깐 얘기만 하고 가요.'},
+  inner:'저 오늘 약속이 있어서 내일 아침에 들으면 안 될까요?',
+  a:'가방을 내려놓고 "네, 말씀하세요"라고 한다.',
+  b:'"6시에 나가야 해서요, 10분이면 될까요?"라고 시간을 먼저 말한다.',
+  c:'"오늘은 약속이 있어서 내일 아침에 들을게요"라고 말한다.'},
+ {when:'14:20',sit:'다른 팀 일이 내 자리로 넘어왔어요.',
+  q:{TB:'이건 그쪽에서 하는 게 제일 빠를 것 같아요. 금요일까지요.',TG:'이거 한번 봐 줄래요? 어렵진 않을 거예요.',MB:'이거 같이 하면 재밌겠다! 일단 맡아 주세요.',MG:'이거 누가 해야 하는지 모르겠는데, 시간 되죠?'},
+  inner:'이건 제 일이 아닌데, 왜 또 저한테 오는 거예요?',
+  a:'"네, 해 볼게요"라고 받고 자리로 돌아온다.',
+  b:'"지금 하는 일이 있는데, 우선순위를 같이 정해 주실 수 있을까요?"라고 묻는다.',
+  c:'"이건 제 담당이 아니어서 맡기 어려워요"라고 말한다.'},
+ {when:'10:30',sit:'회의 중에, 지난주에 내가 낸 아이디어를 상사가 자기 생각처럼 발표해요.',
+  q:{TB:'이번 안은 제가 정리해 봤는데요, 핵심은 이렇습니다.',TG:'제가 생각해 본 건데, 이런 방향은 어떨까요?',MB:'방금 번뜩 떠올랐는데, 이렇게 하면 어때요?',MG:'제 생각엔 이렇게 하는 게 좋을 것 같아요.'},
+  inner:'그거 지난주에 제가 드린 아이디어잖아요.',
+  a:'고개를 끄덕이며 메모하는 척한다.',
+  b:'"지난주에 제가 정리한 안과 이어지네요. 거기에 덧붙여도 될까요?"라고 한다.',
+  c:'"그거 지난주에 제가 낸 아이디어예요"라고 말한다.'},
+ {when:'일 21:00',sit:'일요일 밤, 메신저 알림이 울려요.',
+  q:{TB:'내일 회의 전에 자료 한 번만 확인해 줄래요?',TG:'시간 될 때 봐 주세요. 급하진 않아요.',MB:'아 맞다! 내일 발표 자료 지금 같이 고쳐요!',MG:'쉬는 날 미안해요. 이것만 알려 줘요.'},
+  inner:'일요일 밤에는 연락하지 말아 주세요.',
+  a:'바로 "넵, 확인하겠습니다"라고 답한다.',
+  b:'"내일 아침 9시까지 확인해서 드릴게요"라고 시간을 정해 답한다.',
+  c:'"오늘은 쉬는 날이라 내일 출근해서 볼게요"라고 답한다.'},
+ {when:'16:00',sit:'같은 보고서를 세 번째 고치라고 해요.',
+  q:{TB:'처음 안이 낫겠어요. 그걸로 다시 정리해 주세요.',TG:'이 부분은 처음 안으로 돌려 놓아도 좋겠어요.',MB:'아니다, 다시 생각해 보니 처음 안이 낫다!',MG:'음, 처음 안도 괜찮았던 것 같아요.'},
+  inner:'그럼 어제 고치라고 하신 건 뭐였어요?',
+  a:'"네, 처음 안으로 되돌릴게요"라고 한다.',
+  b:'"수정 전 버전을 남겨 뒀어요. 두 안을 비교해서 보내 드릴게요"라고 한다.',
+  c:'"이번이 세 번째 수정이에요. 방향을 먼저 정하고 진행해도 될까요?"라고 말한다.'},
+ {when:'12월',sit:'연말 면담에서 칭찬은 짧고 다음 해 목표만 길어요.',
+  q:{TB:'올해 잘했어요. 내년엔 목표를 조금 더 높게 잡아 봅시다.',TG:'고생했어요. 내년엔 좀 더 적극적으로 해 봐요.',MB:'올해 정말 열심히 했어요! 내년엔 더 크게 가 봐요!',MG:'다들 수고했어요. 내년에도 비슷하게만 가요.'},
+  inner:'올해 야근한 건 평가에 들어가나요? 보상 얘기도 하고 싶어요.',
+  a:'"감사합니다, 내년에도 열심히 하겠습니다"라고 한다.',
+  b:'"올해 맡은 일을 정리해 왔는데, 한번 봐 주실 수 있을까요?"라고 한다.',
+  c:'"올해 제 성과와 내년 보상에 대해 이야기하고 싶어요"라고 말한다.'}
+];
+const SECS=7; // 장면마다 주는 시간. 못 고르면 말을 못 하고 삼킨 것으로 센다.
+let tm=0;
+const TRY = [
+ '오늘은 6시에 약속이 있어서, 10분만 듣고 나머지는 내일 아침에 이어서 들어도 될까요?',
+ '맡을 수는 있는데 지금 하는 일 중 하나를 미뤄야 해요. 어느 걸 먼저 할까요?',
+ '그 방향 좋아요. 지난주에 제가 정리한 안이 있는데, 같이 합쳐서 발표해도 될까요?',
+ '내일 아침 9시 전에 확인해서 보내 드릴게요. 오늘 밤은 쉬는 시간으로 둘게요.',
+ '두 안을 비교한 표를 드릴게요. 오늘 중에 방향 하나만 정해 주시면 거기에 맞출게요.',
+ '올해 한 일을 정리해 왔어요. 내년 목표와 함께 보상 기준도 이야기해 볼 수 있을까요?'
+];
+const SHORT = ['퇴근 10분 전 “잠깐 얘기 좀”','떠넘겨진 일','내 아이디어를 상사가 발표','일요일 밤 메신저','세 번째 수정 요청','연말 면담'];
+const TAG = {a:'참는다',b:'돌려 말한다',c:'그냥 말한다',t:'시간 초과'};
+const WEIGHT = {a:2,b:1,c:0,t:2};
+
+const app=document.getElementById('app');
+let bossId='TG', S=null;
+const $=id=>document.getElementById(id);
+const store={get(k,d){try{const v=localStorage.getItem('swallow:'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('swallow:'+k,JSON.stringify(v))}catch(e){}}};
+function toast(msg){const t=$('toast');t.textContent=msg;t.hidden=false;clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,2200)}
+const hb=(/[#&]b=(TB|TG|MB|MG)/.exec(location.hash)||[])[1]; if(hb) bossId=hb;
+const fp=(/[#&]p=([abct]{6})/.exec(location.hash)||[])[1]||null; // 동료가 보낸 6장면 선택
+const friendN=fp?fp.split('').reduce((s,k)=>s+WEIGHT[k],0):null;
+const typeOf=(picks)=>{const n={a:0,b:0,c:0,t:0};picks.forEach(k=>n[k]++);const sw=picks.reduce((s,k)=>s+WEIGHT[k],0);return sw>=7?(n.b>=2?'NG':'GH'):(n.b>=2?'BI':'CK')};
+const PAIR=(same)=>same>=5?['쌍둥이 결재','거의 모든 장면에서 같은 선택을 했어요. 서로 하소연이 바로 통하는 사이예요.']:same>=3?['공동 결재','절반 넘게 같은 선택이에요. 비슷하게 참고 비슷하게 말하는 사이라 점심 메뉴보다 푸념이 먼저 통해요.']:same>=1?['교차 결재','다르게 고른 장면이 많아요. 한 사람이 못 꺼낸 말을 다른 사람이 대신 꺼내 줄 수 있는 사이예요.']:['정반대 결재','한 장면도 같지 않아요. 서로 신기해하면서 배울 점이 많은 사이예요.'];
+const wa=n=>{const c=n.charCodeAt(n.length-1)-0xAC00;return n+(c>=0&&c%28!==0?'과':'와')};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* 1. 인트로 */
+function intro(){
+  S=null;
+  app.innerHTML=`
+  <section class="sheet">
+    <div class="doc-head">
+      <div class="docno">2026 연말 결산<br>삼킨 말 편</div>
+      <div class="approval" aria-label="결재란">
+        <div><span>담당</span><i><div class="seal">나</div></i></div>
+        <div><span>팀장</span><i></i></div>
+        <div><span>본부장</span><i></i></div>
+      </div>
+    </div>
+    <h1 class="hero-title">올해 회사에서<br>말하고 싶었지만<br><span class="mark">삼킨 말</span>은 몇 개일까요?</h1>
+    <p class="hero-sub">직장에서 참았던 장면 6개가 나와요. 내가 할 법한 행동을 고르면 내 유형과 상사 궁합이 나와요.<br>정답도 점수도 없어요. 장면마다 7초 안에 못 고르면 말을 삼킨 것으로 세요.</p>
+    <div class="cast">
+      ${['TB','TG','MB','MG'].map(k=>`<figure>${CHAR[k]}<figcaption><b>${BOSS[k].name}</b></figcaption></figure>`).join('')}
+    </div>
+    <div class="steps">
+      <div class="step"><b>1</b>우리 상사 고르기</div>
+      <div class="step"><b>2</b>장면 6개에서 고르기</div>
+      <div class="step"><b>3</b>결과 카드와 맞춤 풀이 받기</div>
+    </div>
+    <div class="meta-row"><span>약 45초</span><span>로그인 없음</span><span>결과 무료</span></div>
+  </section>
+  ${fp?`<p class="sheet" style="padding:14px 16px"><b>동료가 결재 서류를 보냈어요.</b> 같은 장면 6개를 고르면, 둘이 어디서 같이 삼켰는지 비교해 드려요. 동료의 선택은 끝나고 나서 보여요.</p>`:''}
+  <button class="btn" id="start">내가 삼킨 말 세어 보기</button>
+  <p class="fine">올해도 무사히, 결재 승인</p>`;
+  $('start').onclick=pickBoss;
+  window.scrollTo(0,0);
+}
+
+/* 2. 상사 고르기 */
+function pickBoss(){
+  const order=['TB','TG','MB','MG'];
+  app.innerHTML=`
+  <button class="back" id="back">← 처음</button>
+  <h2 class="pick-title">우리 상사는<br>어떤 분인가요?</h2>
+  <p class="hero-sub" style="margin-top:-6px">고른 상사가 장면 속 대사로 나오고, 마지막에 궁합도 이 상사로 정해져요.</p>
+  <div class="bosses" id="bosses">
+    ${order.map(k=>`<button class="bz" data-b="${k}" aria-pressed="${k===bossId}">${CHAR[k]}<b>${BOSS[k].name}</b><span class="tip">${BOSS[k].tip}</span></button>`).join('')}
+  </div>
+  <button class="btn stamp" id="go">이 상사로 시작하기</button>
+`;
+  $('back').onclick=intro;
+  $('bosses').onclick=e=>{const b=e.target.closest('[data-b]');if(!b)return;bossId=b.dataset.b;app.querySelectorAll('.bz').forEach(x=>x.setAttribute('aria-pressed',x===b))};
+  $('go').onclick=()=>{S={i:0,picks:[]};scene()};
+  window.scrollTo(0,0);
+}
+
+/* 3. 장면 */
+function scene(){
+  const sc=SCENES[S.i], opts=shuffle(['a','b','c']);
+  app.innerHTML=`
+  <div class="prog">
+    <div class="prog-top"><span>장면 <b>${S.i+1}</b> / ${SCENES.length}</span><span>${BOSS[bossId].name}</span></div>
+    <div class="segs" aria-hidden="true">${SCENES.map((_,k)=>`<i class="${k<S.i?'on':k===S.i?'now':''}"></i>`).join('')}</div>
+  </div>
+  <section class="sheet">
+    <p class="when">${sc.when}</p>
+    <h2 class="sit">${sc.sit}</h2>
+    <div class="said">${CHAR[bossId]}<div><span>${BOSS[bossId].name}</span>“${sc.q[bossId]}”</div></div>
+  </section>
+  <div class="timer" id="timer" aria-hidden="true"><div class="trk"><i id="tbar"></i></div><div class="who" id="twho" style="left:0%">${CHAR[bossId]}</div></div>
+  <p class="label" id="tlabel">${SECS}초 안에 골라 주세요. 못 고르면 말을 삼킨 것으로 세요.</p>
+  <div class="choices" id="choices">
+    ${opts.map(k=>`<button class="ch" data-k="${k}"><b>${TAG[k]}</b><span>${sc[k]}</span></button>`).join('')}
+  </div>
+  <div id="after"></div>`;
+  const idx=S.i, t0=performance.now(); let paused=0, pAt=0;
+  clearInterval(tm);
+  tm=setInterval(()=>{
+    if(S.i!==idx||S.locked){clearInterval(tm);return}
+    if(document.hidden){ if(!pAt)pAt=performance.now(); return }
+    if(pAt){paused+=performance.now()-pAt;pAt=0}
+    const f=Math.min(1,(performance.now()-t0-paused)/(SECS*1000));
+    $('tbar').style.width=(100-f*100)+'%'; $('twho').style.left=(f*100)+'%';
+    if(f>=1){clearInterval(tm);choose('t')}
+  },60);
+  const choose=k=>{
+    if(S.locked) return;
+    S.locked=true; clearInterval(tm); S.picks.push(k);
+    app.querySelectorAll('.ch').forEach(x=>x.classList.add(x.dataset.k===k?'sel':'dim'));
+    $('tlabel').textContent=k==='t'?'시간이 지났어요.':'고른 행동이에요.';
+    const inner = k==='t'
+      ? `<div class="inner"><p class="label">삼킨 말 2개 · 시간 초과</p><p>말을 꺼내지 못하고 지나갔어요. 속으로만 한 말: “${sc.inner}”</p></div>`
+      : k==='c'
+      ? `<div class="inner none"><p class="label">삼킨 말 0개</p><p>하고 싶은 말을 끝까지 했어요.</p></div>`
+      : `<div class="inner"><p class="label">${k==='a'?'삼킨 말 2개':'삼킨 말 1개'}</p><p>속으로만 한 말: “${sc.inner}”</p></div>`;
+    const last=S.i===SCENES.length-1;
+    $('after').innerHTML=`${inner}<button class="btn" id="next" style="margin-top:12px">${last?'결과 카드 받기':'다음 장면'}</button>`;
+    $('next').onclick=()=>{S.locked=false; if(last) finish(); else {S.i++;scene()}};
+    $('next').scrollIntoView({block:'nearest',behavior:'smooth'});
+  };
+  $('choices').onclick=e=>{const b=e.target.closest('.ch'); if(b) choose(b.dataset.k)};
+  window.scrollTo(0,0);
+}
+
+/* 4. 결과 */
+function finish(){
+  app.innerHTML=`<div class="loading"><div class="seal">결재</div><h2>상사에게 결재 올리는 중…</h2><p class="hero-sub">반려되지 않기를 빌어요</p></div>`;
+  setTimeout(result,1200);
+}
+let R=null;
+function analyze(){
+  const n={a:0,b:0,c:0,t:0}; S.picks.forEach(k=>n[k]++);
+  const swallowed=S.picks.reduce((s,k)=>s+WEIGHT[k],0); // 0~12
+  const heavy=swallowed>=7, hint=n.b>=2;
+  const me = heavy ? (hint?'NG':'GH') : (hint?'BI':'CK');
+  return {n,swallowed,me};
+}
+function compareHTML(){
+  const mine=S.picks, f=fp.split('');
+  const same=mine.filter((k,i)=>k===f[i]).length;
+  const [st,ln]=PAIR(same), FT=ME[typeOf(f)], MT=ME[typeOf(mine)];
+  const together=mine.filter((k,i)=>k!=='c'&&f[i]!=='c').length;
+  const rows=mine.map((k,i)=>{
+    const both=k!=='c'&&f[i]!=='c', bothSay=k==='c'&&f[i]==='c';
+    return `<div class="rc"><b>${SHORT[i]}</b><span class="tg ${k==='c'?'ok':'bad'}">나 ${TAG[k]}</span> <span class="tg ${f[i]==='c'?'ok':'bad'}">동료 ${TAG[f[i]]}</span><p>${both?'둘 다 말을 삼킨 장면이에요.':bothSay?'둘 다 그 자리에서 말했어요.':'한 사람만 삼켰어요.'}</p></div>`}).join('');
+  return `<section class="sheet match">
+    <span class="big-stamp">${st}</span>
+    <p class="label">동료와 비교</p>
+    <div class="duo">${MT.svg}<em>×</em>${FT.svg}<span class="nm">나<br>동료</span></div>
+    <p class="verdict">나는 ${MT.name}, 동료는 ${FT.name}. 같은 선택 ${same}장면, 같이 삼킨 장면 ${together}장면. ${ln}</p>
+  </section>
+  <section class="sheet"><p class="label">장면별 비교</p><div class="recap">${rows}</div></section>`;
+}
+function result(){
+  const a=analyze(), me=a.me, T=ME[me], B=BOSS[bossId], [stamp,line]=MATCH[me][bossId];
+  const top=(()=>{let b=-1,bw=-1;S.picks.forEach((k,n)=>{if(WEIGHT[k]>bw){bw=WEIGHT[k];b=n}});return b})();
+  R={...a,boss:bossId,stamp,line,top};
+  app.innerHTML=`
+  <div class="summary"><p>올해 내가 삼킨 말</p><div class="big">${a.swallowed}<small>개</small></div>
+    ${fp?`<p>동료는 ${friendN}개, 나는 ${a.swallowed}개예요. ${a.swallowed>friendN?'내가 더 많이 삼켰어요.':a.swallowed<friendN?'내가 덜 삼켰어요.':'똑같이 삼켰어요.'}</p>`:''}
+    <h1>나는 ${T.name}, ${wa(B.name)}는 ‘${stamp}’</h1></div>
+  <section class="sheet">
+    <div class="res-top">${T.svg}
+      <div style="min-width:0"><p class="res-type">내 유형</p><h2 class="res-name">${T.name}</h2><p class="res-line">“${T.line}”</p></div>
+    </div>
+    <p class="why">6개 장면에서 ${a.n.a}번 참았고, ${a.n.b}번 돌려 말했고, ${a.n.c}번 그냥 말했어요.${a.n.t?' 시간 안에 고르지 못해 지나간 장면이 '+a.n.t+'번 있어요.':''} 참으면 2개, 돌려 말하면 1개, 그냥 말하면 0개, 말을 못 꺼내고 지나가면 2개로 셌어요.</p>
+    <p class="desc">${T.desc}</p>
+    <div class="tipbox"><span class="label">2027년 한 줄 조언</span><span>${T.tip}</span></div>
+  </section>
+
+  <section class="sheet match">
+    <span class="big-stamp">${stamp}</span>
+    <p class="label">상사 궁합</p>
+    <div class="duo">${T.svg}<em>×</em>${CHAR[bossId]}<span class="nm">나<br>${B.name}</span></div>
+    <p class="verdict">${line}</p>
+  </section>
+
+  ${fp?compareHTML():''}
+
+  <div class="row2">
+    <button class="btn stamp" id="share">동료에게 보내기</button>
+    <button class="btn" id="cardBtn">카드 이미지 저장</button>
+  </div>
+
+  <div id="rep">${repInner()}</div>
+
+  <section class="sheet">
+    <p class="label">내 선택 6장면</p>
+    <div class="recap">${S.picks.map((k,n)=>`<div class="rc"><b>${SHORT[n]}</b><span class="tg ${k==='c'?'ok':'bad'}">${TAG[k]}</span>${k==='c'?'':`<p>삼킨 말: “${SCENES[n].inner}”</p>`}</div>`).join('')}</div>
+  </section>
+
+  <section class="sheet taste">
+    <p class="label">연말 면담 대본 맛보기 · 무료</p>
+    <h3 style="font-size:22px;margin-top:6px">가장 삼킨 장면: ${SHORT[top]}</h3>
+    <p class="desc" style="margin-top:8px">면담에서 ${B.name}에게 이렇게 말해 보세요.</p>
+    <p class="try">“${TRY[top]}”</p>
+  </section>
+
+  <section class="sheet locked">
+    <p class="label">나머지 풀이 · 유료</p>
+    <h3 style="font-size:22px;margin-top:6px">나의 오피스 스타일 리포트 2027</h3>
+    <ol>
+      <li>${B.name}에게 맞는 말하는 방법</li>
+      <li>내 피드백 환경에서 지켜야 할 것</li>
+      <li>내 연차와 팀 규모에 맞는 조언</li>
+      ${SHORT.map((s,n)=>n===top?'':`<li>${s}에서 쓸 면담 대본 한마디</li>`).join('')}
+    </ol>
+    <p class="blur" aria-hidden="true">${TRY[(top+1)%6]} ${B.name}에게는 결론을 먼저 말하고 시간을 정해 부탁하면 받아들여질 확률이 높습니다…</p>
+    <div class="price"><b>990원</b><span class="fine">12월 중순 오픈 예정</span></div>
+    <button class="btn stamp" id="buy" style="margin-top:12px">990원에 맞춤 풀이 전체 보기</button>
+    <div id="fake" hidden></div>
+  </section>
+
+  <div class="row2">
+    <button class="btn ghost" id="again">같은 상사로 다시</button>
+    <button class="btn ghost" id="other">상사 바꿔서 해보기</button>
+  </div>
+  <p class="fine">‘동료에게 보내기’를 누르면 내 선택이 담긴 링크가 복사돼요. 동료가 같은 6장면을 하면 둘의 비교가 나와요. 내 선택은 동료가 끝낸 뒤에만 보여요.</p>`;
+  window.scrollTo(0,0);
+
+  bindRep();
+  $('again').onclick=()=>{S={i:0,picks:[]};scene()}; $('other').onclick=pickBoss;
+  $('share').onclick=async()=>{
+    const base=/^https?:/.test(location.protocol)?location.origin+location.pathname+'#p='+S.picks.join(''):'';
+    const first=line.split(/(?<=[.요다])\s/)[0];
+    const txt=`올해 내가 삼킨 말 ${a.swallowed}개, ${wa(B.name)} 궁합은 ‘${stamp}’. ${first}${base?'\n같은 장면 해보고 우리 둘 비교해 보자 '+base:'\n같은 장면 해보고 우리 둘 비교해 보자'}`;
+    try{ if(navigator.share&&/Mobi|Android|iPhone/.test(navigator.userAgent)){ await navigator.share({text:txt}); return } }catch(e){ if(e&&e.name==='AbortError') return }
+    try{navigator.clipboard.writeText(txt).then(()=>toast('공유 문구를 복사했어요'),()=>toast(txt))}catch(e){toast(txt)}
+  };
+  $('cardBtn').onclick=async()=>{ $('cardBtn').disabled=true; const url=await drawCard(R); $('popImg').src=url; $('pop').hidden=false; $('cardBtn').disabled=false;
+    if(!/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) $('popHint').textContent='이미지를 우클릭해서 저장할 수 있어요.'; };
+  $('popX').onclick=()=>{$('pop').hidden=true};
+  $('buy').onclick=()=>{
+    const f=$('fake'); f.hidden=false; $('buy').hidden=true;
+    if(store.get('notify',null)){ f.innerHTML=`<div class="fake"><strong>알림 신청 완료</strong><p style="font-size:14px;color:var(--muted)">12월 오픈 때 가장 먼저 알려드릴게요. (프로토타입: 실제 발송 없음)</p></div>`; return }
+    f.innerHTML=`<div class="fake">
+      <strong>맞춤 풀이 전체와 면담 대본은 12월에 열려요</strong>
+      <p style="font-size:14px;color:var(--muted)">출시되면 가장 먼저 알려드릴게요. 오픈 기념 첫 풀이는 무료예요.</p>
+      <label for="notify" class="label">알림 받을 이메일</label>
+      <input id="notify" type="email" placeholder="name@company.com" autocomplete="email">
+      <button class="btn" id="notifyBtn">출시 알림 받기</button>
+      <p class="fine">프로토타입이라 입력한 내용은 저장되지 않아요.</p></div>`;
+    $('notifyBtn').onclick=()=>{
+      const v=$('notify').value.trim();
+      if(!/^\S+@\S+\.\S+$/.test(v)){toast('이메일 주소를 확인해 주세요');return}
+      store.set('notify',Date.now());
+      f.innerHTML=`<div class="fake"><strong>알림 신청 완료</strong><p style="font-size:14px;color:var(--muted)">12월 오픈 때 알려드릴게요. (프로토타입: 실제 발송 없음)</p></div>`;
+    };
+  };
+}
+
+
+/* 내 상황 질문과 맞춤 풀이 (사람이 쓴 문단 블록을 조합한다. AI는 쓰지 않는다) */
+const QS=[
+ {k:'w',t:'내가 팀에서 주로 맡는 일은 어떤 성격인가요?',o:[['p','답이 없는 새 일을 만들어 가는 일'],['r','정해진 절차대로 돌아가는 일']]},
+ {k:'l',t:'우리 상사는 사람을 어떻게 움직이게 하나요?',o:[['v','“우리 팀의 비전이야” 하고 의미를 말해 준다'],['d','“이거 끝내면 보상” 하고 조건을 건다']]},
+ {k:'f',t:'일에 대한 피드백은 어떻게 받나요?',o:[['now','그 자리에서 바로 받는다'],['later','모았다가 나중에 한꺼번에 받는다'],['none','거의 받지 못한다']]},
+ {k:'h',t:'요즘 가장 힘든 순간은 언제인가요?',o:[['sud','갑작스러운 요청이 올 때'],['rew','같은 일을 계속 고칠 때'],['ign','인정받지 못한다고 느낄 때'],['vag','지시가 애매할 때']]},
+ {k:'y',t:'연차는 어느 정도인가요?',o:[['1','1~3년'],['2','4~9년'],['3','10년 이상']]},
+ {k:'t',t:'우리 팀은 몇 명인가요?',o:[['s','5명 이하'],['m','6~15명'],['g','16명 이상']]}
+];
+const BL={
+ w:{p:(c)=>`새 일을 만들어 가는 자리에 있어요. 정해진 답이 없어서 ${c.B}의 한마디가 곧 방향이 되기 때문에, 확인받지 못한 채 달리다가 방향이 틀어지는 일이 가장 아까워요. 중간에 한 번만 “이 방향이 맞나요?” 하고 물어보면 다시 하는 시간을 크게 줄일 수 있어요.`,
+    r:(c)=>`정해진 절차와 기준으로 돌아가는 자리에 있어요. 일이 예측되는 대신, 기준이 불편해도 바꾸자는 말을 꺼내기 어려워서 불편을 오래 참기 쉬워요. ${c.B}에게는 “이 절차를 이렇게 바꾸면 시간이 이만큼 줄어요”처럼 숫자를 붙여 말하면 받아들여져요.`},
+ h:{sud:(c)=>`${c.lead}가장 힘든 순간으로 갑작스러운 요청을 골랐어요. 이런 순간에는 거절할지 받을지보다 “언제까지 필요하세요? 지금 하는 일 중 무엇을 미룰까요?” 하고 되묻는 한 문장이 힘을 가져요. 되묻는 사람은 일을 떠안은 사람이 아니라 일을 조율하는 사람으로 보여요.`,
+    rew:(c)=>`${c.lead}가장 힘든 순간으로 같은 일을 계속 고치는 때를 골랐어요. 수정이 반복되는 이유는 대개 처음에 기준이 정해지지 않아서예요. 새로 고치기 전에 “이번 수정의 기준은 이 세 가지가 맞나요?” 하고 적어서 확인받으면 수정 횟수가 줄어요.`,
+    ign:(c)=>`${c.lead}가장 힘든 순간으로 인정받지 못한다고 느낄 때를 골랐어요. 말하지 않은 성과는 상사의 기억에 남기 어려워요. 한 달에 한 번, 내가 한 일 세 줄을 ${c.B}에게 메신저로 남겨 두면 면담에서 처음부터 설명하지 않아도 돼요.`,
+    vag:(c)=>`${c.lead}가장 힘든 순간으로 지시가 애매할 때를 골랐어요. 이럴 때는 “제가 이해한 건 이거예요. 맞나요?” 하고 내 말로 다시 말해 확인하면 돼요. 되묻는 것은 무능이 아니라, 나중에 “그건 그 뜻이 아니었는데”를 막는 가장 싼 방법이에요.`},
+ l:{v:(c)=>`${c.Bn} “왜 이 일을 하는지”로 사람을 움직이는 편이에요. 이런 상사에게는 요청을 받을 때 “이 일이 어디에 쓰이나요?”를 먼저 물으면 대화가 빨라져요. 보상이나 휴가 이야기는 의미와 연결해서 꺼내는 쪽이 받아들여지기 쉬워요.`,
+    d:(c)=>`${c.Bn} “이걸 하면 이걸 준다”처럼 조건과 기준으로 움직이는 편이에요. 막연한 불만보다 “올해 한 일 목록과 기대하는 것”을 정리해 가면 말이 통해요. 기준을 먼저 합의해 두면 나중에 서운할 일이 줄어요.`},
+ f:{now:(c)=>`피드백을 그 자리에서 바로 받는 환경이에요. 빠른 대신 감정이 실리기 쉬워서, 들은 직후 “정리하면 이렇게 이해했어요”라고 한 번 되짚으면 오해가 줄어요. 듣고 바로 대답하지 않아도 되니, 10분 뒤에 이어서 말해도 괜찮아요.`,
+    later:(c)=>`피드백이 모였다가 한꺼번에 오는 환경이에요. 평가가 면담에서 한 번에 나오기 쉬우니, 한 달에 한 번 먼저 “제가 잘하고 있는 부분과 고칠 부분이 있나요?” 하고 물어보세요. 먼저 물으면 면담에서 놀랄 일이 줄어요.`,
+    none:(c)=>`피드백이 거의 없는 환경이에요. 조용한 것은 칭찬도 비판도 아니고 “아직 확인하지 않은 상태”일 때가 많아요. 작은 결과물을 먼저 보여 주고 “이 정도면 될까요?” 하고 반응을 묻는 습관이 필요해요.`},
+ y:{1:(c)=>`연차가 낮을수록 말하지 않은 사정을 상사가 알아채 주길 기대하게 돼요. 하지만 상사는 말해 준 것만 알아요. 올해 삼킨 말을 내년에는 메모에 남겨 두고, 그중 하나만 골라 먼저 말해 보세요.`,
+    2:(c)=>`중간 연차는 후배 일과 상사 일을 동시에 받아내는 자리라서 삼킨 말이 가장 많이 쌓여요. 내가 하는 조율을 일로 인정받으려면 “이번 조율로 이만큼 일정을 지켰어요” 하고 결과를 말로 남겨야 해요.`,
+    3:(c)=>`연차가 높으면 말을 삼키는 것이 아니라 아랫사람 눈치까지 같이 보게 돼요. 올해는 팀원에게 할 말과 위에 올릴 말을 나눠 적어 보세요. 위에 올릴 말은 ${c.B}에게 먼저 꺼내는 편이 좋아요.`},
+ t:{s:(c)=>`팀이 작으면 내 한마디가 곧 팀 분위기가 돼요. 그래서 삼킨 말이 팀 전체에 번지기 쉬워요. 작은 팀일수록 면담을 기다리지 말고 주 1회 짧은 대화를 먼저 잡아 보세요.`,
+    m:(c)=>`중간 규모의 팀에서는 내 말이 상사에게 닿기 전에 다른 사람을 거쳐요. 중요한 말은 전달 과정에서 흐려지니, 핵심 한 줄을 글로 남겨서 직접 전하는 편이 안전해요.`,
+    g:(c)=>`큰 팀에서는 조용히 일하는 사람이 보이지 않기 쉬워요. 성과를 눈에 띄게 만드는 일은 자랑이 아니라 업무의 일부예요. 분기마다 한 번은 내가 한 일을 상사가 아는 형태로 정리해 두세요.`}
+};
+const CTX_OK=c=>QS.every(q=>c&&c[q.k]!=null);
+let CTX=store.get('ctx',{});
+const FULL=/[#&]full=1/.test(location.hash);
+const firstSent=s=>{const m=/^[\s\S]*?[요다]\.(\s|$)/.exec(s);return m?[m[0].trim(),s.slice(m[0].length).trim()]:[s,'']};
+function repInner(){
+  if(!CTX_OK(CTX)){
+    return `<section class="sheet"><p class="label">내 맞춤 풀이 · 무료 맛보기</p>
+      <h3 style="font-size:22px;margin-top:6px">내 상황을 알려 주면 맞춤 풀이를 써 드려요.</h3>
+      <p class="desc" style="margin-top:6px">여섯 가지만 고르면 돼요. 약 30초 걸리고, 고른 내용은 이 기기 밖으로 나가지 않아요.</p>
+      ${QS.map(q=>`<div class="q"><p class="qt">${q.t}</p><div class="opts" data-q="${q.k}">${q.o.map(o=>`<button class="opt" data-v="${o[0]}" aria-pressed="${CTX[q.k]==o[0]}">${o[1]}</button>`).join('')}</div></div>`).join('')}
+      <button class="btn stamp" id="repGo">내 맞춤 풀이 보기</button></section>`;
+  }
+  const B=BOSS[bossId].name, topS=SHORT[R.top], sw=R.swallowed>0;
+  const eun=n=>{const k=n.charCodeAt(n.length-1)-0xAC00;return n+(k>=0&&k%28!==0?'은':'는')};
+  const c={B,Bn:eun(B),lead:sw?`오늘 가장 말을 삼킨 장면은 ‘${topS}’ 장면이에요. `:'오늘은 삼킨 말이 없었어요. '};
+  const free=[['내가 일하는 자리',BL.w[CTX.w](c)],['요즘 가장 힘든 순간',BL.h[CTX.h](c)]];
+  const paid=[[`${B}에게 맞는 말하는 방법`,BL.l[CTX.l](c)],['내 피드백 환경에서 지켜야 할 것',BL.f[CTX.f](c)],['내 연차에 맞는 조언',BL.y[CTX.y](c)],['내 팀 규모에 맞는 조언',BL.t[CTX.t](c)]];
+  const lockedHtml=paid.map(([h,x])=>{const [a,b]=firstSent(x);return `<div class="rp"><h4>${h}</h4><p>${a}</p>${b?(FULL?`<p>${b}</p>`:`<p class="blur" aria-hidden="true">${b}</p>`):''}</div>`}).join('');
+  return `<section class="sheet"><p class="label">내 맞춤 풀이 · 무료 맛보기</p>
+    <h3 style="font-size:22px;margin-top:6px">${ME[R.me].name}인 나의 오피스 풀이</h3>
+    ${free.map(([h,x])=>`<div class="rp"><h4>${h}</h4><p>${x}</p></div>`).join('')}
+    <hr style="border:0;border-top:1px dashed var(--line);margin:16px 0">
+    <p class="label">나머지 풀이 · ${FULL?'팀 검토용으로 모두 열었어요':'유료에서 이어져요'}</p>
+    ${lockedHtml}
+    ${FULL?'<p class="review">팀 검토용 보기예요. 실제 공개판에서는 첫 문장만 보이고 나머지는 가려져요.</p>':''}
+    <button class="btn ghost" id="repEdit" style="margin-top:8px">내 상황 다시 고르기</button></section>`;
+}
+function bindRep(){
+  const box=$('rep'); if(!box) return;
+  box.onclick=e=>{
+    const o=e.target.closest('.opt');
+    if(o){const k=o.parentNode.dataset.q; CTX[k]=o.dataset.v; box.querySelectorAll(`[data-q="${k}"] .opt`).forEach(x=>x.setAttribute('aria-pressed',x===o)); return}
+    if(e.target.id==='repGo'){ if(!CTX_OK(CTX)){toast('여섯 가지를 모두 골라 주세요');return} store.set('ctx',CTX); box.innerHTML=repInner(); box.scrollIntoView({block:'start',behavior:'smooth'}); return }
+    if(e.target.id==='repEdit'){ CTX={}; store.set('ctx',CTX); box.innerHTML=repInner(); }
+  };
+}
+
+/* 5. 결과 카드 이미지 */
+function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+function svgImg(svg,px){return new Promise(res=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>res(null);
+  i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg.replace('<svg ',`<svg xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" `))})}
+async function drawCard(r){
+  const T=ME[r.me], B=BOSS[r.boss];
+  const glyphs='올해 내가 삼킨 말 개 2026 연말 결산 삼킨 말 상사 궁합 나 상사 × 올해도 무사히, 결재 승인 0123456789 내 유형 '+Object.values(ME).map(t=>t.name+t.line).join('')+Object.values(BOSS).map(b=>b.name).join('')+'천생연분 결재 승인 보류 반려 캐릭터 · “”';
+  try{await Promise.all([document.fonts.load("80px 'Do Hyeon'",glyphs),document.fonts.load("400 30px 'IBM Plex Sans KR'",glyphs),document.fonts.load("700 30px 'IBM Plex Sans KR'",glyphs)])}catch(e){}
+  const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
+  const D="'Do Hyeon','IBM Plex Sans KR',sans-serif",U="'IBM Plex Sans KR','Apple SD Gothic Neo',sans-serif";
+  x.fillStyle='#F6F7F9';x.fillRect(0,0,W,H);
+  x.fillStyle='#1E2740';x.fillRect(0,0,W,150);
+  x.fillStyle='#fff';x.textAlign='left';x.font=`68px ${D}`;x.fillText('2026 삼킨 말 결산',70,100);
+  x.font=`400 30px ${U}`;x.globalAlpha=.8;x.textAlign='right';const d=new Date();x.fillText(`${d.getMonth()+1}월 ${d.getDate()}일`,W-70,98);x.globalAlpha=1;
+  // 삼킨 말 개수
+  x.fillStyle='#fff';x.strokeStyle='#D9DDE6';x.lineWidth=3;rr(x,60,190,W-120,300,26);x.fill();x.stroke();
+  x.textAlign='left';x.fillStyle='#626B82';x.font=`700 34px ${U}`;x.fillText('올해 내가 삼킨 말',100,255);
+  x.fillStyle='#D23A2E';x.font=`220px ${D}`;x.fillText(String(r.swallowed),94,455);
+  const nw=x.measureText(String(r.swallowed)).width;x.fillStyle='#1E2740';x.font=`80px ${D}`;x.fillText('개',112+nw,455);
+  const me=await svgImg(T.svg,240); if(me) x.drawImage(me,W-340,230,240,240);
+  // 내 유형
+  x.fillStyle='#fff';rr(x,60,520,W-120,250,26);x.fill();x.stroke();
+  x.fillStyle='#D23A2E';x.font=`700 34px ${U}`;x.fillText('내 유형',100,590);
+  x.fillStyle='#1E2740';x.font=`84px ${D}`;x.fillText(T.name,100,680);
+  x.fillStyle='#626B82';x.font=`400 36px ${U}`;x.fillText(`“${T.line}”`,102,735);
+  // 궁합
+  x.fillStyle='#fff';rr(x,60,800,W-120,330,26);x.fill();x.stroke();
+  x.fillStyle='#626B82';x.font=`700 32px ${U}`;x.fillText('상사 궁합',100,860);
+  const a=await svgImg(T.svg,170),b=await svgImg(CHAR[r.boss],170);
+  if(a)x.drawImage(a,100,890,170,170);
+  x.fillStyle='#D23A2E';x.font=`70px ${D}`;x.fillText('×',290,1000);
+  if(b)x.drawImage(b,370,890,170,170);
+  x.fillStyle='#1E2740';x.font=`700 32px ${U}`;x.fillText(`나 × ${B.name}`,100,1105);
+  x.save();x.translate(W-270,980);x.rotate(.15);x.strokeStyle='#D23A2E';x.fillStyle='#D23A2E';x.lineWidth=9;rr(x,-170,-70,340,140,16);x.stroke();
+  x.textAlign='center';x.font=`92px ${D}`;x.fillText(r.stamp,0,32);x.restore();
+  // 하단
+  x.textAlign='left';x.fillStyle='#1E2740';x.font=`58px ${D}`;x.fillText('올해도 무사히, 결재 승인',60,1220);
+  x.fillStyle='#626B82';x.font=`400 30px ${U}`;
+  const q=r.top>=0&&r.n.c<6?`가장 삼킨 말: “${SCENES[r.top].inner}”`:'삼킨 말이 없는 한 해였어요.';
+  const ls=q.length>26?[q.slice(0,26),q.slice(26)]:[q]; ls.forEach((l,n)=>x.fillText(l,62,1272+n*40));
+  x.fillStyle='#D23A2E';x.textAlign='right';x.font=`44px ${D}`;x.fillText('삼킨 말 상사궁합',W-64,1190);
+  return cv.toDataURL('image/png');
+}
+
+intro();
+</script>
+
+</body></html>
