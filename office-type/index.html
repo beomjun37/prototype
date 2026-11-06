@@ -44,6 +44,10 @@ button{font:inherit;cursor:pointer}
 .it{border-top:1px solid var(--line)}.ith{display:flex;width:100%;justify-content:space-between;align-items:center;gap:8px;background:none;border:0;color:var(--ink);text-align:left;padding:14px 16px}
 .ith small{display:block;font-size:12.5px;color:var(--sub);font-weight:400}.ith b{font-size:17px;line-height:1.4}.ith i{font-style:normal;color:var(--sub);transition:transform .2s}.it.open .ith i{transform:rotate(180deg)}
 .itb{padding:0 16px 14px}.itb p{margin:0}.blur{filter:blur(5px);user-select:none;margin-bottom:10px}.lock{text-align:center;font-size:14px}.lock .btn{margin-top:8px;font-size:15px;padding:12px}
+.sel{flex:1;font:inherit;font-size:15px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+.gpair{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0}.gscore{font-size:40px;font-weight:800;color:var(--accent);line-height:1}.gscore small{font-size:16px}
+.gline{font-size:14.5px;padding:8px 0;border-top:1px dashed var(--line)}.gline b{display:block;font-size:12.5px;color:var(--sub);font-weight:500}
+.gtop{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left;color:var(--ink)}
 .tip{border-left:4px solid var(--accent);padding:4px 12px;margin:12px 0;background:var(--accent-soft);border-radius:0 10px 10px 0}
 </style>
 </head>
@@ -67,6 +71,7 @@ button{font:inherit;cursor:pointer}
 </section>
 
 <section id="result" hidden>
+  <div class="card center" id="fBanner" hidden><b>친구가 보낸 결과예요</b><p class="sub" style="margin:4px 0 10px">나도 1분 테스트를 하면 이 친구와 나의 궁합이 바로 나와요.</p><button class="btn" id="fGo">나도 해 보고 궁합 보기</button></div>
   <div class="card center">
     <span class="badge" id="rMood"></span>
     <svg id="rAv" class="avatar" viewBox="0 0 16 20"></svg>
@@ -79,7 +84,15 @@ button{font:inherit;cursor:pointer}
     <div class="sub center" style="padding:12px">각 제목을 누르면 해설이 펼쳐져요</div>
     <div id="rList"></div>
   </div>
-  <div class="card" style="display:flex;gap:12px;align-items:center"><svg id="rMasAv" class="avatar sm" viewBox="0 0 16 20"></svg><div><b id="rMasName"></b><div class="sub">해설 다 읽었어요? 같이 일하는 동료한테 이 링크를 보내 봐요. 그 사람은 어떤 캐릭터인지 궁금하지 않아요?</div></div></div>
+  <div class="card" id="gCard">
+    <h2>궁합 보기</h2>
+    <p class="sub" id="gIntro">같이 일하는 사람의 캐릭터를 골라 보세요. 친구가 내 링크로 테스트하면 자동으로 궁합이 떠요.</p>
+    <div style="display:flex;gap:8px;margin-bottom:10px"><select id="gSel" class="sel"></select><select id="gMood" class="sel" style="flex:0 0 96px"><option value="C">태연</option><option value="N">걱정</option></select></div>
+    <div id="gOut"></div>
+    <h2 style="margin-top:18px;font-size:17px">나랑 잘 맞는 캐릭터 TOP 3</h2>
+    <div id="gTop"></div>
+  </div>
+  <div class="card" style="display:flex;gap:12px;align-items:center"><svg id="rMasAv" class="avatar sm" viewBox="0 0 16 20"></svg><div><b id="rMasName"></b><div class="sub">해설 다 읽었어요? 같이 일하는 동료한테 이 링크를 보내 봐요. 그 사람이 테스트를 끝내면 우리 둘 궁합이 바로 나와요.</div></div></div>
   <p class="note">재미로 보는 테스트예요. 진짜 성격 검사나 진단이 아니고, 그날그날 기분에 따라 결과가 달라질 수 있어요.</p>
   <button class="btn" id="share">내 결과 링크 복사</button>
   <button class="btn ghost" id="again">다시 하기</button>
@@ -166,6 +179,53 @@ function avatar(code,mood){
 }
 function setAv(el,code,mood){el.innerHTML=avatar(code,mood);}
 
+
+/* 궁합 로직: 축마다 같음/다름으로 점수를 주고 합친다. 일에서 부딪치기 쉬운 축(마감 리듬, 일을 보는 눈)에 무게를 더 둔다.
+   축별 [같을 때, 다를 때]. 멘탈은 [둘 다 태연, 한 명만 걱정, 둘 다 걱정]. */
+var GW=[[18,12],[20,8],[14,16],[20,6]],GM=[18,16,10];
+var GT=[
+ ['충전','둘 다 에너지 쓰는 방식이 같아서 점심, 회식, 쉬는 시간 리듬이 편해요.','한 명은 사람 속에서, 한 명은 혼자 충전해요. 서로 쉬는 방식을 존중하면 오히려 편해요.'],
+ ['일을 보는 눈','같은 걸 먼저 봐서 설명이 짧아도 말이 통해요.','한 명은 지금 할 일을, 한 명은 큰 그림을 먼저 봐요. 회의에서 서로 답답할 수 있어요.'],
+ ['기준','판단 기준이 같아서 결정이 빨라요. 대신 둘 다 놓치는 쪽이 생길 수 있어요.','한 명은 일을, 한 명은 사람을 챙겨서 둘이 있으면 빈 곳이 없어요.'],
+ ['마감 리듬','일하는 속도가 같아서 마감 스트레스가 적어요.','한 명은 미리, 한 명은 막판이라 같은 팀이면 가장 많이 부딪치는 곳이에요.']
+];
+var GMT=['둘 다 덤덤해서 위기에도 팀이 차분해요.','한 명이 걱정하면 한 명이 다독이는, 균형 잡힌 사이예요.','둘 다 걱정이 많아서 작은 일도 같이 커질 수 있어요. 한 명은 일부러 "괜찮아"를 말해 주세요.'];
+var GTIP=['서로 쉬는 시간을 지켜 주세요. 회식 대신 커피 한 잔도 좋아요.','회의 시작에 "오늘 정할 것 한 가지"를 먼저 말해 두세요.','결정하기 전에 "사람 쪽은 괜찮을까?"를 한 번 물어보세요.','마감 날짜와 중간 점검 날짜를 같이 정해 두세요.','걱정되는 걸 한 줄로 적어서 같이 보고, 지울 수 있는 건 지워요.'];
+function gScore(a,am,b,bm){
+  var raw=10,d=[];
+  for(var i=0;i<4;i++){var same=a[i]==b[i];raw+=GW[i][same?0:1];d.push(same);}
+  var mi=(am=='C'&&bm=='C')?0:(am=='N'&&bm=='N')?2:1;raw+=GM[mi];
+  var sc=Math.round(40+(raw-60)/(102-60)*59);
+  return {sc:Math.min(99,sc),same:d,mi:mi};
+}
+function gGrade(n){return n>=90?'환상의 짝꿍':n>=78?'든든한 한 팀':n>=62?'맞춰 가면 좋은 사이':'서로 번역기가 필요한 사이';}
+function gWeak(r){ // 가장 많이 깎인 축을 꿀팁으로
+  var loss=[],i;for(i=0;i<4;i++)loss.push(GW[i][0]-GW[i][r.same[i]?0:1]);loss.push(GM[0]-GM[r.mi]);
+  var w=0;for(i=1;i<5;i++)if(loss[i]>loss[w])w=i;return loss[w]?w:-1;
+}
+function gRender(me,mm,ot,om,who){
+  var r=gScore(me,mm,ot,om),h='';
+  h+='<div class="gpair"><svg class="avatar sm" viewBox="0 0 16 20">'+avatar(me,mm)+'</svg><div class="center"><div class="gscore">'+r.sc+'<small>점</small></div><b>'+gGrade(r.sc)+'</b></div><svg class="avatar sm" viewBox="0 0 16 20">'+avatar(ot,om)+'</svg></div>';
+  h+='<p class="center sub" style="margin:0 0 6px">나 '+T[me].n+' × '+(who||'')+T[ot].n+' ('+MOOD[om].k+')</p>';
+  for(var i=0;i<4;i++)h+='<div class="gline"><b>'+GT[i][0]+'</b>'+(r.same[i]?GT[i][1]:GT[i][2])+'</div>';
+  h+='<div class="gline"><b>멘탈</b>'+GMT[r.mi]+'</div>';
+  var w=gWeak(r);h+='<div class="tip">같이 일할 때 꿀팁: '+(w<0?'지금처럼만 하면 돼요. 서로 잘한 일을 말로 알려 주세요.':GTIP[w])+'</div>';
+  $('gOut').innerHTML=h;
+}
+function gSetup(code,mood){
+  var sel=$('gSel'),o='';Object.keys(T).forEach(function(c){o+='<option value="'+c+'">'+T[c].n+'</option>';});sel.innerHTML=o;
+  var f=FRIEND;
+  if(f){sel.value=f.c;$('gMood').value=f.m;$('gIntro').textContent='링크를 보내 준 사람과의 궁합이에요. 다른 사람도 골라 볼 수 있어요.';}
+  else{sel.value=X[code][3];$('gMood').value='C';}
+  var go=function(){gRender(code,mood,sel.value,$('gMood').value,f&&sel.value==f.c&&$('gMood').value==f.m?'보내 준 사람 ':'');};
+  sel.onchange=go;$('gMood').onchange=go;go();
+  var all=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code)return;all.push([c,m,gScore(code,mood,c,m).sc]);});});
+  all.sort(function(a,b){return b[2]-a[2];});
+  var seen={},top=[];all.forEach(function(x){if(top.length<3&&!seen[x[0]]){seen[x[0]]=1;top.push(x);}});
+  $('gTop').innerHTML=top.map(function(x){return '<button class="gtop" data-c="'+x[0]+'" data-m="'+x[1]+'"><svg class="avatar sm" style="width:40px;height:50px" viewBox="0 0 16 20">'+avatar(x[0],x[1])+'</svg><span style="flex:1"><b>'+T[x[0]].n+'</b> <span class="sub">('+MOOD[x[1]].k+')</span></span><b style="color:var(--accent)">'+x[2]+'점</b></button>';}).join('');
+  [].forEach.call($('gTop').querySelectorAll('.gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c;$('gMood').value=b.dataset.m;go();$('gCard').scrollIntoView({behavior:'smooth'});};});
+}
+var FRIEND=null;
 var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
 function $(id){return document.getElementById(id);}
 function show(id){['intro','quiz','result'].forEach(function(s){$(s).hidden=s!=id;});window.scrollTo(0,0);}
@@ -226,13 +286,14 @@ function showResult(code,mood,sc,sw){
   ];
   var h='';
   items.forEach(function(it,i){
-    var lock=it[3]&&!full;
+    var lock=false;
     h+='<div class="it" data-i="'+i+'"><button class="ith"><span><small>'+it[0]+(lock?' · 🔒':'')+'</small><b>'+it[1]+'</b></span><i>▾</i></button><div class="itb" hidden>'+
       (lock?'<div class="blur">'+it[2]+'</div><div class="lock">이 해설은 990원으로 열 수 있어요.<br><button class="btn" data-lock="1">열어 보기 (준비 중)</button></div>':'<p>'+it[2]+'</p>')+'</div></div>';
   });
   $('rList').innerHTML=h;
   [].forEach.call($('rList').querySelectorAll('.ith'),function(b){b.onclick=function(){var d=b.nextSibling;d.hidden=!d.hidden;b.parentNode.className=d.hidden?'it':'it open';};});
   [].forEach.call($('rList').querySelectorAll('[data-lock]'),function(b){b.onclick=function(){b.parentNode.innerHTML='아직 준비 중이에요. 열리면 가장 먼저 알려 드릴게요.';};});
+  gSetup(code,mood);
   setAv($('rMasAv'),code,mood);$('rMasName').textContent=t.n.split(' ')[1]+'의 쪽지';
 }
 
@@ -246,7 +307,8 @@ $('share').onclick=function(){
 setAv($('introAv'),'BVHD','C');
 (function(){
   var m=/r=([BQ][RV][WH][DL])-([CN])&s=(\d{5})&w=(\d)/.exec(location.hash);
-  if(m&&T[m[1]])showResult(m[1],m[2],m[3].split('').map(Number),+m[4]);
+  if(m&&T[m[1]]){showResult(m[1],m[2],m[3].split('').map(Number),+m[4]);$('fBanner').hidden=false;
+    $('fGo').onclick=function(){FRIEND={c:m[1],m:m[2]};$('fBanner').hidden=true;$('start').onclick();};}
 })();
 </script>
 </body>
