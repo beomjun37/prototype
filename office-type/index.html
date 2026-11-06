@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>나의 오피스 캐릭터 테스트</title>
+<style>
+:root{--bg:#f4f1ea;--card:#fff;--ink:#1f2330;--sub:#667085;--line:#e1ddd2;--accent:#2f6fed;--accent-soft:#e6eefc;--warn:#d23a2e;--on:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#14161d;--card:#1e222d;--ink:#eef0f5;--sub:#a3abbd;--line:#2c3242;--accent:#7aa2ff;--accent-soft:#242c44;--warn:#f0675b;--on:#14161d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+main{max-width:480px;margin:0 auto;padding:24px 16px 56px;min-height:100vh}
+[hidden]{display:none!important}
+h1{font-size:26px;line-height:1.3;margin:12px 0 8px}
+h2{font-size:20px;margin:0 0 6px}
+p{margin:0 0 12px}
+.sub{color:var(--sub);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+button{font:inherit;cursor:pointer}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:15px 16px;background:var(--accent);color:var(--on);font-weight:700;font-size:16px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500;margin-top:8px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;font-size:16px;line-height:1.5}
+.opt:active{border-color:var(--accent);background:var(--accent-soft)}
+.prog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:4px 0 18px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+.qno{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+.scene{font-size:19px;font-weight:700;line-height:1.5;margin:6px 0 18px}
+.avatar{display:block;width:150px;height:187px;margin:0 auto 6px;image-rendering:pixelated}
+.avatar.sm{width:64px;height:80px;margin:0}
+.badge{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.center{text-align:center}
+.big{font-size:24px;font-weight:800;line-height:1.35;margin:8px 0}
+.swallow{background:var(--accent-soft);border-radius:12px;padding:10px 14px;margin:12px 0;font-weight:700;text-align:center}
+.bar{display:flex;align-items:center;gap:8px;font-size:13px;margin:7px 0}
+.bar b{width:64px;font-weight:500;color:var(--sub);flex:none}
+.track{flex:1;height:10px;background:var(--line);border-radius:5px;position:relative}
+.track i{position:absolute;top:-2px;width:14px;height:14px;border-radius:50%;background:var(--accent);margin-left:-7px}
+.bar span{width:54px;text-align:right;flex:none}
+.pole{display:flex;justify-content:space-between;font-size:12px;color:var(--sub)}
+.note{font-size:12.5px;color:var(--sub)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.grid button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 2px;font-size:11px;color:var(--ink)}
+.tip{border-left:4px solid var(--accent);padding:4px 12px;margin:12px 0;background:var(--accent-soft);border-radius:0 10px 10px 0}
+</style>
+</head>
+<body>
+<main>
+
+<section id="intro">
+  <span class="badge">1분 테스트 · 프로토</span>
+  <h1>나는 회사에서<br>어떤 사람일까요?</h1>
+  <p class="sub">회사에서 겪는 장면 15개를 보고, 더 나 같은 쪽을 고르세요. 정답은 없어요. 걸리는 시간은 1분 정도예요.</p>
+  <div class="card center"><svg id="introAv" class="avatar" viewBox="0 0 16 20"></svg><div class="sub">결과에서 나와 닮은 오피스 캐릭터를 만나요</div></div>
+  <button class="btn" id="start">시작하기</button>
+  <p class="note" style="margin-top:14px">재미로 보는 테스트예요. 진짜 성격 검사는 아니에요. (프로토 버전: 캐릭터 그림은 임시예요)</p>
+</section>
+
+<section id="quiz" hidden>
+  <div class="qno"><span id="qn"></span><span>정답은 없어요</span></div>
+  <div class="prog"><i id="pg"></i></div>
+  <div class="scene" id="scene"></div>
+  <div id="opts"></div>
+</section>
+
+<section id="result" hidden>
+  <div class="card center">
+    <span class="badge" id="rMood"></span>
+    <svg id="rAv" class="avatar" viewBox="0 0 16 20"></svg>
+    <div class="sub" id="rBase"></div>
+    <div class="big" id="rName"></div>
+    <p id="rLine" style="margin:0"></p>
+    <div class="swallow" id="rSwallow"></div>
+  </div>
+  <div class="card">
+    <h2>이런 사람이에요</h2>
+    <p id="rDesc"></p>
+    <p id="rMoodText"></p>
+    <div class="tip" id="rTip"></div>
+  </div>
+  <div class="card">
+    <h2>내 쪽은 이래요</h2>
+    <div id="rBars"></div>
+    <p class="note" id="rHalf"></p>
+  </div>
+  <div class="card">
+    <h2>다른 캐릭터도 볼까요?</h2>
+    <p class="sub">16명이 있고, 각자 느긋한 모습과 걱정 많은 모습이 있어서 모두 32가지예요.</p>
+    <div class="grid" id="gal"></div>
+  </div>
+  <p class="note">재미로 보는 테스트예요. 진짜 성격 검사나 진단이 아니고, 그날그날 기분에 따라 결과가 달라질 수 있어요.</p>
+  <button class="btn" id="share">내 결과 링크 복사</button>
+  <button class="btn ghost" id="again">다시 하기</button>
+</section>
+
+</main>
+<script>
+/* 축: 0 충전 / 1 일을 보는 눈 / 2 기준 / 3 마감 리듬 / 4 멘탈. 각 질문의 선택지 [0]은 축의 첫 번째 극, [1]은 두 번째 극. */
+var AX=[
+ {n:'충전',a:'북적',b:'조용',la:'B',lb:'Q'},
+ {n:'일을 보는 눈',a:'눈앞',b:'큰그림',la:'R',lb:'V'},
+ {n:'기준',a:'일',b:'사람',la:'W',lb:'H'},
+ {n:'마감 리듬',a:'미리',b:'막판',la:'D',lb:'L'},
+ {n:'멘탈',a:'태연',b:'걱정',la:'C',lb:'N'}
+];
+var Q=[
+ [0,'금요일 저녁, 갑자기 팀 회식이 잡혔다.',['"오, 가요!" 하고 벌써 메뉴를 검색한다','가긴 가는데 끝날 시간부터 계산한다']],
+ [0,'점심시간 한 시간이 생겼다.',['옆자리 사람과 같이 먹으러 간다','이어폰 끼고 혼자 나가서 먹는다']],
+ [0,'새로 온 사람이 있다.',['내가 먼저 말을 건다','누가 소개해 주길 기다린다']],
+ [1,'새 프로젝트 설명을 듣는 중이다.',['"그래서 이번 주에 내가 할 일이 뭐죠?"부터 묻는다','"이게 나중에 어디까지 커질 수 있어요?"가 먼저 궁금하다']],
+ [1,'보고서를 쓰기 시작한다.',['지난번 자료와 숫자부터 모은다','이번엔 새로운 방식으로 해 보고 싶다']],
+ [1,'회의에서 아이디어가 쏟아진다.',['"그건 예산이 안 돼요"가 먼저 떠오른다','"오 재밌다, 더 해 봐요"가 먼저 나온다']],
+ [2,'동료가 실수를 했다.',['원인부터 짚어서 다음엔 안 생기게 정리한다','괜찮은지 먼저 묻고 분위기를 풀어 준다']],
+ [2,'상사가 같은 보고서를 세 번째 고치라고 한다.',['"방향부터 정하고 가요"라고 말한다','"네~" 하고 웃으며 받는다, 하고 싶은 말은 삼킨다']],
+ [2,'두 팀이 일정 때문에 부딪쳤다.',['중요도를 따져서 한쪽을 확실히 정한다','둘 다 서운하지 않게 중간을 찾는다']],
+ [3,'마감 일주일 전이다.',['이미 반쯤 끝내 놨다','아직 파일도 안 열었다']],
+ [3,'일요일 밤, 상사 메신저가 울렸다.',['바로 열어서 해결하고 마음 편하게 잔다, 쉬는 날이라는 말은 삼킨다','내일 출근해서 보자 하고 폰을 뒤집는다']],
+ [3,'연말 휴가 전, 인수인계를 해야 한다.',['일주일 전부터 조금씩 써 둔다','전날 밤에 몰아서 쓴다']],
+ [4,'발표 5분 전에 자료 파일이 안 열린다.',['"어떻게든 되겠지" 하고 다른 방법을 찾는다','머리가 하얘지고 손에 땀이 난다']],
+ [4,'상사가 "잠깐 얘기 좀 해요"라고 한다.',['뭔 일이지? 하고 일단 가 본다','가는 동안 최악의 경우를 다 상상한다']],
+ [4,'일이 끝나고 퇴근길이다.',['오늘 일은 회사에 두고 온다','아까 했던 말 한 마디가 계속 떠오르고, 못 한 말도 삼킨다']]
+];
+/* 꾹 참은 말 표시 문항: [질문 번호, 선택지 번호] — 문장 끝에 "삼킨다"가 들어간 선택지 */
+var SW={7:1,10:0,14:1};
+var ORDER=[0,3,6,9,12,1,4,7,10,13,2,5,8,11,14];
+
+/* 기본 16명. 코드 = 북/조, 눈/큰, 일/사, 미/막 (B/Q R/V W/H D/L) */
+var T={
+ BRWD:{n:'현장대장 강과장',c:['#3a2a20','#2f6fed'],line:'일정표 들고 팀을 앞에서 끄는 사람',d:'사람들 속에서 힘을 얻고, 눈에 보이는 사실과 결과로 판단해요. 계획을 미리 세워서 팀이 같은 방향으로 가게 만드는 편이에요.',tip:'팀원이 말 못 하고 따라오고 있는지 가끔 물어봐 주세요.'},
+ BRWL:{n:'해결사 노대리',c:['#5a3a22','#e07b39'],line:'불이 나면 제일 먼저 뛰어가는 사람',d:'사람들과 부딪치며 일이 굴러갈 때 신나요. 현실적인 판단이 빠르고, 마감이 다가올수록 집중력이 폭발하는 편이에요.',tip:'불 끄는 일만 하다 보면 지쳐요. 미리 하나만 앞당겨 보세요.'},
+ BRHD:{n:'총무 서주임',c:['#222','#2e9e6b'],line:'회식 장소, 선물, 일정 다 챙기는 사람',d:'사람들 곁에서 필요한 걸 먼저 챙기고, 약속과 일정을 미리 정리해 두는 편이에요. 팀의 살림꾼이에요.',tip:'챙기는 만큼 부탁도 하세요. 혼자 다 들면 지쳐요.'},
+ BRHL:{n:'분위기메이커 배사원',c:['#7a4a24','#f0b429'],line:'사람 사이 어색함을 녹이는 사람',d:'누구와도 금방 친해지고 지금 이 순간의 분위기를 잘 살려요. 계획보다 그때그때 흐름에 맞추는 편이에요.',tip:'재미있는 말 뒤에 숨기지 말고, 중요한 일정은 달력에 꼭 적어 두세요.'},
+ BVWD:{n:'기획왕 임차장',c:['#2a2a33','#6a4bd6'],line:'큰 그림 그리고 일정까지 짜 오는 사람',d:'사람들 앞에서 방향을 이야기하는 걸 좋아하고, 새로운 가능성을 보면서도 계획은 촘촘히 세우는 편이에요.',tip:'좋은 계획일수록 팀이 따라올 시간을 주세요.'},
+ BVWL:{n:'아이디어뱅크 오주임',c:['#c0392b','#e8447a'],line:'회의 때 제일 말 많고 막판에 뒤집는 사람',d:'토론하며 아이디어를 던지는 걸 좋아하고, 맞고 틀림을 따지는 것도 즐겨요. 마감 직전에 불이 붙는 편이에요.',tip:'아이디어를 마지막 날 한꺼번에 말하면 팀이 놀라요. 중간에 한 번 공유해요.'},
+ BVHD:{n:'반장 한과장',c:['#4a2f1f','#3aa6c9'],line:'다 같이 잘 가자고 팀을 챙기는 사람',d:'사람들과 어울리며 팀 분위기와 가능성을 함께 키우는 편이에요. 계획도 미리 세워서 모두가 같이 가게 해요.',tip:'모두를 챙기다 내 몫이 밀려요. 내 일 시간을 먼저 잡아요.'},
+ BVHL:{n:'영감폭발 마사원',c:['#d98b3a','#f06292'],line:'새로운 걸 하자고 제일 먼저 외치는 사람',d:'사람들과 이야기하며 새 아이디어를 떠올리고, 따뜻하게 공감하는 편이에요. 틀에 얽매이지 않고 흐름대로 가요.',tip:'시작을 잘하는 만큼 끝맺음 파트너 한 명을 정해 두세요.'},
+ QRWD:{n:'장부 지대리',c:['#1d1d22','#4f5d75'],line:'말없이 다 끝내 놓는 사람',d:'혼자 집중할 때 힘이 나고, 사실과 숫자를 꼼꼼히 봐요. 미리미리 정리해 두는 믿음직한 편이에요.',tip:'잘한 일은 말로 알려야 사람들이 알아줘요.'},
+ QRWL:{n:'마감장인 석대리',c:['#3b2f2f','#8d6e63'],line:'마감 앞에서 조용히 폭주하는 사람',d:'혼자 파고들 때 힘이 나고, 현실적인 판단이 정확해요. 마감이 다가오면 놀라운 집중력을 내는 편이에요.',tip:'몰아서 하면 몸이 상해요. 중간 점검 알림을 걸어 두세요.'},
+ QRHD:{n:'집사 송주임',c:['#2c3e50','#5aa469'],line:'말은 적지만 필요한 걸 먼저 챙겨 놓는 사람',d:'조용히 사람들을 살피고, 필요한 일을 미리미리 준비해 두는 편이에요. 팀의 든든한 뒷받침이에요.',tip:'챙김을 알아주는 사람이 없다면 한 번쯤 말로 알려도 돼요.'},
+ QRHL:{n:'옆자리 고사원',c:['#6d4c41','#a1887f'],line:'있는 듯 없는 듯 편안한 사람',d:'혼자 있는 시간이 중요하고, 지금 눈앞의 일과 사람을 편하게 대해요. 느긋하게 흐름에 맞추는 편이에요.',tip:'마감은 달력에 크게 적어 두세요. 마음이 편해도 시간은 흘러요.'},
+ QVWD:{n:'설계자 유과장',c:['#1a1a2e','#334e7b'],line:'머릿속에서 먼저 다 설계해 오는 사람',d:'혼자 깊이 생각하며 큰 구조를 보고, 논리로 판단해요. 계획을 미리 세워서 흔들림 없이 가는 편이에요.',tip:'혼자 다 정하지 말고 중간에 한 번 설명해 주세요.'},
+ QVWL:{n:'밤샘연구원 민대리',c:['#303030','#00838f'],line:'꽂히면 밤새 파고드는 사람',d:'혼자 몰입하는 걸 좋아하고 새로운 방법을 찾는 데 열정적이에요. 논리로 따지고, 마감 직전에 폭발적으로 하는 편이에요.',tip:'밤새운 결과는 아침에 한 번 더 보세요.'},
+ QVHD:{n:'조용한멘토 도차장',c:['#7d7d7d','#6a994e'],line:'조용히 한 마디로 길을 보여 주는 사람',d:'혼자 깊이 생각하고 사람의 마음을 헤아려요. 큰 방향을 보면서 계획도 미리 챙기는 편이에요.',tip:'생각을 속에만 두지 말고, 한 줄이라도 먼저 꺼내 보세요.'},
+ QVHL:{n:'몽상가 윤사원',c:['#8e6bbf','#b39ddb'],line:'퇴근 후에 진짜 일하는 사람',d:'혼자만의 세계에서 새로운 생각을 키우고, 사람의 마음에 깊이 공감해요. 흐름에 따라 자유롭게 움직이는 편이에요.',tip:'생각을 작게라도 적어 두면 아이디어가 사라지지 않아요.'}
+};
+var MOOD={
+ C:{k:'태연',pre:'일이 터져도 덤덤한',t:'멘탈은 단단한 편이에요. 일이 터져도 "일단 해 보자"가 먼저 나오고, 퇴근하면 회사 생각을 잘 끄는 편이에요. 가끔은 걱정해 주는 동료의 말도 들어 보세요.'},
+ N:{k:'걱정',pre:'미리 걱정이 출근하는',t:'미리 걱정하는 만큼 준비를 꼼꼼히 하는 편이에요. 대신 퇴근 후에도 머릿속에서 회의가 계속될 때가 있어요. "이 정도면 됐다"를 연습해 보세요.'}
+};
+
+/* 픽셀 아바타 (16x20 격자). 표정: 태연은 웃는 입, 걱정은 땀방울과 처진 눈썹 */
+function avatar(code,mood){
+  var t=T[code],hair=t.c[0],shirt=t.c[1],skin='#f3cfa6',i=0;
+  var q=code[0]=='Q',v=code[1]=='V',h=code[2]=='H',l=code[3]=='L';
+  var r='';
+  function R(x,y,w,hh,c){r+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" fill="'+c+'"/>';}
+  R(3,17,10,3,shirt);R(2,18,12,2,shirt);              // 몸
+  R(7,15,2,2,skin);                                    // 목
+  R(4,6,8,9,skin);                                     // 얼굴
+  R(3,3,10,4,hair);R(4,2,8,1,hair);                    // 머리
+  if(h){R(3,7,1,6,hair);R(12,7,1,6,hair);}else{R(3,7,1,2,hair);R(12,7,1,2,hair);}
+  if(l){R(4,6,3,1,hair);}                              // 앞머리 한쪽
+  R(6,9,1,2,'#222');R(9,9,1,2,'#222');                 // 눈
+  if(mood=='C'){R(6,13,1,1,'#222');R(7,14,2,1,'#222');R(9,13,1,1,'#222');}
+  else{R(5,8,2,1,'#222');R(9,8,2,1,'#222');R(6,14,4,1,'#222');R(12,8,1,2,'#6ec1ff');R(12,10,1,1,'#6ec1ff');}
+  if(!q){R(7,16,2,1,'#fff');}                          // 북적: 셔츠 칼라
+  if(q){R(2,8,2,4,'#333');R(12,8,2,4,'#333');R(3,5,10,1,'#333');}  // 조용: 헤드폰
+  if(code[2]=='W'&&code[0]=='B'){R(7,17,2,3,'#c0392b');}             // 넥타이
+  if(code[1]=='V'&&code[0]=='Q'){R(5,9,3,1,'#555');R(8,9,3,1,'#555');} // 안경 다리
+  return r;
+}
+function setAv(el,code,mood){el.innerHTML=avatar(code,mood);}
+
+var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
+function $(id){return document.getElementById(id);}
+function show(id){['intro','quiz','result'].forEach(function(s){$(s).hidden=s!=id;});window.scrollTo(0,0);}
+
+function render(){
+  var qi=ORDER[st.i],q=Q[qi];
+  $('qn').textContent=(st.i+1)+' / '+Q.length;
+  $('pg').style.width=(st.i/Q.length*100)+'%';
+  $('scene').textContent=q[1];
+  var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';
+  idx.forEach(function(k){
+    var b=document.createElement('button');b.className='opt';b.textContent=q[2][k];
+    b.onclick=function(){pick(qi,k);};o.appendChild(b);
+  });
+}
+function pick(qi,k){
+  var ax=Q[qi][0];
+  if(k==0)st.sc[ax]++;st.n[ax]++;
+  if(SW[qi]===k)st.sw++;
+  st.i++;
+  if(st.i>=Q.length)finish();else render();
+}
+function calc(){
+  var code='';
+  for(var a=0;a<4;a++)code+=st.sc[a]>=2?AX[a].la:AX[a].lb;
+  var mood=st.sc[4]>=2?'C':'N';
+  return {code:code,mood:mood};
+}
+function finish(){
+  var r=calc();
+  var sc=st.sc.slice(),sw=st.sw;
+  var hash='#r='+r.code+'-'+r.mood+'&s='+sc.join('')+'&w='+sw;
+  history.replaceState(null,'',hash);
+  showResult(r.code,r.mood,sc,sw);
+}
+function showResult(code,mood,sc,sw){
+  var t=T[code],m=MOOD[mood];
+  show('result');
+  setAv($('rAv'),code,mood);
+  $('rMood').textContent=m.k+' 모드';
+  $('rName').textContent=t.n;
+  $('rLine').textContent=t.line;
+  $('rSwallow').hidden=sw<0;$('rSwallow').textContent='올해 내가 꾹 참은 말 '+sw+'번';
+  $('rDesc').textContent=t.d;
+  $('rMoodText').textContent=m.t;
+  $('rTip').textContent='꿀팁: '+t.tip;
+  var bars='',half=[];
+  for(var a=0;a<5;a++){
+    var v=sc[a];                      // 첫 번째 극에 준 표(0~3)
+    var pos=(3-v)/3*100;               // 0이면 오른쪽(두 번째 극), 3이면 왼쪽
+    var win=v>=2?AX[a].a:AX[a].b;
+    var strong=(v==0||v==3);
+    if(!strong)half.push(AX[a].n);
+    bars+='<div class="bar"><b>'+AX[a].n+'</b><div style="flex:1"><div class="track"><i style="left:'+pos+'%"></i></div><div class="pole"><span>'+AX[a].a+'</span><span>'+AX[a].b+'</span></div></div><span>'+win+(strong?' 진한':' 살짝')+'</span></div>';
+  }
+  $('rBars').innerHTML=bars;
+  $('rHalf').textContent=half.length?'"살짝"이라고 나온 곳('+half.join(', ')+')은 반반에 가까워요. 다시 하면 다른 쪽이 나올 수 있어요.':'다섯 가지 모두 한쪽으로 뚜렷하게 나왔어요.';
+  $('rBase').textContent=m.pre;
+}
+function gallery(){
+  var g=$('gal'),h='';Object.keys(T).forEach(function(c){h+='<button data-c="'+c+'"><svg class="avatar sm" viewBox="0 0 16 20" data-av="'+c+'"></svg><br>'+T[c].n.split(' ')[0]+'<br>'+T[c].n.split(' ')[1]+'</button>';});
+  g.innerHTML=h;
+  [].forEach.call(g.querySelectorAll('svg'),function(s){setAv(s,s.getAttribute('data-av'),'C');});
+  [].forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){var c=b.getAttribute('data-c');showResult(c,'C',[0,1,2,3].map(function(i){return c[i]==AX[i].la?3:0;}).concat([3]),-1);};});
+}
+$('start').onclick=function(){st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0};history.replaceState(null,'','#');show('quiz');render();};
+$('again').onclick=function(){history.replaceState(null,'','#');show('intro');};
+$('share').onclick=function(){
+  var u=location.href;
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){$('share').textContent='복사했어요';},function(){prompt('링크를 복사하세요',u);});}
+  else prompt('링크를 복사하세요',u);
+};
+setAv($('introAv'),'BVHD','C');
+gallery();
+(function(){
+  var m=/r=([BQ][RV][WH][DL])-([CN])&s=(\d{5})&w=(\d)/.exec(location.hash);
+  if(m&&T[m[1]])showResult(m[1],m[2],m[3].split('').map(Number),+m[4]);
+})();
+</script>
+</body>
+</html>
