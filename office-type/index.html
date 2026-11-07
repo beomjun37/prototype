@@ -342,6 +342,19 @@ h2{font-size:20px}
 .gfb-t{font-size:13px;margin:10px 0 0}
 .more{margin:14px 0 4px}
 .gback{margin:14px 0 4px}
+.tm-head{text-align:center;padding:8px 0 4px}.tm-head small{display:block;color:var(--sub);font-weight:700;font-size:14px}.tm-head h1{margin:4px 0 6px;font-size:28px;letter-spacing:-.02em}
+.tm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.tm-m{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:12px 8px 14px;text-align:center;box-shadow:var(--shadow)}
+.tm-m img{height:70px;width:70px;object-fit:contain;object-position:50% 100%;margin:0 auto;background:var(--mint);border-radius:14px;image-rendering:pixelated;display:block}
+.tm-m.me{border:2px solid var(--accent)}
+.tm-role{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:750;font-size:13.5px;border-radius:99px;padding:3px 11px;margin:9px 0 4px}
+.tm-m b{display:block;font-size:16.5px}.tm-m small{display:block;color:var(--sub);font-size:13px;margin-top:2px;line-height:1.4}.tm-m p{font-size:13.5px;color:var(--sub);margin:6px 0 0;line-height:1.45}
+.tm-in{display:block;width:100%;box-sizing:border-box;min-height:50px;font:inherit;font-size:16px;padding:10px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);margin:6px 0 12px}
+.tm-lab{display:block;font-size:14px;font-weight:700;color:var(--sub);margin-top:4px}
+.tm-pair{display:flex;align-items:center;gap:10px;margin-bottom:12px}.tm-pair img{height:48px;width:48px;object-fit:contain;object-position:50% 100%;background:var(--mint);border-radius:12px;image-rendering:pixelated}
+.tm-pair .tx{flex:1;min-width:0}.tm-pair .tx b{display:block}.tm-pair .sc{font-weight:800;font-size:20px;color:var(--accent)}
+.tm-ev p{margin:0 0 12px;line-height:1.6}.tm-ev p b{color:var(--accent)}.tm-grade{font-size:18px;font-weight:800;margin:4px 0 10px}
+.tm-list .btn{margin-top:8px}
 .pay .panel{border:1.5px dashed var(--line)}.pay-t{font-size:17px}
 @media (max-height:700px){#imgPrev{width:52%!important}}
 </style>
@@ -416,6 +429,8 @@ h2{font-size:20px}
     </div>
   </div>
 
+  <div class="sec" id="tCard"><div class="sec-head"><h2>우리 회사 차리기</h2><p class="sub" style="margin:0">친구들을 초대해서 회사를 차려 보세요. 들어온 사람의 캐릭터를 보고 자리를 정해 주고, 우리 회사의 1년을 미리 보여 드려요.</p></div>
+    <div class="panel"><label class="tm-lab" for="tName">회사 이름</label><input class="tm-in" id="tName" maxlength="12" autocomplete="off"><label class="tm-lab" for="tNick">회사에서 부를 내 이름</label><input class="tm-in" id="tNick" maxlength="6" placeholder="예: 민지" autocomplete="off"><button type="button" class="btn" id="tMake">회사 만들고 초대 링크 보내기</button><div class="tm-list" id="tList"></div></div></div>
   <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><button type="button" class="btn" id="payBtn">990원에 받아 보기</button><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 12월에 열게요. 결제는 되지 않았어요.</p></div></div>
   <div class="memo"><img id="rMasAv" class="avatar sm" alt=""><div><b id="rMasName"></b><div class="sub">해설 다 읽었어요? 같이 일하는 동료한테 이 링크를 보내 봐요. 그 사람이 테스트를 끝내고 돌려보내 주면 우리 둘 궁합을 같이 볼 수 있어요.</div></div></div>
   <button class="btn" id="share">카톡으로 내 사원증 보내기</button>
@@ -423,6 +438,16 @@ h2{font-size:20px}
   <p class="note" style="margin-top:18px">재미로 보는 테스트예요. 진짜 성격 검사나 진단이 아니고, 그날그날 기분에 따라 결과가 달라질 수 있어요.</p>
 </section>
 
+<section id="team" hidden>
+  <div class="tm-head"><small>우리 회사</small><h1 id="tmName"></h1><p class="sub" id="tmCount" style="margin:0"></p></div>
+  <div class="tm-grid" id="tmGrid"></div>
+  <div class="sec" id="tmJoin" style="margin-top:22px"></div>
+  <div class="sec" id="tmPairS"><div class="sec-head"><h2>최고의 콤비, 조심할 콤비</h2></div><div class="panel" id="tmPair"></div></div>
+  <div class="sec"><div class="sec-head"><h2>우리 회사 1년 결산</h2><p class="sub" style="margin:0">지금 모인 사람들로 1년을 보내면 이렇게 될 거예요. 사람이 늘면 결산도 바뀌어요.</p></div><div class="panel tm-ev" id="tmYear"></div></div>
+  <button type="button" class="btn ghost" id="tmMine" style="margin-top:22px">내 사원증 보기</button>
+  <button type="button" class="btn ghost" id="tmHome">처음 화면으로</button>
+  <p class="note" style="margin-top:18px">재미로 보는 결산이에요. 실제 회사 일과는 다를 수 있어요.</p>
+</section>
 </main>
 <div class="sheet-bg" id="imgBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="imgTitle">
   <div class="sheet-grip"></div>
@@ -1014,7 +1039,7 @@ var YEAR_D={D:'미리 끝내 둔 일 덕분에 팀이 여러 번 숨을 돌렸�
 var FRIEND=null,LAST=null;
 var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
 function $(id){return document.getElementById(id);}
-function show(id){['intro','quiz','result','dev'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);if($('sbar'))$('sbar').hidden=true;}
+function show(id){['intro','quiz','result','dev','team'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);if($('sbar'))$('sbar').hidden=true;}
 
 var WD=['월','화','수','목','금','토','일'];
 var WHEN=[[0,'오전 9:00'],[0,'오전 9:30'],[0,'오전 10:00'],[0,'오전 11:00'],[0,'낮 12:00'],[0,'오후 2:00'],[0,'오후 4:00'],[0,'저녁 7:00'],
@@ -1073,12 +1098,14 @@ function finish(){
   setFriendView(null);
   showResult(r.code,r.mood,sc,sw);
   if(FRIEND&&FRIEND.id)setTimeout(function(){$('gCard').scrollIntoView({behavior:'smooth'});},400);
+  var pt='';try{pt=sessionStorage.getItem('oct_pteam')||'';}catch(e){}
+  if(pt){var TT=tParse(pt);if(TT){tOpen(tMerge(TT));setTimeout(function(){$('tmJoin').scrollIntoView({behavior:'smooth',block:'center'});},300);}}
 }
 /* 친구 링크로 들어온 화면: 남의 결과라는 게 보이게 바꾸고, 내 결과용 버튼은 숨긴다 */
 function setFriendView(name){
   var on=!!name;$('result').classList.toggle('friend',on);
   $('rListH').textContent=on?name+'의 해설 13가지':'내 해설 13가지';
-  ['gCard','pay','saveImg','share','again'].forEach(function(id){if($(id))$(id).hidden=on;});
+  ['gCard','tCard','pay','saveImg','share','again'].forEach(function(id){if($(id))$(id).hidden=on;});
   var mm=document.querySelector('#result .memo');if(mm)mm.hidden=on;
   $('fBanner').hidden=!on;
 }
@@ -1091,7 +1118,7 @@ function showResult(code,mood,sc,sw){
   $('rName').textContent=nm.n;
   $('rLine').textContent=nm.line;
   $('rSting').textContent=STING[code][mood];
-  LAST={code:code,mood:mood,nm:nm,pm:null,id:encId(code,mood,sc,sw)};
+  LAST={code:code,mood:mood,nm:nm,pm:null,id:encId(code,mood,sc,sw)};if(typeof tCardSetup=='function')try{tCardSetup();}catch(e){}
   var c0=code[0],c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
   var bp=bestPeer(code,mood),gm=bp.sc,pm=NM(bp.c,bp.m);
   var items=[
@@ -1179,7 +1206,7 @@ function devTools(){
   h+='<h2 id="dvT">5. 캐릭터별 문구 한눈에 보기</h2><p class="sub" style="font-size:13px">문구 검토용이에요. 한 줄 소개, 찔리는 한 줄, 한마디로 제목, 올해 들은 말, 상사에게 하는 말, 어울리는 부서를 한 표에 모았어요.</p><div class="tw"><table class="dt"><tr><th></th><th>캐릭터</th><th>문구</th></tr>';
   K.forEach(function(x){var c=x[0],m=x[1],n=NM(c,m);h+='<tr><td><img src="'+avatar(c,m)+'" alt=""></td><td><b>'+n.n+'</b><br><code>'+mbti(c,m)+'</code></td><td style="white-space:normal;font-size:12.5px;line-height:1.5">'+n.pre+' '+n.n+'<br>한 줄: '+n.line+'<br>찔림: '+STING[c][m]+'<br>한마디로: '+n.hl+'<br>올해 들은 말: '+YEARQ[c+m]+'<br>상사에게: '+X[c][5]+'<br>부서: '+DEPT[c[1]+c[2]][0]+'<br>잘 맞는 동료: '+NM(bestPeer(c,m).c,bestPeer(c,m).m).n+' ('+bestPeer(c,m).sc+'점)</td></tr>';});
   h+='</table></div>';
-  h+='<h2 id="dvEtc">6. 기타</h2><div class="dvbox"><div class="dvrow"><button class="dvbtn" id="dvClr">저장된 내 결과 지우기</button><button class="dvbtn" id="dvStart">처음 화면으로</button></div><p class="sub" style="font-size:13px;margin:0">저장된 내 결과를 지우면 내 결과 링크도 친구 링크처럼 보여요. 친구 링크 화면을 실제로 점검할 때 써요.</p><p class="sub" style="font-size:13px">올리기 전 점검(팀 컴퓨터에서): copycheck.js 라이트·다크, readcheck.js, build-public.py로 공개본 만들기. 이 페이지와 왼쪽 아래 버튼은 공개본에서 자동으로 빠져요.</p></div>';
+  h+='<h2 id="dvEtc">6. 기타</h2><div class="dvbox"><div class="dvrow"><button class="dvbtn" id="dvClr">저장된 내 결과 지우기</button><button class="dvbtn" id="dvStart">처음 화면으로</button><button class="dvbtn" id="dvTeam">예시 회사 열기 (5명)</button></div><p class="sub" style="font-size:13px;margin:0">저장된 내 결과를 지우면 내 결과 링크도 친구 링크처럼 보여요. 친구 링크 화면을 실제로 점검할 때 써요.</p><p class="sub" style="font-size:13px">올리기 전 점검(팀 컴퓨터에서): copycheck.js 라이트·다크, readcheck.js, build-public.py로 공개본 만들기. 이 페이지와 왼쪽 아래 버튼은 공개본에서 자동으로 빠져요.</p></div>';
   $('devTools').innerHTML=h;
   [].forEach.call(document.querySelectorAll('.dvc'),function(b){b.onclick=function(){devOpen(b.dataset.c,b.dataset.m);};});
   var g=function(){var a=$('dvGa').value,b=$('dvGb').value,rel=$('dvGr').value,r=gScore(a.substr(0,4),a.substr(4),b.substr(0,4),b.substr(4),rel),nm=['충전','일을 보는 눈','기준','마감 리듬','멘탈'],w=gWeak(r);
@@ -1190,6 +1217,7 @@ function devTools(){
   $('dvQrand').onclick=function(){fill(Q.length);finish();devFloatOn();};
   $('dvIgo').onclick=function(){var v=$('dvIc').value,c=v.substr(0,4),m=v.substr(4);FRIEND=null;showResult(c,m,devSc(c,m,4),0);show('dev');$('dvIout').innerHTML='만드는 중…';makeCard(function(bl,cv){$('dvIout').innerHTML='';var im=new Image();im.src=cv.toDataURL('image/png');im.style.cssText='width:100%;border-radius:12px;border:1px solid var(--line)';$('dvIout').appendChild(im);});};
   $('dvClr').onclick=function(){try{localStorage.removeItem('oct_mine');}catch(e){}this.textContent='지웠어요';};
+  $('dvTeam').onclick=function(){var nk=['민지','현우','서연','도윤','하은'],ks=KEYS.slice().sort(function(){return Math.random()-.5;}).slice(0,5);tOpen({name:'예시 컴퍼니',mem:ks.map(function(k,i){var c=k.substr(0,4),m=k.substr(4);return {id:encId(c,m,devSc(c,m,4),0),nk:nk[i]};})});};
   $('dvStart').onclick=function(){history.replaceState(null,'','#');show('intro');};
 }
 $('devFloat').onclick=function(){this.hidden=true;devRender();show('dev');history.replaceState(null,'','#dev');};
@@ -1299,6 +1327,78 @@ $('sbSave').onclick=function(){$('saveImg').onclick.call($('saveImg'));};
   $('sbFriend').onclick=function(){$('fGo').onclick();};
   window.SBAR=upd;
 })();
+/* ===== 우리 회사 차리기 ===== */
+var ROLES=[
+ {n:'대표',d:'회사가 갈 방향을 정하고 큰 결정을 내려요.',f:function(a){return (a[0]=='B')+(a[1]=='V')+(a[2]=='W')+(a[4]=='C')*1.2;}},
+ {n:'기획',d:'할 일을 정리하고 일정표를 짜요.',f:function(a){return (a[1]=='V')+(a[3]=='D')*1.3+(a[0]=='Q')*.6;}},
+ {n:'개발·제작',d:'조용히 실제 결과물을 만들어요.',f:function(a){return (a[0]=='Q')+(a[1]=='R')+(a[2]=='W')*.8;}},
+ {n:'영업',d:'밖에서 사람을 만나 일을 따 와요.',f:function(a){return (a[0]=='B')*1.3+(a[2]=='H')+(a[1]=='R')*.6;}},
+ {n:'마케팅',d:'우리 회사를 세상에 알려요.',f:function(a){return (a[0]=='B')+(a[1]=='V')*1.2+(a[3]=='L')*.7;}},
+ {n:'재무',d:'돈이 새는 곳을 찾아서 막아요.',f:function(a){return (a[1]=='R')+(a[3]=='D')+(a[2]=='W')*.8+(a[4]=='C')*.5;}},
+ {n:'디자인',d:'보이는 모든 걸 보기 좋게 다듬어요.',f:function(a){return (a[1]=='V')+(a[2]=='H')*.8+(a[0]=='Q')*.7;}},
+ {n:'분위기 담당',d:'팀이 지칠 때 다 같이 웃게 만들어요.',f:function(a){return (a[0]=='B')+(a[2]=='H')*1.3+(a[3]=='L')*.5;}}];
+var TNAMES=['칼퇴 컴퍼니','무사히 주식회사','야근 없는 회사','월급 오르는 회사','커피 한잔 컴퍼니'];
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function tEnc(x){return encodeURIComponent(x).replace(/\./g,'%2E').replace(/~/g,'%7E');}
+function tHash(t){return '#t='+tEnc(t.name)+'.'+t.mem.map(function(m){return m.id+tEnc(m.nk);}).join('.');}
+function tParse(h){var m=/#t=([^&]*)/.exec(h);if(!m)return null;var ps=m[1].split('.'),name;try{name=decodeURIComponent(ps[0]);}catch(e){return null;}if(!name)return null;
+  var mem=[],seen={};ps.slice(1).forEach(function(x){var id=x.substr(0,5),nk;try{nk=decodeURIComponent(x.substr(5));}catch(e){nk='';}var r=decId(id);if(!r||seen[id]||mem.length>=8)return;seen[id]=1;mem.push({id:id,nk:nk.slice(0,6)||'이름 없음'});});
+  return {name:name.slice(0,12),mem:mem};}
+function tAll(){try{return JSON.parse(localStorage.getItem('oct_teams')||'{}')||{};}catch(e){return {};}}
+function tSave(t){var a=tAll();a[t.name]=t;try{localStorage.setItem('oct_teams',JSON.stringify(a));}catch(e){}}
+function tMerge(t){var old=tAll()[t.name];if(!old)return t;var mem=t.mem.slice(),ids={};mem.forEach(function(m){ids[m.id]=1;});old.mem.forEach(function(m){if(!ids[m.id]&&mem.length<8){mem.push(m);ids[m.id]=1;}});return {name:t.name,mem:mem};}
+function myId(){var h='';try{h=localStorage.getItem('oct_mine')||'';}catch(e){}return (/r=([0-9a-z]{5})/.exec(h)||[])[1]||'';}
+function tPeople(t){return t.mem.map(function(m){var r=decId(m.id);return {id:m.id,nk:m.nk,c:r.code,m:r.mood,a:r.code+r.mood,r:r};});}
+function tRoles(P){var left=P.map(function(x,i){return i;}),out={};ROLES.slice(0,P.length).forEach(function(ro){var bi=-1,bv=-1;left.forEach(function(i){var v=ro.f(P[i].a);if(v>bv){bv=v;bi=i;}});out[bi]=ro;left.splice(left.indexOf(bi),1);});return out;}
+function tPairs(P){var L=[];for(var i=0;i<P.length;i++)for(var j=i+1;j<P.length;j++){var g=gScore(P[i].c,P[i].m,P[j].c,P[j].m,'peer');L.push({a:P[i],b:P[j],g:g});}L.sort(function(x,y){return y.g.sc-x.g.sc;});return L;}
+function tPt(nk,a,b){return '<b>'+esc(nk)+'</b>'+J(nk,a,b).slice(nk.length);}
+function tYear(P,L){var n=P.length,cnt=function(k,ch){return P.filter(function(x){return x.a[k]==ch;}).length;},maj=function(k,ch){return cnt(k,ch)/n>=.6;},ev=[];
+  if(maj(1,'V'))ev.push(['2월','새 아이디어가 열두 개 나왔어요. 그중에 끝낸 건 두 개예요.']);else if(maj(1,'R'))ev.push(['2월','새로운 일은 적었지만, 하기로 한 일은 다 끝냈어요.']);
+  if(maj(0,'B'))ev.push(['4월','회식을 네 번이나 했어요. 대신 회의는 짧아졌어요.']);else if(maj(0,'Q'))ev.push(['4월','회의실은 조용했는데 메신저 방은 하루 종일 바빴어요.']);
+  var b=L[0];ev.push(['5월',tPt(b.a.nk,'과','와')+' '+tPt(b.b.nk,'이','가')+' 같이 맡은 일이 올해 회사에서 가장 잘됐어요.']);
+  if(maj(4,'C'))ev.push(['7월','큰 거래처가 갑자기 계약을 미뤘어요. 그래도 다들 침착하게 다음 할 일을 찾았어요.']);else if(maj(4,'N'))ev.push(['7월','작은 실수에도 다 같이 걱정했어요. 덕분에 큰 사고는 한 번도 없었어요.']);
+  if(n>2){var w=L[L.length-1];ev.push(['9월',tPt(w.a.nk,'과','와')+' '+tPt(w.b.nk,'이','가')+' 일하는 방식 때문에 크게 부딪쳤어요. 점심 한 번 같이 먹고 풀었어요.']);}
+  if(maj(2,'H'))ev.push(['10월','올해 회사를 떠난 사람이 한 명도 없어요. 생일 케이크는 '+n+'번 샀어요.']);else if(maj(2,'W'))ev.push(['10월','성과는 좋았어요. 대신 서운하다는 말이 한 번 나왔어요.']);
+  if(maj(3,'D'))ev.push(['12월','마감 일주일 전에 일이 다 끝났어요. 연말엔 다 같이 칼퇴했어요.']);else if(maj(3,'L'))ev.push(['12월','마감 전날 다 같이 밤을 새웠어요. 그래도 결국 해냈어요.']);else ev.push(['12월','미리 끝내는 사람과 막판에 몰아치는 사람이 부딪쳤어요. 중간 점검 날을 정하고 나서 조용해졌어요.']);
+  var avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
+  var gr=avg>=80?'내년엔 회사를 더 키워도 되겠어요.':avg>=70?'무사히 살아남았어요. 내년이 더 기대돼요.':avg>=60?'아슬아슬했지만 끝까지 버텼어요.':'다사다난했어요. 그래도 아무도 안 나갔어요.';
+  return '<div class="tm-grade">올해 성적: '+gr+'</div><p class="sub" style="margin:0 0 14px">우리 회사 사람들끼리 평균 궁합은 '+avg+'점이에요.</p>'+ev.map(function(e){return '<p><b>'+e[0]+'</b> '+e[1]+'</p>';}).join('');}
+var TCUR=null;
+function tOpen(t){
+  TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
+  var P=tPeople(t),me=myId(),ro=tRoles(P),inT=t.mem.some(function(m){return m.id==me;});
+  $('tmName').textContent=t.name;
+  $('tmCount').textContent='지금 '+P.length+'명이 일하고 있어요. 최대 8명까지 들어올 수 있어요.';
+  $('tmGrid').innerHTML=P.map(function(x,i){var nm=NM(x.c,x.m);return '<div class="tm-m'+(x.id==me?' me':'')+'"><img alt="" src="'+avatar(x.c,x.m)+'"><span class="tm-role">'+ro[i].n+'</span><b>'+esc(x.nk)+(x.id==me?' (나)':'')+'</b><small>'+nm.n+'</small><p>'+ro[i].d+'</p></div>';}).join('');
+  var J0=$('tmJoin');
+  if(inT){J0.innerHTML='<div class="panel"><b>더 많이 모일수록 결산이 재밌어져요</b><p class="sub" style="margin:6px 0 12px">새 사람이 들어오면 그 사람 화면에 바뀐 링크가 나와요. 그 링크를 다시 열면 내 화면에도 새 사람이 보여요.</p><button type="button" class="btn" id="tmShare" data-ev="team_share">단톡방에 초대 링크 보내기</button></div>';
+    $('tmShare').onclick=function(){sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 지금 '+P.length+'명이야. 너도 2분 테스트하고 들어와. 캐릭터 보고 자리 정해 줄게.',BASE+tHash(t),this,'복사했어요. 단톡방에 붙여 넣어 보세요');};}
+  else if(P.length>=8){J0.innerHTML='<div class="panel"><b>자리가 다 찼어요</b><p class="sub" style="margin:6px 0 12px">이 회사는 8명이 모두 들어왔어요. 테스트를 하고 내 회사를 새로 차려 보세요.</p><button type="button" class="btn" id="tmGo">테스트하고 내 회사 차리기</button></div>';$('tmGo').onclick=function(){$('start').onclick();};}
+  else if(me){J0.innerHTML='<div class="panel"><b>이 회사에 들어갈까요?</b><p class="sub" style="margin:6px 0 4px">내 캐릭터를 보고 자리를 정해 드려요.</p><label class="tm-lab" for="tmNick">회사에서 부를 내 이름</label><input class="tm-in" id="tmNick" maxlength="6" placeholder="예: 민지" autocomplete="off"><button type="button" class="btn" id="tmIn">내 사원증으로 들어가기</button></div>';
+    try{$('tmNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
+    $('tmIn').onclick=function(){var nk=$('tmNick').value.trim().slice(0,6);if(!nk){$('tmNick').focus();$('tmNick').placeholder='이름을 먼저 적어 주세요';return;}try{localStorage.setItem('oct_nick',nk);sessionStorage.removeItem('oct_pteam');}catch(e){}t.mem.push({id:me,nk:nk});track('team_join');tOpen(t);setTimeout(function(){$('tmJoin').scrollIntoView({behavior:'smooth',block:'center'});},200);};}
+  else{J0.innerHTML='<div class="panel"><b>나도 이 회사에 들어가기</b><p class="sub" style="margin:6px 0 12px">2분 테스트로 내 캐릭터가 나오면, 그걸 보고 이 회사에서 내 자리를 정해 드려요.</p><button type="button" class="btn" id="tmGo">2분 테스트하고 들어가기</button></div>';
+    $('tmGo').onclick=function(){try{sessionStorage.setItem('oct_pteam',tHash(t));}catch(e){}track('team_start');$('start').onclick();};}
+  $('tmMine').hidden=!me;
+  var L=P.length>1?tPairs(P):null;$('tmPairS').hidden=!L;
+  if(L){var row=function(x,lab){return '<div class="tm-pair"><img alt="" src="'+avatar(x.a.c,x.a.m)+'"><img alt="" src="'+avatar(x.b.c,x.b.m)+'"><div class="tx"><span class="sub" style="font-size:13.5px">'+lab+'</span><b>'+esc(x.a.nk)+', '+esc(x.b.nk)+'</b></div><span class="sc">'+x.g.sc+'점</span></div><p class="sub" style="margin:-4px 0 16px;font-size:14.5px">'+gLine(x.g)+'</p>';};
+    $('tmPair').innerHTML=row(L[0],L.length>1?'최고의 콤비':'우리 둘')+(L.length>2?row(L[L.length-1],'조심할 콤비'):'');}
+  $('tmYear').innerHTML=L?tYear(P,L):'<p class="sub" style="margin:0">한 명만 더 들어오면 자리 정하기와 1년 결산이 나와요. 위의 버튼으로 친구를 불러 보세요.</p>';
+  window.scrollTo(0,0);
+}
+$('tmHome').onclick=function(){history.replaceState(null,'','#');show('intro');};
+$('tmMine').onclick=function(){var r=decId(myId());if(!r)return;FRIEND=null;history.replaceState(null,'','#r='+myId());setFriendView(null);showResult(r.code,r.mood,r.sc,r.w);};
+function tCardSetup(){
+  if(!$('tName').value)$('tName').value=TNAMES[Math.floor(Math.random()*TNAMES.length)];
+  try{if(!$('tNick').value)$('tNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
+  var a=tAll(),ks=Object.keys(a);$('tList').innerHTML=ks.length?'<p class="sub" style="margin:16px 0 0">이 폰에서 열어 본 회사</p>'+ks.slice(-4).map(function(k){return '<button type="button" class="btn ghost" data-t="'+esc(k)+'">'+esc(k)+' ('+a[k].mem.length+'명) 보기</button>';}).join(''):'';
+  [].forEach.call($('tList').querySelectorAll('button'),function(b){b.onclick=function(){var t=tAll()[b.dataset.t];if(t)tOpen(t);};});
+}
+$('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,12)||TNAMES[0],nk=$('tNick').value.trim().slice(0,6),me=LAST&&LAST.id;
+  if(!nk){$('tNick').focus();$('tNick').placeholder='이름을 먼저 적어 주세요';return;}if(!me)return;
+  try{localStorage.setItem('oct_nick',nk);if(!myId())localStorage.setItem('oct_mine','#r='+me);}catch(e){}
+  var t=tMerge({name:nm,mem:[{id:me,nk:nk}]});track('team_make');tOpen(t);
+  sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 너도 2분 테스트하고 들어와. 캐릭터 보고 자리 정해 줄게.',BASE+tHash(t),$('tmShare'),'복사했어요. 단톡방에 붙여 넣어 보세요');};
 function shareMine(btn){
   var L=LAST;sendText('나 올해 회사에서 \''+L.nm.n+'\'래ㅋㅋ 너는 뭐 나와? 해 보면 우리 둘 궁합도 바로 떠.',BASE+'#r='+L.id,btn,'복사했어요. 카톡에 붙여 넣어 보세요');
 }
@@ -1308,6 +1408,7 @@ $('share').onclick=function(){shareMine(this);};
 setAv($('introAv'),'BVWD','C');setAv($('introAv2'),'BRWL','C');setAv($('introAv3'),'QVHL','C');
 (function(){
   var h=location.hash,m,R=null,P=null;
+  if(/#t=/.test(h)){var TT=tParse(h);if(TT&&TT.mem.length){TT=tMerge(TT);track('team_open');tOpen(TT);return;}}
   if((m=/[#&]g=([0-9a-z]{5})-([0-9a-z]{5})(?:-(peer|boss|junior))?/.exec(h))){R=decId(m[1]);P=decId(m[2]);if(P)CUR_REL=({boss:'junior',junior:'boss'})[m[3]]||'peer';}
   else if((m=/r=([0-9a-z]{5})(?![0-9a-z])/.exec(h)))R=decId(m[1]);
   else if((m=/r=([BQ][RV][WH][DL])-([CN])&s=(\d{5})&w=(\d+)/.exec(h))&&T[m[1]])R={code:m[1],mood:m[2],sc:m[3].split('').map(Number),w:+m[4]};
