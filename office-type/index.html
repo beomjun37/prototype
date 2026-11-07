@@ -50,6 +50,9 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .qtop{display:flex;align-items:baseline;justify-content:space-between;margin:4px 0 10px}
 #qn{font-size:15px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
 .qtop .note{margin:0}
+.qback{background:none;border:0;padding:8px 10px 8px 0;margin:-8px 0;font:inherit;font-size:14px;font-weight:650;color:var(--sub);cursor:pointer}
+.qback:active{color:var(--accent)}
+.opt.was{border-color:var(--accent);background:var(--accent-soft)}
 .prog{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin:0 0 34px}
 .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s ease}
 .scene{font-size:24px;font-weight:750;line-height:1.45;letter-spacing:-.03em;margin:0 0 28px;min-height:70px}
@@ -147,7 +150,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 </section>
 
 <section id="quiz" hidden>
-  <div class="qtop"><span id="qn"></span><span class="note">정답은 없어요</span></div>
+  <div class="qtop"><button class="qback" id="qBack" type="button" hidden>← 이전 질문</button><span id="qn"></span><span class="note">정답은 없어요</span></div>
   <div class="prog"><i id="pg"></i></div>
   <div class="scene" id="scene"></div>
   <div id="opts"></div>
@@ -572,16 +575,20 @@ function show(id){['intro','quiz','result','dev'].forEach(function(s){$(s).hidde
 function render(){
   var qi=ORDER[st.i],q=Q[qi];
   $('qn').textContent=(st.i+1)+' / '+Q.length;
+  $('qBack').hidden=st.i===0;
+  var prev=st.ans&&st.ans[st.i];
   $('pg').style.width=(st.i/Q.length*100)+'%';
   $('scene').textContent=q[1];
   var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';
   idx.forEach(function(k){
     var b=document.createElement('button');b.className='opt';b.textContent=q[2][k];
+    if(prev&&prev[1]===k)b.className+=' was';
     b.onclick=function(){pick(qi,k);};o.appendChild(b);
   });
 }
 function pick(qi,k){
   var ax=Q[qi][0];
+  st.ans=st.ans||[];st.ans[st.i]=[qi,k];
   if(k==0)st.sc[ax]++;st.n[ax]++;
   if(SW[qi]===k)st.sw++;
   st.i++;
@@ -668,7 +675,8 @@ function devRender(){
 }
 $('devGo').onclick=function(){devRender();show('dev');history.replaceState(null,'','#dev');};
 $('devBack').onclick=function(){history.replaceState(null,'','#');show('intro');};
-$('start').onclick=function(){st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0};history.replaceState(null,'','#');show('quiz');render();};
+$('start').onclick=function(){st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[]};history.replaceState(null,'','#');show('quiz');render();};
+$('qBack').onclick=function(){if(st.i<1)return;st.i--;var a=st.ans[st.i],qi=a[0],k=a[1],ax=Q[qi][0];if(k==0)st.sc[ax]--;st.n[ax]--;if(SW[qi]===k)st.sw--;render();window.scrollTo(0,0);};
 $('again').onclick=function(){history.replaceState(null,'','#');show('intro');};
 $('share').onclick=function(){
   var u=location.href;
