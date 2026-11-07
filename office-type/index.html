@@ -314,6 +314,8 @@ h2{font-size:20px}
 @keyframes qin{from{opacity:0;transform:translateY(8px)}}
 @keyframes bpop{0%{transform:translateY(16px);opacity:0}70%{transform:translateY(-3px)}}
 @media (prefers-reduced-motion:reduce){.qcard.in,#opts.in,.buddy.pop img{animation:none}}
+.gpair{flex-wrap:wrap}
+.gline1{flex-basis:100%;margin:12px 0 0;text-align:center;text-wrap:balance;font-size:16px;font-weight:750;line-height:1.5;letter-spacing:-.02em;color:var(--ink);word-break:keep-all}
 </style>
 </head>
 <body>
@@ -787,9 +789,32 @@ function gWeak(r){ // 가장 많이 깎인 축을 꿀팁으로
   var M=REL[r.rel||'peer'].m,loss=[],i;for(i=0;i<5;i++)loss.push(Math.max.apply(null,[].concat(M[i][0],M[i][1]))-r.pts[i]);
   var w=0;for(i=1;i<5;i++)if(loss[i]>loss[w])w=i;return loss[w]?w:-1;
 }
+/* 조합마다 다른 한마디: 가장 잘 맞는 축(앞)과 가장 많이 깎인 축(뒤)을 이어 붙여요. [축][나][상대] = [잘 맞을 때, 걸릴 때] */
+var PAIR=[
+ [[['점심 메뉴부터 척척 맞는데','둘 다 수다에 빠져 일이 밀리는'],['쉬는 방식이 달라서 서로 부딪칠 일이 적은데','혼자 쉬고 싶은 {o}를 내가 자꾸 부르는']],
+  [['쉬는 방식이 달라서 서로 부딪칠 일이 적은데','혼자 쉬고 싶은 나를 {o가} 자꾸 부르는'],['조용히 각자 일하는 게 편한데','말을 안 해서 오해가 쌓이는']]],
+ [[['할 일 얘기는 한마디로 통하는데','둘 다 당장 일만 보다 큰 방향을 놓치는'],['{o가} 그리면 내가 실행하는데','{o는} 내년을 보고 나는 이번 주를 보는']],
+  [['내가 그리면 {o가} 실행하는데','나는 내년을 보고 {o는} 이번 주를 보는'],['아이디어 회의는 불꽃이 튀는데','아이디어만 쌓이고 실행은 밀리는']]],
+ [[['결정은 빠르고 깔끔한데','둘 다 일만 챙기다 사람 마음을 놓치는'],['일과 사람을 나눠 챙겨서 빈틈이 없는데','내 말이 {o}에게는 차갑게 들리는']],
+  [['일과 사람을 나눠 챙겨서 빈틈이 없는데','{o} 말이 나에게는 차갑게 들리는'],['서로 마음 하나는 잘 챙기는데','둘 다 싫은 소리를 못 해서 결정이 늦어지는']]],
+ [[['마감 하나는 확실히 지키는데','둘 다 미리 하느라 같이 지치는'],['내가 미리 챙겨 둬서 {o가} 편한데','막판까지 미루는 {o} 때문에 내 속이 타는']],
+  [['{o가} 미리 챙겨 줘서 내가 편한데','"왜 아직이야?"와 "곧 해요"가 오가는'],['막판 집중력은 둘 다 최고인데','마감 전날 밤 같이 불타는']]],
+ [[['일이 터져도 둘 다 침착한데','둘 다 태평해서 위험 신호를 늦게 보는'],['{o가} 걱정하면 내가 잡아 주는데','걱정하는 {o}에게 내가 "괜찮아"만 하는']],
+  [['내가 걱정하면 {o가} 잡아 주는데','걱정하는 나에게 {o가} "괜찮아"만 하는'],['작은 실수도 서로 먼저 알아채는데','작은 일도 둘이 같이 크게 걱정하는']]]
+];
+var PWHO={peer:'동료',boss:'상사',junior:'후임'};
+function gLine(r){
+  var M=REL[r.rel||'peer'].m,loss=[],i;for(i=0;i<5;i++)loss.push(Math.max.apply(null,[].concat(M[i][0],M[i][1]))-r.pts[i]);
+  var w=gWeak(r),mn=Math.min.apply(null,loss),cand=[];for(i=0;i<5;i++)if(loss[i]==mn&&i!=w)cand.push(i);
+  var hs=0;r.ix.forEach(function(q,k){hs+=(q[0]*2+q[1]+1)*(k+3);});var b=cand.length?cand[hs%cand.length]:w,o=PWHO[r.rel||'peer'];
+  var f=function(t){return t.replace('{o는}',J(o,'은','는')).replace('{o가}',J(o,'이','가')).replace('{o}를',J(o,'을','를')).replace(/\{o\}/g,o);};
+  var A=f(PAIR[b][r.ix[b][0]][r.ix[b][1]][0]);
+  if(w<0||w==b)return A.replace(/는데$|한데$/,function(m){return m=='한데'?'한':'는';})+' 사이';
+  return A+'<br>'+f(PAIR[w][r.ix[w][0]][r.ix[w][1]][1])+'\u00a0사이';
+}
 function gRender(me,mm,ot,om,who){
   var rel=CUR_REL,r=gScore(me,mm,ot,om,rel),h='';
-  h+='<div class="gpair"><img class="avatar sm" alt="" src="'+avatar(me,mm)+'"><div class="center"><div class="gscore">'+r.sc+'<small>점</small></div><b>'+gGrade(r.sc,rel)+'</b></div><img class="avatar sm" alt="" src="'+avatar(ot,om)+'"></div>';
+  h+='<div class="gpair"><img class="avatar sm" alt="" src="'+avatar(me,mm)+'"><div class="center"><div class="gscore">'+r.sc+'<small>점</small></div></div><img class="avatar sm" alt="" src="'+avatar(ot,om)+'"><p class="gline1">'+gLine(r)+'</p></div>';
   h+='<p class="center sub" style="margin:0 0 6px">나 '+NM(me,mm).n+' × '+(who||'')+REL[rel].n+' '+NM(ot,om).n+'</p>';
   var DL=DIRL[rel]||{};
   for(var i=0;i<5;i++){var nm5=i<4?GT[i][0]:'일이 터졌을 때',tx=DL[i]?DL[i][r.ix[i][0]][r.ix[i][1]]:(i<4?(r.same[i]?GT[i][1]:GT[i][2]):GMT[r.mi]);h+='<div class="gline"><b>'+nm5+'</b>'+tx+'</div>';}
