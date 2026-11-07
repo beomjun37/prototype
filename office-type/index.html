@@ -134,7 +134,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
     <div class="mini-id"><img id="introAv" class="avatar" alt=""><span>기획왕 임차장</span></div>
     <div class="mini-id"><img id="introAv3" class="avatar" alt=""><span>몽상가 윤사원</span></div>
   </div>
-  <div class="facts"><div><b>15개</b>장면</div><div><b>1분</b>걸려요</div><div><b>32명</b>캐릭터</div></div>
+  <div class="facts"><div><b>15개</b>장면</div><div><b>1분</b>걸려요</div><div><b>1장</b>내 사원증</div></div>
   <button class="btn" id="start">장면 15개 고르러 가기</button>
   <p class="note" style="margin-top:14px">정답은 없어요. 재미로 보는 테스트이고 진짜 성격 검사는 아니에요.</p>
 </section>
@@ -149,12 +149,11 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 <section id="result" hidden>
   <div class="fbanner" id="fBanner" hidden><b>친구가 보낸 사원증이에요</b><p>나도 1분 테스트를 하면 이 친구와 나의 궁합이 바로 나와요.</p><button class="btn" id="fGo">나도 해 보고 궁합 보기</button></div>
   <div class="idcard">
-    <div class="id-top"><span>올해의 사원증</span><span class="hole"></span><span id="rMood"></span></div>
+    <div class="id-top"><span>올해의 사원증</span><span class="hole"></span><span id="rMood" hidden></span></div>
     <div class="id-body">
       <div class="id-photo"><img id="rAv" class="avatar" alt=""></div>
       <div><div class="id-pre" id="rBase"></div><div class="id-name" id="rName"></div><p id="rLine"></p></div>
     </div>
-    <div id="rChips" class="chips"></div>
   </div>
 
   <div class="sec">
@@ -165,8 +164,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
   <div class="sec" id="gCard">
     <div class="sec-head"><h2>궁합 보기</h2><p class="sub" id="gIntro" style="margin:0">같이 일하는 사람이 어떤 캐릭터인지 골라 보세요. 그 사람이 내 링크로 테스트를 하면 궁합이 자동으로 떠요.</p></div>
     <div class="panel">
-      <div class="pickhint">상대 캐릭터와, 그 사람이 일이 터졌을 때 덤덤한 편인지 걱정이 많은 편인지 골라 주세요.</div>
-      <div class="pickrow"><select id="gSel" class="sel" aria-label="상대 캐릭터"></select><select id="gMood" class="sel" style="flex:0 0 132px" aria-label="상대가 일이 터졌을 때"><option value="C">덤덤한 편</option><option value="N">걱정 많은 편</option></select></div>
+      <div class="pickrow"><select id="gSel" class="sel" aria-label="상대 캐릭터"></select></div>
       <div id="gOut"></div>
       <div class="top-h">나랑 잘 맞는 캐릭터 TOP 3</div>
       <div id="gTop"></div>
@@ -371,7 +369,7 @@ function make(spec,mood){
   if(spec.lash){set(LX-1,EY-1,eyeC,'face');set(RX+2,EY-1,eyeC,'face');}
   // 눈썹
   var bc=dk(hair,.15),BY=EY-2;
-  if(worried){ set(LX-1,BY+1,bc,'face');set(LX,BY,bc,'face');set(LX+1,BY-1,bc,'face'); set(RX,BY-1,bc,'face');set(RX+1,BY,bc,'face');set(RX+2,BY+1,bc,'face'); }
+  if(worried||ex.brow=='worry'){ set(LX-1,BY+1,bc,'face');set(LX,BY,bc,'face');set(LX+1,BY-1,bc,'face'); set(RX,BY-1,bc,'face');set(RX+1,BY,bc,'face');set(RX+2,BY+1,bc,'face'); }
   else if(ex.brow=='sharp'){ set(LX-1,BY-1,bc,'face');set(LX,BY,bc,'face');set(LX+1,BY,bc,'face'); set(RX,BY,bc,'face');set(RX+1,BY,bc,'face');set(RX+2,BY-1,bc,'face'); }
   else if(ex.brow=='up'){ row(BY-1,LX-1,LX+1,bc,'face');row(BY-1,RX,RX+2,bc,'face'); }
   else { row(BY,LX-1,LX+1,bc,'face');row(BY,RX,RX+2,bc,'face'); }
@@ -459,8 +457,51 @@ var CHAR={
  QVHL:{hairStyle:'bun',outfit:'sweater',lash:true,face:{eyes:'big',brow:'up',mouth:'small'},pal:{hair:'#6F5AA0',cloth:'#B8A6E0',acc:'#FFC75B',pant:'#5A5A8A',skin:'#F8D7BC'}}
 };
 
+
+/* 32명: 기본(앞 16명)의 형용구, 그리고 새 16명의 이름·한 줄·형용구·한마디·키워드·모습 */
+var PRE_C={BRWD:'회의를 시원하게 정리하는',BRWL:'급한 일에 먼저 손드는',BRHD:'팀 일정을 다 꿰고 있는',BRHL:'첫 출근한 사람도 웃게 만드는',BVWD:'다음 분기까지 내다보는',BVWL:'회의 때 손이 제일 먼저 올라가는',BVHD:'모두의 속도를 맞춰 주는',BVHL:'월요일에도 텐션이 높은',QRWD:'오타 하나 그냥 못 넘기는',QRWL:'마감 날 조용히 다 끝내 놓는',QRHD:'필요한 걸 말하기 전에 건네는',QRHL:'누구와도 편하게 지내는',QVWD:'말보다 설계도로 보여 주는',QVWL:'한 번 꽂히면 끝까지 파는',QVHD:'고민 상담 줄이 끊이지 않는',QVHL:'퇴근 후에 아이디어가 쏟아지는'};
+var N32={
+ BRWD:{n:'점검반장 문과장',line:'회의 전날 자료를 세 번 다시 보는 사람',pre:'실수 하나 없게 미리 다 점검하는',hl:'두 번 재고 한 번 자르는 줄자',kw:'믿고 맡기기'},
+ BRWL:{n:'비상대기 하대리',line:'일이 터지기 전에 먼저 가 있는 사람',pre:'메신저 알림에 누구보다 빠른',hl:'늘 켜져 있는 비상등',kw:'알림 끄는 시간'},
+ BRHD:{n:'다정총무 진주임',line:'모두 밥은 먹었는지 먼저 묻는 사람',pre:'회식 자리 배치까지 신경 쓰는',hl:'팀의 따뜻한 보온병',kw:'내 몫 챙기기'},
+ BRHL:{n:'흥부자 탁사원',line:'웃기면서도 다들 괜찮은지 살피는 사람',pre:'분위기가 식을까 먼저 말을 거는',hl:'눈치 빠른 응원단장',kw:'조용한 날 즐기기'},
+ BVWD:{n:'로드맵장인 구차장',line:'계획 B, C까지 준비해 두는 사람',pre:'일이 어긋날 경우까지 다 그려 두는',hl:'비상구까지 그려 둔 지도',kw:'계획 A 믿기'},
+ BVWL:{n:'메모광 은주임',line:'떠오른 생각을 놓칠까 봐 다 적어 두는 사람',pre:'아이디어 노트가 세 권째인',hl:'주머니 가득한 아이디어 쪽지',kw:'하나만 고르기'},
+ BVHD:{n:'든든반장 채과장',line:'팀원 한 명 한 명 안부를 챙기는 사람',pre:'팀원의 표정 변화를 제일 먼저 아는',hl:'모두를 덮어 주는 큰 우산',kw:'나에게도 안부 묻기'},
+ BVHL:{n:'감성충전 류사원',line:'좋은 생각이 떠올라도 한 번 더 망설이는 사람',pre:'아이디어를 꺼내기 전에 열 번 고민하는',hl:'수줍게 반짝이는 손전등',kw:'일단 말해 보기'},
+ QRWD:{n:'체크리스트 여대리',line:'보낸 메일도 다시 열어 확인하는 사람',pre:'할 일 목록에 체크 표시가 빼곡한',hl:'빈틈없는 체크박스',kw:'80점에 보내기'},
+ QRWL:{n:'막판스퍼트 표대리',line:'마감 전날 잠 못 들고 끝까지 해내는 사람',pre:'마감 앞에서 커피를 두 잔 마시는',hl:'자정에 켜지는 형광등',kw:'하루 일찍 끝내기'},
+ QRHD:{n:'뒷정리장인 남주임',line:'회의실 불까지 끄고 나오는 사람',pre:'남이 놓친 것을 조용히 줍는',hl:'말없이 닦아 둔 회의실 책상',kw:'도와 달라고 말하기'},
+ QRHL:{n:'포근한 조사원',line:'누가 불편할까 봐 조용히 맞춰 주는 사람',pre:'남 눈치를 먼저 살피는 다정한',hl:'모두에게 맞춰 주는 쿠션',kw:'내 의견 한 줄'},
+ QVWD:{n:'완벽설계 권과장',line:'계획에 빈틈이 있을까 밤새 점검하는 사람',pre:'설계도를 열 번 고쳐 그리는',hl:'한 치 오차 없는 제도판',kw:'완성보다 공유'},
+ QVWL:{n:'새벽몰입 엄대리',line:'한번 꽂히면 해가 뜨는 줄도 모르는 사람',pre:'모니터 앞에서 시간을 잊는',hl:'새벽 네 시의 모니터 불빛',kw:'잠자는 시간 지키기'},
+ QVHD:{n:'상담소장 길차장',line:'남의 고민을 내 일처럼 오래 붙잡는 사람',pre:'후배 고민에 밤잠을 설치는',hl:'오래 데워 둔 찻주전자',kw:'내 고민도 꺼내기'},
+ QVHL:{n:'공상가 변사원',line:'머릿속 회의가 퇴근 후에도 안 끝나는 사람',pre:'상상이 걱정으로 번지기도 하는',hl:'구름 위를 걷는 산책자',kw:'생각 적어 두기'}
+};
+var CHAR_N={
+ BRWD:{hairStyle:'part',outfit:'blazer',tie:true,glasses:'square',face:{eyes:'dot',brow:'worry',mouth:'flat'},pal:{hair:'#2E2A30',cloth:'#5A6070',acc:'#3D5A99',pant:'#3A3F4C'}},
+ BRWL:{hairStyle:'pony',outfit:'rolled',lash:true,lanyard:true,face:{eyes:'big',brow:'worry',mouth:'o'},pal:{hair:'#5A3524',cloth:'#FBFAF7',acc:'#E07B39',pant:'#2F3B52',skin:'#F8D7BC'}},
+ BRHD:{hairStyle:'bob',outfit:'cardigan',inner:'#FBFAF7',lash:true,clip:true,lanyard:true,face:{eyes:'arc',brow:'worry',mouth:'smile'},pal:{hair:'#6B4A35',cloth:'#F2A7A0',acc:'#E2725B',pant:'#5A5F78',clip:'#FFC75B',skin:'#F8D7BC'}},
+ BRHL:{hairStyle:'messy',outfit:'hoodie',face:{eyes:'arc',brow:'worry',mouth:'grin'},pal:{hair:'#3B2A22',cloth:'#F2C14E',acc:'#FFFFFF',pant:'#3A4A6B'}},
+ BVWD:{hairStyle:'crop',outfit:'blazer',tie:true,glasses:'round',face:{eyes:'dot',brow:'worry',mouth:'small'},pal:{hair:'#2A2433',cloth:'#2F3E6B',acc:'#B9A6F0',pant:'#2B3150'}},
+ BVWL:{hairStyle:'wavy',outfit:'shirt',lash:true,pencil:true,earring:true,face:{eyes:'big',brow:'worry',mouth:'small'},pal:{hair:'#8E3B2C',cloth:'#FBFAF7',acc:'#E8447A',pant:'#4A3F6B',skin:'#F8D7BC'}},
+ BVHD:{hairStyle:'long',outfit:'vest',lash:true,earring:true,face:{eyes:'arc',brow:'worry',mouth:'smile'},pal:{hair:'#4A2F1F',cloth:'#5B7F6E',acc:'#F2C14E',pant:'#2F3B52',skin:'#F1CFAE'}},
+ BVHL:{hairStyle:'curly',outfit:'sweater',face:{eyes:'big',brow:'worry',mouth:'wavy'},pal:{hair:'#B07A45',cloth:'#8FD3B6',acc:'#FFFFFF',pant:'#4A5A78'}},
+ QRWD:{hairStyle:'pony',outfit:'blouse',glasses:'square',lash:true,earring:true,face:{eyes:'dot',brow:'worry',mouth:'flat'},pal:{hair:'#1F1D24',cloth:'#FBFAF7',acc:'#3D5A99',pant:'#2B3150',skin:'#F8D7BC'}},
+ QRWL:{hairStyle:'messy',outfit:'hoodie',phones:'neck',mug:true,face:{eyes:'line',brow:'worry',mouth:'wavy'},pal:{hair:'#2E2A30',cloth:'#6B7280',acc:'#FFFFFF',pant:'#2E3440',mug:'#E2725B'}},
+ QRHD:{hairStyle:'crop',outfit:'cardigan',inner:'#FBFAF7',mug:true,face:{eyes:'arc',brow:'worry',mouth:'smile'},pal:{hair:'#4A3428',cloth:'#9C7B5B',acc:'#C9A46A',pant:'#4A4F55',mug:'#8FC9A9'}},
+ QRHL:{hairStyle:'long',outfit:'sweater',lash:true,face:{eyes:'sleepy',brow:'worry',mouth:'smile'},pal:{hair:'#7A5A40',cloth:'#E9D8B8',acc:'#C9A46A',pant:'#6B5D52',skin:'#F8D7BC'}},
+ QVWD:{hairStyle:'part',outfit:'turtle',glasses:'square',face:{eyes:'dot',brow:'worry',mouth:'flat'},pal:{hair:'#1E1C26',cloth:'#3A3F4C',acc:'#C9B27C',pant:'#1F1F26'}},
+ QVWL:{hairStyle:'bob',outfit:'hoodie',phones:'head',lash:true,laptop:true,face:{eyes:'line',brow:'worry',mouth:'small'},pal:{hair:'#3A3A42',cloth:'#7A6FB0',acc:'#7CC8FF',pant:'#2E3440',skin:'#F8D7BC'}},
+ QVHD:{hairStyle:'bob',outfit:'cardigan',inner:'#FBFAF7',glasses:'round',grey:true,lash:true,earring:true,face:{eyes:'arc',brow:'worry',mouth:'smile'},pal:{hair:'#8C8C96',cloth:'#B98C8C',acc:'#C9B27C',pant:'#4A4F55',skin:'#F1CFAE'}},
+ QVHL:{hairStyle:'messy',outfit:'sweater',phones:'neck',face:{eyes:'big',brow:'worry',mouth:'small'},pal:{hair:'#4A4060',cloth:'#3D4A6B',acc:'#FFC75B',pant:'#5A5A8A'}}
+};
+function NM(code,mood){
+  if(mood=='N')return N32[code];
+  return {n:T[code].n,line:T[code].line,pre:PRE_C[code],hl:Y[code][0],kw:KW[code]};
+}
 var AVC={};
-function avatar(code,mood){var k=code+mood;return AVC[k]||(AVC[k]=PX.render(CHAR[code],mood,6));}
+function avatar(code,mood){var k=code+mood;return AVC[k]||(AVC[k]=PX.render(mood=='N'?CHAR_N[code]:CHAR[code],'C',6));}
 function setAv(el,code,mood){el.src=avatar(code,mood);}
 
 
@@ -490,24 +531,24 @@ function gWeak(r){ // 가장 많이 깎인 축을 꿀팁으로
 function gRender(me,mm,ot,om,who){
   var r=gScore(me,mm,ot,om),h='';
   h+='<div class="gpair"><img class="avatar sm" alt="" src="'+avatar(me,mm)+'"><div class="center"><div class="gscore">'+r.sc+'<small>점</small></div><b>'+gGrade(r.sc)+'</b></div><img class="avatar sm" alt="" src="'+avatar(ot,om)+'"></div>';
-  h+='<p class="center sub" style="margin:0 0 6px">나 '+T[me].n+' × '+(who||'')+T[ot].n+' ('+MOOD[om].k+')</p>';
+  h+='<p class="center sub" style="margin:0 0 6px">나 '+NM(me,mm).n+' × '+(who||'')+NM(ot,om).n+'</p>';
   for(var i=0;i<4;i++)h+='<div class="gline"><b>'+GT[i][0]+'</b>'+(r.same[i]?GT[i][1]:GT[i][2])+'</div>';
   h+='<div class="gline"><b>멘탈</b>'+GMT[r.mi]+'</div>';
   var w=gWeak(r);h+='<div class="tip">같이 일할 때 꿀팁: '+(w<0?'지금처럼만 하면 돼요. 서로 잘한 일을 말로 알려 주세요.':GTIP[w])+'</div>';
   $('gOut').innerHTML=h;
 }
 function gSetup(code,mood){
-  var sel=$('gSel'),o='';Object.keys(T).forEach(function(c){o+='<option value="'+c+'">'+T[c].n+'</option>';});sel.innerHTML=o;
+  var sel=$('gSel'),o='';Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){o+='<option value="'+c+m+'">'+NM(c,m).n+'</option>';});});sel.innerHTML=o;
   var f=FRIEND;
-  if(f){sel.value=f.c;$('gMood').value=f.m;$('gIntro').textContent='링크를 보내 준 사람과의 궁합이에요. 다른 사람도 골라 볼 수 있어요.';}
-  else{sel.value=X[code][3];$('gMood').value='C';}
-  var go=function(){gRender(code,mood,sel.value,$('gMood').value,f&&sel.value==f.c&&$('gMood').value==f.m?'보내 준 사람 ':'');};
-  sel.onchange=go;$('gMood').onchange=go;go();
+  if(f){sel.value=f.c+f.m;$('gIntro').textContent='링크를 보내 준 사람과의 궁합이에요. 다른 사람도 골라 볼 수 있어요.';}
+  else{sel.value=X[code][3]+'C';}
+  var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람 ':'');};
+  sel.onchange=go;go();
   var all=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code)return;all.push([c,m,gScore(code,mood,c,m).sc]);});});
   all.sort(function(a,b){return b[2]-a[2];});
-  var seen={},top=[];all.forEach(function(x){if(top.length<3&&!seen[x[0]]){seen[x[0]]=1;top.push(x);}});
+  var seen={},top=[];all.forEach(function(x){if(top.length<3){top.push(x);}});
   $('gTop').innerHTML=top.map(function(x){return '<button class="gtop" data-c="'+x[0]+'" data-m="'+x[1]+'"><img class="avatar sm" style="height:52px" alt="" src="'+avatar(x[0],x[1])+'"><span style="flex:1"><b>'+T[x[0]].n+'</b> <span class="sub">('+MOOD[x[1]].k+')</span></span><b style="color:var(--accent)">'+x[2]+'점</b></button>';}).join('');
-  [].forEach.call($('gTop').querySelectorAll('.gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c;$('gMood').value=b.dataset.m;go();$('gCard').scrollIntoView({behavior:'smooth'});};});
+  [].forEach.call($('gTop').querySelectorAll('.gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c+b.dataset.m;go();$('gCard').scrollIntoView({behavior:'smooth'});};});
 }
 var FRIEND=null;
 var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
@@ -549,25 +590,24 @@ function showResult(code,mood,sc,sw){
   var t=T[code],m=MOOD[mood],x=X[code],y=Y[code];
   show('result');
   setAv($('rAv'),code,mood);
-  $('rMood').textContent=m.k;
-  $('rBase').textContent=m.pre;
-  $('rName').textContent=t.n;
-  $('rLine').textContent=t.line;
-  var ch='';for(var a=0;a<5;a++){ch+='<span>'+(sc[a]>=2?AX[a].a:AX[a].b)+'</span>';}$('rChips').innerHTML=ch;
+  var nm=NM(code,mood);
+  $('rBase').textContent=nm.pre;
+  $('rName').textContent=nm.n;
+  $('rLine').textContent=nm.line;
   var c0=code[0],c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
-  var gm=gScore(code,mood,x[3],'C').sc;
+  var mm2=gScore(code,mood,x[3],'C').sc>=gScore(code,mood,x[3],'N').sc?'C':'N',gm=gScore(code,mood,x[3],mm2).sc,pm=NM(x[3],mm2);
   var items=[
-   ['한마디로',y[0],[t.d,'한 줄로 말하면 "'+t.line+'"이에요.']],
+   ['한마디로',nm.hl,[t.d,'한 줄로 말하면 "'+nm.line+'"이에요.']],
    ['나라는 사람',HL.M[c0+c1],[PP[c0].me,PP[c1].me,PP[c2].me]],
    ['일할 때 나',HL.WORK[c0+c3],[x[0],PP[c3].work,PP[c0].meet]],
    ['나만의 매력',HL.CHARM[c1+c2],[x[1],'동료들은 이런 순간에 나를 찾아요. 일이 막혔을 때 '+(c1=='R'?'"일단 이것부터 하죠"라고 현실적인 첫 단계를 짚어 주는 사람':'"이렇게 해 보면 어때요?"라고 새로운 길을 보여 주는 사람')+', 그리고 '+(c2=='W'?'애매한 상황을 깔끔하게 정리해 주는 사람이에요.':'지친 사람을 먼저 알아봐 주는 사람이에요.')]],
    ['쓴소리 좀 할게',y[1],[y[2],PP[c3].blunt]],
    ['잘 맞는 상사',HL.BOSS[c1],[HL.BOSSB[c1],PP[c2].boss]],
-   ['잘 맞는 동료',J(T[x[3]].n,'과','와')+' 같은 팀이면 반은 성공',[x[4],J(T[x[3]].n,'은','는')+' "'+T[x[3]].line+'"이에요. 둘의 궁합 점수는 '+gm+'점이에요. 아래 궁합 보기에서 자세히 볼 수 있어요.']],
+   ['잘 맞는 동료',J(pm.n,'과','와')+' 같은 팀이면 반은 성공',[x[4],J(pm.n,'은','는')+' "'+pm.line+'"이에요. 둘의 궁합 점수는 '+gm+'점이에요. 아래 궁합 보기에서 자세히 볼 수 있어요.']],
    ['힘든 순간',HL.HARD[c2],[x[2],PP[c2].hard,'꿀팁: '+t.tip]],
    ['멘탈 풀이',HL.MIND[mood],[m.t,PP[mood].tip]],
    ['상사에게 통하는 한 마디',x[5].replace(/\"/g,''),['보고하거나 부탁할 때 이 말투를 써 보세요. '+x[5],PP[c0].say]],
-   ['마지막 한마디',HL.YEAR[c3+mood],[HL.YEARB[c3+mood],'내년의 나에게 주는 키워드는 "'+KW[code]+'"예요.']]
+   ['마지막 한마디',HL.YEAR[c3+mood],[HL.YEARB[c3+mood],'내년의 나에게 주는 키워드는 "'+nm.kw+'"예요.']]
   ];
   var h='';
   items.forEach(function(it,i){
@@ -579,7 +619,7 @@ function showResult(code,mood,sc,sw){
   [].forEach.call($('rList').querySelectorAll('.ith'),function(b){b.onclick=function(){var d=b.nextSibling;d.hidden=!d.hidden;b.parentNode.className=d.hidden?'it':'it open';};});
   [].forEach.call($('rList').querySelectorAll('[data-lock]'),function(b){b.onclick=function(){b.parentNode.innerHTML='아직 준비 중이에요. 열리면 가장 먼저 알려 드릴게요.';};});
   gSetup(code,mood);
-  setAv($('rMasAv'),code,mood);$('rMasName').textContent=t.n.split(' ').pop()+'의 쪽지';
+  setAv($('rMasAv'),code,mood);$('rMasName').textContent=nm.n.split(' ').pop()+'의 쪽지';
 }
 
 $('start').onclick=function(){st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0};history.replaceState(null,'','#');show('quiz');render();};
