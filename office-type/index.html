@@ -106,6 +106,12 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .gline{font-size:15px;padding:12px 0;border-top:1px solid var(--line);line-height:1.6}
 .gline:first-of-type{border-top:0}
 .gline b{display:block;font-size:12.5px;color:var(--accent);font-weight:650;margin-bottom:1px}
+.devbtn{display:block;margin:22px auto 0;background:none;border:1px dashed var(--line);color:var(--faint);font-size:13px;border-radius:10px;padding:10px 14px;min-height:44px}
+#dev h2{margin:30px 0 8px}#dev p,#dev li{font-size:15px}#dev ol,#dev ul{padding-left:20px;margin:0 0 12px}
+.dt{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--paper);border-radius:14px;overflow:hidden}
+.dt th,.dt td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:middle}.dt th{background:var(--accent-soft);font-weight:700;font-size:12.5px}
+.dt img{height:40px;image-rendering:pixelated;display:block}.dt code{font-weight:700;color:var(--accent);font-size:13px;white-space:nowrap}.dt td:last-child{white-space:nowrap;font-size:12px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
 .tip{background:var(--hi);color:var(--hi-ink);padding:12px 14px;margin:12px 0 0;border-radius:14px;font-size:15px;font-weight:550;line-height:1.55}
 .top-h{font-size:15px;font-weight:700;margin:22px 0 4px}
 .gtop{display:flex;align-items:center;gap:12px;min-height:60px;padding:8px 0;border:0;border-top:1px solid var(--line);background:none;width:100%;text-align:left;color:var(--ink)}
@@ -137,6 +143,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
   <div class="facts"><div><b>15개</b>장면</div><div><b>1분</b>걸려요</div><div><b>1장</b>내 사원증</div></div>
   <button class="btn" id="start">장면 15개 고르러 가기</button>
   <p class="note" style="margin-top:14px">정답은 없어요. 재미로 보는 테스트이고 진짜 성격 검사는 아니에요.</p>
+  <button class="devbtn" id="devGo">개발자용 로직 보기</button>
 </section>
 
 <section id="quiz" hidden>
@@ -144,6 +151,13 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
   <div class="prog"><i id="pg"></i></div>
   <div class="scene" id="scene"></div>
   <div id="opts"></div>
+</section>
+
+<section id="dev" hidden>
+  <button class="btn ghost" id="devBack" style="margin:0 0 18px">← 테스트로 돌아가기</button>
+  <div class="eyebrow">팀 내부용 · 공개 전에 버튼 숨기기</div>
+  <h1 style="font-size:28px">테스트 로직 한눈에 보기</h1>
+  <div id="devBody"></div>
 </section>
 
 <section id="result" hidden>
@@ -553,7 +567,7 @@ function gSetup(code,mood){
 var FRIEND=null;
 var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
 function $(id){return document.getElementById(id);}
-function show(id){['intro','quiz','result'].forEach(function(s){$(s).hidden=s!=id;});window.scrollTo(0,0);}
+function show(id){['intro','quiz','result','dev'].forEach(function(s){$(s).hidden=s!=id;});window.scrollTo(0,0);}
 
 function render(){
   var qi=ORDER[st.i],q=Q[qi];
@@ -622,6 +636,38 @@ function showResult(code,mood,sc,sw){
   setAv($('rMasAv'),code,mood);$('rMasName').textContent=nm.n.split(' ').pop()+'의 쪽지';
 }
 
+
+/* 개발자용 화면: 테스트 데이터에서 바로 표를 만든다 */
+var MB={B:'E',Q:'I',R:'S',V:'N',W:'T',H:'F',D:'J',L:'P',C:'A',N:'T'};
+function mbti(c,m){return MB[c[0]]+MB[c[1]]+MB[c[2]]+MB[c[3]]+'-'+MB[m];}
+function devRender(){
+  var h='';
+  h+='<h2>1. 축 다섯 개와 실제 MBTI 대응</h2><p>화면에는 MBTI라는 말을 쓰지 않아요. 내부적으로만 아래처럼 대응돼요. 문항은 공식 MBTI 문항이 아니라, 공개된 빅파이브 연구 개념을 참고해서 새로 쓴 문장이에요.</p><div class="tw"><table class="dt"><tr><th>우리 축</th><th>왼쪽</th><th>오른쪽</th><th>MBTI</th></tr>';
+  AX.forEach(function(a,i){h+='<tr><td>'+a.n+'</td><td>'+a.a+'</td><td>'+a.b+'</td><td><code>'+MB[a.la]+' / '+MB[a.lb]+'</code>'+(i==4?' (뒤 글자)':'')+'</td></tr>';});
+  h+='</table></div>';
+  h+='<h2>2. 결과가 정해지는 방법</h2><ol><li>장면 15개, 축마다 3개씩이에요. 장면마다 선택지 2개 중 하나를 고르면 그 축의 한쪽에 1표가 들어가요.</li><li>축마다 3표 중 2표 이상 받은 쪽이 결과가 돼요. 3표라서 동점이 없어요.</li><li>앞 네 축으로 기본 성향 16가지가 정해지고, 다섯째 축(일이 터졌을 때)으로 둘 중 한 캐릭터가 골라져요. 그래서 모두 32명이에요.</li><li>선택지 순서는 매번 무작위로 섞여서, 위에 있는 걸 고르는 버릇이 결과에 영향을 주지 않아요.</li><li>장면 순서는 축이 번갈아 나오게 섞어 두었어요.</li></ol>';
+  h+='<div class="tw"><table class="dt"><tr><th>#</th><th>장면</th><th>축</th><th>첫 번째 선택지 → / 두 번째 선택지 →</th></tr>';
+  ORDER.forEach(function(qi,n){var q=Q[qi];h+='<tr><td>'+(n+1)+'</td><td>'+q[1]+'</td><td>'+AX[q[0]].n+'</td><td>'+AX[q[0]].a+' / '+AX[q[0]].b+'</td></tr>';});
+  h+='</table></div>';
+  h+='<h2>3. 캐릭터 32명과 MBTI</h2><div class="tw"><table class="dt"><tr><th></th><th>캐릭터</th><th>MBTI</th><th>우리 코드</th></tr>';
+  var mbOrder=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){mbOrder.push([c,m]);});});
+  mbOrder.sort(function(a,b){return mbti(a[0],a[1])<mbti(b[0],b[1])?-1:1;});
+  mbOrder.forEach(function(x){var n=NM(x[0],x[1]);h+='<tr><td><img src="'+avatar(x[0],x[1])+'" alt=""></td><td><b>'+n.n+'</b><br><span class="sub" style="font-size:12.5px">'+n.pre+'</span></td><td><code>'+mbti(x[0],x[1])+'</code></td><td>'+x[0]+'-'+x[1]+'</td></tr>';});
+  h+='</table></div>';
+  h+='<h2>4. 궁합 점수 기준</h2><p>두 사람의 축을 하나씩 비교해서 점수를 더해요. 같은 팀에서 가장 많이 부딪치는 마감 리듬과 일을 보는 눈에 무게를 더 줬어요.</p><div class="tw"><table class="dt"><tr><th>축</th><th>같을 때</th><th>다를 때</th></tr>';
+  for(var i=0;i<4;i++)h+='<tr><td>'+AX[i].n+' ('+MB[AX[i].la]+'/'+MB[AX[i].lb]+')</td><td>'+GW[i][0]+'</td><td>'+GW[i][1]+'</td></tr>';
+  h+='<tr><td>멘탈 (A/T)</td><td colspan="2">둘 다 A '+GM[0]+' · 한 명만 T '+GM[1]+' · 둘 다 T '+GM[2]+'</td></tr></table></div>';
+  h+='<ul style="margin-top:12px"><li>기본 10점에 다섯 축 점수를 더하면 60~102점이에요. 이걸 40~99점으로 바꿔서 보여 줘요.</li><li>등급: 90점 이상 환상의 짝꿍, 78점 이상 든든한 한 팀, 62점 이상 맞춰 가면 좋은 사이, 그 아래는 서로 번역기가 필요한 사이.</li><li>기준(T/F)은 오히려 다를 때 점수가 높아요. 한 명은 일, 한 명은 사람을 챙겨서 서로 보완하기 때문이에요.</li><li>꿀팁은 점수가 가장 많이 깎인 축에서 골라요.</li><li>친구 링크: 결과 주소에 내 코드가 들어 있어서, 받은 사람이 테스트를 끝내면 보낸 사람과의 궁합이 바로 떠요. 서버는 없어요.</li></ul>';
+  // 분포
+  var keys=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){keys.push([c,m]);});});
+  var cnt={};keys.forEach(function(a){keys.forEach(function(b){var g=gGrade(gScore(a[0],a[1],b[0],b[1]).sc);cnt[g]=(cnt[g]||0)+1;});});
+  h+='<p>32×32 전체 조합의 등급 분포: '+Object.keys(cnt).map(function(k){return k+' '+Math.round(cnt[k]/keys.length/keys.length*100)+'%';}).join(', ')+'</p>';
+  h+='<h2>5. 해설은 어떻게 만들어지나</h2><ul><li>AI 생성 없이, 사람이 써 둔 문장 블록을 조합해요.</li><li>캐릭터마다 따로 쓴 것: 이름, 형용구, 한 줄 소개, 한마디 비유, 내년 키워드, 그림.</li><li>기본 성향 16가지마다 쓴 것: 일할 때 모습, 매력, 힘든 순간, 잘 맞는 동료, 상사에게 통하는 말, 쓴소리.</li><li>축별 문단: 충전, 일을 보는 눈, 기준, 마감 리듬, 멘탈마다 써 둔 문단을 해설 곳곳에 붙여요.</li></ul>';
+  h+='<p class="note" style="margin-top:24px">이 화면은 시작 화면 맨 아래 버튼으로 들어와요. 주소 끝에 #dev를 붙여도 열려요. 공개 전에는 버튼을 숨길 예정이에요.</p>';
+  $('devBody').innerHTML=h;
+}
+$('devGo').onclick=function(){devRender();show('dev');history.replaceState(null,'','#dev');};
+$('devBack').onclick=function(){history.replaceState(null,'','#');show('intro');};
 $('start').onclick=function(){st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0};history.replaceState(null,'','#');show('quiz');render();};
 $('again').onclick=function(){history.replaceState(null,'','#');show('intro');};
 $('share').onclick=function(){
@@ -630,6 +676,7 @@ $('share').onclick=function(){
   else prompt('링크를 복사하세요',u);
 };
 (function BOOT(){
+if(/#dev/.test(location.hash)){devRender();show('dev');}
 setAv($('introAv'),'BVWD','C');setAv($('introAv2'),'BRWL','C');setAv($('introAv3'),'QVHL','C');
 (function(){
   var m=/r=([BQ][RV][WH][DL])-([CN])&s=(\d{5})&w=(\d)/.exec(location.hash);
