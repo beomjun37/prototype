@@ -355,6 +355,15 @@ h2{font-size:20px}
 .tm-pair .tx{flex:1;min-width:0}.tm-pair .tx b{display:block}.tm-pair .sc{font-weight:800;font-size:20px;color:var(--accent)}
 .tm-ev p{margin:0 0 12px;line-height:1.6}.tm-ev p b{color:var(--accent)}.tm-grade{font-size:18px;font-weight:800;margin:4px 0 10px}
 .tm-list .btn{margin-top:8px}
+.thero{display:block;position:relative;width:100%;text-align:left;margin-top:16px;border:0;border-radius:22px;padding:18px 18px 16px;background:linear-gradient(135deg,var(--accent),#7B6CF0);color:#fff;font:inherit;cursor:pointer;box-shadow:var(--shadow);overflow:hidden}
+.thero b{display:block;font-size:21px;letter-spacing:-.02em;margin:12px 0 6px;color:#fff}.thero-s{display:block;font-size:14.5px;line-height:1.5;color:#fff;opacity:.92;padding-right:4px}
+.thero-k{display:inline-block;background:var(--hi);color:var(--hi-ink);font-size:12px;font-weight:800;border-radius:99px;padding:2px 9px}
+.thero-go{display:inline-block;margin-top:12px;background:#fff;color:#3B36B8;font-weight:800;font-size:15px;border-radius:12px;padding:10px 14px}
+.thero-av{position:absolute;top:14px;right:16px;display:flex}.thero-av img{height:40px;width:36px;object-fit:contain;object-position:50% 100%;image-rendering:pixelated;background:rgba(255,255,255,.22);border-radius:10px;margin-left:-8px;border:2px solid rgba(255,255,255,.5)}
+.rtabs{position:sticky;top:0;z-index:6;display:flex;gap:6px;margin:30px -16px 0;padding:10px 16px;background:var(--bg)}
+.rtabs button{flex:1;min-height:46px;border-radius:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-weight:700;font-size:15.5px}
+.rtabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#paneRead>.sec:first-child{margin-top:8px}
 .pay .panel{border:1.5px dashed var(--line)}.pay-t{font-size:17px}
 @media (max-height:700px){#imgPrev{width:52%!important}}
 </style>
@@ -409,12 +418,18 @@ h2{font-size:20px}
   </div>
   <button class="btn" id="saveImg" style="margin-top:14px">사원증 이미지로 저장하기</button>
 
+  <button type="button" class="thero" id="tHero"><span class="thero-av" id="tHeroAv"></span><span class="thero-k">NEW</span><b>친구들이랑 회사 차리기</b><span class="thero-s">단톡방에 링크 하나만 올리면 들어온 사람마다 자리를 정해 주고, 우리 회사의 1년 결산을 보여 줘요.</span><span class="thero-go">우리 회사 차리기 →</span></button>
+
+  <div class="rtabs" id="rTabs" role="tablist"><button type="button" role="tab" data-p="read" aria-selected="true">내 해설</button><button type="button" role="tab" data-p="match" aria-selected="false">궁합 보기</button></div>
+  <div id="paneRead">
   <div class="sec">
     <div class="sec-head"><h2 id="rListH">내 해설 13가지</h2><p class="sub" style="margin:0">제목을 누르면 풀이가 펼쳐져요.</p></div>
     <div class="list" id="rList"></div>
   </div>
-
-  <div class="sec" id="gCard">
+  <button type="button" class="btn ghost" id="toMatch" style="margin-top:18px">다 읽었으면 궁합 보러 가기</button>
+  </div>
+  <div id="paneMatch" hidden>
+  <div class="sec" id="gCard" style="margin-top:8px">
     <div class="sec-head"><h2>궁합 보기</h2><p class="sub" id="gIntro" style="margin:0">상대와 어떤 사이인지, 어떤 캐릭터인지 골라 보세요. 내 링크로 친구가 테스트를 하면 친구 화면에 궁합이 떠요.</p></div>
     <div class="panel">
       <div class="relrow" id="gRel" role="group" aria-label="상대와의 관계"><button type="button" data-rel="peer">옆자리 동료</button><button type="button" data-rel="boss">내 상사</button><button type="button" data-rel="junior">내 후임</button></div>
@@ -429,9 +444,8 @@ h2{font-size:20px}
     </div>
   </div>
 
-  <div class="sec" id="tCard"><div class="sec-head"><h2>우리 회사 차리기</h2><p class="sub" style="margin:0">친구들을 초대해서 회사를 차려 보세요. 들어온 사람의 캐릭터를 보고 자리를 정해 주고, 우리 회사의 1년을 미리 보여 드려요.</p></div>
-    <div class="panel"><label class="tm-lab" for="tName">회사 이름</label><input class="tm-in" id="tName" maxlength="12" autocomplete="off"><label class="tm-lab" for="tNick">회사에서 부를 내 이름</label><input class="tm-in" id="tNick" maxlength="6" placeholder="예: 민지" autocomplete="off"><button type="button" class="btn" id="tMake">회사 만들고 초대 링크 보내기</button><div class="tm-list" id="tList"></div></div></div>
   <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><button type="button" class="btn" id="payBtn">990원에 받아 보기</button><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 12월에 열게요. 결제는 되지 않았어요.</p></div></div>
+  </div>
   <div class="memo"><img id="rMasAv" class="avatar sm" alt=""><div><b id="rMasName"></b><div class="sub">해설 다 읽었어요? 같이 일하는 동료한테 이 링크를 보내 봐요. 그 사람이 테스트를 끝내고 돌려보내 주면 우리 둘 궁합을 같이 볼 수 있어요.</div></div></div>
   <button class="btn" id="share">카톡으로 내 사원증 보내기</button>
   <button class="btn ghost" id="again">처음부터 다시 하기</button>
@@ -449,6 +463,12 @@ h2{font-size:20px}
   <p class="note" style="margin-top:18px">재미로 보는 결산이에요. 실제 회사 일과는 다를 수 있어요.</p>
 </section>
 </main>
+<div class="sheet-bg" id="tSheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="tSheetT">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head"><h3 id="tSheetT">친구들이랑 회사 차려 보기</h3><button type="button" class="sheet-x" id="tSheetX" aria-label="닫기">✕</button></div>
+  <p class="sub" style="margin:0 0 12px;font-size:14.5px">회사 이름과 내 이름만 정하면 초대 링크가 나와요. 들어온 사람의 캐릭터를 보고 자리를 정해 드려요.</p>
+  <label class="tm-lab" for="tName">회사 이름</label><input class="tm-in" id="tName" maxlength="12" autocomplete="off"><label class="tm-lab" for="tNick">회사에서 부를 내 이름</label><input class="tm-in" id="tNick" maxlength="6" placeholder="예: 민지" autocomplete="off"><button type="button" class="btn" id="tMake">회사 만들고 초대 링크 보내기</button><div class="tm-list" id="tList"></div>
+</div></div>
 <div class="sheet-bg" id="imgBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="imgTitle">
   <div class="sheet-grip"></div>
   <div class="sheet-head"><h3 id="imgTitle">내 사원증 이미지</h3><button type="button" class="sheet-x" id="imgX" aria-label="닫기">✕</button></div>
@@ -1097,7 +1117,7 @@ function finish(){
   try{localStorage.setItem('oct_mine',hash);}catch(e){}
   setFriendView(null);
   showResult(r.code,r.mood,sc,sw);
-  if(FRIEND&&FRIEND.id)setTimeout(function(){$('gCard').scrollIntoView({behavior:'smooth'});},400);
+  if(FRIEND&&FRIEND.id)goMatch();
   var pt='';try{pt=sessionStorage.getItem('oct_pteam')||'';}catch(e){}
   if(pt){var TT=tParse(pt);if(TT){tOpen(tMerge(TT));setTimeout(function(){$('tmJoin').scrollIntoView({behavior:'smooth',block:'center'});},300);}}
 }
@@ -1105,7 +1125,7 @@ function finish(){
 function setFriendView(name){
   var on=!!name;$('result').classList.toggle('friend',on);
   $('rListH').textContent=on?name+'의 해설 13가지':'내 해설 13가지';
-  ['gCard','tCard','pay','saveImg','share','again'].forEach(function(id){if($(id))$(id).hidden=on;});
+  if(on)rTab('read');['tHero','rTabs','toMatch','gCard','pay','saveImg','share','again'].forEach(function(id){if($(id))$(id).hidden=on;});
   var mm=document.querySelector('#result .memo');if(mm)mm.hidden=on;
   $('fBanner').hidden=!on;
 }
@@ -1118,7 +1138,7 @@ function showResult(code,mood,sc,sw){
   $('rName').textContent=nm.n;
   $('rLine').textContent=nm.line;
   $('rSting').textContent=STING[code][mood];
-  LAST={code:code,mood:mood,nm:nm,pm:null,id:encId(code,mood,sc,sw)};if(typeof tCardSetup=='function')try{tCardSetup();}catch(e){}
+  LAST={code:code,mood:mood,nm:nm,pm:null,id:encId(code,mood,sc,sw)};if(typeof tCardSetup=='function')try{tCardSetup();rTab('read');$('tHeroAv').innerHTML=[[code,mood],(function(b){return [b.c,b.m];})(bestPeer(code,mood))].concat([['BVWD','C'],['QRHL','N']]).slice(0,3).map(function(x){return '<img alt="" src="'+avatar(x[0],x[1])+'">';}).join('');tNudge();}catch(e){}
   var c0=code[0],c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
   var bp=bestPeer(code,mood),gm=bp.sc,pm=NM(bp.c,bp.m);
   var items=[
@@ -1365,7 +1385,7 @@ function tYear(P,L){var n=P.length,cnt=function(k,ch){return P.filter(function(x
   return '<div class="tm-grade">올해 성적: '+gr+'</div><p class="sub" style="margin:0 0 14px">우리 회사 사람들끼리 평균 궁합은 '+avg+'점이에요.</p>'+ev.map(function(e){return '<p><b>'+e[0]+'</b> '+e[1]+'</p>';}).join('');}
 var TCUR=null;
 function tOpen(t){
-  TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
+  if($('tSheet'))tSheetClose();TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
   var P=tPeople(t),me=myId(),ro=tRoles(P),inT=t.mem.some(function(m){return m.id==me;});
   $('tmName').textContent=t.name;
   $('tmCount').textContent='지금 '+P.length+'명이 일하고 있어요. 최대 8명까지 들어올 수 있어요.';
@@ -1399,6 +1419,16 @@ $('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,12)||TNAMES
   try{localStorage.setItem('oct_nick',nk);if(!myId())localStorage.setItem('oct_mine','#r='+me);}catch(e){}
   var t=tMerge({name:nm,mem:[{id:me,nk:nk}]});track('team_make');tOpen(t);
   sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 너도 2분 테스트하고 들어와. 캐릭터 보고 자리 정해 줄게.',BASE+tHash(t),$('tmShare'),'복사했어요. 단톡방에 붙여 넣어 보세요');};
+function rTab(p){[].forEach.call(document.querySelectorAll('#rTabs button'),function(b){b.setAttribute('aria-selected',b.dataset.p==p);});$('paneRead').hidden=p!='read';$('paneMatch').hidden=p!='match';}
+[].forEach.call(document.querySelectorAll('#rTabs button'),function(b){b.onclick=function(){if(b.getAttribute('aria-selected')=='true')return;rTab(b.dataset.p);track('tab_'+b.dataset.p);var t=$('rTabs');if(t.getBoundingClientRect().top<0||window.scrollY>t.offsetTop)window.scrollTo(0,t.offsetTop);};});
+function goMatch(){rTab('match');setTimeout(function(){$('gCard').scrollIntoView({behavior:'smooth'});},60);}
+$('toMatch').onclick=function(){rTab('match');track('tab_match');window.scrollTo(0,$('rTabs').offsetTop);};
+function tSheetOpen(src){tCardSetup();$('tSheet').hidden=false;document.body.style.overflow='hidden';track('team_sheet_'+src);try{localStorage.setItem('oct_tnudge','1');}catch(e){}}
+function tSheetClose(){$('tSheet').hidden=true;document.body.style.overflow='';}
+$('tHero').onclick=function(){tSheetOpen('hero');};$('tSheetX').onclick=tSheetClose;$('tSheet').onclick=function(e){if(e.target===this)tSheetClose();};
+var TNUDGE=null;
+function tNudge(){clearTimeout(TNUDGE);var seen='';try{seen=localStorage.getItem('oct_tnudge')||'';}catch(e){}if(seen||navigator.webdriver)return;
+  TNUDGE=setTimeout(function(){if($('result').hidden||$('result').classList.contains('friend')||!$('imgBg').hidden||!$('pickBg').hidden||!$('tSheet').hidden)return;$('tSheetT').textContent='내 캐릭터 봤으면, 이제 친구들이랑 회사 차려 볼까요?';tSheetOpen('nudge');},20000);}
 function shareMine(btn){
   var L=LAST;sendText('나 올해 회사에서 \''+L.nm.n+'\'래ㅋㅋ 너는 뭐 나와? 해 보면 우리 둘 궁합도 바로 떠.',BASE+'#r='+L.id,btn,'복사했어요. 카톡에 붙여 넣어 보세요');
 }
@@ -1418,7 +1448,7 @@ setAv($('introAv'),'BVWD','C');setAv($('introAv2'),'BRWL','C');setAv($('introAv3
   var mine=mineH=='#r='+R.id||mineH==h;
   if(P){FRIEND={c:P.code,m:P.mood,back:1};showResult(R.code,R.mood,R.sc,R.w);setFriendView(null);track('pair_open');
     var pn=NM(P.code,P.mood).n;$('gIntro').textContent=J(pn,'이','가')+' 테스트를 끝내고 보낸 우리 둘 궁합이에요. 관계 탭을 바꿔 보거나 다른 사람도 골라 볼 수 있어요.';
-    setTimeout(function(){$('gCard').scrollIntoView({behavior:'smooth'});},300);return;}
+    goMatch();return;}
   if(mine&&!FRIEND){try{var fs=JSON.parse(sessionStorage.getItem('oct_friend')||'null');if(fs&&fs.id)FRIEND=fs;}catch(e){}}
   showResult(R.code,R.mood,R.sc,R.w);
   if(!mine){var fn=NM(R.code,R.mood).n.split(' ').pop();setFriendView(fn);$('fBanner').querySelector('b').textContent='친구의 올해 사원증은 \''+NM(R.code,R.mood).n+'\'예요';track('friend_open');}
