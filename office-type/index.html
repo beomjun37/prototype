@@ -80,7 +80,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 
 .avatar{display:block;height:187px;width:auto;margin:0 auto;image-rendering:pixelated}
 .avatar.sm{height:72px;width:auto;margin:0}
-.id-photo .avatar{height:118px;width:auto}
+.id-photo .avatar{height:150px;width:auto;margin-bottom:-26px}
 .mini-id .avatar{height:78px;width:auto}
 .hero{margin:-28px -16px 22px;overflow:hidden}.hero img{display:block;width:100%;height:150px;object-fit:cover;object-position:30% 50%;image-rendering:pixelated}
 .ith .ic{flex:none;width:30px;height:30px;image-rendering:pixelated;margin-right:-2px}
@@ -104,6 +104,12 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .panel{background:var(--paper);border-radius:20px;border:1px solid var(--line);padding:18px;box-shadow:var(--shadow)}
 .pickhint{font-size:14px;color:var(--sub);margin:0 0 10px;line-height:1.55}
 .pickrow{display:flex;gap:8px;margin-bottom:6px}
+.relrow{display:flex;gap:6px;margin-bottom:10px}
+.relrow button{flex:1;min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--sub);font:inherit;font-size:14.5px;font-weight:650}
+.relrow button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.how{margin-top:12px;font-size:14.5px;line-height:1.6;color:var(--sub)}
+.how summary{cursor:pointer;font-weight:650;color:var(--ink);padding:10px 0;min-height:24px}
+.how p{margin:0 0 8px}
 .sel{flex:1;min-width:0;min-height:48px;font:inherit;font-size:15.5px;font-weight:600;padding:10px 34px 10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238A8F98' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 12px center;color:var(--ink);-webkit-appearance:none;appearance:none}
 .gpair{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:16px 0 4px;padding:16px 10px;border-radius:16px;background:var(--bg)}
 .gscore{font-size:52px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
@@ -184,11 +190,12 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
   </div>
 
   <div class="sec" id="gCard">
-    <div class="sec-head"><h2>궁합 보기</h2><p class="sub" id="gIntro" style="margin:0">같이 일하는 사람이 어떤 캐릭터인지 골라 보세요. 그 사람이 내 링크로 테스트를 하면 궁합이 자동으로 떠요.</p></div>
+    <div class="sec-head"><h2>궁합 보기</h2><p class="sub" id="gIntro" style="margin:0">상대가 나와 어떤 사이인지, 어떤 캐릭터인지 골라 보세요. 그 사람이 내 링크로 테스트를 하면 궁합이 자동으로 떠요.</p></div>
     <div class="panel">
+      <div class="relrow" id="gRel" role="group" aria-label="상대와의 관계"><button type="button" data-rel="peer">옆자리 동료</button><button type="button" data-rel="boss">내 상사</button><button type="button" data-rel="junior">내 후임</button></div>
       <div class="pickrow"><select id="gSel" class="sel" aria-label="상대 캐릭터"></select></div>
       <div id="gOut"></div>
-      <div class="top-h">나랑 잘 맞는 캐릭터 TOP 3</div>
+      <div class="top-h" id="gTopH">옆자리 동료로 만나면 잘 맞는 캐릭터 TOP 3</div>
       <div id="gTop"></div>
     </div>
   </div>
@@ -457,13 +464,25 @@ function make(spec,mood){
     if(G[y18][x18]!==null)continue;
     if(!isEmpty(x18-1,y18)||!isEmpty(x18+1,y18)||!isEmpty(x18,y18-1)||!isEmpty(x18,y18+1))out.push([x18,y18]);
   }
-  return {G:G,out:out,ink:ink};
+  return {G:G,L:L,out:out,ink:ink,hair:hair};
 }
 function render(spec,mood,scale){
   var r=make(spec,mood),s=scale||8,pad=1;
   var cv=document.createElement('canvas');cv.width=(GW+pad*2)*s;cv.height=(GH+pad*2)*s;var x=cv.getContext('2d');
-  r.out.forEach(function(p){x.fillStyle=r.ink;x.fillRect((p[0]+pad)*s,(p[1]+pad)*s,s,s);});
+  function at(a,b){return (a<0||b<0||a>=GW||b>=GH)?null:r.G[b][a];}
+  function asHex(c){if(c.charAt(0)=='#')return c;var m=c.match(/\d+/g);return '#'+m.slice(0,3).map(function(v){return ('0'+(+v).toString(16)).slice(-2);}).join('');}
+  /* 외곽선: 한 가지 검정 대신 닿은 색의 진한 색으로(셀아웃) */
+  r.out.forEach(function(p){var n=at(p[0],p[1]+1)||at(p[0],p[1]-1)||at(p[0]-1,p[1])||at(p[0]+1,p[1]);
+    x.fillStyle=n?dk(asHex(n),.62):r.ink;x.fillRect((p[0]+pad)*s,(p[1]+pad)*s,s,s);});
   for(var y=0;y<GH;y++)for(var xx=0;xx<GW;xx++){var c=r.G[y][xx];if(c){x.fillStyle=c;x.fillRect((xx+pad)*s,(y+pad)*s,s,s);}}
+  /* 반 칸 디테일: 머리 윤기, 옷 주름, 피부 입체감 */
+  var h=Math.max(1,Math.floor(s/2));
+  for(var y2=0;y2<GH;y2++)for(var x2=0;x2<GW;x2++){
+    var ly=r.L[y2][x2],X0=(x2+pad)*s,Y0=(y2+pad)*s;
+    if(ly=='hair'&&r.L[y2-2]&&r.L[y2-1][x2]=='hair'&&r.L[y2-2][x2]!=='hair'&&x2>=10&&x2<=13){x.fillStyle=lt(r.hair,.3);x.fillRect(X0,Y0,s,h);}
+    if(ly=='skin'&&y2>=9&&y2<=20&&(x2==23||x2==24)&&r.L[y2][x2+1]!=='skin'){x.fillStyle='rgba(120,60,40,.13)';x.fillRect(X0+h,Y0,h,s);}
+    if(ly=='cloth'&&y2>=25&&y2<=33&&(x2==11||x2==20)&&y2%3==1){x.fillStyle='rgba(30,20,50,.12)';x.fillRect(X0,Y0+h,s,h);}
+  }
   return cv.toDataURL();
 }
 return {render:render};
@@ -540,6 +559,17 @@ function setAv(el,code,mood){el.src=avatar(code,mood);}
 /* 궁합 로직: 축마다 같음/다름으로 점수를 주고 합친다. 일에서 부딪치기 쉬운 축(마감 리듬, 일을 보는 눈)에 무게를 더 둔다.
    축별 [같을 때, 다를 때]. 멘탈은 [둘 다 태연, 한 명만 걱정, 둘 다 걱정]. */
 var GW=[[18,12],[20,8],[14,16],[20,6]],GM=[18,16,10];
+/* 관계별 무게: peer=옆자리 동료(기본), boss=상대가 내 상사, junior=상대가 내 후임 */
+var REL={
+ peer:{n:'옆자리 동료',w:GW,m:GM},
+ boss:{n:'내 상사',w:[[16,14],[16,10],[14,14],[24,4]],m:[18,16,10]},
+ junior:{n:'내 후임',w:[[14,14],[18,10],[12,18],[20,8]],m:[16,18,10]}
+};
+var CUR_REL='peer';
+var REL_TIP={
+ boss:['쉬는 방식이 달라요. 상사가 편해하는 소통 방식(대면 또는 메신저)을 한 번 여쭤 두세요.','보고할 때 상사가 먼저 보는 쪽(당장 할 일 또는 큰 그림)부터 꺼내세요.','결과를 보고할 때 숫자 얘기와 사람 얘기를 한 줄씩 같이 넣으세요.','마감 3일 전에 중간 결과를 먼저 보여 드리세요. 상사와 가장 많이 부딪치는 곳이에요.','걱정되는 건 혼자 품지 말고 "이 부분이 걱정돼요"라고 짧게 말씀드리세요.'],
+ junior:['후임이 쉬는 방식을 존중해 주세요. 회식 참석은 강요하지 말고요.','일을 줄 때 "왜 하는지"와 "뭐부터 하는지"를 둘 다 말해 주세요.','피드백할 때 고칠 점 앞에 잘한 점을 한 줄 먼저 말해 주세요.','마감만 말하지 말고 중간 점검 날짜를 같이 정해 주세요.','후임이 걱정이 많으면 "괜찮아, 같이 보자"라는 말이 제일 힘이 돼요.']
+};
 var GT=[
  ['충전','둘 다 에너지 쓰는 방식이 같아서 점심, 회식, 쉬는 시간 리듬이 편해요.','한 명은 사람 속에서, 한 명은 혼자 충전해요. 서로 쉬는 방식을 존중하면 오히려 편해요.'],
  ['일을 보는 눈','같은 걸 먼저 봐서 설명이 짧아도 말이 통해요.','한 명은 지금 할 일을, 한 명은 큰 그림을 먼저 봐요. 회의에서 서로 답답할 수 있어요.'],
@@ -548,25 +578,26 @@ var GT=[
 ];
 var GMT=['둘 다 덤덤해서 위기에도 팀이 차분해요.','한 명이 걱정하면 한 명이 다독이는, 균형 잡힌 사이예요.','둘 다 걱정이 많아서 작은 일도 같이 커질 수 있어요. 한 명은 일부러 "괜찮아"를 말해 주세요.'];
 var GTIP=['서로 쉬는 시간을 지켜 주세요. 회식 대신 커피 한 잔도 좋아요.','회의 시작에 "오늘 정할 것 한 가지"를 먼저 말해 두세요.','결정하기 전에 "사람 쪽은 괜찮을까?"를 한 번 물어보세요.','마감 날짜와 중간 점검 날짜를 같이 정해 두세요.','걱정되는 걸 한 줄로 적어서 같이 보고, 지울 수 있는 건 지워요.'];
-function gScore(a,am,b,bm){
-  var raw=10,d=[];
-  for(var i=0;i<4;i++){var same=a[i]==b[i];raw+=GW[i][same?0:1];d.push(same);}
-  var mi=(am=='C'&&bm=='C')?0:(am=='N'&&bm=='N')?2:1;raw+=GM[mi];
-  var sc=Math.round(40+(raw-60)/(102-60)*59);
-  return {sc:Math.min(99,sc),same:d,mi:mi};
+function gScore(a,am,b,bm,rel){
+  var R=REL[rel||'peer'],W=R.w,M=R.m,raw=10,d=[],lo=10,hi=10;
+  for(var i=0;i<4;i++){var same=a[i]==b[i];raw+=W[i][same?0:1];d.push(same);lo+=Math.min(W[i][0],W[i][1]);hi+=Math.max(W[i][0],W[i][1]);}
+  var mi=(am=='C'&&bm=='C')?0:(am=='N'&&bm=='N')?2:1;raw+=M[mi];lo+=Math.min.apply(null,M);hi+=Math.max.apply(null,M);
+  var sc=Math.round(40+(raw-lo)/(hi-lo)*59);
+  return {sc:Math.min(99,sc),same:d,mi:mi,rel:rel||'peer'};
 }
 function gGrade(n){return n>=90?'환상의 짝꿍':n>=78?'든든한 한 팀':n>=62?'맞춰 가면 좋은 사이':'서로 번역기가 필요한 사이';}
 function gWeak(r){ // 가장 많이 깎인 축을 꿀팁으로
-  var loss=[],i;for(i=0;i<4;i++)loss.push(GW[i][0]-GW[i][r.same[i]?0:1]);loss.push(GM[0]-GM[r.mi]);
+  var R=REL[r.rel||'peer'],loss=[],i;for(i=0;i<4;i++)loss.push(Math.max(R.w[i][0],R.w[i][1])-R.w[i][r.same[i]?0:1]);loss.push(Math.max.apply(null,R.m)-R.m[r.mi]);
   var w=0;for(i=1;i<5;i++)if(loss[i]>loss[w])w=i;return loss[w]?w:-1;
 }
 function gRender(me,mm,ot,om,who){
-  var r=gScore(me,mm,ot,om),h='';
+  var rel=CUR_REL,r=gScore(me,mm,ot,om,rel),h='';
   h+='<div class="gpair"><img class="avatar sm" alt="" src="'+avatar(me,mm)+'"><div class="center"><div class="gscore">'+r.sc+'<small>점</small></div><b>'+gGrade(r.sc)+'</b></div><img class="avatar sm" alt="" src="'+avatar(ot,om)+'"></div>';
-  h+='<p class="center sub" style="margin:0 0 6px">나 '+NM(me,mm).n+' × '+(who||'')+NM(ot,om).n+'</p>';
+  h+='<p class="center sub" style="margin:0 0 6px">나 '+NM(me,mm).n+' × '+(who||'')+REL[rel].n+' '+NM(ot,om).n+'</p>';
   for(var i=0;i<4;i++)h+='<div class="gline"><b>'+GT[i][0]+'</b>'+(r.same[i]?GT[i][1]:GT[i][2])+'</div>';
   h+='<div class="gline"><b>일이 터졌을 때</b>'+GMT[r.mi]+'</div>';
-  var w=gWeak(r);h+='<div class="tip">같이 일할 때 꿀팁: '+(w<0?'지금처럼만 하면 돼요. 서로 잘한 일을 말로 알려 주세요.':GTIP[w])+'</div>';
+  var w=gWeak(r),tips=REL_TIP[rel]||GTIP;h+='<div class="tip">'+(rel=='boss'?'이 상사와 일할 때 꿀팁: ':rel=='junior'?'이 후임과 일할 때 꿀팁: ':'같이 일할 때 꿀팁: ')+(w<0?'지금처럼만 하면 돼요. 서로 잘한 일을 말로 알려 주세요.':tips[w])+'</div>';
+  h+='<details class="how"><summary>재미로 보는 궁합, 이렇게 계산해요</summary><p>쉬는 방법, 일을 보는 방식, 판단 기준, 마감 리듬, 일이 터졌을 때 반응. 이 다섯 가지를 하나씩 비교해서 점수를 더해요.</p><p>같은 팀에서 실제로 가장 많이 부딪치는 마감 리듬과 일을 보는 방식에 점수를 더 줬어요. 판단 기준은 오히려 다를 때 점수가 높아요. 한 명은 일을, 한 명은 사람을 챙기면 빈 곳이 줄어서예요.</p><p>상대가 상사인지, 동료인지, 후임인지에 따라 무게가 달라져요. 상사와는 마감 리듬이, 후임과는 판단 기준과 일을 알려 주는 방식이 더 중요해요.</p><p>성격 연구로 증명된 점수는 아니에요. 재미로 보고, 서로 이해하는 데 써 주세요.</p></details>';
   $('gOut').innerHTML=h;
 }
 function gSetup(code,mood){
@@ -574,13 +605,16 @@ function gSetup(code,mood){
   var f=FRIEND;
   if(f){sel.value=f.c+f.m;$('gIntro').textContent='링크를 보내 준 사람과의 궁합이에요. 다른 사람도 골라 볼 수 있어요.';}
   else{sel.value=X[code][3]+'C';}
-  var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람 ':'');};
-  sel.onchange=go;go();
-  var all=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code)return;all.push([c,m,gScore(code,mood,c,m).sc]);});});
+  var top3=function(){
+  var all=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code)return;all.push([c,m,gScore(code,mood,c,m,CUR_REL).sc]);});});
   all.sort(function(a,b){return b[2]-a[2];});
   var top=all.slice(0,3);
   $('gTop').innerHTML=top.map(function(x){return '<button class="gtop" data-c="'+x[0]+'" data-m="'+x[1]+'"><img class="avatar sm" style="height:52px" alt="" src="'+avatar(x[0],x[1])+'"><span style="flex:1"><b>'+NM(x[0],x[1]).n+'</b><br><span class="sub" style="font-size:13.5px">'+NM(x[0],x[1]).line+'</span></span><b style="color:var(--accent)">'+x[2]+'점</b></button>';}).join('');
   [].forEach.call($('gTop').querySelectorAll('.gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c+b.dataset.m;go();$('gCard').scrollIntoView({behavior:'smooth'});};});
+  };
+  var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람, ':'');};
+  [].forEach.call(document.querySelectorAll('#gRel button'),function(b){b.setAttribute('aria-pressed',b.dataset.rel==CUR_REL);b.onclick=function(){CUR_REL=b.dataset.rel;[].forEach.call(document.querySelectorAll('#gRel button'),function(x){x.setAttribute('aria-pressed',x===b);});go();top3();$('gTopH').textContent=J(REL[CUR_REL].n,'으로','로')+' 만나면 잘 맞는 캐릭터 TOP 3';};});
+  sel.onchange=go;go();top3();
 }
 var STING={
  BRWD:{C:'회의 끝에 "누가, 언제까지?"를 꼭 묻는데, 팀원들은 그 말에 살짝 긴장해요.',N:'일이 다 잘 굴러가도, 내가 놓친 게 있을까 봐 한 번 더 확인해요.'},
@@ -714,7 +748,7 @@ function devRender(){
   h+='<h2>4. 궁합 점수 기준</h2><p>두 사람의 축을 하나씩 비교해서 점수를 더해요. 같은 팀에서 가장 많이 부딪치는 마감 리듬과 일을 보는 눈에 무게를 더 줬어요.</p><div class="tw"><table class="dt"><tr><th>축</th><th>같을 때</th><th>다를 때</th></tr>';
   for(var i=0;i<4;i++)h+='<tr><td>'+AX[i].n+' ('+MB[AX[i].la]+'/'+MB[AX[i].lb]+')</td><td>'+GW[i][0]+'</td><td>'+GW[i][1]+'</td></tr>';
   h+='<tr><td>멘탈 (A/T)</td><td colspan="2">둘 다 A '+GM[0]+' · 한 명만 T '+GM[1]+' · 둘 다 T '+GM[2]+'</td></tr></table></div>';
-  h+='<ul style="margin-top:12px"><li>기본 10점에 다섯 축 점수를 더하면 60~102점이에요. 이걸 40~99점으로 바꿔서 보여 줘요.</li><li>등급: 90점 이상 환상의 짝꿍, 78점 이상 든든한 한 팀, 62점 이상 맞춰 가면 좋은 사이, 그 아래는 서로 번역기가 필요한 사이.</li><li>기준(T/F)은 오히려 다를 때 점수가 높아요. 한 명은 일, 한 명은 사람을 챙겨서 서로 보완하기 때문이에요.</li><li>꿀팁은 점수가 가장 많이 깎인 축에서 골라요.</li><li>친구 링크: 결과 주소에 내 코드가 들어 있어서, 받은 사람이 테스트를 끝내면 보낸 사람과의 궁합이 바로 떠요. 서버는 없어요.</li></ul>';
+  h+='<ul style="margin-top:12px"><li>기본 10점에 다섯 축 점수를 더하면 60~102점이에요. 이걸 40~99점으로 바꿔서 보여 줘요.</li><li>등급: 90점 이상 환상의 짝꿍, 78점 이상 든든한 한 팀, 62점 이상 맞춰 가면 좋은 사이, 그 아래는 서로 번역기가 필요한 사이.</li><li>관계별 무게(상사·후임)는 REL 표에 따로 있어요. 위 표는 옆자리 동료 기준이에요.</li><li>기준(T/F)은 오히려 다를 때 점수가 높아요. 한 명은 일, 한 명은 사람을 챙겨서 서로 보완하기 때문이에요.</li><li>꿀팁은 점수가 가장 많이 깎인 축에서 골라요.</li><li>친구 링크: 결과 주소에 내 코드가 들어 있어서, 받은 사람이 테스트를 끝내면 보낸 사람과의 궁합이 바로 떠요. 서버는 없어요.</li></ul>';
   // 분포
   var keys=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){keys.push([c,m]);});});
   var cnt={};keys.forEach(function(a){keys.forEach(function(b){var g=gGrade(gScore(a[0],a[1],b[0],b[1]).sc);cnt[g]=(cnt[g]||0)+1;});});
@@ -754,7 +788,7 @@ function makeCard(cb){
     c.fillStyle='#F7F8FF';rr(c,880,258,60,22,11);c.fill();
     // 사진
     c.fillStyle='#DDF3E9';rr(c,340,390,400,480,36);c.fill();
-    c.save();rr(c,340,390,400,480,36);c.clip();c.imageSmoothingEnabled=false;c.drawImage(img,380,430,320,400);c.restore();
+    c.save();rr(c,340,390,400,480,36);c.clip();c.imageSmoothingEnabled=false;c.drawImage(img,0,0,img.width,img.height*0.9,340,425,400,400*img.height*0.9/img.width);c.restore();
     c.textAlign='center';
     c.fillStyle='#5D6582';c.font='550 40px '+F;wrapText(c,L.nm.pre,W/2,950,800,52,1);
     c.fillStyle='#252943';c.font='800 84px '+F;c.fillText(L.nm.n,W/2,1050);
