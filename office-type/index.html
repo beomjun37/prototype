@@ -87,7 +87,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .ith{display:flex;width:100%;justify-content:space-between;align-items:center;gap:12px;background:none;border:0;color:var(--ink);text-align:left;padding:17px 18px;min-height:64px}
 .ith small{display:block;font-size:12.5px;color:var(--accent);font-weight:650;margin-bottom:2px;letter-spacing:.01em}
 .ith b{display:block;font-size:17.5px;line-height:1.42;font-weight:720;letter-spacing:-.025em}
-.ith i{flex:none;font-size:0;width:9px;height:9px;border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg);margin:-4px 4px 0 0;transition:transform .2s ease}
+.ith i{flex:none;font-size:0;color:transparent;width:9px;height:9px;border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg);margin:-4px 4px 0 0;transition:transform .2s ease}
 .it.open .ith i{transform:rotate(225deg);margin-top:6px}
 .it.open{background:linear-gradient(var(--accent-soft),var(--accent-soft)) 0 0/100% 0 no-repeat}
 .itb{padding:0 18px 18px}
@@ -547,7 +547,7 @@ function gRender(me,mm,ot,om,who){
   h+='<div class="gpair"><img class="avatar sm" alt="" src="'+avatar(me,mm)+'"><div class="center"><div class="gscore">'+r.sc+'<small>점</small></div><b>'+gGrade(r.sc)+'</b></div><img class="avatar sm" alt="" src="'+avatar(ot,om)+'"></div>';
   h+='<p class="center sub" style="margin:0 0 6px">나 '+NM(me,mm).n+' × '+(who||'')+NM(ot,om).n+'</p>';
   for(var i=0;i<4;i++)h+='<div class="gline"><b>'+GT[i][0]+'</b>'+(r.same[i]?GT[i][1]:GT[i][2])+'</div>';
-  h+='<div class="gline"><b>멘탈</b>'+GMT[r.mi]+'</div>';
+  h+='<div class="gline"><b>일이 터졌을 때</b>'+GMT[r.mi]+'</div>';
   var w=gWeak(r);h+='<div class="tip">같이 일할 때 꿀팁: '+(w<0?'지금처럼만 하면 돼요. 서로 잘한 일을 말로 알려 주세요.':GTIP[w])+'</div>';
   $('gOut').innerHTML=h;
 }
@@ -560,8 +560,8 @@ function gSetup(code,mood){
   sel.onchange=go;go();
   var all=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code)return;all.push([c,m,gScore(code,mood,c,m).sc]);});});
   all.sort(function(a,b){return b[2]-a[2];});
-  var seen={},top=[];all.forEach(function(x){if(top.length<3){top.push(x);}});
-  $('gTop').innerHTML=top.map(function(x){return '<button class="gtop" data-c="'+x[0]+'" data-m="'+x[1]+'"><img class="avatar sm" style="height:52px" alt="" src="'+avatar(x[0],x[1])+'"><span style="flex:1"><b>'+T[x[0]].n+'</b> <span class="sub">('+MOOD[x[1]].k+')</span></span><b style="color:var(--accent)">'+x[2]+'점</b></button>';}).join('');
+  var top=all.slice(0,3);
+  $('gTop').innerHTML=top.map(function(x){return '<button class="gtop" data-c="'+x[0]+'" data-m="'+x[1]+'"><img class="avatar sm" style="height:52px" alt="" src="'+avatar(x[0],x[1])+'"><span style="flex:1"><b>'+NM(x[0],x[1]).n+'</b><br><span class="sub" style="font-size:13.5px">'+NM(x[0],x[1]).line+'</span></span><b style="color:var(--accent)">'+x[2]+'점</b></button>';}).join('');
   [].forEach.call($('gTop').querySelectorAll('.gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c+b.dataset.m;go();$('gCard').scrollIntoView({behavior:'smooth'});};});
 }
 var FRIEND=null;
