@@ -288,6 +288,33 @@ h2{font-size:20px}
 .memo{border-radius:var(--r-lg);margin-top:44px}
 .picker small{font-size:13px}
 .memo .avatar{background:var(--paper);border-radius:var(--r-sm)}
+.low-h{margin-top:26px}
+.low-sub{font-size:13.5px;margin:0 0 4px}
+.gtop>b:last-child{color:var(--accent)}
+.gtop.low>b:last-child{color:var(--sub);background:var(--line)}
+#quiz:not([hidden]){display:flex;flex-direction:column;min-height:calc(100vh - 92px);min-height:calc(100svh - 92px)}
+.prog{overflow:visible;margin-top:30px;margin-bottom:22px}
+.walker{position:absolute;bottom:4px;width:30px;image-rendering:pixelated;filter:brightness(0) opacity(.28);transition:left .35s ease;animation:walk .5s steps(2) infinite}
+@keyframes walk{50%{transform:translateY(-2px)}}
+.prog::before{content:"퇴근";position:absolute;right:0;bottom:10px;font-size:12px;font-weight:700;color:var(--sub)}
+.qcard{display:flex;flex-direction:column;justify-content:center;min-height:min(30vh,240px);background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:18px 20px 22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.qtime{align-self:flex-start;font-size:13px;font-weight:700;color:var(--hi-ink);background:var(--hi);border-radius:99px;padding:4px 10px;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.qcard .scene{margin:0 0 6px;min-height:0;font-size:23px}
+.opt.chosen{border-color:var(--accent);background:var(--accent-soft);transform:scale(.98)}
+.opt.chosen::before{background:var(--accent);color:var(--on)}
+.buddy{margin-top:auto;padding-top:20px;display:flex;align-items:flex-end;gap:10px}
+.buddy img{width:64px;flex:none;image-rendering:pixelated}
+.buddy>div{flex:1;min-width:0}
+.bname{font-size:12.5px;font-weight:700;color:var(--sub);margin:0 0 4px 4px}
+.bubble{position:relative;background:var(--mint);color:var(--ink);border-radius:16px 16px 16px 4px;padding:11px 14px;font-size:15px;line-height:1.5}
+.qcard.in,#opts.in{animation:qin .28s ease both}
+#opts.in{animation-delay:.04s}
+.buddy.pop img{animation:bpop .4s ease}
+@keyframes qin{from{opacity:0;transform:translateY(8px)}}
+@keyframes bpop{0%{transform:translateY(16px);opacity:0}70%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.walker,.qcard.in,#opts.in,.buddy.pop img{animation:none}.walker{transition:none}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .walker{filter:brightness(0) invert(1) opacity(.4)}}
+:root[data-theme="dark"] .walker{filter:brightness(0) invert(1) opacity(.4)}
 </style>
 </head>
 <body>
@@ -310,9 +337,10 @@ h2{font-size:20px}
 
 <section id="quiz" hidden>
   <div class="qtop"><button class="qback" id="qBack" type="button" hidden>← 이전 질문</button><span id="qn"></span><span class="note">정답은 없어요</span></div>
-  <div class="prog"><i id="pg"></i></div>
-  <div class="scene" id="scene"></div>
+  <div class="prog"><i id="pg"></i><img class="walker" id="walker" alt=""></div>
+  <div class="qcard" id="qcard"><div class="qtime" id="qtime"></div><div class="scene" id="scene"></div></div>
   <div id="opts"></div>
+  <div class="buddy" id="buddy" aria-live="polite"><img id="buddyAv" alt=""><div><div class="bname" id="buddyName"></div><div class="bubble" id="buddySay"></div></div></div>
 </section>
 
 
@@ -342,6 +370,9 @@ h2{font-size:20px}
       <div id="gOut"></div>
       <div class="top-h" id="gTopH">옆자리 동료로 만나면 잘 맞는 캐릭터 TOP 3</div>
       <div id="gTop"></div>
+      <div class="top-h low-h" id="gLowH">옆자리 동료로 만나면 조심할 캐릭터 3</div>
+      <p class="sub low-sub">나쁜 사람이라서가 아니에요. 일하는 리듬이 정반대라 서로 지치기 쉬운 사이예요. 눌러 보면 같이 일하는 꿀팁이 나와요.</p>
+      <div id="gLow"></div>
     </div>
   </div>
 
@@ -774,12 +805,13 @@ function gSetup(code,mood){
   var top3=function(){
   var all=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code)return;all.push([c,m,gScore(code,mood,c,m,CUR_REL).sc]);});});
   all.sort(function(a,b){return b[2]-a[2];});
-  var top=all.slice(0,3);
-  $('gTop').innerHTML=top.map(function(x){return '<button class="gtop" data-c="'+x[0]+'" data-m="'+x[1]+'"><img class="avatar sm" style="height:52px" alt="" src="'+avatar(x[0],x[1])+'"><span style="flex:1"><b>'+NM(x[0],x[1]).n+'</b><br><span class="sub" style="font-size:13.5px">'+NM(x[0],x[1]).line+'</span></span><b style="color:var(--accent)">'+x[2]+'점</b></button>';}).join('');
-  [].forEach.call($('gTop').querySelectorAll('.gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c+b.dataset.m;sel.onchange();$('gCard').scrollIntoView({behavior:'smooth'});};});
+  var row=function(x,low){return '<button class="gtop'+(low?' low':'')+'" data-c="'+x[0]+'" data-m="'+x[1]+'"><img class="avatar sm" style="height:52px" alt="" src="'+avatar(x[0],x[1])+'"><span style="flex:1"><b>'+NM(x[0],x[1]).n+'</b><br><span class="sub" style="font-size:13.5px">'+NM(x[0],x[1]).line+'</span></span><b>'+x[2]+'점</b></button>';};
+  $('gTop').innerHTML=all.slice(0,3).map(function(x){return row(x,0);}).join('');
+  $('gLow').innerHTML=all.slice(-3).reverse().map(function(x){return row(x,1);}).join('');
+  [].forEach.call(document.querySelectorAll('#gTop .gtop,#gLow .gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c+b.dataset.m;sel.onchange();$('gCard').scrollIntoView({behavior:'smooth'});};});
   };
   var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람, ':'');};
-  [].forEach.call(document.querySelectorAll('#gRel button'),function(b){b.setAttribute('aria-pressed',b.dataset.rel==CUR_REL);b.onclick=function(){CUR_REL=b.dataset.rel;[].forEach.call(document.querySelectorAll('#gRel button'),function(x){x.setAttribute('aria-pressed',x===b);});go();top3();$('gTopH').textContent=J(REL[CUR_REL].n,'으로','로')+' 만나면 잘 맞는 캐릭터 TOP 3';};});
+  [].forEach.call(document.querySelectorAll('#gRel button'),function(b){b.setAttribute('aria-pressed',b.dataset.rel==CUR_REL);b.onclick=function(){CUR_REL=b.dataset.rel;[].forEach.call(document.querySelectorAll('#gRel button'),function(x){x.setAttribute('aria-pressed',x===b);});go();top3();$('gTopH').textContent=J(REL[CUR_REL].n,'으로','로')+' 만나면 잘 맞는 캐릭터 TOP 3';$('gLowH').textContent=J(REL[CUR_REL].n,'으로','로')+' 만나면 조심할 캐릭터 3';};});
   var syncPick=function(){var v=sel.value;$('gPickAv').src=avatar(v.substr(0,4),v.substr(4));$('gPickName').textContent=NM(v.substr(0,4),v.substr(4)).n;};
   var closePick=function(){$('pickBg').hidden=true;document.body.style.overflow='';$('gPick').focus();};
   $('gPick').onclick=function(){
@@ -889,18 +921,34 @@ var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
 function $(id){return document.getElementById(id);}
 function show(id){['intro','quiz','result','dev'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);}
 
+var DAY=['출근 직후','오전 업무 중','점심 먹고 나서','오후 업무 중','퇴근 직전'];
+var SAY=[
+['좋은 아침이에요. 생각나는 대로 골라 주세요.','너무 오래 고민 안 해도 돼요.','회사에서 평소 하던 대로 고르면 돼요.','커피 한 모금 하고 천천히 해요.','벌써 다섯 개째예요. 잘하고 있어요.'],
+['오전이 금방 가네요.','둘 다 아니면 조금 더 가까운 쪽으로 골라요.','이 질문은 다들 한참 고민해요.','점심 메뉴는 정했어요?','곧 점심이에요. 거의 반 왔어요.'],
+['점심 먹고 나니 좀 졸리죠.','이제 딱 반이에요. 지금부터는 금방이에요.','회사에 있을 때의 나를 떠올려 보세요.','이런 날 꼭 한 번씩 있죠.','이게 열다섯 번째 질문이에요.'],
+['오후 세 시는 원래 길어요.','간식 하나 드실래요?','편한 쪽을 고르면 그게 맞는 답이에요.','이제 열 개도 안 남았어요.','퇴근이 보이기 시작해요.'],
+['다섯 개만 더 하면 사원증이 나와요.','거의 다 왔어요. 조금만 힘내요.','오늘 하루 정말 고생 많았어요.','이제 두 개 남았어요.','이게 마지막이에요. 끝나면 바로 퇴근이에요.']];
+var BUDDY=[[1,'C'],[6,'N'],[11,'C'],[12,'N'],[15,'C']];
+function clock(i){var t=540+Math.round(i*22.5/5)*5,h=Math.floor(t/60),m=t%60;return (h<12?'오전 ':'오후 ')+(h>12?h-12:h)+':'+(m<10?'0':'')+m;}
+var LOCK=false,RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 function render(){
-  var qi=ORDER[st.i],q=Q[qi];
+  var qi=ORDER[st.i],q=Q[qi],stage=Math.min(4,Math.floor(st.i/5));
   $('qn').textContent=(st.i+1)+' / '+Q.length;
   $('qBack').hidden=st.i===0;
   var prev=st.ans&&st.ans[st.i];
   $('pg').style.width=(st.i/Q.length*100)+'%';
+  var w=$('walker');if(!w.src)w.src=avatar(Object.keys(T)[3],'C');var pc=st.i/(Q.length-1)*100;w.style.left='calc('+pc+'% - '+(pc*.3)+'px)';
+  $('qtime').textContent=clock(st.i)+' · '+DAY[stage];
   $('scene').textContent=q[1];
-  var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';
+  var bk=Object.keys(T)[BUDDY[stage][0]],bm=BUDDY[stage][1],ba=$('buddyAv'),nb=ba.dataset.k!=bk+bm;
+  if(nb){ba.src=avatar(bk,bm);ba.dataset.k=bk+bm;$('buddyName').textContent='옆자리 '+NM(bk,bm).n;}
+  $('buddySay').textContent=SAY[stage][st.i%5];
+  var c=$('qcard'),bd=$('buddy');c.classList.remove('in');bd.classList.remove('pop');void c.offsetWidth;c.classList.add('in');if(nb)bd.classList.add('pop');
+  var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';o.classList.remove('in');void o.offsetWidth;o.classList.add('in');
   idx.forEach(function(k){
     var b=document.createElement('button');b.className='opt';b.textContent=q[2][k];
     if(prev&&prev[1]===k)b.className+=' was';
-    b.onclick=function(){pick(qi,k);};o.appendChild(b);
+    b.onclick=function(){if(LOCK)return;LOCK=true;b.classList.add('chosen');setTimeout(function(){LOCK=false;pick(qi,k);},RM?0:170);};o.appendChild(b);
   });
 }
 function pick(qi,k){
