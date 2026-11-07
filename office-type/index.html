@@ -146,7 +146,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .gline:first-of-type{border-top:0}
 .gline b{display:block;font-size:12.5px;color:var(--accent);font-weight:650;margin-bottom:1px}
 .devbtn{display:block;margin:22px auto 0;background:none;border:1px dashed var(--line);color:var(--faint);font-size:13px;border-radius:10px;padding:10px 14px;min-height:44px}
-
+#dev h2{margin:30px 0 8px}#dev p,#dev li{font-size:15px}#dev ol,#dev ul{padding-left:20px;margin:0 0 12px}
 .dt{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--paper);border-radius:14px;overflow:hidden}
 .dt th,.dt td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:middle}.dt th{background:var(--accent-soft);font-weight:700;font-size:12.5px}
 .dt img{height:40px;image-rendering:pixelated;display:block}.dt code{font-weight:700;color:var(--accent);font-size:13px;white-space:nowrap}.dt td:last-child{white-space:nowrap;font-size:12px}
@@ -316,7 +316,18 @@ h2{font-size:20px}
 @media (prefers-reduced-motion:reduce){.qcard.in,#opts.in,.buddy.pop img{animation:none}}
 .gpair{flex-wrap:wrap}
 .gline1{flex-basis:100%;margin:12px 0 0;text-align:center;text-wrap:balance;font-size:16px;font-weight:750;line-height:1.5;letter-spacing:-.02em;color:var(--ink);word-break:keep-all}
-
+/*DEV*/
+.dvnav{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 18px}.dvnav a{font-size:13px;font-weight:700;padding:6px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent);text-decoration:none}
+.dvbox{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px}
+.dvrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;font-size:14px}
+.dvrow select,.dvrow input{font:inherit;font-size:14px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-height:40px;max-width:100%}
+.dvbtn{font:inherit;font-size:14px;font-weight:700;padding:9px 12px;border-radius:10px;border:0;background:var(--accent);color:var(--on);min-height:40px}
+.dvgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.dvc{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:11.5px;line-height:1.3;text-align:center}
+.dvc img{height:44px;image-rendering:pixelated}.dvc code{font-size:10.5px;color:var(--accent);font-weight:700}
+.dvout{font-size:14px;line-height:1.6}.dvout b{color:var(--accent)}
+.devfloat{position:fixed;left:12px;bottom:12px;z-index:50;font:inherit;font-size:13px;font-weight:700;padding:10px 14px;border-radius:99px;border:0;background:#252943;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25);min-height:44px}
+/*/DEV*/
 #imgDl{display:flex;align-items:center;justify-content:center;text-decoration:none;margin-bottom:10px}
 #imgDl[hidden]{display:none}
 .sbar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(to top,var(--bg) 70%,transparent);animation:qin .2s ease both}
@@ -346,7 +357,7 @@ h2{font-size:20px}
   </div>
     <button class="btn" id="start">내 사원증 받으러 가기</button>
   <p class="note" style="margin-top:14px">정답은 없어요. 재미로 보는 테스트이고 진짜 성격 검사는 아니에요.</p>
-  
+  <!--DEV--><button class="devbtn" id="devGo">개발자 페이지 (캐릭터 결과 바로 보기)</button><!--/DEV-->
 </section>
 
 <section id="quiz" hidden>
@@ -358,7 +369,16 @@ h2{font-size:20px}
   <div class="buddy" id="buddy" aria-live="polite"><img id="buddyAv" alt=""><div><div class="bname" id="buddyName"></div><div class="bubble" id="buddySay"></div></div></div>
 </section>
 
-
+<!--DEV--><section id="dev" hidden>
+  <button class="btn ghost" id="devBack" style="margin:0 0 18px">← 테스트로 돌아가기</button>
+  <div class="eyebrow">팀 내부용 · 공개 사이트에서는 자동으로 빠져요</div>
+  <h1 style="font-size:28px">개발자 페이지</h1>
+  <nav class="dvnav"><a href="#dvA">캐릭터 결과</a><a href="#dvG">궁합 계산기</a><a href="#dvQz">질문 화면</a><a href="#dvI">사원증 이미지</a><a href="#dvT">문구 한눈에</a><a href="#dvEtc">기타</a><a href="#dvLogic">로직 설명</a></nav>
+  <div id="devTools"></div>
+  <h2 id="dvLogic" style="margin-top:40px">로직 설명</h2>
+  <div id="devBody"></div>
+</section>
+<button id="devFloat" class="devfloat" hidden>← 개발자 페이지</button><!--/DEV-->
 
 <section id="result" hidden>
   <div class="fbanner" id="fBanner" hidden><b>친구가 보낸 사원증이에요</b><p>나도 2분 테스트를 하면 이 친구와 나의 궁합이 바로 나와요.</p><button class="btn" id="fGo">나도 해 보고 궁합 보기</button></div>
@@ -1090,8 +1110,76 @@ function showResult(code,mood,sc,sw){
 }
 
 
-
-
+/*DEV*//* 개발자용 화면: 테스트 데이터에서 바로 표를 만든다 *//*/DEV*/
+/*DEV*/var MB={B:'E',Q:'I',R:'S',V:'N',W:'T',H:'F',D:'J',L:'P',C:'A',N:'T'};
+function mbti(c,m){return MB[c[0]]+MB[c[1]]+MB[c[2]]+MB[c[3]]+'-'+MB[m];}
+function devRender(){
+  var h='';
+  h+='<h2>1. 축 다섯 개와 실제 MBTI 대응</h2><p>화면에는 MBTI라는 말을 쓰지 않아요. 내부적으로만 아래처럼 대응돼요. 문항은 공식 MBTI 문항이 아니라, 공개된 빅파이브 연구 개념을 참고해서 새로 쓴 문장이에요.</p><div class="tw"><table class="dt"><tr><th>우리 축</th><th>왼쪽</th><th>오른쪽</th><th>MBTI</th></tr>';
+  AX.forEach(function(a,i){h+='<tr><td>'+a.n+'</td><td>'+a.a+'</td><td>'+a.b+'</td><td><code>'+MB[a.la]+' / '+MB[a.lb]+'</code>'+(i==4?' (뒤 글자)':'')+'</td></tr>';});
+  h+='</table></div>';
+  h+='<h2>2. 결과가 정해지는 방법</h2><ol><li>장면 25개, 축마다 5개씩이에요. 장면마다 선택지 2개 중 하나를 고르면 그 축의 한쪽에 1표가 들어가요.</li><li>축마다 5표 중 3표 이상 받은 쪽이 결과가 돼요. 홀수라서 동점이 없어요.</li><li>화면에는 숫자를 보여 주지 않아요. 가장 뚜렷한 축(5:0 또는 4:1)은 "타고난 거예요"로 단정하고, 3:2로 갈린 축은 "그날그날 달라요"로 풀어 줘요.</li><li>"이런 적 있죠?" 문장은 한 결과에 세 번만 나와요: 한마디로(가장 뚜렷한 축), 힘든 순간(판단 기준), 멘탈 풀이.</li><li>앞 네 축으로 기본 성향 16가지가 정해지고, 다섯째 축(일이 터졌을 때)으로 둘 중 한 캐릭터가 골라져요. 그래서 모두 32명이에요.</li><li>선택지 순서는 매번 무작위로 섞여서, 위에 있는 걸 고르는 버릇이 결과에 영향을 주지 않아요.</li><li>장면 순서는 축이 번갈아 나오게 섞어 두었어요.</li></ol>';
+  h+='<div class="tw"><table class="dt"><tr><th>#</th><th>장면</th><th>축</th><th>첫 번째 선택지 → / 두 번째 선택지 →</th></tr>';
+  ORDER.forEach(function(qi,n){var q=Q[qi];h+='<tr><td>'+(n+1)+'</td><td>'+q[1]+'</td><td>'+AX[q[0]].n+'</td><td>'+AX[q[0]].a+' / '+AX[q[0]].b+'</td></tr>';});
+  h+='</table></div>';
+  h+='<h2>3. 캐릭터 32명과 MBTI</h2><div class="tw"><table class="dt"><tr><th></th><th>캐릭터</th><th>MBTI</th><th>우리 코드</th></tr>';
+  var mbOrder=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){mbOrder.push([c,m]);});});
+  mbOrder.sort(function(a,b){return mbti(a[0],a[1])<mbti(b[0],b[1])?-1:1;});
+  mbOrder.forEach(function(x){var n=NM(x[0],x[1]);h+='<tr><td><img src="'+avatar(x[0],x[1])+'" alt=""></td><td><b>'+n.n+'</b><br><span class="sub" style="font-size:12.5px">'+n.pre+'</span></td><td><code>'+mbti(x[0],x[1])+'</code></td><td>'+x[0]+'-'+x[1]+'</td></tr>';});
+  h+='</table></div>';
+  h+='<h2>4. 궁합 점수 기준 (직장 궁합)</h2><p>직장 궁합 = 같이 일할 때 덜 지치고 일이 더 잘 되는 정도. 관계마다 따로 계산해요. 축마다 나와 상대가 어느 쪽인지 4칸으로 보고 점수를 줘요. 상사·후임은 방향이 있어서, 같은 두 사람이라도 누가 상사냐에 따라 점수가 달라요.</p>';
+  ['peer','boss','junior'].forEach(function(rk){var R=REL[rk];h+='<h3 style="margin:16px 0 6px">'+R.n+' (등급 '+R.t.join(' / ')+')</h3><div class="tw"><table class="dt"><tr><th>축</th><th>나 '+'왼/상대 왼</th><th>나 왼/상대 오</th><th>나 오/상대 왼</th><th>나 오/상대 오</th></tr>';
+    var nm=['충전 (E/I)','일을 보는 눈 (S/N)','기준 (T/F)','마감 리듬 (J/P)','멘탈 (A/T)'];
+    R.m.forEach(function(t,i){h+='<tr><td>'+nm[i]+'</td><td>'+t[0][0]+'</td><td>'+t[0][1]+'</td><td>'+t[1][0]+'</td><td>'+t[1][1]+'</td></tr>';});h+='</table></div>';});
+  h+='<ul style="margin-top:12px"><li>왼쪽 = E, S, T, J, A 쪽이에요. 기본 10점에 다섯 축 점수를 더한 뒤, 관계마다 가능한 최저~최고점을 40~99점으로 바꿔요.</li><li>등급 기준은 관계마다 달라요. 모든 조합 중 대략 상위 10%가 환상의 짝꿍, 하위 20%가 번역기가 필요한 사이가 되도록 맞췄어요.</li><li>방향이 중요한 칸(상사·후임의 일을 보는 눈, 마감 리듬, 멘탈)은 관계별 문장으로 풀어 줘요.</li><li>근거: 성격이 비슷한지보다 각자 덜 불안하고 성실한지가 관계에 더 중요하고(Dyrenforth 2010), 상사와는 일하는 방식이 비슷하다고 느낄수록 관계가 좋다는 연구를 참고했어요. 가중치는 연구에서 나온 숫자가 아니라 우리가 정한 값이에요.</li><li>꿀팁은 점수가 가장 많이 깎인 축에서 골라요.</li><li>친구 링크: 결과 주소에 내 코드가 들어 있어서, 받은 사람이 테스트를 끝내면 보낸 사람과의 궁합이 바로 떠요. 서버는 없어요.</li></ul>';
+  // 분포
+  var keys=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){keys.push([c,m]);});});
+  var cnt={};keys.forEach(function(a){keys.forEach(function(b){var g=gGrade(gScore(a[0],a[1],b[0],b[1]).sc,'peer');cnt[g]=(cnt[g]||0)+1;});});
+  h+='<p>32×32 전체 조합의 등급 분포: '+Object.keys(cnt).map(function(k){return k+' '+Math.round(cnt[k]/keys.length/keys.length*100)+'%';}).join(', ')+'</p>';
+  h+='<h2>5. 해설은 어떻게 만들어지나</h2><ul><li>AI 생성 없이, 사람이 써 둔 문장 블록을 조합해요.</li><li>캐릭터마다 따로 쓴 것: 이름, 형용구, 한 줄 소개, 한마디 비유, 내년 키워드, 그림.</li><li>기본 성향 16가지마다 쓴 것: 일할 때 모습, 매력, 힘든 순간, 잘 맞는 동료, 상사에게 통하는 말, 쓴소리.</li><li>축별 문단: 충전, 일을 보는 눈, 기준, 마감 리듬, 멘탈마다 써 둔 문단을 해설 곳곳에 붙여요.</li></ul>';
+  h+='<p class="note" style="margin-top:24px">이 화면은 시작 화면 맨 아래 버튼으로 들어와요. 주소 끝에 #dev를 붙여도 열려요. 공개 사이트에는 이 화면이 없어요. 팀용 링크로만 들어와요.</p>';
+  $('devBody').innerHTML=h;
+  devTools();
+}
+function devKeys(){var a=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){a.push([c,m]);});});return a;}
+function devSc(c,m,k){var A=c+m,sc=[];for(var i=0;i<5;i++)sc.push(A[i]==LEFT[i]?k:5-k);return sc;}
+function devOpts(sel){return devKeys().map(function(x){return '<option value="'+x[0]+x[1]+'"'+(sel==x[0]+x[1]?' selected':'')+'>'+NM(x[0],x[1]).n+' ('+mbti(x[0],x[1])+')</option>';}).join('');}
+function devFloatOn(){$('devFloat').hidden=false;}
+function devOpen(c,m){
+  var k=+$('dvK').value,mode=$('dvMode').value;CUR_REL='peer';FRIEND=null;
+  showResult(c,m,devSc(c,m,k),+$('dvW').value);
+  if(mode=='friend'){var fn=NM(c,m).n.split(' ').pop();setFriendView(fn);$('fBanner').querySelector('b').textContent='친구가 보낸 '+fn+'의 사원증이에요';$('fGo').onclick=function(){FRIEND={c:c,m:m};setFriendView(null);$('start').onclick();};}
+  else setFriendView(null);
+  history.replaceState(null,'','#dev');devFloatOn();
+}
+function devTools(){
+  var h='',K=devKeys();
+  h+='<h2 id="dvA">1. 캐릭터 결과 바로 보기</h2><div class="dvbox"><div class="dvrow"><label>결과 세기 <select id="dvK"><option value="5">모두 뚜렷하게 (5:0)</option><option value="4" selected>보통 (4:1)</option><option value="3">아슬아슬하게 (3:2)</option></select></label><label>보기 방식 <select id="dvMode"><option value="me">내 결과로</option><option value="friend">친구가 보낸 링크로</option></select></label><input id="dvW" type="hidden" value="0"></div>';
+  h+='<p class="sub" style="font-size:13px;margin:0 0 8px">누르면 테스트 없이 그 캐릭터 결과가 바로 떠요. 결과 세기에 따라 한마디로 풀이 문장이 달라져요. 왼쪽 아래 버튼으로 돌아와요.</p><div class="dvgrid">';
+  K.forEach(function(x){h+='<button class="dvc" data-c="'+x[0]+'" data-m="'+x[1]+'"><img alt="" src="'+avatar(x[0],x[1])+'">'+NM(x[0],x[1]).n+'<code>'+mbti(x[0],x[1])+'</code></button>';});
+  h+='</div></div>';
+  h+='<h2 id="dvG">2. 궁합 계산기</h2><div class="dvbox"><div class="dvrow"><label>나 <select id="dvGa">'+devOpts('BRWDC')+'</select></label><label>상대 <select id="dvGb">'+devOpts('QVHLN')+'</select></label><label>관계 <select id="dvGr"><option value="peer">옆자리 동료</option><option value="boss">내 상사</option><option value="junior">내 후임</option></select></label></div><div class="dvout" id="dvGo"></div></div>';
+  h+='<h2 id="dvQz">3. 질문 화면 점검</h2><div class="dvbox"><div class="dvrow"><label>몇 번 질문부터 <input id="dvQn" type="number" min="1" max="25" value="13" style="width:64px"></label><button class="dvbtn" id="dvQgo">앞은 무작위로 채우고 시작</button><button class="dvbtn" id="dvQrand">무작위로 끝까지 풀기</button></div><p class="sub" style="font-size:13px;margin:0">요일·시각, 옆자리 동료 말풍선, 이전 질문 버튼을 중간부터 바로 볼 수 있어요. 끝까지 풀면 실제 결과 화면이 떠요.</p></div>';
+  h+='<h2 id="dvI">4. 사원증 이미지 미리보기</h2><div class="dvbox"><div class="dvrow"><select id="dvIc">'+devOpts('BVWDC')+'</select><button class="dvbtn" id="dvIgo">이미지 만들기</button></div><div id="dvIout"></div></div>';
+  h+='<h2 id="dvT">5. 캐릭터별 문구 한눈에 보기</h2><p class="sub" style="font-size:13px">문구 검토용이에요. 한 줄 소개, 찔리는 한 줄, 한마디로 제목, 올해 들은 말, 상사에게 하는 말, 어울리는 부서를 한 표에 모았어요.</p><div class="tw"><table class="dt"><tr><th></th><th>캐릭터</th><th>문구</th></tr>';
+  K.forEach(function(x){var c=x[0],m=x[1],n=NM(c,m);h+='<tr><td><img src="'+avatar(c,m)+'" alt=""></td><td><b>'+n.n+'</b><br><code>'+mbti(c,m)+'</code></td><td style="white-space:normal;font-size:12.5px;line-height:1.5">'+n.pre+' '+n.n+'<br>한 줄: '+n.line+'<br>찔림: '+STING[c][m]+'<br>한마디로: '+n.hl+'<br>올해 들은 말: '+YEARQ[c+m]+'<br>상사에게: '+X[c][5]+'<br>부서: '+DEPT[c[1]+c[2]][0]+'<br>잘 맞는 동료: '+NM(bestPeer(c,m).c,bestPeer(c,m).m).n+' ('+bestPeer(c,m).sc+'점)</td></tr>';});
+  h+='</table></div>';
+  h+='<h2 id="dvEtc">6. 기타</h2><div class="dvbox"><div class="dvrow"><button class="dvbtn" id="dvClr">저장된 내 결과 지우기</button><button class="dvbtn" id="dvStart">처음 화면으로</button></div><p class="sub" style="font-size:13px;margin:0">저장된 내 결과를 지우면 내 결과 링크도 친구 링크처럼 보여요. 친구 링크 화면을 실제로 점검할 때 써요.</p><p class="sub" style="font-size:13px">올리기 전 점검(팀 컴퓨터에서): copycheck.js 라이트·다크, readcheck.js, build-public.py로 공개본 만들기. 이 페이지와 왼쪽 아래 버튼은 공개본에서 자동으로 빠져요.</p></div>';
+  $('devTools').innerHTML=h;
+  [].forEach.call(document.querySelectorAll('.dvc'),function(b){b.onclick=function(){devOpen(b.dataset.c,b.dataset.m);};});
+  var g=function(){var a=$('dvGa').value,b=$('dvGb').value,rel=$('dvGr').value,r=gScore(a.substr(0,4),a.substr(4),b.substr(0,4),b.substr(4),rel),nm=['충전','일을 보는 눈','기준','마감 리듬','멘탈'],w=gWeak(r);
+    $('dvGo').innerHTML='<b style="font-size:22px">'+r.sc+'점</b> · 등급 '+gGrade(r.sc,rel)+'<br>한마디: '+gLine(r)+'<br>축별 점수: '+r.pts.map(function(v,i){return nm[i]+' '+v;}).join(', ')+'<br>꿀팁 축: '+(w<0?'없음':nm[w]);};
+  ['dvGa','dvGb','dvGr'].forEach(function(id){$(id).onchange=g;});g();
+  var fill=function(n){st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[]};FRIEND=null;for(var i=0;i<n;i++){var qi=ORDER[i],k=Math.random()<.5?0:1,ax=Q[qi][0];st.ans[i]=[qi,k];if(k==0)st.sc[ax]++;st.n[ax]++;if(SW[qi]===k)st.sw++;}st.i=n;};
+  $('dvQgo').onclick=function(){var n=Math.max(1,Math.min(25,+$('dvQn').value||1))-1;fill(n);show('quiz');render();devFloatOn();};
+  $('dvQrand').onclick=function(){fill(Q.length);finish();devFloatOn();};
+  $('dvIgo').onclick=function(){var v=$('dvIc').value,c=v.substr(0,4),m=v.substr(4);FRIEND=null;showResult(c,m,devSc(c,m,4),0);show('dev');$('dvIout').innerHTML='만드는 중…';makeCard(function(bl,cv){$('dvIout').innerHTML='';var im=new Image();im.src=cv.toDataURL('image/png');im.style.cssText='width:100%;border-radius:12px;border:1px solid var(--line)';$('dvIout').appendChild(im);});};
+  $('dvClr').onclick=function(){try{localStorage.removeItem('oct_mine');}catch(e){}this.textContent='지웠어요';};
+  $('dvStart').onclick=function(){history.replaceState(null,'','#');show('intro');};
+}
+$('devFloat').onclick=function(){this.hidden=true;devRender();show('dev');history.replaceState(null,'','#dev');};
+$('devGo').onclick=function(){devRender();show('dev');history.replaceState(null,'','#dev');};
+$('devBack').onclick=function(){history.replaceState(null,'','#');show('intro');$('devFloat').hidden=true;};/*/DEV*/
 $('start').onclick=function(){st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[]};history.replaceState(null,'','#');show('quiz');render();};
 $('qBack').onclick=function(){if(st.i<1)return;st.i--;var a=st.ans[st.i],qi=a[0],k=a[1],ax=Q[qi][0];if(k==0)st.sc[ax]--;st.n[ax]--;if(SW[qi]===k)st.sw--;render();window.scrollTo(0,0);};
 $('again').onclick=function(){history.replaceState(null,'','#');show('intro');};
@@ -1182,7 +1270,7 @@ $('share').onclick=function(){
   else prompt('링크를 복사하세요',u);
 };
 (function BOOT(){
-
+/*DEV*/if(/#dev/.test(location.hash)){devRender();show('dev');}/*/DEV*/
 setAv($('introAv'),'BVWD','C');setAv($('introAv2'),'BRWL','C');setAv($('introAv3'),'QVHL','C');
 (function(){
   var m=/r=([BQ][RV][WH][DL])-([CN])&s=(\d{5})&w=(\d)/.exec(location.hash);
