@@ -317,6 +317,18 @@ h2{font-size:20px}
 .gpair{flex-wrap:wrap}
 .gline1{flex-basis:100%;margin:12px 0 0;text-align:center;text-wrap:balance;font-size:16px;font-weight:750;line-height:1.5;letter-spacing:-.02em;color:var(--ink);word-break:keep-all}
 
+#imgDl{display:flex;align-items:center;justify-content:center;text-decoration:none;margin-bottom:10px}
+#imgDl[hidden]{display:none}
+.sbar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(to top,var(--bg) 70%,transparent);animation:qin .2s ease both}
+.sbar-in{max-width:460px;margin:0 auto;display:flex;gap:8px}
+.sbar-in .btn{flex:1;margin:0;min-height:50px;font-size:15.5px}
+.sbar-in .btn[hidden]{display:none}
+.gfb{margin:18px 0 4px;padding:14px;border-radius:var(--r-md);background:var(--bg);border:1px solid var(--line)}
+.gfb>span{display:block;font-size:14.5px;font-weight:700;margin-bottom:10px}
+.gfb>div{display:flex;gap:6px}
+.gfb button{flex:1;min-height:44px;font:inherit;font-size:14px;font-weight:650;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.gfb button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.gfb-t{font-size:13px;margin:10px 0 0}
 </style>
 </head>
 <body>
@@ -386,6 +398,15 @@ h2{font-size:20px}
 </section>
 
 </main>
+<div class="sheet-bg" id="imgBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="imgTitle">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head"><h3 id="imgTitle">내 사원증 이미지</h3><button type="button" class="sheet-x" id="imgX" aria-label="닫기">✕</button></div>
+  <p class="sub" id="imgHint" style="margin:0 0 12px;font-size:14px"></p>
+  <img id="imgPrev" alt="내 사원증 이미지" style="display:block;width:72%;max-width:300px;margin:0 auto 14px;border-radius:14px;border:1px solid var(--line)">
+  <a class="btn" id="imgDl" download>이미지 다운로드</a>
+  <button class="btn ghost" id="imgShare" type="button" hidden>카톡·인스타로 바로 보내기</button>
+</div></div>
+<div class="sbar" id="sbar" hidden><div class="sbar-in"><button class="btn" id="sbSave" type="button">이미지 저장</button><button class="btn ghost" id="sbShare" type="button">링크 복사</button><button class="btn" id="sbFriend" type="button" hidden>나도 해 보고 궁합 보기</button></div></div>
 <div class="sheet-bg" id="pickBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="pickTitle">
   <div class="sheet-grip"></div>
   <div class="sheet-head"><h3 id="pickTitle">같이 일하는 사람은 어떤 캐릭터인가요?</h3><button type="button" class="sheet-x" id="pickX" aria-label="닫기">✕</button></div>
@@ -826,6 +847,7 @@ function gLine(r){
   if(w<0||w==b)return A.replace(/는데$|한데$/,function(m){return m=='한데'?'한':'는';})+' 사이';
   return A+'<br>'+f(PAIR[w][r.ix[w][0]][r.ix[w][1]][1])+'\u00a0사이';
 }
+function FB(){try{return JSON.parse(localStorage.getItem('oct_fb')||'{}')||{};}catch(e){return {};}}
 function gRender(me,mm,ot,om,who){
   var rel=CUR_REL,r=gScore(me,mm,ot,om,rel),h='';
   h+='<div class="gpair"><img class="avatar sm" alt="" src="'+avatar(me,mm)+'"><div class="center"><div class="gscore">'+r.sc+'<small>점</small></div></div><img class="avatar sm" alt="" src="'+avatar(ot,om)+'"><p class="gline1">'+gLine(r)+'</p></div>';
@@ -834,7 +856,10 @@ function gRender(me,mm,ot,om,who){
   for(var i=0;i<5;i++){var nm5=i<4?GT[i][0]:'일이 터졌을 때',tx=DL[i]?DL[i][r.ix[i][0]][r.ix[i][1]]:(i<4?(r.same[i]?GT[i][1]:GT[i][2]):GMT[r.mi]);h+='<div class="gline"><b>'+nm5+'</b>'+tx+'</div>';}
   var w=gWeak(r),tips=REL_TIP[rel]||GTIP;h+='<div class="tip">'+(rel=='boss'?'이 상사와 일할 때 꿀팁: ':rel=='junior'?'이 후임과 일할 때 꿀팁: ':'같이 일할 때 꿀팁: ')+(w<0?'지금처럼만 하면 돼요. 서로 잘한 일을 말로 알려 주세요.':tips[w])+'</div>';
   h+='<details class="how"><summary>재미로 보는 궁합, 이렇게 계산해요</summary><p>쉬는 방법, 일을 보는 방식, 판단 기준, 마감 리듬, 일이 터졌을 때 반응. 이 다섯 가지를 하나씩 비교해서 점수를 더해요.</p><p>같은 팀에서 실제로 가장 많이 부딪치는 마감 리듬과 일을 보는 방식에 점수를 더 줬어요. 판단 기준은 오히려 다를 때 점수가 높아요. 한 명은 일을, 한 명은 사람을 챙기면 빈 곳이 줄어서예요.</p><p>상대가 상사인지, 동료인지, 후임인지에 따라 계산이 달라요. 같은 두 사람이라도 누가 상사냐에 따라 점수가 바뀌어요. 예를 들어 상사는 미리 하는데 나는 막판에 몰아서 하면 가장 조심해야 하지만, 반대로 내가 미리 하고 상사가 막판형이면 오히려 상사가 편해해요.</p><p>성격 연구로 증명된 점수는 아니에요. 재미로 보고, 서로 이해하는 데 써 주세요.</p></details>';
+  var fk=me+mm+'-'+ot+om+'-'+rel,fb=FB()[fk];
+  h+='<div class="gfb" data-k="'+fk+'" data-sc="'+r.sc+'"><span>이 궁합, 실제로 맞나요?</span><div>'+[['y','맞아요'],['m','반반이에요'],['n','아니에요']].map(function(o){return '<button type="button" data-a="'+o[0]+'" aria-pressed="'+(fb&&fb.a==o[0])+'">'+o[1]+'</button>';}).join('')+'</div><p class="sub gfb-t" '+(fb?'':'hidden')+'>알려 줘서 고마워요. 궁합을 더 정확하게 다듬는 데 쓸게요.</p></div>';
   $('gOut').innerHTML=h;
+  [].forEach.call($('gOut').querySelectorAll('.gfb button'),function(b){b.onclick=function(){var box=b.closest('.gfb'),all=FB();all[box.dataset.k]={a:b.dataset.a,sc:+box.dataset.sc,t:Date.now()};try{localStorage.setItem('oct_fb',JSON.stringify(all));}catch(e){}[].forEach.call(box.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b);});box.querySelector('.gfb-t').hidden=false;};});
 }
 function gSetup(code,mood){
   var sel=$('gSel'),o='';Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){o+='<option value="'+c+m+'">'+NM(c,m).n+'</option>';});});sel.innerHTML=o;
@@ -958,7 +983,7 @@ var YEAR_D={D:'미리 끝내 둔 일 덕분에 팀이 여러 번 숨을 돌렸�
 var FRIEND=null,LAST=null;
 var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
 function $(id){return document.getElementById(id);}
-function show(id){['intro','quiz','result','dev'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);}
+function show(id){['intro','quiz','result','dev'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);if($('sbar'))$('sbar').hidden=true;}
 
 var WD=['월','화','수','목','금','토','일'];
 var WHEN=[[0,'오전 9:00'],[0,'오전 9:30'],[0,'오전 10:00'],[0,'오전 11:00'],[0,'낮 12:00'],[0,'오후 2:00'],[0,'오후 4:00'],[0,'저녁 7:00'],
@@ -1116,17 +1141,41 @@ function makeCard(cb){
   };
   img.src=avatar(L.code,L.mood);
 }
+var UA=navigator.userAgent||'',INAPP=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp|band/i.test(UA),IOS=/iPhone|iPad|iPod/.test(UA)||(/Macintosh/.test(UA)&&navigator.maxTouchPoints>1);
+var IMGURL=null;
+function closeImg(){$('imgBg').hidden=true;document.body.style.overflow='';}
+$('imgX').onclick=closeImg;$('imgBg').onclick=function(e){if(e.target===this)closeImg();};
 $('saveImg').onclick=function(){
   var btn=this;btn.disabled=true;
   var go=function(){makeCard(function(blob,cv){
     btn.disabled=false;
     var name='사원증-'+LAST.nm.n.replace(/\s/g,'')+'.png';
-    try{var f=new File([blob],name,{type:'image/png'});
-      if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f]}).catch(function(){});return;}}catch(e){}
-    var a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download=name;document.body.appendChild(a);a.click();a.remove();
+    if(IMGURL)URL.revokeObjectURL(IMGURL);IMGURL=URL.createObjectURL(blob);
+    $('imgPrev').src=cv.toDataURL('image/png');$('imgDl').href=IMGURL;$('imgDl').setAttribute('download',name);
+    $('imgDl').hidden=INAPP;
+    $('imgHint').textContent=INAPP?'이 앱 안에서는 바로 다운로드가 안 돼요. 이미지를 길게 눌러 저장하거나, 오른쪽 위 메뉴에서 다른 브라우저로 열어 주세요.':IOS?'다운로드하면 파일 앱에 저장돼요. 사진 앱에 넣으려면 이미지를 길게 누르고 "사진에 저장"을 눌러 주세요.':'다운로드 폴더에 저장했어요. 안 보이면 아래 버튼을 한 번 더 눌러 주세요.';
+    var f=null;try{f=new File([blob],name,{type:'image/png'});}catch(e){}
+    var cs=f&&navigator.canShare&&navigator.canShare({files:[f]});
+    $('imgShare').hidden=!cs;$('imgShare').onclick=function(){navigator.share({files:[f]}).catch(function(){});};
+    $('imgBg').hidden=false;document.body.style.overflow='hidden';
+    if(!INAPP&&!IOS)$('imgDl').click();
   });};
   if(document.fonts&&document.fonts.load)Promise.all([document.fonts.load('800 84px Pretendard'),document.fonts.load('500 40px Pretendard')]).then(go,go);else go();
 };
+/* 결과 화면이 길어서, 원래 버튼이 화면에 없을 때 아래에 붙는 버튼 */
+(function(){
+  var vis={};
+  var upd=function(){var res=!$('result').hidden,fr=$('result').classList.contains('friend');
+    $('sbSave').hidden=fr;$('sbShare').hidden=fr;$('sbFriend').hidden=!fr;
+    var anchorIn=fr?vis.fBanner:(vis.saveImg||vis.share);
+    $('sbar').hidden=!res||!!anchorIn||window.scrollY<300;};
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id]=e.isIntersecting;});upd();});['saveImg','share','fBanner'].forEach(function(id){io.observe($(id));});}
+  window.addEventListener('scroll',upd,{passive:true});
+  $('sbSave').onclick=function(){$('saveImg').onclick.call($('saveImg'));};
+  $('sbShare').onclick=function(){$('share').onclick();this.textContent='복사했어요';var t=this;setTimeout(function(){t.textContent='링크 복사';},2000);};
+  $('sbFriend').onclick=function(){$('fGo').onclick();};
+  window.SBAR=upd;
+})();
 $('share').onclick=function(){
   var u=location.href;
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){$('share').textContent='복사했어요. 단톡방에 붙여 넣어 보세요';},function(){prompt('링크를 복사하세요',u);});}
