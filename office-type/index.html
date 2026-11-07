@@ -293,10 +293,11 @@ h2{font-size:20px}
 .gtop>b:last-child{color:var(--accent)}
 .gtop.low>b:last-child{color:var(--sub);background:var(--line)}
 #quiz:not([hidden]){display:flex;flex-direction:column;min-height:calc(100vh - 92px);min-height:calc(100svh - 92px)}
-.prog{overflow:visible;margin-top:30px;margin-bottom:22px}
-.walker{position:absolute;bottom:4px;width:30px;image-rendering:pixelated;filter:brightness(0) opacity(.28);transition:left .35s ease;animation:walk .5s steps(2) infinite}
-@keyframes walk{50%{transform:translateY(-2px)}}
-.prog::before{content:"퇴근";position:absolute;right:0;bottom:10px;font-size:12px;font-weight:700;color:var(--sub)}
+.prog{overflow:visible;margin-top:6px;margin-bottom:10px}
+.week{display:flex;justify-content:space-between;margin:0 0 18px}
+.week span{flex:1;text-align:center;font-size:12.5px;font-weight:700;color:var(--sub);opacity:.55;padding:3px 0;border-radius:99px}
+.week span.past{opacity:1}
+.week span.now{opacity:1;color:var(--on);background:var(--accent)}
 .qcard{display:flex;flex-direction:column;justify-content:center;min-height:min(30vh,240px);background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:18px 20px 22px;margin-bottom:16px;box-shadow:var(--shadow)}
 .qtime{align-self:flex-start;font-size:13px;font-weight:700;color:var(--hi-ink);background:var(--hi);border-radius:99px;padding:4px 10px;margin-bottom:12px;font-variant-numeric:tabular-nums}
 .qcard .scene{margin:0 0 6px;min-height:0;font-size:23px}
@@ -312,9 +313,7 @@ h2{font-size:20px}
 .buddy.pop img{animation:bpop .4s ease}
 @keyframes qin{from{opacity:0;transform:translateY(8px)}}
 @keyframes bpop{0%{transform:translateY(16px);opacity:0}70%{transform:translateY(-3px)}}
-@media (prefers-reduced-motion:reduce){.walker,.qcard.in,#opts.in,.buddy.pop img{animation:none}.walker{transition:none}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .walker{filter:brightness(0) invert(1) opacity(.4)}}
-:root[data-theme="dark"] .walker{filter:brightness(0) invert(1) opacity(.4)}
+@media (prefers-reduced-motion:reduce){.qcard.in,#opts.in,.buddy.pop img{animation:none}}
 </style>
 </head>
 <body>
@@ -337,7 +336,8 @@ h2{font-size:20px}
 
 <section id="quiz" hidden>
   <div class="qtop"><button class="qback" id="qBack" type="button" hidden>← 이전 질문</button><span id="qn"></span><span class="note">정답은 없어요</span></div>
-  <div class="prog"><i id="pg"></i><img class="walker" id="walker" alt=""></div>
+  <div class="prog"><i id="pg"></i></div>
+  <div class="week" id="week" aria-hidden="true"></div>
   <div class="qcard" id="qcard"><div class="qtime" id="qtime"></div><div class="scene" id="scene"></div></div>
   <div id="opts"></div>
   <div class="buddy" id="buddy" aria-live="polite"><img id="buddyAv" alt=""><div><div class="bname" id="buddyName"></div><div class="bubble" id="buddySay"></div></div></div>
@@ -399,9 +399,9 @@ var AX=[
  {n:'멘탈',a:'덤덤',b:'걱정 많음',la:'C',lb:'N'}
 ];
 var Q=[
- [0,'금요일 저녁, 갑자기 팀 회식이 잡혔다.',['"오, 가요!" 하고 벌써 메뉴를 검색한다','가긴 가는데 끝날 시간부터 계산한다']],
+ [0,'퇴근 30분 전, 갑자기 팀 회식이 잡혔다.',['"오, 가요!" 하고 벌써 메뉴를 검색한다','가긴 가는데 끝날 시간부터 계산한다']],
  [0,'점심시간 한 시간이 생겼다.',['옆자리 사람과 같이 먹으러 간다','이어폰 끼고 혼자 나가서 먹는다']],
- [0,'새로 온 사람이 있다.',['내가 먼저 말을 건다','누가 소개해 주길 기다린다']],
+ [0,'우리 팀에 새로 온 사람이 첫 출근을 했다.',['내가 먼저 말을 건다','누가 소개해 주길 기다린다']],
  [1,'새 프로젝트 설명을 듣는 중이다.',['"그래서 이번 주에 내가 할 일이 뭐죠?"부터 묻는다','"이게 나중에 어디까지 커질 수 있어요?"가 먼저 궁금하다']],
  [1,'보고서를 쓰기 시작한다.',['지난번 자료와 숫자부터 모은다','이번엔 새로운 방식으로 해 보고 싶다']],
  [1,'회의에서 아이디어가 쏟아진다.',['"이걸 실제로 하려면 뭐가 필요하지?"부터 따져 본다','"거기서 한 발 더 나가 보면?" 하고 살을 붙인다']],
@@ -409,25 +409,25 @@ var Q=[
  [2,'상사가 같은 보고서를 세 번째 고치라고 한다.',['어느 부분이 문제인지 콕 집어 물어본다','상사가 진짜 원하는 게 뭔지 분위기부터 읽는다']],
  [2,'두 팀이 일정 때문에 부딪쳤다.',['기준을 정해서 빠르게 한쪽으로 정리해 준다','양쪽 얘기를 다 듣고 서운하지 않게 맞춰 준다']],
  [3,'마감 일주일 전이다.',['미리 끝내 둬야 마음이 편하다','마감이 가까워야 집중이 잘 된다']],
- [3,'일요일 밤, 상사 메신저가 울렸다.',['바로 확인해서 처리해 둬야 마음이 편하다','월요일 아침에 한 번에 몰아서 처리한다']],
+ [3,'푹 쉬고 있는데 상사 메신저가 울렸다.',['바로 확인해서 처리해 둬야 마음이 편하다','월요일 아침에 한 번에 몰아서 처리한다']],
  [3,'연말 휴가 전, 인수인계를 해야 한다.',['일주일 전부터 조금씩 써 둔다','마지막 날 한 번에 깔끔하게 정리한다']],
  [4,'발표 5분 전에 자료 파일이 안 열린다.',['일단 다른 방법부터 찾고 본다','심장이 쿵 내려앉고 손이 바빠진다']],
  [4,'상사가 "잠깐 얘기 좀 해요"라고 한다.',['별일 아니겠지 하고 가 본다','무슨 일일까 가는 내내 마음이 쿵쾅거린다']],
- [4,'일이 끝나고 퇴근길이다.',['오늘 일은 오늘로 끝, 생각이 금방 꺼진다','오늘 들은 말 한마디가 자꾸 떠오른다']],
- [0,'회사 워크숍 첫날 밤이다.',['다 같이 모인 방에 끝까지 남아 있는다','적당히 있다가 먼저 방에 들어가 쉰다']],
+ [4,'일을 마치고 집에 가는 길이다.',['오늘 일은 오늘로 끝, 생각이 금방 꺼진다','오늘 들은 말 한마디가 자꾸 떠오른다']],
+ [0,'1박 2일 워크숍, 첫날 밤이다.',['다 같이 모인 방에 끝까지 남아 있는다','적당히 있다가 먼저 방에 들어가 쉰다']],
  [0,'일이 꽉 막혔다.',['옆자리 사람한테 말로 풀면서 정리한다','혼자 조용히 적어 보면서 정리한다']],
  [1,'선배가 새 일을 알려 준다.',['"뭐부터 하면 돼요?" 순서를 먼저 듣고 싶다','"이 일이 왜 필요해요?" 이유를 먼저 듣고 싶다']],
  [1,'팀장이 "내년엔 뭘 해 보고 싶어요?"라고 묻는다.',['지금 하는 일을 더 잘하는 방법을 말한다','아직 아무도 안 해 본 새로운 일을 말한다']],
  [2,'동료 발표 자료에서 틀린 숫자를 발견했다.',['틀린 숫자부터 짚어서 바로 알려 준다','기분 상하지 않게 말을 골라서 알려 준다']],
  [2,'팀원 평가를 써야 한다.',['성과와 숫자를 중심으로 쓴다','그 사람이 애쓴 과정부터 쓴다']],
  [3,'다음 주 출장이 잡혔다.',['기차표와 일정표부터 바로 정해 둔다','가기 직전에 상황 보고 정한다']],
- [3,'할 일 목록을 보면',['위에서부터 하나씩 지우는 게 좋다','그날 손이 가는 일부터 한다']],
+ [3,'이번 주 할 일 목록을 펼쳤다.',['위에서부터 하나씩 지우는 게 좋다','그날 손이 가는 일부터 한다']],
  [4,'보낸 메일에서 오타를 발견했다.',['다음에 조심하자 하고 바로 넘어간다','누가 봤을까 신경 쓰여서 정정 메일을 고민한다']],
- [4,'내일 중요한 회의가 있다.',['준비할 만큼 했으니 일찍 잔다','괜히 마음이 안 놓여서 잠이 늦게 온다']]
+ [4,'내일 아침에 중요한 회의가 있다.',['준비할 만큼 했으니 일찍 잔다','괜히 마음이 안 놓여서 잠이 늦게 온다']]
 ];
 /* 꾹 참은 말 표시 문항: [질문 번호, 선택지 번호] — 문장 끝에 "삼킨다"가 들어간 선택지 */
 var SW={};
-var ORDER=[0,3,6,9,12,1,4,7,10,13,15,17,19,21,23,2,5,8,11,14,16,18,20,22,24];
+var ORDER=[22,2,3,17,1,4,16,14,5,6,23,21,9,19,12,8,7,13,24,18,20,11,0,15,10];
 
 /* 기본 16명. 코드 = 북/조, 눈/큰, 일/사, 미/막 (B/Q R/V W/H D/L) */
 var T={
@@ -921,28 +921,31 @@ var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
 function $(id){return document.getElementById(id);}
 function show(id){['intro','quiz','result','dev'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);}
 
-var DAY=['출근 직후','오전 업무 중','점심 먹고 나서','오후 업무 중','퇴근 직전'];
-var SAY=[
-['좋은 아침이에요. 생각나는 대로 골라 주세요.','너무 오래 고민 안 해도 돼요.','회사에서 평소 하던 대로 고르면 돼요.','커피 한 모금 하고 천천히 해요.','벌써 다섯 개째예요. 잘하고 있어요.'],
-['오전이 금방 가네요.','둘 다 아니면 조금 더 가까운 쪽으로 골라요.','이 질문은 다들 한참 고민해요.','점심 메뉴는 정했어요?','곧 점심이에요. 거의 반 왔어요.'],
-['점심 먹고 나니 좀 졸리죠.','이제 딱 반이에요. 지금부터는 금방이에요.','회사에 있을 때의 나를 떠올려 보세요.','이런 날 꼭 한 번씩 있죠.','이게 열다섯 번째 질문이에요.'],
-['오후 세 시는 원래 길어요.','간식 하나 드실래요?','편한 쪽을 고르면 그게 맞는 답이에요.','이제 열 개도 안 남았어요.','퇴근이 보이기 시작해요.'],
-['다섯 개만 더 하면 사원증이 나와요.','거의 다 왔어요. 조금만 힘내요.','오늘 하루 정말 고생 많았어요.','이제 두 개 남았어요.','이게 마지막이에요. 끝나면 바로 퇴근이에요.']];
-var BUDDY=[[1,'C'],[6,'N'],[11,'C'],[12,'N'],[15,'C']];
-function clock(i){var t=540+Math.round(i*22.5/5)*5,h=Math.floor(t/60),m=t%60;return (h<12?'오전 ':'오후 ')+(h>12?h-12:h)+':'+(m<10?'0':'')+m;}
+var WD=['월','화','수','목','금','토','일'];
+var WHEN=[[0,'오전 9:00'],[0,'오전 9:30'],[0,'오전 10:00'],[0,'오전 11:00'],[0,'낮 12:00'],[0,'오후 2:00'],[0,'오후 4:00'],[0,'저녁 7:00'],
+[1,'오전 10:00'],[1,'오후 1:30'],[1,'오후 3:00'],[1,'오후 5:00'],
+[2,'오전 9:30'],[2,'오전 11:00'],[2,'오후 2:00'],[2,'오후 4:30'],
+[3,'오전 10:00'],[3,'오후 3:00'],[3,'밤 11:00'],
+[4,'오전 11:00'],[4,'오후 3:00'],[4,'오후 5:00'],[4,'오후 5:30'],[5,'밤 10:00'],[6,'밤 11:00']];
+var SAY=['좋은 아침이에요. 생각나는 대로 골라 주세요.','회사에서 평소 하던 대로 고르면 돼요.','월요일 회의는 늘 길죠.','너무 오래 고민 안 해도 돼요.','점심 메뉴는 정했어요?','점심 먹고 나니 좀 졸리죠.','둘 다 아니면 조금 더 가까운 쪽으로 골라요.','월요일 하루 고생 많았어요.',
+'벌써 화요일이에요.','이 질문은 다들 한참 고민해요.','오후 세 시는 원래 길어요.','거의 반 왔어요.',
+'수요일이에요. 딱 반 왔어요.','커피 한 잔 하고 천천히 해요.','이런 날 꼭 한 번씩 있죠.','편한 쪽을 고르면 그게 맞는 답이에요.',
+'이제 열 개도 안 남았어요.','간식 하나 드실래요?','늦었는데 아직 안 자요?',
+'드디어 금요일이에요.','다섯 개만 더 하면 사원증이 나와요.','거의 다 왔어요. 조금만 힘내요.','퇴근이 코앞이에요.','이제 두 개 남았어요.','이게 마지막이에요. 끝나면 사원증이 나와요.'];
+var BUDDY=[[1,'C'],[6,'N'],[11,'C'],[12,'N'],[15,'C'],[15,'C'],[15,'C']];
 var LOCK=false,RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 function render(){
-  var qi=ORDER[st.i],q=Q[qi],stage=Math.min(4,Math.floor(st.i/5));
+  var qi=ORDER[st.i],q=Q[qi],day=WHEN[st.i][0];
   $('qn').textContent=(st.i+1)+' / '+Q.length;
   $('qBack').hidden=st.i===0;
   var prev=st.ans&&st.ans[st.i];
   $('pg').style.width=(st.i/Q.length*100)+'%';
-  var w=$('walker');if(!w.src)w.src=avatar(Object.keys(T)[3],'C');var pc=st.i/(Q.length-1)*100;w.style.left='calc('+pc+'% - '+(pc*.3)+'px)';
-  $('qtime').textContent=clock(st.i)+' · '+DAY[stage];
+  $('week').innerHTML=WD.map(function(d,k){return '<span class="'+(k<day?'past':k==day?'now':'')+'">'+d+'</span>';}).join('');
+  $('qtime').textContent=WD[day]+'요일 '+WHEN[st.i][1];
   $('scene').textContent=q[1];
-  var bk=Object.keys(T)[BUDDY[stage][0]],bm=BUDDY[stage][1],ba=$('buddyAv'),nb=ba.dataset.k!=bk+bm;
+  var bk=Object.keys(T)[BUDDY[day][0]],bm=BUDDY[day][1],ba=$('buddyAv'),nb=ba.dataset.k!=bk+bm;
   if(nb){ba.src=avatar(bk,bm);ba.dataset.k=bk+bm;$('buddyName').textContent='옆자리 '+NM(bk,bm).n;}
-  $('buddySay').textContent=SAY[stage][st.i%5];
+  $('buddySay').textContent=SAY[st.i];
   var c=$('qcard'),bd=$('buddy');c.classList.remove('in');bd.classList.remove('pop');void c.offsetWidth;c.classList.add('in');if(nb)bd.classList.add('pop');
   var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';o.classList.remove('in');void o.offsetWidth;o.classList.add('in');
   idx.forEach(function(k){
