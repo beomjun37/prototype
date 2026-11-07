@@ -736,6 +736,8 @@ var GT=[
 var GMT=['둘 다 덤덤해서 위기에도 팀이 차분해요.','한 명이 걱정하면 한 명이 다독이는, 균형 잡힌 사이예요.','둘 다 걱정이 많아서 작은 일도 같이 커질 수 있어요. 한 명은 일부러 "괜찮아"를 말해 주세요.'];
 var GTIP=['서로 쉬는 시간을 지켜 주세요. 회식 대신 커피 한 잔도 좋아요.','회의 시작에 "오늘 정할 것 한 가지"를 먼저 말해 두세요.','결정하기 전에 "사람 쪽은 괜찮을까?"를 한 번 물어보세요.','마감 날짜와 중간 점검 날짜를 같이 정해 두세요.','걱정되는 걸 한 줄로 적어서 같이 보고, 지울 수 있는 건 지워요.'];
 var LEFT=['B','R','W','D','C'];
+/* 옆자리 동료로 가장 잘 맞는 캐릭터(사원증·해설의 '잘 맞는 동료'와 궁합 점수를 일치시킴) */
+function bestPeer(code,mood){var b=null;Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code&&m==mood)return;var sc=gScore(code,mood,c,m,'peer').sc;if(!b||sc>b.sc)b={c:c,m:m,sc:sc};});});return b;}
 function gScore(a,am,b,bm,rel){
   rel=rel||'peer';var M=REL[rel].m,A=a+am,B=b+bm,raw=10,lo=10,hi=10,d=[],pts=[],ix=[];
   for(var i=0;i<5;i++){var x=A[i]==LEFT[i]?0:1,y=B[i]==LEFT[i]?0:1,f=[].concat(M[i][0],M[i][1]),v=M[i][x][y];
@@ -884,7 +886,7 @@ function showResult(code,mood,sc,sw){
   $('rSting').textContent=STING[code][mood];
   LAST={code:code,mood:mood,nm:nm,pm:null};
   var c0=code[0],c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
-  var mm2=gScore(code,mood,x[3],'C').sc>=gScore(code,mood,x[3],'N').sc?'C':'N',gm=gScore(code,mood,x[3],mm2).sc,pm=NM(x[3],mm2);
+  var bp=bestPeer(code,mood),gm=bp.sc,pm=NM(bp.c,bp.m);
   var items=[
    ['한마디로',nm.hl,[t.d].concat(reading(code,sc))],
    ['2026년 결산','올해 내가 팀에 남긴 것',['올해 팀에서 나는 "'+nm.line+'"이었어요.',YEAR_B[c0],YEAR_D[c3],'올해 가장 찔렸을 말은 아마 이거예요. "'+STING[code][mood]+'" 내년엔 이 말을 조금 덜 듣는 게 목표예요.']],
@@ -897,7 +899,7 @@ function showResult(code,mood,sc,sw){
    ['힘든 순간',HL.HARD[c2],['§'+COLD[c2][1],x[2],PP[c2].hard,'꿀팁: '+t.tip]],
    ['멘탈 풀이',HL.MIND[mood],['§'+COLD[mood][0],m.t,PP[mood].tip]],
    ['상사에게 통하는 한 마디',x[5].replace(/\"/g,''),['보고하거나 부탁할 때 이 말투를 써 보세요. '+x[5],PP[c0].say]],
-   ['마지막 한마디',HL.YEAR[c3+mood],[HL.YEARB[c3+mood],'내년의 나에게 주는 키워드는 "'+nm.kw+'"예요.']]
+   ['마지막 한마디',HL.YEAR[c3+mood],[HL.YEARB[c3+mood],'내년의 나에게 주는 키워드는 "'+nm.kw+'"'+J(nm.kw,'이에요','예요').slice(nm.kw.length)+'.']]
   ];
   var h='';
   items.forEach(function(it,i){
@@ -962,7 +964,7 @@ function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);
 function makeCard(cb){
   var L=LAST,W=1080,H=1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;var c=cv.getContext('2d');
   var F='Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif';
-  var x3=X[L.code][3],m2=gScore(L.code,L.mood,x3,'C').sc>=gScore(L.code,L.mood,x3,'N').sc?'C':'N',pm=NM(x3,m2);
+  var bp=bestPeer(L.code,L.mood),pm=NM(bp.c,bp.m);
   var img=new Image();
   img.onload=function(){
     c.fillStyle='#F7F8FF';c.fillRect(0,0,W,H);
