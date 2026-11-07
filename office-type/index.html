@@ -72,6 +72,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .id-pre{font-size:13.5px;color:var(--sub);font-weight:550;line-height:1.4}
 .id-name{font-size:25px;font-weight:800;letter-spacing:-.035em;line-height:1.25;margin:4px 0 6px}
 #rLine{font-size:14.5px;color:var(--sub);margin:0;line-height:1.5}
+.itb p.cold{font-weight:650;color:var(--ink);border-left:3px solid var(--hi);padding-left:10px}
 .sting{margin:14px 18px 18px;padding:14px 16px;border-radius:14px;background:var(--accent-soft)}
 .sting small{display:block;font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px}
 .sting p{margin:0;font-size:16px;font-weight:650;line-height:1.5;color:var(--ink)}
@@ -637,13 +638,28 @@ var STING={
 /* 축별 선택 강도: 5표 중 몇 표인지로 '뚜렷한 편/살짝 그런 편' */
 var SIDE={B:'사람들 사이에서 힘을 얻는 쪽',Q:'혼자 있을 때 힘을 채우는 쪽',R:'눈앞의 할 일부터 보는 쪽',V:'큰 그림부터 보는 쪽',W:'일이 맞는지 틀린지로 판단하는 쪽',H:'사람 마음을 먼저 보는 쪽',D:'미리 해 두는 쪽',L:'막판에 몰아서 집중하는 쪽'};
 var TOPIC=['쉬는 방법','일을 보는 방식','판단 기준','마감 리듬'];
-function strength(code,sc){
-  var a=[];for(var i=0;i<4;i++){var v=sc[i],k=v>=3?v:5-v;a.push({i:i,k:k,side:SIDE[code[i]]});}
-  var strong=a.slice().sort(function(x,y){return y.k-x.k;})[0],light=a.filter(function(x){return x.k==3;});
-  if(strong.k==3)return ['네 가지 모두 5개 중 3개로 갈렸어요. 어느 한쪽으로 치우치지 않고 상황에 맞춰 움직이는 편이라, 다시 하면 다른 캐릭터가 나올 수도 있어요.'];
-  var out=[TOPIC[strong.i]+'을 묻는 장면 5개 중 '+strong.k+'개에서 '+strong.side+'을 골랐어요. 이 부분은 '+(strong.k==5?'아주 ':'')+'뚜렷한 편이에요.'];
-  if(light.length)out.push(light.map(function(x){return TOPIC[x.i];}).join(', ')+' 쪽은 5개 중 3개로 살짝 그런 편이에요. 그날 기분에 따라 다시 하면 바뀔 수 있어요.');
-  else out.push('네 가지 모두 5개 중 4개 이상이 같은 쪽이라, 다시 해도 같은 캐릭터가 나올 가능성이 높아요.');
+/* 용한 풀이: 판정 숫자는 숨기고, 가장 뚜렷한 쪽은 단정하고, 애매한 쪽은 '그날그날'로 풀어 준다 */
+var STRONG={B:'사람들 사이에서 힘이 나는 건 타고난 거예요.',Q:'혼자 있는 시간이 꼭 있어야 하는 건 타고난 거예요.',R:'눈앞의 할 일부터 챙기는 감각은 타고난 거예요.',V:'남들보다 한 발 멀리 보는 눈은 타고난 거예요.',W:'맞고 틀림을 가리는 눈은 누구보다 또렷해요.',H:'사람 마음을 먼저 읽는 건 타고난 거예요.',D:'미리 해 둬야 마음이 놓이는 건 타고난 거예요.',L:'막판 집중력은 정말 타고난 거예요.'};
+/* "이런 적 있죠?" 맞추는 문장: 한 결과에 세 번만 쓴다 */
+var COLD={
+ B:['회의에서 아무도 말을 안 할 때, 결국 먼저 입을 연 적 많죠?','혼자 점심 먹는 날은 괜히 허전했던 적 있잖아요.'],
+ Q:['회식 끝나고 집에 와서야 진짜 숨을 쉰 적 있죠?','메신저로는 할 말 다 하는데, 회의실에선 말을 아낀 적 많잖아요.'],
+ R:['"그래서 정확히 뭘 하면 돼요?"라고 묻고 싶었던 회의, 꽤 있었죠?','두루뭉술한 지시를 받고 혼자 할 일 목록부터 만든 적 있잖아요.'],
+ V:['회의 중에 딴생각을 하다가 좋은 아이디어가 떠오른 적 있죠?','같은 일을 반복하다가 "이거 한 번에 안 되나?" 싶었던 적 많잖아요.'],
+ W:['맞는 말을 했는데 분위기가 싸해진 적 있죠?','위로보다 "여기만 고치면 돼"라는 말이 더 편했던 적 있잖아요.'],
+ H:['남의 부탁 들어주다가 내 일이 밀린 적 있죠?','팀 분위기가 안 좋은 날, 일보다 그게 더 신경 쓰였던 적 있잖아요.'],
+ D:['아무도 안 시켰는데 다음 주 일정을 미리 정리해 둔 적 있죠?','갑자기 일정이 바뀌면 하루 종일 마음이 불편했던 적 있잖아요.'],
+ L:['마감 전날 밤, "이 집중력을 왜 평소엔 못 쓰지?" 싶었던 적 있죠?','계획표를 세워 놓고 그대로 한 날이 손에 꼽잖아요.'],
+ C:['다들 놀란 일에 혼자 "그럴 수 있지" 하고 넘어간 적 있죠?'],
+ N:['보낸 메시지에 답이 늦으면, 내가 뭘 잘못 썼나 다시 읽어 본 적 있죠?']
+};
+var LIGHT=['다만 쉬는 방법은 그날그날 달라요. 사람이 반가운 날도, 혼자 있고 싶은 날도 있죠.','다만 일을 볼 땐 눈앞의 일과 큰 그림 사이를 오가요. 상황에 따라 둘 다 쓰는 사람이에요.','다만 판단할 땐 일과 사람 사이에서 자주 고민해요. 그래서 결정 전에 한 번 더 생각하는 편이에요.','다만 마감 리듬은 일마다 달라요. 좋아하는 일은 미리, 싫은 일은 막판에 하게 되죠?'];
+function reading(code,sc){
+  var a=[];for(var i=0;i<4;i++){var v=sc[i],k=v>=3?v:5-v;a.push({i:i,k:k,c:code[i]});}
+  var strong=a.slice().sort(function(x,y){return y.k-x.k;})[0],light=a.filter(function(x){return x.k==3&&x.i!==strong.i;});
+  if(strong.k==3)return ['어느 한쪽으로 치우치지 않아서, "너는 잘 모르겠어"라는 말을 들은 적도 있죠? 상황에 맞춰 얼굴을 바꿀 줄 아는 게 이 사람의 힘이에요.'];
+  var out=['특히 '+STRONG[strong.c],'§'+COLD[strong.c][0]];
+  if(light.length)out.push(LIGHT[light[0].i]);
   return out;
 }
 var YEAR_B={B:'올해 회의와 회식에서 분위기를 살린 건 대부분 나였어요.',Q:'올해도 조용히 맡은 일을 끝까지 해냈어요. 그걸 다 아는 사람은 생각보다 적어요.'};
@@ -701,7 +717,7 @@ function showResult(code,mood,sc,sw){
   var c0=code[0],c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
   var mm2=gScore(code,mood,x[3],'C').sc>=gScore(code,mood,x[3],'N').sc?'C':'N',gm=gScore(code,mood,x[3],mm2).sc,pm=NM(x[3],mm2);
   var items=[
-   ['한마디로',nm.hl,[t.d,'한 줄로 말하면 "'+nm.line+'"이에요.'].concat(strength(code,sc))],
+   ['한마디로',nm.hl,[t.d].concat(reading(code,sc))],
    ['2026년 결산','올해 내가 팀에 남긴 것',['올해 팀에서 나는 "'+nm.line+'"이었어요.',YEAR_B[c0],YEAR_D[c3],'올해 가장 찔렸을 말은 아마 이거예요. "'+STING[code][mood]+'" 내년엔 이 말을 조금 덜 듣는 게 목표예요.']],
    ['나라는 사람',HL.M[c0+c1],[PP[c0].me,PP[c1].me,PP[c2].me]],
    ['일할 때 나',HL.WORK[c0+c3],[x[0],PP[c3].work,PP[c0].meet]],
@@ -709,8 +725,8 @@ function showResult(code,mood,sc,sw){
    ['쓴소리 좀 할게',y[1],[y[2],PP[c3].blunt]],
    ['잘 맞는 상사',HL.BOSS[c1],[HL.BOSSB[c1],PP[c2].boss]],
    ['잘 맞는 동료',J(pm.n,'과','와')+' 같은 팀이면 반은 성공',[x[4],J(pm.n,'은','는')+' "'+pm.line+'"이에요. 둘의 궁합 점수는 '+gm+'점이에요. 아래 궁합 보기에서 자세히 볼 수 있어요.']],
-   ['힘든 순간',HL.HARD[c2],[x[2],PP[c2].hard,'꿀팁: '+t.tip]],
-   ['멘탈 풀이',HL.MIND[mood],[m.t,PP[mood].tip]],
+   ['힘든 순간',HL.HARD[c2],['§'+COLD[c2][1],x[2],PP[c2].hard,'꿀팁: '+t.tip]],
+   ['멘탈 풀이',HL.MIND[mood],['§'+COLD[mood][0],m.t,PP[mood].tip]],
    ['상사에게 통하는 한 마디',x[5].replace(/\"/g,''),['보고하거나 부탁할 때 이 말투를 써 보세요. '+x[5],PP[c0].say]],
    ['마지막 한마디',HL.YEAR[c3+mood],[HL.YEARB[c3+mood],'내년의 나에게 주는 키워드는 "'+nm.kw+'"예요.']]
   ];
@@ -718,7 +734,7 @@ function showResult(code,mood,sc,sw){
   items.forEach(function(it,i){
     var lock=false;
     h+='<div class="it" data-i="'+i+'"><button class="ith"><img class="ic" alt="" src="'+ICON[ICN[i]]+'"><span><small>'+it[0]+(lock?' · 🔒':'')+'</small><b>'+it[1]+'</b></span><i>▾</i></button><div class="itb" hidden>'+
-      (lock?'<div class="blur">'+it[2]+'</div><div class="lock">이 해설은 990원으로 열 수 있어요.<br><button class="btn" data-lock="1">열어 보기 (준비 중)</button></div>':'<p>'+it[2].join('</p><p>')+'</p>')+'</div></div>';
+      (lock?'<div class="blur">'+it[2]+'</div><div class="lock">이 해설은 990원으로 열 수 있어요.<br><button class="btn" data-lock="1">열어 보기 (준비 중)</button></div>':it[2].map(function(q){return q.charAt(0)=='§'?'<p class="cold">'+q.slice(1)+'</p>':'<p>'+q+'</p>';}).join(''))+'</div></div>';
   });
   $('rList').innerHTML=h;
   [].forEach.call($('rList').querySelectorAll('.ith'),function(b){b.onclick=function(){var d=b.nextSibling;d.hidden=!d.hidden;b.parentNode.className=d.hidden?'it':'it open';};});
@@ -736,7 +752,7 @@ function devRender(){
   h+='<h2>1. 축 다섯 개와 실제 MBTI 대응</h2><p>화면에는 MBTI라는 말을 쓰지 않아요. 내부적으로만 아래처럼 대응돼요. 문항은 공식 MBTI 문항이 아니라, 공개된 빅파이브 연구 개념을 참고해서 새로 쓴 문장이에요.</p><div class="tw"><table class="dt"><tr><th>우리 축</th><th>왼쪽</th><th>오른쪽</th><th>MBTI</th></tr>';
   AX.forEach(function(a,i){h+='<tr><td>'+a.n+'</td><td>'+a.a+'</td><td>'+a.b+'</td><td><code>'+MB[a.la]+' / '+MB[a.lb]+'</code>'+(i==4?' (뒤 글자)':'')+'</td></tr>';});
   h+='</table></div>';
-  h+='<h2>2. 결과가 정해지는 방법</h2><ol><li>장면 25개, 축마다 5개씩이에요. 장면마다 선택지 2개 중 하나를 고르면 그 축의 한쪽에 1표가 들어가요.</li><li>축마다 5표 중 3표 이상 받은 쪽이 결과가 돼요. 홀수라서 동점이 없어요.</li><li>5:0이나 4:1이면 해설에 "뚜렷한 편", 3:2면 "살짝 그런 편"으로 따로 알려 줘요. 3:2인 축은 다시 풀면 바뀔 수 있다는 것도 같이 알려 줘요.</li><li>앞 네 축으로 기본 성향 16가지가 정해지고, 다섯째 축(일이 터졌을 때)으로 둘 중 한 캐릭터가 골라져요. 그래서 모두 32명이에요.</li><li>선택지 순서는 매번 무작위로 섞여서, 위에 있는 걸 고르는 버릇이 결과에 영향을 주지 않아요.</li><li>장면 순서는 축이 번갈아 나오게 섞어 두었어요.</li></ol>';
+  h+='<h2>2. 결과가 정해지는 방법</h2><ol><li>장면 25개, 축마다 5개씩이에요. 장면마다 선택지 2개 중 하나를 고르면 그 축의 한쪽에 1표가 들어가요.</li><li>축마다 5표 중 3표 이상 받은 쪽이 결과가 돼요. 홀수라서 동점이 없어요.</li><li>화면에는 숫자를 보여 주지 않아요. 가장 뚜렷한 축(5:0 또는 4:1)은 "타고난 거예요"로 단정하고, 3:2로 갈린 축은 "그날그날 달라요"로 풀어 줘요.</li><li>"이런 적 있죠?" 문장은 한 결과에 세 번만 나와요: 한마디로(가장 뚜렷한 축), 힘든 순간(판단 기준), 멘탈 풀이.</li><li>앞 네 축으로 기본 성향 16가지가 정해지고, 다섯째 축(일이 터졌을 때)으로 둘 중 한 캐릭터가 골라져요. 그래서 모두 32명이에요.</li><li>선택지 순서는 매번 무작위로 섞여서, 위에 있는 걸 고르는 버릇이 결과에 영향을 주지 않아요.</li><li>장면 순서는 축이 번갈아 나오게 섞어 두었어요.</li></ol>';
   h+='<div class="tw"><table class="dt"><tr><th>#</th><th>장면</th><th>축</th><th>첫 번째 선택지 → / 두 번째 선택지 →</th></tr>';
   ORDER.forEach(function(qi,n){var q=Q[qi];h+='<tr><td>'+(n+1)+'</td><td>'+q[1]+'</td><td>'+AX[q[0]].n+'</td><td>'+AX[q[0]].a+' / '+AX[q[0]].b+'</td></tr>';});
   h+='</table></div>';
