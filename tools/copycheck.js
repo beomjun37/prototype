@@ -82,10 +82,12 @@ function josaErrors(text) {
   for (const c of codes) for (const m of ['C', 'N']) {
     const sc = [0, 1, 2, 3].map(i => (c[i] === ['B', 'R', 'W', 'D'][i] ? 3 : 0)).concat([m === 'C' ? 3 : 0]).join('');
     await page.goto('about:blank'); await page.goto(url + `#r=${c}-${m}&s=${sc}&w=0`); await page.waitForTimeout(80);
+    if (n === 0) await scan(`친구 링크 화면 ${c}-${m}`);
+    await page.evaluate(() => { if (typeof setFriendView === 'function') setFriendView(null); });
     await page.evaluate(() => document.querySelectorAll('.it .itb').forEach(d => d.hidden = false));
     await scan(`결과 ${c}-${m}`); n++;
     const vals = await page.$$eval('#gSel option', os => os.map(o => o.value));
-    for (const v of vals) { await page.selectOption('#gSel', v); await scan(`결과 ${c}-${m} 궁합 ${v}`); }
+    for (const v of vals) { await page.evaluate(v => { const s = document.getElementById('gSel'); s.value = v; s.onchange && s.onchange(); }, v); await scan(`결과 ${c}-${m} 궁합 ${v}`); }
   }
   await browser.close();
 
