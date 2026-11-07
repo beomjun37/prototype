@@ -355,6 +355,7 @@ h2{font-size:20px}
 .tm-pair .tx{flex:1;min-width:0}.tm-pair .tx b{display:block}.tm-pair .sc{font-weight:800;font-size:20px;color:var(--accent)}
 .tm-ev p{margin:0 0 12px;line-height:1.6}.tm-ev p b{color:var(--accent)}.tm-grade{font-size:18px;font-weight:800;margin:4px 0 10px}
 .tm-list .btn{margin-top:8px}
+#tmAw .tm-pair{align-items:flex-start;margin-bottom:14px}#tmAw .tm-pair:last-child{margin-bottom:0}
 .thero{display:block;position:relative;width:100%;text-align:left;margin-top:16px;border:0;border-radius:22px;padding:18px 18px 16px;background:linear-gradient(135deg,var(--accent),#7B6CF0);color:#fff;font:inherit;cursor:pointer;box-shadow:var(--shadow);overflow:hidden}
 .thero b{display:block;font-size:21px;letter-spacing:-.02em;margin:12px 0 6px;color:#fff}.thero-s{display:block;font-size:14.5px;line-height:1.5;color:#fff;opacity:.92;padding-right:4px}
 .thero-k{display:inline-block;background:var(--hi);color:var(--hi-ink);font-size:12px;font-weight:800;border-radius:99px;padding:2px 9px}
@@ -364,6 +365,7 @@ h2{font-size:20px}
 .rtabs button{flex:1;min-height:46px;border-radius:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-weight:700;font-size:15.5px}
 .rtabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 #paneRead>.sec:first-child{margin-top:8px}
+.opt .ot{display:block;min-width:0}.opt .ot b{display:block;font-size:18px;font-weight:750;line-height:1.4;letter-spacing:-.015em}.opt .ot small{display:block;margin-top:3px;font-size:14.5px;color:var(--sub);line-height:1.45}
 .pay .panel{border:1.5px dashed var(--line)}.pay-t{font-size:17px}
 @media (max-height:700px){#imgPrev{width:52%!important}}
 </style>
@@ -456,9 +458,11 @@ h2{font-size:20px}
   <div class="tm-head"><small>우리 회사</small><h1 id="tmName"></h1><p class="sub" id="tmCount" style="margin:0"></p></div>
   <div class="tm-grid" id="tmGrid"></div>
   <div class="sec" id="tmJoin" style="margin-top:22px"></div>
+  <div class="sec" id="tmAwS"><div class="sec-head"><h2>연말 팀 어워즈</h2><p class="sub" style="margin:0">올해 우리 회사에서 상을 하나씩 받아요.</p></div><div class="panel" id="tmAw"></div></div>
   <div class="sec" id="tmPairS"><div class="sec-head"><h2>최고의 콤비, 조심할 콤비</h2></div><div class="panel" id="tmPair"></div></div>
   <div class="sec"><div class="sec-head"><h2>우리 회사 1년 결산</h2><p class="sub" style="margin:0">지금 모인 사람들로 1년을 보내면 이렇게 될 거예요. 사람이 늘면 결산도 바뀌어요.</p></div><div class="panel tm-ev" id="tmYear"></div></div>
-  <button type="button" class="btn ghost" id="tmMine" style="margin-top:22px">내 사원증 보기</button>
+  <button type="button" class="btn" id="tmSave" style="margin-top:22px">우리 회사 이미지로 저장하기</button>
+  <button type="button" class="btn ghost" id="tmMine">내 사원증 보기</button>
   <button type="button" class="btn ghost" id="tmHome">처음 화면으로</button>
   <p class="note" style="margin-top:18px">재미로 보는 결산이에요. 실제 회사 일과는 다를 수 있어요.</p>
 </section>
@@ -473,9 +477,9 @@ h2{font-size:20px}
   <div class="sheet-grip"></div>
   <div class="sheet-head"><h3 id="imgTitle">내 사원증 이미지</h3><button type="button" class="sheet-x" id="imgX" aria-label="닫기">✕</button></div>
   <p class="sub" id="imgHint" style="margin:0 0 12px;font-size:14px"></p>
-  <img id="imgPrev" alt="내 사원증 이미지" style="display:block;width:72%;max-width:300px;margin:0 auto 14px;border-radius:14px;border:1px solid var(--line)">
   <a class="btn" id="imgDl" download>이미지 다운로드</a>
   <button class="btn ghost" id="imgShare" type="button" hidden>카톡·인스타로 바로 보내기</button>
+  <img id="imgPrev" alt="내 사원증 이미지" style="display:block;width:72%;max-width:300px;margin:14px auto 0;border-radius:14px;border:1px solid var(--line)">
 </div></div>
 <div class="sbar" id="sbar" hidden><div class="sbar-in"><button class="btn" id="sbSave" type="button">이미지 저장</button><button class="btn ghost" id="sbShare" type="button" data-ev="share">친구에게 보내기</button><button class="btn" id="sbFriend" type="button" hidden>나도 해 보고 궁합 보기</button></div></div>
 <div class="sheet-bg" id="pickBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="pickTitle">
@@ -494,31 +498,31 @@ var AX=[
  {n:'멘탈',a:'덤덤',b:'걱정 많음',la:'C',lb:'N'}
 ];
 var Q=[
- [0,'퇴근 30분 전, 갑자기 팀 회식이 잡혔다.',['"오, 가요!" 하고 벌써 메뉴를 검색한다','가긴 가는데 끝날 시간부터 계산한다']],
- [0,'점심시간 한 시간이 생겼다.',['옆자리 사람과 같이 먹으러 간다','이어폰 끼고 혼자 나가서 먹는다']],
- [0,'우리 팀에 새로 온 사람이 첫 출근을 했다.',['내가 먼저 말을 건다','누가 소개해 주길 기다린다']],
- [1,'새 프로젝트 설명을 듣는 중이다.',['"그래서 이번 주에 내가 할 일이 뭐죠?"부터 묻는다','"이게 나중에 어디까지 커질 수 있어요?"가 먼저 궁금하다']],
- [1,'보고서를 쓰기 시작한다.',['지난번 자료와 숫자부터 모은다','이번엔 새로운 방식으로 해 보고 싶다']],
- [1,'회의에서 아이디어가 쏟아진다.',['"이걸 실제로 하려면 뭐가 필요하지?"부터 따져 본다','"거기서 한 발 더 나가 보면?" 하고 살을 붙인다']],
- [2,'동료가 실수를 했다.',['원인부터 짚어서 다음엔 안 생기게 정리한다','괜찮은지 먼저 묻고 분위기를 풀어 준다']],
- [2,'상사가 같은 보고서를 세 번째 고치라고 한다.',['어느 부분이 문제인지 콕 집어 물어본다','상사가 진짜 원하는 게 뭔지 분위기부터 읽는다']],
- [2,'두 팀이 일정 때문에 부딪쳤다.',['기준을 정해서 빠르게 한쪽으로 정리해 준다','양쪽 얘기를 다 듣고 서운하지 않게 맞춰 준다']],
- [3,'마감 일주일 전이다.',['미리 끝내 둬야 마음이 편하다','마감이 가까워야 집중이 잘 된다']],
- [3,'푹 쉬고 있는데 상사 메신저가 울렸다.',['바로 확인해서 처리해 둬야 마음이 편하다','월요일 아침에 한 번에 몰아서 처리한다']],
- [3,'연말 휴가 전, 인수인계를 해야 한다.',['일주일 전부터 조금씩 써 둔다','마지막 날 한 번에 깔끔하게 정리한다']],
- [4,'발표 5분 전에 자료 파일이 안 열린다.',['일단 다른 방법부터 찾고 본다','심장이 쿵 내려앉고 손이 바빠진다']],
- [4,'상사가 "잠깐 얘기 좀 해요"라고 한다.',['별일 아니겠지 하고 가 본다','무슨 일일까 가는 내내 마음이 쿵쾅거린다']],
- [4,'일을 마치고 집에 가는 길이다.',['오늘 일은 오늘로 끝, 생각이 금방 꺼진다','오늘 들은 말 한마디가 자꾸 떠오른다']],
- [0,'1박 2일 워크숍, 첫날 밤이다.',['다 같이 모인 방에 끝까지 남아 있는다','적당히 있다가 먼저 방에 들어가 쉰다']],
- [0,'일이 꽉 막혔다.',['옆자리 사람한테 말로 풀면서 정리한다','혼자 조용히 적어 보면서 정리한다']],
- [1,'선배가 새 일을 알려 준다.',['"뭐부터 하면 돼요?" 순서를 먼저 듣고 싶다','"이 일이 왜 필요해요?" 이유를 먼저 듣고 싶다']],
- [1,'팀장이 "내년엔 뭘 해 보고 싶어요?"라고 묻는다.',['지금 하는 일을 더 잘하는 방법을 말한다','아직 아무도 안 해 본 새로운 일을 말한다']],
- [2,'동료 발표 자료에서 틀린 숫자를 발견했다.',['틀린 숫자부터 짚어서 바로 알려 준다','기분 상하지 않게 말을 골라서 알려 준다']],
- [2,'팀원 평가를 써야 한다.',['성과와 숫자를 중심으로 쓴다','그 사람이 애쓴 과정부터 쓴다']],
- [3,'다음 주 출장이 잡혔다.',['기차표와 일정표부터 바로 정해 둔다','가기 직전에 상황 보고 정한다']],
- [3,'이번 주 할 일 목록을 펼쳤다.',['위에서부터 하나씩 지우는 게 좋다','그날 손이 가는 일부터 한다']],
- [4,'보낸 메일에서 오타를 발견했다.',['다음에 조심하자 하고 바로 넘어간다','누가 봤을까 신경 쓰여서 정정 메일을 고민한다']],
- [4,'내일 아침에 중요한 회의가 있다.',['준비할 만큼 했으니 일찍 잔다','괜히 마음이 안 놓여서 잠이 늦게 온다']]
+ [0,'퇴근 30분 전, 갑자기 팀 회식이 잡혔다.',['신난다, 바로 간다|벌써 메뉴부터 찾아본다','조용히 집에 가고 싶다|가더라도 1차만 하고 빠진다']],
+ [0,'점심시간 한 시간이 생겼다.',['같이 먹으러 간다|수다 떨면서 먹어야 쉰 것 같다','혼자 먹으러 간다|이어폰 끼고 혼자 있어야 쉰 것 같다']],
+ [0,'우리 팀에 새로 온 사람이 첫 출근을 했다.',['내가 먼저 말을 건다|커피 한잔 하자고 먼저 다가간다','친해질 때까지 기다린다|먼저 다가오면 그때 반갑게 받아 준다']],
+ [1,'새 프로젝트 설명을 듣는 중이다.',['당장 할 일이 궁금하다|그래서 이번 주에 내가 뭘 하면 되는지','나중 그림이 궁금하다|이게 앞으로 어디까지 커질 수 있는지']],
+ [1,'보고서를 쓰기 시작한다.',['지난 자료부터 모은다|검증된 방식이 제일 빠르다','새 방식부터 떠올린다|매번 같은 틀이면 재미없다']],
+ [1,'회의에서 아이디어가 쏟아진다.',['현실성부터 따진다|이걸 실제로 하려면 뭐가 필요하지?','아이디어를 더 키운다|거기서 한 발 더 나가 보면 어떨까?']],
+ [2,'동료가 실수를 했다.',['원인부터 정리한다|다음엔 안 생기게 하는 게 먼저다','기분부터 챙긴다|실수한 사람이 덜 민망하게 먼저 다독인다']],
+ [2,'상사가 같은 보고서를 세 번째 고치라고 한다.',['고칠 곳을 콕 집어 묻는다|어느 부분이 문제인지 정확히 알고 싶다','상사 마음부터 읽는다|진짜 원하는 게 뭔지 분위기부터 살핀다']],
+ [2,'두 팀이 일정 때문에 부딪쳤다.',['기준대로 빠르게 정한다|한쪽이 서운해도 일정이 먼저다','양쪽 얘기를 다 듣는다|시간이 걸려도 서운한 사람이 없게 한다']],
+ [3,'마감 일주일 전이다.',['지금 미리 끝낸다|끝내 놓고 남은 시간을 편하게 쓴다','마감 직전에 몰아서 한다|시간이 촉박해야 머리가 잘 돌아간다']],
+ [3,'푹 쉬고 있는데 상사 메신저가 울렸다.',['지금 바로 처리해 둔다|미뤄 두면 월요일이 더 바빠진다','월요일에 몰아서 한다|월요일 아침에 한 번에 끝내는 게 빠르다']],
+ [3,'연말 휴가 전, 인수인계를 해야 한다.',['일주일 전부터 조금씩 쓴다|생각날 때마다 미리 적어 둔다','마지막 날 한 번에 쓴다|끝나기 직전이 제일 잘 정리된다']],
+ [4,'발표 5분 전에 자료 파일이 안 열린다.',['침착하게 다른 방법을 찾는다|어떻게든 되겠지 하고 손부터 움직인다','심장이 쿵 내려앉는다|그래도 정신없이 어떻게든 해결은 한다']],
+ [4,'상사가 "잠깐 얘기 좀 해요"라고 한다.',['별일 아니겠지 한다|부르니까 그냥 가 본다','무슨 일일까 걱정된다|가는 동안 지난 일을 다 떠올려 본다']],
+ [4,'일을 마치고 집에 가는 길이다.',['회사 생각이 금방 꺼진다|문을 나서면 오늘 일은 끝이다','오늘 일이 자꾸 떠오른다|들었던 말 한마디를 계속 곱씹는다']],
+ [0,'1박 2일 워크숍, 첫날 밤이다.',['끝까지 남아서 논다|이런 밤이 제일 재밌다','먼저 방에 들어가 쉰다|적당히 있다가 조용히 빠진다']],
+ [0,'일이 꽉 막혔다.',['말하면서 푼다|옆 사람한테 설명하다 보면 답이 나온다','혼자 적으면서 푼다|조용히 써 보다 보면 답이 나온다']],
+ [1,'선배가 새 일을 알려 준다.',['순서부터 알고 싶다|뭐부터 하면 되는지 먼저 듣는다','이유부터 알고 싶다|이 일이 왜 필요한지 먼저 듣는다']],
+ [1,'팀장이 "내년엔 뭘 해 보고 싶어요?"라고 묻는다.',['지금 일을 더 잘하고 싶다|하던 일을 더 탄탄하게 만들고 싶다','새로운 일을 벌이고 싶다|아직 아무도 안 해 본 걸 해 보고 싶다']],
+ [2,'동료 발표 자료에서 틀린 숫자를 발견했다.',['바로 짚어서 알려 준다|틀린 건 빨리 말해 주는 게 낫다','말을 골라서 알려 준다|기분 안 상하게 돌려서 말한다']],
+ [2,'팀원 평가를 써야 한다.',['성과와 숫자로 쓴다|결과로 보는 게 제일 공정하다','애쓴 과정부터 쓴다|숫자에 안 보이는 노력도 챙긴다']],
+ [3,'다음 주 출장이 잡혔다.',['표와 일정을 바로 정한다|정해 둬야 다른 일에 집중이 된다','가기 직전에 정한다|그때 상황 보고 정하는 게 편하다']],
+ [3,'이번 주 할 일 목록을 펼쳤다.',['정한 순서대로 한다|목록을 위에서부터 하나씩 지운다','그날 끌리는 일부터 한다|순서는 그때그때 바뀌어도 괜찮다']],
+ [4,'보낸 메일에서 오타를 발견했다.',['그냥 넘어간다|다들 그러려니 하겠지','계속 신경 쓰인다|누가 봤을까 정정 메일을 고민한다']],
+ [4,'내일 아침에 중요한 회의가 있다.',['평소처럼 일찍 잔다|준비한 만큼 했으면 됐다','잠이 늦게 온다|머릿속으로 회의를 몇 번 더 돌려 본다']]
 ];
 /* 꾹 참은 말 표시 문항: [질문 번호, 선택지 번호] — 문장 끝에 "삼킨다"가 들어간 선택지 */
 var SW={};
@@ -531,7 +535,7 @@ var T={
  BRHD:{n:'총무 서주임',c:['#2a2228','#2e9e6b'],line:'회식 장소, 선물, 일정 다 챙기는 사람',d:'사람들 곁에서 필요한 걸 먼저 챙기고, 약속과 일정을 미리 정리해 두는 편이에요. 팀의 살림꾼이에요.',tip:'챙기는 만큼 부탁도 하세요. 혼자 다 들면 지쳐요.'},
  BRHL:{n:'분위기메이커 배사원',c:['#8a5a36','#f0b429'],line:'사람 사이 어색함을 녹이는 사람',d:'누구와도 금방 친해지고 지금 이 순간의 분위기를 잘 살려요. 계획보다 그때그때 흐름에 맞추는 편이에요.',tip:'재미있는 말 뒤에 숨기지 말고, 중요한 일정은 달력에 꼭 적어 두세요.'},
  BVWD:{n:'기획왕 임차장',c:['#3b3140','#6a4bd6'],line:'큰 그림 그리고 일정까지 짜 오는 사람',d:'사람들 앞에서 방향을 이야기하는 걸 좋아하고, 새로운 가능성을 보면서도 계획은 촘촘히 세우는 편이에요.',tip:'좋은 계획일수록 팀이 따라올 시간을 주세요.'},
- BVWL:{n:'아이디어뱅크 오주임',c:['#8e3b2c','#e8447a'],line:'회의 때 제일 말 많고 막판에 뒤집는 사람',d:'토론하며 아이디어를 던지는 걸 좋아하고, 맞고 틀림을 따지는 것도 즐겨요. 마감 직전에 불이 붙는 편이에요.',tip:'아이디어를 마지막 날 한꺼번에 말하면 팀이 놀라요. 중간에 한 번 공유해요.'},
+ BVWL:{n:'아이디어뱅크 오주임',c:['#8e3b2c','#e8447a'],line:'말 한마디로 판을 뒤집는 사람',d:'토론하며 아이디어를 던지는 걸 좋아하고, 맞고 틀림을 따지는 것도 즐겨요. 마감 직전에 불이 붙는 편이에요.',tip:'아이디어를 마지막 날 한꺼번에 말하면 팀이 놀라요. 중간에 한 번 공유해요.'},
  BVHD:{n:'반장 한과장',c:['#4a2f1f','#3aa6c9'],line:'다 같이 잘 가자고 팀을 챙기는 사람',d:'사람들과 어울리며 팀 분위기와 가능성을 함께 키우는 편이에요. 계획도 미리 세워서 모두가 같이 가게 해요.',tip:'모두를 챙기다 내 몫이 밀려요. 내 일 시간을 먼저 잡아요.'},
  BVHL:{n:'새바람 마사원',c:['#b07a45','#f06292'],line:'새로운 걸 하자고 제일 먼저 외치는 사람',d:'사람들과 이야기하며 새 아이디어를 떠올리고, 따뜻하게 공감하는 편이에요. 틀에 얽매이지 않고 흐름대로 가요.',tip:'시작을 잘하는 만큼 끝맺음 파트너 한 명을 정해 두세요.'},
  QRWD:{n:'꼼꼼왕 지대리',c:['#1f1d24','#4f5d75'],line:'말없이 다 끝내 놓는 사람',d:'혼자 집중할 때 힘이 나고, 사실과 숫자를 꼼꼼히 봐요. 미리미리 정리해 두는 믿음직한 편이에요.',tip:'잘한 일은 말로 알려야 사람들이 알아줘요.'},
@@ -541,7 +545,7 @@ var T={
  QVWD:{n:'전략가 유과장',c:['#262433','#334e7b'],line:'머릿속에서 먼저 다 설계해 오는 사람',d:'혼자 깊이 생각하며 큰 구조를 보고, 논리로 판단해요. 계획을 미리 세워서 흔들림 없이 가는 편이에요.',tip:'혼자 다 정하지 말고 중간에 한 번 설명해 주세요.'},
  QVWL:{n:'몰입왕 민대리',c:['#454545','#00838f'],line:'꽂히면 밤새 파고드는 사람',d:'혼자 몰입하는 걸 좋아하고 새로운 방법을 찾는 데 열정적이에요. 논리로 따지고, 마감 직전에 폭발적으로 하는 편이에요.',tip:'밤새운 결과는 아침에 한 번 더 보세요.'},
  QVHD:{n:'조용한멘토 도차장',c:['#7d7d86','#6a994e'],line:'조용히 한 마디로 길을 보여 주는 사람',d:'혼자 깊이 생각하고 사람의 마음을 헤아려요. 큰 방향을 보면서 계획도 미리 챙기는 편이에요.',tip:'생각을 속에만 두지 말고, 한 줄이라도 먼저 꺼내 보세요.'},
- QVHL:{n:'몽상가 윤사원',c:['#6f5aa0','#b39ddb'],line:'퇴근길에 아이디어가 쏟아지는 사람',d:'혼자만의 세계에서 새로운 생각을 키우고, 사람의 마음에 깊이 공감해요. 흐름에 따라 자유롭게 움직이는 편이에요.',tip:'생각을 작게라도 적어 두면 아이디어가 사라지지 않아요.'}
+ QVHL:{n:'몽상가 윤사원',c:['#6f5aa0','#b39ddb'],line:'머릿속에 다른 세상이 하나 더 있는 사람',d:'혼자만의 세계에서 새로운 생각을 키우고, 사람의 마음에 깊이 공감해요. 흐름에 따라 자유롭게 움직이는 편이에요.',tip:'생각을 작게라도 적어 두면 아이디어가 사라지지 않아요.'}
 };
 var X={"BRWD": ["회의 전에 일정표와 할 일 목록을 먼저 돌려요. 누가 무엇을 언제까지 하는지 정해지면 마음이 편해져요.", "일정이 꼬인 팀을 맡으면 빛나요. 정리하고 밀어붙여서 금방 제자리로 돌려놓아요.", "계획 없이 흘러가는 회의, 그리고 약속을 자꾸 미루는 사람 때문에 힘들어요.", "QRHD", "조용히 뒷받침해 줘서 계획이 끝까지 가요.", "\"이번 주에 할 일은 이 세 가지이고, 수요일에 중간 보고 드릴게요.\""], "BRWL": ["일이 터지면 제일 먼저 뛰어가요. 미리 계획하기보다 상황을 보고 바로 움직이는 편이에요.", "마감 직전 위기나 갑작스러운 요청처럼 빨리 판단해야 할 때 가장 빛나요.", "끝없이 이어지는 준비 회의, 그리고 같은 일을 반복하는 날이 지루해요.", "QRWD", "미리 준비해 주는 사람이 있으면 위기 때 더 침착하게 움직일 수 있어요.", "\"이 부분은 제가 바로 맡을게요. 우선순위를 정해 주시면 그 순서대로 처리하겠습니다.\""], "BRHD": ["사람들 일정과 필요한 걸 미리 챙겨요. 회의실, 간식, 연락처까지 빠뜨리는 게 없어요.", "팀 행사나 신입 적응처럼 사람을 챙겨야 하는 일이 있을 때 빛나요.", "내 일만 하는 사람, 고맙다는 말 없이 부탁만 하는 사람 때문에 지쳐요.", "BVHL", "새로운 바람을 넣어 줘서 챙기는 일에 재미가 생겨요.", "\"이번 일은 제가 챙길게요. 혹시 일이 몰리면 그때 말씀드려도 될까요?\""], "BRHL": ["그때그때 분위기를 읽으며 움직여요. 회의가 딱딱하면 먼저 농담으로 풀어요.", "낯선 사람들 사이를 이어 줄 때, 어색한 자리에서 분위기를 살릴 때 빛나요.", "엄격한 일정표와 조용하고 딱딱한 분위기에서 기운이 빠져요.", "BRWD", "일정을 잡아 주는 사람이 있으면 마음 놓고 내 장점을 살릴 수 있어요.", "\"날짜만 먼저 정해 주시면 거기에 맞춰서 해 볼게요.\""], "BVWD": ["큰 그림을 말로 풀어서 팀을 설득해요. 계획표까지 들고 와서 바로 시작할 수 있게 해요.", "새 프로젝트를 시작하거나 방향을 잡아야 하는 때에 빛나요.", "의견은 많은데 결론이 안 나는 회의, 방향 없이 흘러가는 일이 답답해요.", "QRWD", "실제로 꼼꼼히 해 주는 사람이 있으면 계획이 현실이 돼요.", "\"큰 방향은 이렇게 잡았고, 첫 단계는 이번 주에 시작할게요.\""], "BVWL": ["회의에서 아이디어를 쏟아내고, 마감이 다가오면 한 번에 몰아서 완성해요.", "새로운 방식이 필요한 일, 토론이 활발한 팀에서 빛나요.", "미리 정해진 규칙을 그대로 따라야 하는 일은 지루해요.", "QVWD", "생각을 구조로 정리해 주는 사람이 있으면 아이디어가 결과가 돼요.", "\"아이디어는 이렇습니다. 중간 점검 날짜를 같이 정해 주시면 좋겠어요.\""], "BVHD": ["팀원 한 명 한 명 마음을 챙기면서 큰 방향을 같이 만들어요. 계획도 미리 공유해요.", "팀이 흔들릴 때, 새로 합류한 사람이 있을 때 모두를 이어 줘서 빛나요.", "팀원 사이 갈등, 그리고 내 일 시간이 자꾸 밀리는 날이 힘들어요.", "QRHD", "조용히 팀을 챙기는 사람과 잘 맞아서 서로 힘이 돼요.", "\"지금 하던 일은 한 시간 안에 끝내고, 바로 그 일 맡을게요. 괜찮을까요?\""], "BVHL": ["새로운 걸 먼저 시도하고 사람들을 이야기 속으로 끌어들여요. 흐름 따라 자유롭게 움직여요.", "브레인스토밍이나 팀 이벤트처럼 새 아이디어가 필요한 때 빛나요.", "세세한 서류와 반복 업무, 빡빡한 마감 관리에 지쳐요.", "BRHD", "챙겨 주는 사람이 있으면 아이디어를 끝까지 가져갈 수 있어요.", "\"이 아이디어는 제가 맡아서 해 보고 싶어요. 마무리를 같이 챙겨 줄 분이 한 명 있으면 끝까지 해낼 수 있어요.\""], "QRWD": ["혼자 조용히 자료를 모으고 계획대로 하나씩 끝내요. 빠뜨리는 게 거의 없어요.", "숫자와 사실이 중요한 일, 실수가 없어야 하는 일에서 빛나요.", "갑자기 계획이 바뀌는 날, 시끄러운 회의가 많은 날이 힘들어요.", "BVWD", "큰 방향을 잡아 주는 사람과 만나면 힘이 두 배가 돼요.", "\"이 부분은 끝내 놨습니다. 한 번 확인 부탁드려요.\""], "QRWL": ["평소엔 조용히 있다가 마감이 오면 집중해서 단숨에 끝내요.", "혼자 몰입해서 해야 하는 일, 시간이 촉박한 일에서 빛나요.", "미리 계획을 보고하라고 하는 일, 중간에 자꾸 끊는 일이 힘들어요.", "BRHD", "중간에 슬쩍 챙겨 주는 사람이 있으면 마감이 편해져요.", "\"오전에는 이 작업에 집중하려고 하는데, 메신저 답이 조금 늦어도 괜찮을까요? 결과는 제때 드리겠습니다.\""], "QRHD": ["말은 적지만 필요한 걸 미리 준비해 둬요. 팀원이 뭘 힘들어하는지 잘 알아요.", "팀 뒤에서 일이 굴러가게 만들 때, 한 사람씩 챙겨야 할 때 빛나요.", "내가 챙긴 걸 아무도 모를 때, 시끄러운 자리가 길어질 때 지쳐요.", "BVHD", "팀을 앞에서 이끌어 주는 사람과 같이 있으면 마음이 편해요.", "\"이건 미리 정리해 뒀어요. 필요하시면 바로 드릴게요.\""], "QRHL": ["흐름에 맞춰 편하게 움직여요. 내 몫은 하되 남에게도 부담을 주지 않아요.", "팀 분위기가 팽팽할 때 곁에 있는 것만으로 마음이 놓이게 해요.", "압박이 크고 빨리 결정해야 하는 날이 힘들어요.", "BRWD", "일정을 잡아 주는 사람 덕에 느긋해도 마감을 지켜요.", "\"마감 날짜를 다시 확인해 두고, 하루 전까지 꼭 맞춰 드릴게요.\""], "QVWD": ["머릿속으로 전체 구조를 먼저 그려요. 그다음 계획대로 차분히 진행해요.", "복잡한 문제를 정리해야 할 때, 전략을 짜야 할 때 빛나요.", "설명 없이 갑자기 방향이 바뀌는 일이 가장 힘들어요.", "BVWL", "아이디어를 던져 주는 사람과 만나면 구조가 더 단단해져요.", "\"전체 그림은 이렇고, 이 순서로 진행하려고 해요. 괜찮을까요?\""], "QVWL": ["한번 꽂히면 밤새도록 파고들어요. 결과물은 놀랄 만큼 깊이가 있어요.", "남들이 못 푸는 어려운 문제를 풀 때 빛나요.", "잡담이 많은 회의와 중간 보고를 자꾸 시키는 일이 힘들어요.", "BRWD", "일정을 지켜 주는 사람이 있으면 몰입이 길게 이어져요.", "\"제가 끝까지 파 보겠습니다. 결과는 금요일까지 드릴게요.\""], "QVHD": ["말수는 적지만 팀의 방향이 흐려질 때 조용히 한 마디로 잡아 줘요. 계획도 미리 챙겨요.", "누군가 고민할 때, 오래 가는 일을 설계할 때 빛나요.", "시끄럽고 결과만 따지는 분위기, 속마음을 말하라고 재촉하는 일이 힘들어요.", "BVHD", "팀을 이끄는 사람과 서로 보완해서 오래 가요.", "\"제가 보기엔 이 부분이 조금 걸리는데, 같이 한번 봐 주실 수 있을까요?\""], "QVHL": ["혼자 생각하는 시간이 길고, 마음이 동할 때 가장 잘해요. 사람의 마음을 깊이 헤아려요.", "남들이 놓친 감정이나 새로운 시각이 필요한 일에서 빛나요.", "정해진 시간에 정해진 방식만 요구하는 일, 숫자 압박이 힘들어요.", "BRHD", "챙겨 주는 사람이 있으면 아이디어가 밖으로 나와요.", "\"생각을 정리할 시간을 조금만 주시면 더 좋은 답을 드릴게요.\""]};
 var DEPT={
@@ -800,7 +804,7 @@ var CHAR={
 
 
 /* 32명: 기본(앞 16명)의 형용구, 그리고 새 16명의 이름·한 줄·형용구·한마디·키워드·모습 */
-var PRE_C={BRWD:'회의를 시원하게 정리하는',BRWL:'급한 일에 먼저 손드는',BRHD:'팀 일정을 다 꿰고 있는',BRHL:'첫 출근한 사람도 웃게 만드는',BVWD:'다음 분기까지 내다보는',BVWL:'회의 때 손이 제일 먼저 올라가는',BVHD:'모두의 속도를 맞춰 주는',BVHL:'월요일에도 텐션이 높은',QRWD:'오타 하나 그냥 못 넘기는',QRWL:'마감 날 조용히 다 끝내 놓는',QRHD:'필요한 걸 말하기 전에 건네는',QRHL:'누구와도 편하게 지내는',QVWD:'말보다 설계도로 보여 주는',QVWL:'한 번 꽂히면 끝까지 파는',QVHD:'고민 상담 줄이 끊이지 않는',QVHL:'퇴근 후에 아이디어가 쏟아지는'};
+var PRE_C={BRWD:'회의를 시원하게 정리하는',BRWL:'급한 일에 먼저 손드는',BRHD:'팀 일정을 다 꿰고 있는',BRHL:'첫 출근한 사람도 웃게 만드는',BVWD:'다음 분기까지 내다보는',BVWL:'회의 때 손이 제일 먼저 올라가는',BVHD:'모두의 속도를 맞춰 주는',BVHL:'월요일에도 텐션이 높은',QRWD:'오타 하나 그냥 못 넘기는',QRWL:'티 안 내고 할 일을 다 해 놓는',QRHD:'필요한 걸 말하기 전에 건네는',QRHL:'누구와도 편하게 지내는',QVWD:'말보다 설계도로 보여 주는',QVWL:'한 번 꽂히면 끝까지 파는',QVHD:'고민 상담 줄이 끊이지 않는',QVHL:'퇴근 후에 아이디어가 쏟아지는'};
 var N32={
  BRWD:{n:'점검반장 문과장',line:'회의 전날 자료를 세 번 다시 보는 사람',pre:'실수 하나 없게 미리 다 점검하는',hl:'두 번 재고 한 번 자르는 줄자',kw:'믿고 맡기기'},
  BRWL:{n:'비상대기 하대리',line:'일이 터지면 누구보다 먼저 답하는 사람',pre:'메신저 알림에 누구보다 빠른',hl:'늘 켜져 있는 비상등',kw:'알림 끄는 시간'},
@@ -811,7 +815,7 @@ var N32={
  BVHD:{n:'안부담당 채과장',line:'팀원 한 명 한 명 안부를 챙기는 사람',pre:'팀원의 표정 변화를 제일 먼저 아는',hl:'모두를 덮어 주는 큰 우산',kw:'나에게도 안부 묻기'},
  BVHL:{n:'감성충전 류사원',line:'좋은 생각이 떠올라도 한 번 더 망설이는 사람',pre:'아이디어를 꺼내기 전에 열 번 고민하는',hl:'수줍게 반짝이는 손전등',kw:'일단 말해 보기'},
  QRWD:{n:'두번확인 여대리',line:'보낸 메일도 다시 열어 확인하는 사람',pre:'할 일 목록에 체크 표시가 빼곡한',hl:'빈틈없는 체크박스',kw:'80점에 보내기'},
- QRWL:{n:'올빼미 표대리',line:'마감 전날 잠 못 들고 끝까지 해내는 사람',pre:'마감 앞에서 커피를 두 잔 마시는',hl:'자정에 켜지는 형광등',kw:'하루 일찍 끝내기'},
+ QRWL:{n:'올빼미 표대리',line:'마감 전날 잠 못 들고 끝까지 해내는 사람',pre:'커피를 하루에 네 잔 마시는',hl:'자정에 켜지는 형광등',kw:'하루 일찍 끝내기'},
  QRHD:{n:'뒷정리장인 남주임',line:'회의실 불까지 끄고 나오는 사람',pre:'남이 놓친 것을 조용히 줍는',hl:'말없이 닦아 둔 회의실 책상',kw:'도와 달라고 말하기'},
  QRHL:{n:'포근한 조사원',line:'누가 불편할까 봐 조용히 맞춰 주는 사람',pre:'남 눈치를 먼저 살피는',hl:'모두에게 맞춰 주는 쿠션',kw:'내 의견 한 줄'},
  QVWD:{n:'완벽설계 권과장',line:'계획에 빈틈이 있을까 밤새 점검하는 사람',pre:'설계도를 열 번 고쳐 그리는',hl:'한 치 오차 없는 제도판',kw:'완성보다 공유'},
@@ -950,7 +954,7 @@ function gSetup(code,mood){
   var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람, ':'');
     var gb=$('gBack'),isF=f&&f.id&&!f.back&&c==f.c&&m==f.m;gb.hidden=!isF;
     if(isF){var fn=NM(f.c,f.m).n,me=LAST&&LAST.nm?LAST.nm.n:NM(code,mood).n,sc=gScore(code,mood,c,m,CUR_REL).sc;gb.textContent='이 궁합 '+fn.split(' ').pop()+'에게 돌려보내기';
-      gb.onclick=function(){var myId=(location.hash.match(/r=([0-9a-z]{5})/)||[])[1]||'';sendText('네 링크로 해 봤어! 나는 \''+me+'\'래. '+REL[CUR_REL].n+'로 보면 우리 궁합 '+sc+'점이래ㅋㅋ',BASE+'#g='+f.id+'-'+myId+'-'+CUR_REL,gb,'복사했어요. 카톡에 붙여 넣어 보세요');};}};
+      gb.onclick=function(){var myId=(location.hash.match(/r=([0-9a-z]{5})/)||[])[1]||'';sendText('네 링크로 해 봤어! 나는 \''+me+'\'래. '+REL[CUR_REL].n+'로 보면 우리 궁합 '+sc+'점이래ㅋㅋ',sUrl('g','#g='+f.id+'-'+myId+'-'+CUR_REL),gb,'복사했어요. 카톡에 붙여 넣어 보세요');};}};
   [].forEach.call(document.querySelectorAll('#gRel button'),function(b){b.setAttribute('aria-pressed',b.dataset.rel==CUR_REL);b.onclick=function(){CUR_REL=b.dataset.rel;[].forEach.call(document.querySelectorAll('#gRel button'),function(x){x.setAttribute('aria-pressed',x===b);});go();top3();relH();};});relH();
   var syncPick=function(){var v=sel.value;$('gPickAv').src=avatar(v.substr(0,4),v.substr(4));$('gPickName').textContent=NM(v.substr(0,4),v.substr(4)).n;};
   var closePick=function(){$('pickBg').hidden=true;document.body.style.overflow='';$('gPick').focus();};
@@ -1047,9 +1051,9 @@ var SCENE={
 var YEARQ={
  BRWDC:'강과장님이 정리해 주시면 바로 시작할게요.',BRWLC:'노대리님, 이거 급한데 한 번만 봐 주세요!',BRHDC:'회식 장소는 서주임님이 정하면 다 좋아요.',BRHLC:'배사원 없으면 회의 분위기가 안 살아요.',
  BVWDC:'임차장님, 내년 계획도 벌써 있죠?',BVWLC:'오주임님 아이디어로 한번 가 봅시다.',BVHDC:'한과장님 팀은 왜 다들 표정이 좋아요?',BVHLC:'마사원, 이번엔 또 뭐 해 보자고요?',
- QRWDC:'지대리님이 봤으면 틀린 데 없겠죠.',QRWLC:'석대리님 오늘 마감인데… 아, 어느새 다 끝내 놓으셨네요.',QRHDC:'어? 이거 송주임님이 미리 챙겨 두셨어요?',QRHLC:'고사원은 언제 봐도 편해요.',
+ QRWDC:'지대리님이 봤으면 틀린 데 없겠죠.',QRWLC:'석대리님은 언제 일하는지 모르겠는데, 보면 늘 끝나 있어요.',QRHDC:'어? 이거 송주임님이 미리 챙겨 두셨어요?',QRHLC:'고사원은 언제 봐도 편해요.',
  QVWDC:'유과장님, 그 설계 저희한테도 설명해 주세요.',QVWLC:'민대리님, 어제 몇 시에 퇴근했어요?',QVHDC:'도차장님한테 한번 물어봐. 답이 나올 거야.',QVHLC:'윤사원, 그 아이디어 어디서 나온 거예요?',
- BRWDN:'문과장님이 한 번 더 봐 주시면 안심이에요.',BRWLN:'하대리님은 메신저 답이 제일 빨라요.',BRHDN:'진주임님, 밥 먹었냐고 물어봐 줘서 고마워요.',BRHLN:'탁사원 덕분에 오늘도 웃었어요.',
+ BRWDN:'문과장님이 한 번 더 봐 주시면 안심이에요.',BRWLN:'하대리님, 휴가 땐 진짜 쉬어요.',BRHDN:'진주임님, 밥 먹었냐고 물어봐 줘서 고마워요.',BRHLN:'탁사원 덕분에 오늘도 웃었어요.',
  BVWDN:'구차장님은 플랜 B도 있으시죠?',BVWLN:'은주임님 메모장에 그거 적혀 있지 않아요?',BVHDN:'채과장님은 제 표정만 봐도 아시네요.',BVHLN:'류사원, 그 생각 그냥 말해 봐요. 좋은데요?',
  QRWDN:'여대리님이 확인했으면 됐어요.',QRWLN:'표대리님, 어젯밤에 메일 보내셨더라고요?',QRHDN:'회의실 정리 또 남주임님이 하셨어요?',QRHLN:'조사원, 하고 싶은 말 있으면 편하게 해요.',
  QVWDN:'권과장님, 이 정도면 충분히 완벽해요.',QVWLN:'엄대리님 새벽에 메일 보내셨던데, 잠은 잤어요?',QVHDN:'길차장님한테 고민 얘기하면 마음이 놓여요.',QVHLN:'변사원, 아까 무슨 생각 했어요?'
@@ -1084,12 +1088,12 @@ function render(){
   $('qtime').textContent=WD[day]+'요일 '+WHEN[st.i][1];
   $('scene').textContent=q[1];
   var bk=Object.keys(T)[BUDDY[day][0]],bm=BUDDY[day][1],ba=$('buddyAv'),nb=ba.dataset.k!=bk+bm;
-  if(nb){ba.src=avatar(bk,bm);ba.dataset.k=bk+bm;$('buddyName').textContent='옆자리 '+NM(bk,bm).n;}
+  if(nb){ba.src=avatar(bk,bm);ba.dataset.k=bk+bm;$('buddyName').textContent=(day>=5?'팀 동료 ':'옆자리 ')+NM(bk,bm).n;}
   $('buddySay').textContent=SAY[st.i];
   var c=$('qcard'),bd=$('buddy');c.classList.remove('in');bd.classList.remove('pop');void c.offsetWidth;c.classList.add('in');if(nb)bd.classList.add('pop');
   var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';o.classList.remove('in');void o.offsetWidth;o.classList.add('in');
   idx.forEach(function(k){
-    var b=document.createElement('button');b.className='opt';b.textContent=q[2][k];
+    var b=document.createElement('button');b.type='button';b.className='opt';var op=q[2][k].split('|');b.innerHTML='<span class="ot"><b>'+op[0]+'</b>'+(op[1]?'<small>'+op[1]+'</small>':'')+'</span>';b.setAttribute('aria-label',op.join('. '));
     if(prev&&prev[1]===k)b.className+=' was';
     b.onclick=function(){if(LOCK)return;LOCK=true;b.classList.add('chosen');setTimeout(function(){LOCK=false;pick(qi,k);},RM?0:170);};o.appendChild(b);
   });
@@ -1140,6 +1144,7 @@ function showResult(code,mood,sc,sw){
   $('rSting').textContent=STING[code][mood];
   LAST={code:code,mood:mood,nm:nm,pm:null,id:encId(code,mood,sc,sw)};if(typeof tCardSetup=='function')try{tCardSetup();rTab('read');$('tHeroAv').innerHTML=[[code,mood],(function(b){return [b.c,b.m];})(bestPeer(code,mood))].concat([['BVWD','C'],['QRHL','N']]).slice(0,3).map(function(x){return '<img alt="" src="'+avatar(x[0],x[1])+'">';}).join('');tNudge();}catch(e){}
   var c0=code[0],c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
+  var bq=x[5].replace(/"/g,''),bm1=bq.match(/^[^.?!]*[.?!]/),bossT=bm1?bm1[0]:bq,bRest=bq.slice(bossT.length).trim(),bossR=bRest?['이어서 "'+bRest+'" 하고 덧붙이면 더 잘 통해요.']:[];
   var bp=bestPeer(code,mood),gm=bp.sc,pm=NM(bp.c,bp.m);
   var items=[
    ['한마디로',nm.hl,[SCENE[code+mood],t.d].concat(reading(code,sc)),'lightbulb'],
@@ -1151,7 +1156,7 @@ function showResult(code,mood,sc,sw){
    ['일할 때 나',HL.WORK[c0+c3],[x[0],PP[c3].work,PP[c0].meet],'laptop'],
    ['나만의 매력',HL.CHARM[c1+c2],[x[1],'일이 막히면 동료들이 나를 찾아요. 내가 '+(c1=='R'?'"일단 이것부터 하죠"라고 첫 단계를 짚어 주고, ':'"이렇게 해 보면 어때요?"라고 새로운 길을 보여 주고, ')+(c2=='W'?'애매한 상황도 깔끔하게 정리해 주거든요.':'지친 사람도 먼저 알아봐 주거든요.')],'crown'],
    ['잘 맞는 상사',HL.BOSS[c1],[HL.BOSSB[c1],PP[c2].boss],'briefcase'],
-   ['상사에게 통하는 한 마디',x[5].replace(/\"/g,''),['보고하거나 부탁할 때 이렇게 말해 보세요. 내가 뭘 할지 같이 말하면 상사도 편하게 들어요.',PP[c0].say],'chat'],
+   ['상사에게 통하는 한 마디',bossT,bossR.concat(['보고하거나 부탁할 때 이렇게 말해 보세요. 내가 뭘 할지 같이 말하면 상사도 편하게 들어요.',PP[c0].say]),'chat'],
    ['힘든 순간',HL.HARD[c2],['§'+COLD[c2][1],x[2],PP[c2].hard,'꿀팁: '+t.tip],'gear'],
    ['멘탈 풀이',HL.MIND[mood],['§'+COLD[mood][0],m.t,PP[mood].tip],'plant'],
    ['마지막 한마디',HL.YEAR[c3+mood],[HL.YEARB[c3+mood],'내년의 나에게 주는 키워드는 "'+nm.kw+'"'+J(nm.kw,'이에요','예요').slice(nm.kw.length)+'.'],'calendar']
@@ -1265,7 +1270,7 @@ function makeCard(cb){
   var img=new Image();
   img.onload=function(){
     c.fillStyle='#F7F8FF';c.fillRect(0,0,W,H);
-    c.fillStyle='#252943';c.font='700 44px '+F;c.textAlign='center';c.fillText('2026 올해의 사원증',W/2,150);
+    c.fillStyle='#252943';c.font='700 44px '+F;c.textAlign='center';c.fillText('2026 나의 오피스 캐릭터',W/2,150);
     // 카드
     c.save();rr(c,80,220,920,1460,48);c.fillStyle='#FFFFFF';c.shadowColor='rgba(37,41,67,.12)';c.shadowBlur=40;c.shadowOffsetY=12;c.fill();c.restore();
     c.save();rr(c,80,220,920,1460,48);c.clip();c.fillStyle='#5A5BD0';c.fillRect(80,220,920,110);c.restore();
@@ -1304,6 +1309,8 @@ if(GC&&!/#dev/.test(location.hash)){var gs=document.createElement('script');gs.a
 var TQ=[];
 function track(ev){try{if(!GC)return;if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:'ev-'+ev,title:ev,event:true});else if(TQ.length<30)TQ.push(ev);}catch(e){}}
 var BASE=location.href.split('#')[0];
+/* 카톡 미리보기용 주소: 공개 사이트에서만 c/번호/, t/, g/ 미리보기 페이지를 거쳐 가게 한다 */
+function sUrl(dir,hash){return (/github\.io$/.test(location.hostname)?BASE.replace(/index\.html$/,'')+dir+'/':BASE)+hash;}
 function sendText(text,url,btn,done){
   track(btn&&(btn.dataset.ev||btn.id)||'send');
   if(navigator.share&&/Android|iPhone|iPad/i.test(navigator.userAgent)&&!INAPP){navigator.share({text:text,url:url}).catch(function(){});return;}
@@ -1318,20 +1325,54 @@ $('imgX').onclick=closeImg;$('imgBg').onclick=function(e){if(e.target===this)clo
 $('saveImg').onclick=function(){
   var btn=this;track('save_img');btn.disabled=true;
   var go=function(){makeCard(function(blob,cv){
-    btn.disabled=false;
-    var name='사원증-'+LAST.nm.n.replace(/\s/g,'')+'.png';
+    btn.disabled=false;imgSheet(blob,cv,'사원증-'+LAST.nm.n.replace(/\s/g,'')+'.png','내 사원증 이미지');});};
+  if(document.fonts&&document.fonts.load)Promise.all([document.fonts.load('800 84px Pretendard'),document.fonts.load('500 40px Pretendard')]).then(go,go);else go();
+};
+function imgSheet(blob,cv,name,title){
+    $('imgTitle').textContent=title;$('imgPrev').alt=title;
     if(IMGURL)URL.revokeObjectURL(IMGURL);IMGURL=URL.createObjectURL(blob);
     $('imgPrev').src=cv.toDataURL('image/png');$('imgDl').href=IMGURL;$('imgDl').setAttribute('download',name);
     $('imgDl').hidden=INAPP;
-    $('imgHint').textContent=INAPP?'이 앱 안에서는 바로 다운로드가 안 돼요. 이미지를 길게 눌러 저장하거나, 오른쪽 위 메뉴에서 다른 브라우저로 열어 주세요.':IOS?'다운로드하면 파일 앱에 저장돼요. 사진 앱에 넣으려면 이미지를 길게 누르고 "사진에 저장"을 눌러 주세요.':'다운로드 폴더에 저장했어요. 안 보이면 아래 버튼을 한 번 더 눌러 주세요.';
+    $('imgHint').textContent=INAPP?'이 앱 안에서는 바로 다운로드가 안 돼요. 이미지를 길게 눌러 저장하거나, 오른쪽 위 메뉴에서 다른 브라우저로 열어 주세요.':IOS?'다운로드하면 파일 앱에 저장돼요. 사진 앱에 넣으려면 이미지를 길게 누르고 "사진에 저장"을 눌러 주세요.':'다운로드 폴더에 저장했어요. 안 보이면 위 버튼을 한 번 더 눌러 주세요.';
     var f=null;try{f=new File([blob],name,{type:'image/png'});}catch(e){}
     var cs=f&&navigator.canShare&&navigator.canShare({files:[f]});
     $('imgShare').hidden=!cs;$('imgShare').onclick=function(){navigator.share({files:[f]}).catch(function(){});};
     $('imgBg').hidden=false;document.body.style.overflow='hidden';
     if(!INAPP&&!IOS)$('imgDl').click();
-  });};
-  if(document.fonts&&document.fonts.load)Promise.all([document.fonts.load('800 84px Pretendard'),document.fonts.load('500 40px Pretendard')]).then(go,go);else go();
-};
+}
+function makeTeamCard(t,cb){
+  var P=tPeople(t),ro=tRoles(P),L=tPairs(P),aw=tAwards(P),n=P.length,W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;var c=cv.getContext('2d');
+  var F='Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif';
+  var ims=P.map(function(x){var im=new Image();im.src=avatar(x.c,x.m);return im;}),left=ims.length;
+  var draw=function(){
+    c.fillStyle='#F7F8FF';c.fillRect(0,0,W,H);
+    c.fillStyle='#5A5BD0';c.fillRect(0,0,W,250);
+    c.textAlign='center';c.fillStyle='#FFC75B';c.font='700 36px '+F;c.fillText('2026 우리 회사 결산',W/2,90);
+    c.fillStyle='#FFFFFF';c.font='800 76px '+F;c.fillText(t.name,W/2,185);
+    var cols=n<=4?n:4,rows=Math.ceil(n/cols),cw=232,ch=rows>1?330:380,gx=(W-cols*cw-(cols-1)*16)/2,top=290;
+    P.forEach(function(x,i){var r=Math.floor(i/cols),k=i%cols,rowN=Math.min(cols,n-r*cols),ox=(W-rowN*cw-(rowN-1)*16)/2,X=ox+k*(cw+16),Y=top+r*(ch+18);
+      c.save();rr(c,X,Y,cw,ch,28);c.fillStyle='#FFFFFF';c.shadowColor='rgba(37,41,67,.10)';c.shadowBlur=24;c.shadowOffsetY=8;c.fill();c.restore();
+      c.fillStyle='#DDF3E9';rr(c,X+46,Y+20,140,150,22);c.fill();
+      c.save();rr(c,X+46,Y+20,140,150,22);c.clip();c.imageSmoothingEnabled=false;var im=ims[i],w=130,h=w*im.height/im.width;c.drawImage(im,X+51,Y+170-h+12,w,h);c.restore();
+      c.fillStyle='#ECEDFC';c.font='750 26px '+F;var rw=c.measureText(ro[i].n).width+32;rr(c,X+cw/2-rw/2,Y+186,rw,42,21);c.fill();c.fillStyle='#5A5BD0';c.fillText(ro[i].n,X+cw/2,Y+216);
+      c.fillStyle='#252943';c.font='800 36px '+F;c.fillText(x.nk,X+cw/2,Y+270);
+      c.fillStyle='#5D6582';c.font='600 23px '+F;wrapText(c,aw[i][0].replace('올해의 ',''),X+cw/2,Y+(rows>1?306:310),cw-24,28,2);});
+    var y=top+rows*(ch+18)+40,avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
+    var gr=avg>=80?'내년엔 회사를 더 키워도 되겠어요.':avg>=70?'무사히 살아남았어요. 내년이 더 기대돼요.':avg>=60?'아슬아슬했지만 끝까지 버텼어요.':'다사다난했어요. 그래도 아무도 안 나갔어요.';
+    c.fillStyle='#5D6582';c.font='600 32px '+F;c.fillText('올해 성적',W/2,y);
+    c.fillStyle='#252943';c.font='800 44px '+F;y+=60+wrapText(c,gr,W/2,y+60,900,58,2);
+    c.fillStyle='#5D6582';c.font='600 32px '+F;c.fillText('최고의 콤비  '+L[0].a.nk+', '+L[0].b.nk+'  '+L[0].g.sc+'점',W/2,y+20);
+    if(rows==1){var tmp=document.createElement('div');tmp.innerHTML=tYear(P,L);var evs=[].slice.call(tmp.querySelectorAll('p')).slice(1).map(function(e){return e.textContent;}).filter(function(t,i,arr){return i<2||i==arr.length-1;}).slice(0,3);
+      c.font='600 30px '+F;var hs=evs.map(function(t){return lineCount(c,t.slice(t.indexOf(' ')+1),700,2)*40;}),tot=hs.reduce(function(a,b){return a+b;},0)+(evs.length-1)*24+56;
+      y+=64;c.fillStyle='#ECEDFC';rr(c,90,y,900,tot,32);c.fill();c.textAlign='left';y+=28+30;
+      evs.forEach(function(t,i){var mo=t.split(' ')[0];c.fillStyle='#5A5BD0';c.font='800 30px '+F;c.fillText(mo,130,y);c.fillStyle='#252943';c.font='600 30px '+F;wrapText(c,t.slice(mo.length+1),240,y,700,40,2);y+=hs[i]+24;});c.textAlign='center';}
+    c.fillStyle='#5A5BD0';c.font='700 38px '+F;c.fillText('우리 회사에서 나는 어떤 자리일까?',W/2,H-90);
+    c.fillStyle='#5D6582';c.font='500 28px '+F;c.fillText('beomjun37.github.io/prototype/office-type',W/2,H-44);
+    cv.toBlob(function(b){cb(b,cv);},'image/png');};
+  ims.forEach(function(im){if(im.complete&&im.naturalWidth){if(!--left)draw();}else im.onload=im.onerror=function(){if(!--left)draw();};});
+}
+$('tmSave').onclick=function(){var btn=this;if(!TCUR)return;track('team_img');btn.disabled=true;var go=function(){makeTeamCard(TCUR,function(b,cv){btn.disabled=false;imgSheet(b,cv,'우리회사-'+TCUR.name.replace(/\s/g,'')+'.png','우리 회사 이미지');});};
+  if(document.fonts&&document.fonts.load)document.fonts.load('800 76px Pretendard').then(go,go);else go();};
 /* 결과 화면이 길어서, 원래 버튼이 화면에 없을 때 아래에 붙는 버튼 */
 (function(){
   var vis={};
@@ -1383,6 +1424,9 @@ function tYear(P,L){var n=P.length,cnt=function(k,ch){return P.filter(function(x
   var avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
   var gr=avg>=80?'내년엔 회사를 더 키워도 되겠어요.':avg>=70?'무사히 살아남았어요. 내년이 더 기대돼요.':avg>=60?'아슬아슬했지만 끝까지 버텼어요.':'다사다난했어요. 그래도 아무도 안 나갔어요.';
   return '<div class="tm-grade">올해 성적: '+gr+'</div><p class="sub" style="margin:0 0 14px">우리 회사 사람들끼리 평균 궁합은 '+avg+'점이에요.</p>'+ev.map(function(e){return '<p><b>'+e[0]+'</b> '+e[1]+'</p>';}).join('');}
+var AW={B:['올해의 분위기 메이커상','회의실이 조용해질 때마다 먼저 말을 꺼냈어요.'],Q:['올해의 조용한 해결사상','말없이 일을 끝내 놓고 아무렇지 않게 퇴근했어요.'],R:['올해의 실속 챙김상','될 일과 안 될 일을 제일 먼저 가려냈어요.'],V:['올해의 아이디어 뱅크상','회의 때마다 새로운 아이디어를 꺼냈어요.'],W:['올해의 팩트 체크상','틀린 숫자는 하나도 그냥 넘어가지 않았어요.'],H:['올해의 다정상','힘들어하는 동료에게 제일 먼저 커피를 건넸어요.'],D:['올해의 칼퇴상','마감 전에 일을 끝내 놓고 제일 먼저 퇴근했어요.'],L:['올해의 막판 역전상','마감 전날 밤, 아무도 못 한 걸 끝내 놓았어요.'],C:['올해의 강철 멘탈상','일이 터진 날에도 표정 하나 안 바뀌었어요.'],N:['올해의 유비무환상','남들이 놓친 위험을 미리 챙겨서 팀을 구했어요.']};
+function tAwards(P){var fr={};P.forEach(function(x){x.a.split('').forEach(function(ch){fr[ch]=(fr[ch]||0)+1;});});var used={};
+  return P.map(function(x){var ls=x.a.split('').sort(function(a,b){return fr[a]-fr[b];});for(var i=0;i<ls.length;i++)if(!used[ls[i]]){used[ls[i]]=1;return AW[ls[i]];}return ['올해의 개근상','한 해 동안 한 번도 빠지지 않고 자리를 지켰어요.'];});}
 var TCUR=null;
 function tOpen(t){
   if($('tSheet'))tSheetClose();TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
@@ -1392,7 +1436,7 @@ function tOpen(t){
   $('tmGrid').innerHTML=P.map(function(x,i){var nm=NM(x.c,x.m);return '<div class="tm-m'+(x.id==me?' me':'')+'"><img alt="" src="'+avatar(x.c,x.m)+'"><span class="tm-role">'+ro[i].n+'</span><b>'+esc(x.nk)+(x.id==me?' (나)':'')+'</b><small>'+nm.n+'</small><p>'+ro[i].d+'</p></div>';}).join('');
   var J0=$('tmJoin');
   if(inT){J0.innerHTML='<div class="panel"><b>더 많이 모일수록 결산이 재밌어져요</b><p class="sub" style="margin:6px 0 12px">새 사람이 들어오면 그 사람 화면에 바뀐 링크가 나와요. 그 링크를 다시 열면 내 화면에도 새 사람이 보여요.</p><button type="button" class="btn" id="tmShare" data-ev="team_share">단톡방에 초대 링크 보내기</button></div>';
-    $('tmShare').onclick=function(){sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 지금 '+P.length+'명이야. 너도 2분 테스트하고 들어와. 캐릭터 보고 자리 정해 줄게.',BASE+tHash(t),this,'복사했어요. 단톡방에 붙여 넣어 보세요');};}
+    $('tmShare').onclick=function(){sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 지금 '+P.length+'명이야. 너도 2분 테스트하고 들어와. 캐릭터 보고 자리 정해 줄게.',sUrl('t',tHash(t)),this,'복사했어요. 단톡방에 붙여 넣어 보세요');};}
   else if(P.length>=8){J0.innerHTML='<div class="panel"><b>자리가 다 찼어요</b><p class="sub" style="margin:6px 0 12px">이 회사는 8명이 모두 들어왔어요. 테스트를 하고 내 회사를 새로 차려 보세요.</p><button type="button" class="btn" id="tmGo">테스트하고 내 회사 차리기</button></div>';$('tmGo').onclick=function(){$('start').onclick();};}
   else if(me){J0.innerHTML='<div class="panel"><b>이 회사에 들어갈까요?</b><p class="sub" style="margin:6px 0 4px">내 캐릭터를 보고 자리를 정해 드려요.</p><label class="tm-lab" for="tmNick">회사에서 부를 내 이름</label><input class="tm-in" id="tmNick" maxlength="6" placeholder="예: 민지" autocomplete="off"><button type="button" class="btn" id="tmIn">내 사원증으로 들어가기</button></div>';
     try{$('tmNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
@@ -1403,6 +1447,8 @@ function tOpen(t){
   var L=P.length>1?tPairs(P):null;$('tmPairS').hidden=!L;
   if(L){var row=function(x,lab){return '<div class="tm-pair"><img alt="" src="'+avatar(x.a.c,x.a.m)+'"><img alt="" src="'+avatar(x.b.c,x.b.m)+'"><div class="tx"><span class="sub" style="font-size:13.5px">'+lab+'</span><b>'+esc(x.a.nk)+', '+esc(x.b.nk)+'</b></div><span class="sc">'+x.g.sc+'점</span></div><p class="sub" style="margin:-4px 0 16px;font-size:14.5px">'+gLine(x.g)+'</p>';};
     $('tmPair').innerHTML=row(L[0],L.length>1?'최고의 콤비':'우리 둘')+(L.length>2?row(L[L.length-1],'조심할 콤비'):'');}
+  var aw=L?tAwards(P):null;$('tmAwS').hidden=!aw;$('tmSave').hidden=!L;
+  if(aw)$('tmAw').innerHTML=P.map(function(x,i){return '<div class="tm-pair"><img alt="" src="'+avatar(x.c,x.m)+'"><div class="tx"><span class="sub" style="font-size:13.5px">'+esc(x.nk)+'</span><b>'+aw[i][0]+'</b><span class="sub" style="font-size:14px;display:block">'+aw[i][1]+'</span></div></div>';}).join('');
   $('tmYear').innerHTML=L?tYear(P,L):'<p class="sub" style="margin:0">한 명만 더 들어오면 자리 정하기와 1년 결산이 나와요. 위의 버튼으로 친구를 불러 보세요.</p>';
   window.scrollTo(0,0);
 }
@@ -1418,7 +1464,7 @@ $('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,12)||TNAMES
   if(!nk){$('tNick').focus();$('tNick').placeholder='이름을 먼저 적어 주세요';return;}if(!me)return;
   try{localStorage.setItem('oct_nick',nk);if(!myId())localStorage.setItem('oct_mine','#r='+me);}catch(e){}
   var t=tMerge({name:nm,mem:[{id:me,nk:nk}]});track('team_make');tOpen(t);
-  sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 너도 2분 테스트하고 들어와. 캐릭터 보고 자리 정해 줄게.',BASE+tHash(t),$('tmShare'),'복사했어요. 단톡방에 붙여 넣어 보세요');};
+  sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 너도 2분 테스트하고 들어와. 캐릭터 보고 자리 정해 줄게.',sUrl('t',tHash(t)),$('tmShare'),'복사했어요. 단톡방에 붙여 넣어 보세요');};
 function rTab(p){[].forEach.call(document.querySelectorAll('#rTabs button'),function(b){b.setAttribute('aria-selected',b.dataset.p==p);});$('paneRead').hidden=p!='read';$('paneMatch').hidden=p!='match';}
 [].forEach.call(document.querySelectorAll('#rTabs button'),function(b){b.onclick=function(){if(b.getAttribute('aria-selected')=='true')return;rTab(b.dataset.p);track('tab_'+b.dataset.p);var t=$('rTabs');if(t.getBoundingClientRect().top<0||window.scrollY>t.offsetTop)window.scrollTo(0,t.offsetTop);};});
 function goMatch(){rTab('match');setTimeout(function(){$('gCard').scrollIntoView({behavior:'smooth'});},60);}
@@ -1430,7 +1476,7 @@ var TNUDGE=null;
 function tNudge(){clearTimeout(TNUDGE);var seen='';try{seen=localStorage.getItem('oct_tnudge')||'';}catch(e){}if(seen||navigator.webdriver)return;
   TNUDGE=setTimeout(function(){if($('result').hidden||$('result').classList.contains('friend')||!$('imgBg').hidden||!$('pickBg').hidden||!$('tSheet').hidden)return;$('tSheetT').textContent='내 캐릭터 봤으면, 이제 친구들이랑 회사 차려 볼까요?';tSheetOpen('nudge');},20000);}
 function shareMine(btn){
-  var L=LAST;sendText('나 올해 회사에서 \''+L.nm.n+'\'래ㅋㅋ 너는 뭐 나와? 해 보면 우리 둘 궁합도 바로 떠.',BASE+'#r='+L.id,btn,'복사했어요. 카톡에 붙여 넣어 보세요');
+  var L=LAST;sendText('나 올해 회사에서 \''+L.nm.n+'\'래ㅋㅋ 너는 뭐 나와? 해 보면 우리 둘 궁합도 바로 떠.',sUrl('c/'+(KEYS.indexOf(L.code+L.mood)+1),'#r='+L.id),btn,'복사했어요. 카톡에 붙여 넣어 보세요');
 }
 $('share').onclick=function(){shareMine(this);};
 (function BOOT(){
