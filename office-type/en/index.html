@@ -40,12 +40,12 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .sec{margin:34px 0 0}
 .sec-head{margin-bottom:12px}
 
-/* 버튼 */
+
 .btn{display:block;width:100%;min-height:54px;border:0;border-radius:16px;padding:15px 18px;background:var(--accent);color:var(--on);font-weight:700;font-size:16.5px;letter-spacing:-.01em;transition:transform .12s ease,opacity .12s}
 .btn:active{transform:scale(.985);opacity:.92}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);font-weight:600;margin-top:10px}
 
-/* 시작 화면 */
+
 .hero-ids{display:flex;justify-content:center;gap:10px;margin:26px 0 26px}
 .mini-id{width:92px;background:var(--paper);border-radius:14px;padding:12px 8px 10px;box-shadow:var(--shadow);border:1px solid var(--line);text-align:center;position:relative}
 .mini-id::before{content:"";display:block;width:22px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 8px}
@@ -55,7 +55,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .facts{display:flex;gap:18px;margin:0 0 22px;color:var(--sub);font-size:14px}
 .facts b{display:block;color:var(--ink);font-size:20px;font-weight:750;letter-spacing:-.02em}
 
-/* 질문 */
+
 .qtop{display:flex;align-items:baseline;justify-content:space-between;margin:4px 0 10px}
 #qn{font-size:15px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
 .qtop .note{margin:0}
@@ -70,7 +70,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .opt::before{counter-increment:o;content:counter(o,upper-alpha);flex:none;width:28px;height:28px;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-weight:750;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:-1px}
 .opt:active{border-color:var(--accent);transform:scale(.99)}
 
-/* 결과: 사원증 */
+
 .idcard{background:var(--paper);border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden;margin-top:8px}
 .id-top{display:flex;justify-content:space-between;align-items:center;background:var(--accent);color:var(--on);padding:12px 18px;font-size:13px;font-weight:650;letter-spacing:.02em}
 .id-top .hole{width:34px;height:7px;border-radius:4px;background:var(--bg);opacity:.9}
@@ -97,7 +97,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .ith>span{flex:1}
 
 
-/* 해설 목록 */
+
 .list{background:var(--paper);border-radius:20px;border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow)}
 .it+.it{border-top:1px solid var(--line)}
 .ith{display:flex;width:100%;justify-content:space-between;align-items:center;gap:12px;background:none;border:0;color:var(--ink);text-align:left;padding:17px 18px;min-height:64px}
@@ -110,7 +110,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .itb p{margin:0 0 10px;font-size:16px;line-height:1.75;color:var(--ink)}
 .blur{filter:blur(5px);user-select:none;margin-bottom:10px}.lock{text-align:center;font-size:14px}.lock .btn{margin-top:8px;font-size:15px}
 
-/* 궁합 */
+
 .panel{background:var(--paper);border-radius:20px;border:1px solid var(--line);padding:18px;box-shadow:var(--shadow)}
 .pickhint{font-size:14px;color:var(--sub);margin:0 0 10px;line-height:1.55}
 .pickrow{display:flex;gap:8px;margin-bottom:6px}
@@ -156,7 +156,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .gtop{display:flex;align-items:center;gap:12px;min-height:60px;padding:8px 0;border:0;border-top:1px solid var(--line);background:none;width:100%;text-align:left;color:var(--ink)}
 .gtop .avatar{border-radius:10px;background:var(--accent-soft)}
 
-/* 쪽지·친구 배너 */
+
 .memo{display:flex;gap:14px;align-items:center;background:var(--accent-soft);border-radius:20px;padding:16px 18px;margin:34px 0 18px}
 .picker small{font-size:13px}
 .memo .avatar{flex:none}
@@ -166,7 +166,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .fbanner p{color:var(--bg);opacity:.8;font-size:14.5px;margin:4px 0 14px}
 .fbanner .btn{background:var(--hi);color:var(--hi-ink)}
 
-/* ── 디자인 다듬기 (2026-11) : 기존 규칙 위에 덮어쓰기 ── */
+
 :root{
   --r-sm:10px;--r-md:14px;--r-lg:20px;
   --strap:#3F40A8;--clip:#C9CDE0;--clip-ink:#8A90AC;
@@ -188,13 +188,13 @@ h2{font-size:20px}
 .sec-head{margin-bottom:14px}
 .sec-head .sub{font-size:14.5px}
 
-/* 버튼: 픽셀 키트처럼 아래쪽에 살짝 두께 */
+
 .btn{border-radius:var(--r-md);box-shadow:var(--press);min-height:56px}
 .btn:active{transform:translateY(1px);box-shadow:inset 0 -1px 0 rgba(20,22,60,.22)}
 .btn.ghost{box-shadow:none;background:var(--paper);min-height:52px}
 .btn:focus-visible,.opt:focus-visible,.ith:focus-visible,.picker:focus-visible,.pcell:focus-visible,.relrow button:focus-visible,.gtop:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-/* 시작 화면 */
+
 .hero{position:relative;margin-bottom:26px}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:repeating-linear-gradient(90deg,var(--accent) 0 8px,transparent 8px 12px);opacity:.9}
 .eyebrow{display:inline-flex;align-items:center;gap:7px}
@@ -210,7 +210,7 @@ h2{font-size:20px}
 .mini-id:nth-child(3){transform:rotate(4deg) translateY(10px)}
 .mini-id:nth-child(2){z-index:1;border-color:var(--accent);box-shadow:var(--shadow),0 0 0 3px var(--accent-soft)}
 
-/* 질문 */
+
 .prog{position:relative;height:6px;border-radius:3px;background:var(--accent-soft);margin-bottom:36px}
 .prog::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(4% - 2px),var(--bg) calc(4% - 2px) 4%)}
 .prog i{border-radius:0}
@@ -220,7 +220,7 @@ h2{font-size:20px}
 .opt:active::before,.opt.was::before{background:var(--accent);color:var(--on)}
 @media (hover:hover){.opt:hover{border-color:var(--accent)}}
 
-/* 결과: 목걸이 사원증 */
+
 .idcard{position:relative;overflow:visible;border-radius:var(--r-lg);margin-top:46px}
 .idcard::before{content:"";position:absolute;left:50%;top:-46px;width:20px;height:44px;margin-left:-10px;background:var(--strap);border-left:1px dashed rgba(255,255,255,.35);border-right:1px dashed rgba(255,255,255,.35);background-clip:padding-box}
 .idcard::after{content:"";position:absolute;left:50%;top:-10px;width:30px;height:18px;margin-left:-15px;border-radius:5px;background:var(--clip);box-shadow:inset 0 -3px 0 var(--clip-ink);z-index:2}
@@ -235,11 +235,11 @@ h2{font-size:20px}
 .sting small{letter-spacing:.02em}
 #saveImg{margin-top:16px!important}
 
-/* 친구 배너: 다크에서도 눈부시지 않게 */
+
 .fbanner{background:var(--inv-bg);color:var(--inv-ink);border-radius:var(--r-lg)}
 .fbanner p{color:var(--inv-ink);opacity:.82}
 
-/* 해설 목록: 차분하게 */
+
 .list{border-radius:var(--r-lg)}
 .ith{padding:16px 16px 16px 16px;gap:14px;min-height:68px}
 .ith .ic{margin-right:0}
@@ -252,7 +252,7 @@ h2{font-size:20px}
 .itb p{font-size:16px;line-height:1.75}
 .itb p.cold{border-left:0;padding:12px 14px;margin:14px 0;border-radius:var(--r-md);background:var(--mint);font-weight:650;line-height:1.6}
 
-/* 궁합 */
+
 .panel{border-radius:var(--r-lg);padding:16px}
 .relrow{gap:4px;padding:4px;margin-bottom:12px;border-radius:var(--r-md);background:var(--bg);border:1px solid var(--line)}
 .relrow button{border:0;border-radius:var(--r-sm);background:transparent;min-height:44px}
@@ -273,7 +273,7 @@ h2{font-size:20px}
 .gtop .avatar{width:52px;object-fit:contain;object-position:50% 100%;background:var(--mint)}
 .gtop>b:last-child{flex:none;font-size:14px;padding:4px 10px;border-radius:99px;background:var(--accent-soft)}
 
-/* 캐릭터 고르기 시트 */
+
 .sheet{border-radius:var(--r-lg) var(--r-lg) 0 0;padding:0 16px 28px}
 .sheet-grip{position:sticky;top:0;z-index:3;margin:0 -16px;width:auto;height:auto;background:var(--paper);padding:10px 0 2px;border-radius:0}
 .sheet-grip::before{content:"";display:block;width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto}
@@ -284,7 +284,7 @@ h2{font-size:20px}
 .pcell[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1.5px var(--accent)}
 .pcell[aria-pressed="true"]::after{content:"";position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8'%3E%3Cpath d='M1 4l3 3 5-6' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") no-repeat center}
 
-/* 쪽지 */
+
 .memo{border-radius:var(--r-lg);margin-top:44px}
 .picker small{font-size:13px}
 .memo .avatar{background:var(--paper);border-radius:var(--r-sm)}
@@ -436,7 +436,7 @@ h2{font-size:20px}
     </div>
   </div>
 
-  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">Get a year-end review script</b><p class="sub" style="margin:6px 0 12px">Choose your boss’s character and we’ll lay out what order to say things in at your year-end review, and what to avoid saying.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">Get it for $0.99 (coming soon)</button><p class="sub" style="margin:8px 0 0;font-size:13px">It’s not open yet. Tapping won’t charge you. We’re just seeing how many people want it.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>It’s not open yet. Thanks for tapping. If enough people want it, we’ll open it. You haven’t been charged.</p></div></div>
+  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">Get a year-end review script</b><p class="sub" style="margin:6px 0 12px">Choose your boss’s character and we’ll lay out what order to say things in at your year-end review, and what to avoid saying.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">Get it for $0.99 (coming soon)</button><p class="sub" id="payNote" style="margin:8px 0 0;font-size:13px">It’s not open yet. Tapping won’t charge you. We’re just seeing how many people want it.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>It’s not open yet. Thanks for tapping. If enough people want it, we’ll open it. You haven’t been charged.</p></div></div>
   </div>
   <div class="memo"><img id="rMasAv" class="avatar sm" alt=""><div><b id="rMasName"></b><div class="sub">Done with your readings? Send this link to a coworker. Once they finish the test and send it back, you can both see your match.</div></div></div>
   <button class="btn" id="share">Share my badge</button>
@@ -449,7 +449,7 @@ h2{font-size:20px}
   <div class="tm-grid" id="tmGrid"></div>
   <div class="sec" id="tmJoin" style="margin-top:22px"></div>
   <div class="sec" id="tmAwS"><div class="sec-head"><h2>Year-End Team Awards</h2><p class="sub" style="margin:0">Everyone at our company gets an award this year.</p></div><div class="panel" id="tmAw"></div></div>
-  <div class="sec" id="tmPairS"><div class="sec-head"><h2>Best duo & duo to watch</h2></div><div class="panel" id="tmPair"></div></div>
+  <div class="sec" id="tmPairS"><div class="sec-head"><h2>Best duo & bickering duo</h2></div><div class="panel" id="tmPair"></div></div>
   <div class="sec"><div class="sec-head"><h2>Our company’s year in review</h2><p class="sub" style="margin:0">If the people here now spent a year together, this is how it would go. The review changes as more people join.</p></div><div class="panel tm-ev" id="tmYear"></div></div>
   <button type="button" class="btn" id="tmSave" style="margin-top:22px">Save our company as an image</button>
   <button type="button" class="btn ghost" id="tmMine">See my badge</button>
@@ -485,7 +485,7 @@ h2{font-size:20px}
   <div class="pgrid" id="pickGrid"></div>
 </div></div>
 <script>
-/* 축: 0 충전 / 1 일을 보는 눈 / 2 기준 / 3 마감 리듬 / 4 멘탈. 각 질문의 선택지 [0]은 축의 첫 번째 극, [1]은 두 번째 극. */
+
 var AX=[
  {n:'Recharging',a:'Crowd',b:'Quiet',la:'B',lb:'Q'},
  {n:'How you see work',a:'Right now',b:'Big picture',la:'R',lb:'V'},
@@ -586,7 +586,7 @@ var ICON={"lightbulb": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACA
 
 
 function hex(c){return [parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16)];}
-/* 픽셀 캐릭터 생성기: 32x40 격자에 부품(머리·얼굴·표정·옷·소품)을 칠한 뒤 외곽선과 그림자를 자동으로 넣는다. */
+
 var PX=(function(){
 var GW=32,GH=40;
 function hx(c){return [parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16)];}
@@ -605,7 +605,7 @@ function make(spec,mood){
       cl=P.cloth, clS=dk(cl,.22), clL=lt(cl,.18), acc=P.acc||'#D9534F', pant=P.pant||'#3A3F5C', pantS=dk(pant,.25),
       shirt='#FBFAF7', shirtS='#DCDCE6', ink='#2B2236', eyeC='#2B2236';
 
-  /* 1) 뒤쪽 머리(어깨 뒤로 내려오는 머리) */
+  
   var hs=spec.hairStyle;
   if(hs=='long'||hs=='wavy'){
     for(var y=10;y<=31;y++){var w=(hs=='wavy'&&y>=18&&y%4==2)?1:0;row(y,6-w,25+w,hairS,'hairB');}
@@ -617,7 +617,7 @@ function make(spec,mood){
   }
   if(hs=='bun'){rect(12,1,19,3,hair,'hairB');row(0,13,18,hair,'hairB');set(13,1,hairL,'hairB');set(14,1,hairL,'hairB');set(14,0,hairL,'hairB');}
 
-  /* 2) 몸: 다리, 신발, 몸통, 팔 */
+  
   rect(10,34,21,37,pant,'pant');rect(15,36,16,37,null);for(var yy=34;yy<=37;yy++){set(21,yy,pantS,'pant');set(14,yy,pantS,'pant');}
   if(spec.skirt){rect(9,33,22,35,pant,'pant');rect(11,36,14,37,skin,'skin');rect(17,36,20,37,skin,'skin');rect(15,36,16,37,null);for(var y3=33;y3<=35;y3++)set(22,y3,pantS,'pant');}
   rect(10,38,14,39,'#3B2F2F','shoe');rect(17,38,21,39,'#3B2F2F','shoe');set(10,38,'#5a4a46','shoe');set(17,38,'#5a4a46','shoe');
@@ -677,7 +677,7 @@ function make(spec,mood){
   if(spec.laptop){ rect(3,29,9,33,'#9AA3C0','cloth');rect(4,30,8,32,'#C9D3F2','cloth');set(5,30,'#FFFFFF','cloth');}
   if(spec.phones&&spec.phones=='neck'){ row(22,11,20,'#3A3F5C','cloth');set(10,22,'#3A3F5C','cloth');set(21,22,'#3A3F5C','cloth');rect(9,22,10,24,'#4F5678','cloth');rect(21,22,22,24,'#4F5678','cloth');}
 
-  /* 3) 머리(얼굴) */
+  
   var head=[[5,10,21],[6,8,23],[7,7,24],[8,7,24],[9,7,24],[10,7,24],[11,7,24],[12,7,24],[13,7,24],[14,7,24],[15,7,24],[16,7,24],[17,7,24],[18,8,23],[19,8,23],[20,9,22],[21,11,20]];
   head.forEach(function(r){row(r[0],r[1],r[2],skin,'skin');});
   // 귀
@@ -685,7 +685,7 @@ function make(spec,mood){
   // 턱 그림자
   row(20,10,21,skin,'skin');set(22,19,skinS,'skin');set(23,17,skinS,'skin');set(23,18,skinS,'skin');
 
-  /* 4) 얼굴: 눈썹, 눈, 볼, 입 */
+  
   var ex=spec.face, worried=(mood=='N');
   var LX=11,RX=19,EY=14;
   function eyeDot(x){set(x,EY,eyeC,'face');set(x+1,EY,eyeC,'face');set(x,EY+1,eyeC,'face');set(x+1,EY+1,eyeC,'face');set(x+1,EY,'#FFFFFF','face');}
@@ -714,7 +714,7 @@ function make(spec,mood){
   if(mo=='o'){set(15,MY-1,ink,'face');set(16,MY-1,ink,'face');set(15,MY,'#B8434E','face');set(16,MY,'#B8434E','face');}
   if(mo=='wavy'){set(14,MY,ink,'face');set(15,MY-1,ink,'face');set(16,MY,ink,'face');set(17,MY-1,ink,'face');}
 
-  /* 5) 앞머리 */
+  
   var cap=[[3,11,20],[4,9,22],[5,8,23],[6,7,24],[7,7,24],[8,7,24]];
   function capDraw(extraTop){cap.forEach(function(r){row(r[0],r[1],r[2],hair,'hair');}); if(extraTop){row(2,12,19,hair,'hair');}}
   function sides(toY,inX){for(var y=9;y<=toY;y++){row(y,6,6+(inX||1),hair,'hair');row(y,25-(inX||1),25,hair,'hair');}}
@@ -736,7 +736,7 @@ function make(spec,mood){
   if(spec.clip){set(21,8,P.clip||'#FFC75B','hair');set(22,8,P.clip||'#FFC75B','hair');set(22,9,dk(P.clip||'#FFC75B',.3),'hair');}
   if(spec.grey){for(var y16=3;y16<=8;y16+=2)for(var x16=8;x16<=23;x16+=4)if(L[y16][x16]=='hair')set(x16,y16,lt(hair,.45),'hair');}
 
-  /* 6) 안경·헤드폰·연필·귀걸이 */
+  
   if(spec.glasses){var gc=spec.glasses=='round'?'#6B5B8C':'#2B2236';
     [LX,RX].forEach(function(x){ if(spec.glasses=='round'){set(x-1,EY-1,gc,'g');row(EY-2,x,x+1,gc,'g');set(x+2,EY-1,gc,'g');set(x-1,EY,gc,'g');set(x+2,EY,gc,'g');set(x-1,EY+1,gc,'g');set(x+2,EY+1,gc,'g');row(EY+2,x,x+1,gc,'g');}
       else{row(EY-1,x-1,x+2,gc,'g');set(x-1,EY,gc,'g');set(x+2,EY,gc,'g');set(x-1,EY+1,gc,'g');set(x+2,EY+1,gc,'g');row(EY+2,x-1,x+2,gc,'g');}});
@@ -749,7 +749,7 @@ function make(spec,mood){
   
   if(worried){ set(27,7,'#7CC8FF','fx');set(26,8,'#7CC8FF','fx');set(27,8,'#BFE6FF','fx');set(28,8,'#7CC8FF','fx');set(26,9,'#7CC8FF','fx');set(27,9,'#7CC8FF','fx');set(28,9,'#7CC8FF','fx');set(27,10,'#4FA6E0','fx');}
 
-  /* 8) 바깥 외곽선 */
+  
   var out=[];for(var y18=0;y18<GH;y18++)for(var x18=0;x18<GW;x18++){
     if(G[y18][x18]!==null)continue;
     if(!isEmpty(x18-1,y18)||!isEmpty(x18+1,y18)||!isEmpty(x18,y18-1)||!isEmpty(x18,y18+1))out.push([x18,y18]);
@@ -761,11 +761,11 @@ function render(spec,mood,scale){
   var cv=document.createElement('canvas');cv.width=(GW+pad*2)*s;cv.height=(GH+pad*2)*s;var x=cv.getContext('2d');
   function at(a,b){return (a<0||b<0||a>=GW||b>=GH)?null:r.G[b][a];}
   function asHex(c){if(c.charAt(0)=='#')return c;var m=c.match(/\d+/g);return '#'+m.slice(0,3).map(function(v){return ('0'+(+v).toString(16)).slice(-2);}).join('');}
-  /* 외곽선: 한 가지 검정 대신 닿은 색의 진한 색으로(셀아웃) */
+  
   r.out.forEach(function(p){var n=at(p[0],p[1]+1)||at(p[0],p[1]-1)||at(p[0]-1,p[1])||at(p[0]+1,p[1]);
     x.fillStyle=n?dk(asHex(n),.62):r.ink;x.fillRect((p[0]+pad)*s,(p[1]+pad)*s,s,s);});
   for(var y=0;y<GH;y++)for(var xx=0;xx<GW;xx++){var c=r.G[y][xx];if(c){x.fillStyle=c;x.fillRect((xx+pad)*s,(y+pad)*s,s,s);}}
-  /* 반 칸 디테일: 머리 윤기, 옷 주름, 피부 입체감 */
+  
   var h=Math.max(1,Math.floor(s/2));
   for(var y2=0;y2<GH;y2++)for(var x2=0;x2<GW;x2++){
     var ly=r.L[y2][x2],X0=(x2+pad)*s,Y0=(y2+pad)*s;
@@ -848,14 +848,13 @@ function setAv(el,code,mood){el.src=avatar(code,mood);}
 
 
 var GW=[[18,12],[20,8],[14,16],[20,6]],GM=[18,16,10];
-/* 직장 궁합: 축마다 [나 왼쪽/오른쪽][상대 왼쪽/오른쪽] 4칸 점수. 상사·후임은 방향이 있어요(누가 어느 쪽이냐에 따라 다름).
-   축 순서: 충전(B/Q), 일을 보는 눈(R/V), 기준(W/H), 마감 리듬(D/L), 일이 터졌을 때(C/N) */
+
 var REL={
  peer:{n:'Teammate',t:[86,73,60],m:[[[14,10],[10,14]],[[14,12],[12,14]],[[10,16],[16,10]],[[20,6],[6,12]],[[18,16],[16,8]]]},
  boss:{n:'My boss',t:[91,80,64],m:[[[10,8],[8,10]],[[16,7],[6,16]],[[12,11],[11,12]],[[20,16],[2,12]],[[18,12],[17,9]]]},
  junior:{n:'My direct report',t:[91,80,64],m:[[[10,8],[8,10]],[[16,6],[7,16]],[[12,11],[11,12]],[[20,2],[16,12]],[[18,17],[12,9]]]}
 };
-/* 방향이 중요한 칸은 관계별 문장으로 풀어 줘요. [나][상대] 순서 */
+
 var DIRL={
  boss:{1:[['You both look at the same thing first when reporting, so even short explanations work.','Your boss wants to hear the big picture first. Start your report with "why we’re doing this".'],['Your boss wants to hear "So what, by when?" first. Start your report with the to-dos.','You both look at the same thing first when reporting, so even short explanations work.']],
   3:[['You both like to do things early, so deadlines are no worry.','Your boss is a last-minute type, but since you get things done early, your boss actually feels relieved.'],['This is the pair to watch most. Your boss works early and you work last minute, so you’ll often hear "Why isn’t it done yet?"','You’re both last-minute types, so you both get busy right before the deadline. Set one check-in.']],
@@ -878,7 +877,7 @@ var GT=[
 var GMT=['You’re both calm, so the team stays steady even in a crisis.','When one of you worries, the other reassures. A well-balanced pair.','You both worry a lot, so small things can grow big together. One of you should make a point of saying "It’s okay".'];
 var GTIP=['Protect each other’s breaks. A coffee instead of happy hour works too.','At the start of a meeting, say "the one thing we’ll decide today" first.','Before deciding, ask once: "Will this be okay for the people involved?"','Set the deadline and a check-in date together.','Write down what you’re worried about in one line, look at it together, and cross off what you can.'];
 var LEFT=['B','R','W','D','C'];
-/* 옆자리 동료로 가장 잘 맞는 캐릭터(사원증·해설의 'Your best teammate match'와 궁합 점수를 일치시킴) */
+
 function bestPeer(code,mood){var b=null;Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){if(c==code&&m==mood)return;var sc=gScore(code,mood,c,m,'peer').sc;if(!b||sc>b.sc)b={c:c,m:m,sc:sc};});});return b;}
 function gScore(a,am,b,bm,rel){
   rel=rel||'peer';var M=REL[rel].m,A=a+am,B=b+bm,raw=10,lo=10,hi=10,d=[],pts=[],ix=[];
@@ -895,7 +894,7 @@ function gWeak(r){ // 가장 많이 깎인 축을 꿀팁으로
   var M=REL[r.rel||'peer'].m,loss=[],i;for(i=0;i<5;i++)loss.push(Math.max.apply(null,[].concat(M[i][0],M[i][1]))-r.pts[i]);
   var w=0;for(i=1;i<5;i++)if(loss[i]>loss[w])w=i;return loss[w]?w:-1;
 }
-/* 조합마다 다른 한마디: 가장 잘 맞는 축(앞)과 가장 많이 깎인 축(뒤)을 이어 붙여요. [축][나][상대] = [잘 맞을 때, 걸릴 때] */
+
 var PAIR=[
  [[['{we} agree on lunch in two seconds','but {they} both get lost chatting and fall behind'],['{we} recharge differently, so {we} rarely clash','but {I} {keep|keeps} inviting {o}, who just wants time alone']],
   [['{we} recharge differently, so {we} rarely clash','but {o} keeps inviting {me} when {I} just {want|wants} time alone'],['{we} are both happy working quietly side by side','but misunderstandings pile up because no one talks']]],
@@ -981,13 +980,13 @@ var STING={
  QVHD:{C:'You could give great advice, but you don’t say anything until someone asks.',N:'You’re great at listening to others’ worries, but you keep your own to yourself for a long time.'},
  QVHL:{C:'Your notes are full of ideas, but you stay quiet in meetings.',N:'When your boss says "Hmm...", you spend the whole day wondering what it meant.'}
 };
-/* 축별 선택 강도: 5표 중 몇 표인지로 '뚜렷한 편/살짝 그런 편' */
+
 var SIDE={B:'Gets energy from being around people',Q:'Recharges by being alone',R:'Looks at the task in front of them first',V:'Looks at the big picture first',W:'Decides by what’s right or wrong',H:'Looks at how people feel first',D:'Gets things done early',L:'Focuses hard at the last minute'};
 var TOPIC=['How you recharge','How you see work','How you decide','Deadline rhythm'];
 
 var SOFT={B:'You usually get energy from being around people.',Q:'You usually need some time alone to recharge.',R:'You usually handle what is right in front of you first.',V:'You usually look a step further ahead than others.',W:'You usually check what is right and wrong first.',H:'You usually think about how people feel first.',D:'You usually feel better once things are done early.',L:'Your focus usually kicks in as the deadline gets close.'};
 var STRONG={B:'getting energy from people comes naturally to you.',Q:'needing time alone comes naturally to you.',R:'your knack for handling the task in front of you comes naturally.',V:'your eye for looking one step further than others comes naturally.',W:'your eye for telling right from wrong is sharper than anyone’s.',H:'reading people’s feelings first comes naturally to you.',D:'needing things done early to feel at ease comes naturally to you.',L:'your last-minute focus really is a natural gift.'};
-/* "이런 적 있죠?" 맞추는 문장: 한 결과에 세 번만 쓴다 */
+
 var COLD={
  B:['When no one in the meeting would speak, you’ve often been the one to break the silence.','On days you eat lunch alone, it feels a little empty.'],
  Q:['Some nights you only really breathe once you’re home from a team happy hour.','You say everything you need to over chat, but in the meeting room you often hold back.'],
@@ -1009,7 +1008,7 @@ function reading(code,sc,mood){
   if(light.length)out.push(LIGHT[light[0].i]);
   return out;
 }
-/* 연말 면담에서 상사에게 꺼낼 첫마디(캐릭터별, 해설 문장과 겹치지 않게) */
+
 var TALK={
  BRWD:'I organized the to-dos in every meeting this year. Next year, I’d like to hand that off to a teammate.',
  BRWL:'I put out a lot of fires this year. Next year, could we agree on a few things up front so fewer start?',
@@ -1029,9 +1028,9 @@ var TALK={
  QVHD:'Listening to the team this year, I noticed something we need. Can I pitch one thing I’d like to try next year?',
  QVHL:'I kept a few ideas to myself this year. Next year, I’ll pitch at least one.'
 };
-/* 북적 쪽이지만 조용한 캐릭터: 회의·말하기 문장은 조용한 쪽으로 */
+
 var QB={BVHLN:1};
-/* 캐릭터마다 하나뿐인 장면(한마디로)과 올해 가장 많이 들었을 말(2026년 결산) */
+
 var SCENE={
  BRWDC:'9 a.m. Monday, while everyone is still holding their coffee, you’re already writing this week’s tasks on the whiteboard.',
  BRWLC:'When someone says "What do we do about this?", you’re the first to swing your chair around.',
@@ -1146,7 +1145,7 @@ function finish(){
   if(TT){$('rNextT').textContent='\''+TT.name+'\' is waiting for you. Once you have seen your badge, go get your seat.';$('rNextB').textContent='Get my seat →';$('rNextB').onclick=function(){tOpen(tMerge(TT));setTimeout(function(){$('tmJoin').scrollIntoView({behavior:'smooth',block:'center'});},300);};$('rNext').hidden=false;}
   else if(FRIEND&&FRIEND.id){$('rNextT').textContent=J(NM(FRIEND.c,FRIEND.m).n.split(' ').pop(),' and you',' and you')+': your match is ready.';$('rNextB').textContent='See your match →';$('rNextB').onclick=goMatch;$('rNext').hidden=false;}
 }
-/* 친구 링크로 들어온 화면: 남의 결과라는 게 보이게 바꾸고, 내 결과용 버튼은 숨긴다 */
+
 function setFriendView(name){
   var on=!!name;$('result').classList.toggle('friend',on);
   $('rListH').textContent=on?name+'\'s 13 readings':'My 13 readings';
@@ -1201,7 +1200,7 @@ function showResult(code,mood,sc,sw){
 
 
 $('start').onclick=function(){track('start');st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[]};history.replaceState(null,'','#');history.pushState({q:1},'','#');show('quiz');render();};
-/* 시트를 열면 기록을 하나 쌓아서, 뒤로 가기는 시트만 닫게 한다 */
+
 var SH=0,SHIGN=0;
 function shOpen(){if(SH)return;SH=1;try{history.pushState({sh:1},'',location.href);}catch(e){}}
 function shClose(){if(!SH)return;SH=0;if(history.state&&history.state.sh){SHIGN=1;history.back();}}
@@ -1213,7 +1212,7 @@ window.addEventListener('popstate',function(){if(SHIGN){SHIGN=0;return;}
   if(!$('quiz').hidden){if(st.i>0){$('qBack').onclick();history.pushState({q:1},'','#');}else show('intro');}else if(!$('result').hidden||!$('team').hidden){if(/#(t=|g=|r=)/.test(location.hash)){location.reload();return;}['tSheet','imgBg','pickBg','rpBg'].forEach(function(id){if($(id))$(id).hidden=true;});document.body.style.overflow='';history.replaceState(null,'',location.pathname+location.search);show('intro');}});
 $('qBack').onclick=function(){if(st.i<1)return;st.i--;var a=st.ans[st.i],qi=a[0],k=a[1],ax=Q[qi][0];if(k==0)st.sc[ax]--;st.n[ax]--;if(SW[qi]===k)st.sw--;render();window.scrollTo(0,0);};
 $('again').onclick=function(){FRIEND=null;try{sessionStorage.removeItem('oct_friend');}catch(e){}history.replaceState(null,'','#');show('intro');};
-/* 사원증 이미지(9:16) 만들기 */
+
 function wrapText(c,text,x,y,maxW,lh,maxLines){
   var words=text.split(' '),line='',lines=[];
   words.forEach(function(w){var t=line?line+' '+w:w;if(c.measureText(t).width>maxW&&line){lines.push(line);line=w;}else line=t;});
@@ -1263,18 +1262,18 @@ function makeCard(cb){
   };
   img.src=avatar(L.code,L.mood);
 }
-/* 결과 주소: 캐릭터와 답 개수를 짧은 글자로 바꿔서, 주소만 보고 판정 방법을 알 수 없게 한다 */
+
 var KEYS=[];Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){KEYS.push(c+m);});});
 var M36=60466176;
 function encId(code,mood,sc,w){var ci=KEYS.indexOf(code+mood),sv=0;for(var i=0;i<5;i++)sv=sv*6+sc[i];var n=(ci*7776+sv)*26+Math.min(25,w||0);n=(n*7919+12345)%M36;var t=n.toString(36);while(t.length<5)t='0'+t;return t;}
 function decId(t){if(!/^[0-9a-z]{5}$/.test(t))return null;var n=parseInt(t,36);n=((n-12345)%M36+M36)%M36;n=Number((BigInt(n)*48493583n)%BigInt(M36));var w=n%26;n=(n-w)/26;var sv=n%7776,ci=(n-sv)/7776;if(ci>=KEYS.length)return null;var sc=[];for(var i=4;i>=0;i--){sc[i]=sv%6;sv=(sv-sc[i])/6;}if(sc.some(function(v){return v>5;}))return null;return {code:KEYS[ci].substr(0,4),mood:KEYS[ci].substr(4),sc:sc,w:w,id:t};}
-/* 방문자 세기: GoatCounter 주소를 넣으면 켜져요. 이름·연락처는 모으지 않아요. */
+
 var GC='lcp-office',EVP='en-';
 if(GC&&!/#dev/.test(location.hash)){var gs=document.createElement('script');gs.async=true;gs.src='https://gc.zgo.at/count.js';gs.setAttribute('data-goatcounter','https://'+GC+'.goatcounter.com/count');gs.onload=function(){var q=TQ;TQ=[];q.forEach(track);};document.head.appendChild(gs);}
 var TQ=[];
 function track(ev){try{if(!GC)return;if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:'ev-'+EVP+ev,title:EVP+ev,event:true});else if(TQ.length<30)TQ.push(ev);}catch(e){}}
 var BASE=location.href.split('#')[0];
-/* 카톡 미리보기용 주소: 공개 사이트에서만 c/번호/, t/, g/ 미리보기 페이지를 거쳐 가게 한다 */
+
 function sUrl(dir,hash){return (/github\.io$/.test(location.hostname)?BASE.replace(/index\.html$/,'')+dir+'/':BASE)+hash;}
 function sendText(text,url,btn,done){
   var tn=btn&&(btn.dataset.ev||btn.id)||'send';track(tn);if(INAPP)track(tn+'_inapp');
@@ -1316,20 +1315,20 @@ function makeTeamCard(t,cb){
     c.fillStyle='#5A5BD0';c.fillRect(0,0,W,250);
     c.textAlign='center';c.fillStyle='#FFC75B';c.font='700 36px '+F;c.fillText('Our Company · 2026 Year in Review',W/2,90);
     c.fillStyle='#FFFFFF';c.font='800 76px '+F;c.fillText(t.name,W/2,185);
-    var cols=n<=4?n:4,rows=Math.ceil(n/cols),cw=232,ch=rows>1?330:380,gx=(W-cols*cw-(cols-1)*16)/2,top=290;
+    var cols=n<=4?n:4,rows=Math.ceil(n/cols),cw=232,ch=rows>1?318:380,gx=(W-cols*cw-(cols-1)*16)/2,top=rows>1?280:290;
     P.forEach(function(x,i){var r=Math.floor(i/cols),k=i%cols,rowN=Math.min(cols,n-r*cols),ox=(W-rowN*cw-(rowN-1)*16)/2,X=ox+k*(cw+16),Y=top+r*(ch+18);
       c.save();rr(c,X,Y,cw,ch,28);c.fillStyle='#FFFFFF';c.shadowColor='rgba(37,41,67,.10)';c.shadowBlur=24;c.shadowOffsetY=8;c.fill();c.restore();
       c.fillStyle='#DDF3E9';rr(c,X+46,Y+20,140,150,22);c.fill();
       c.save();rr(c,X+46,Y+20,140,150,22);c.clip();c.imageSmoothingEnabled=false;var im=ims[i],w=130,h=w*im.height/im.width;c.drawImage(im,X+51,Y+170-h+12,w,h);c.restore();
       var fz=26;do{c.font='750 '+fz+'px '+F;if(c.measureText(ro[i].n).width<=cw-48)break;fz-=2;}while(fz>16);c.fillStyle='#ECEDFC';var rw=c.measureText(ro[i].n).width+32;rr(c,X+cw/2-rw/2,Y+186,rw,42,21);c.fill();c.fillStyle='#5A5BD0';c.fillText(ro[i].n,X+cw/2,Y+216);
-      c.fillStyle='#252943';c.font='800 36px '+F;c.fillText(x.nk,X+cw/2,Y+270);
-      var at=aw[i][0].replace(' of the Year',''),az=23;do{c.font='600 '+az+'px '+F;if(c.measureText(at).width<=cw-24)break;az-=1;}while(az>(rows>1?15:18));c.fillStyle='#5D6582';wrapText(c,at,X+cw/2,Y+(rows>1?308:310),cw-24,az+3,rows>1?1:2);if(rows==1){c.fillStyle='#8A90A8';var cn=NM(x.c,x.m).n,cz=21;do{c.font='500 '+cz+'px '+F;if(c.measureText(cn).width<=cw-20)break;cz--;}while(cz>15);c.fillText(cn,X+cw/2,Y+ch-14);}});
-    var y=top+rows*(ch+18)+40,avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
+      c.fillStyle='#252943';c.font='800 36px '+F;c.fillText(x.nk,X+cw/2,Y+(rows>1?262:270));
+      var at=aw[i][0].replace(' of the Year',''),az=23;do{c.font='600 '+az+'px '+F;if(c.measureText(at).width<=cw-24)break;az-=1;}while(az>(rows>1?15:18));c.fillStyle='#5D6582';wrapText(c,at,X+cw/2,Y+(rows>1?298:310),cw-24,az+3,rows>1?1:2);if(rows==1){c.fillStyle='#8A90A8';var cn=NM(x.c,x.m).n,cz=21;do{c.font='500 '+cz+'px '+F;if(c.measureText(cn).width<=cw-20)break;cz--;}while(cz>15);c.fillText(cn,X+cw/2,Y+ch-14);}});
+    var y=top+rows*(ch+18)+(rows>1?28:40),avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
     var gr=tGrade(avg,P);
     c.fillStyle='#5D6582';c.font='600 32px '+F;c.fillText('This year’s grade',W/2,y);
     c.fillStyle='#252943';var gz=44;do{c.font='800 '+gz+'px '+F;if(c.measureText(gr).width<=900||rows==1)break;gz-=2;}while(gz>30);y+=60+wrapText(c,gr,W/2,y+60,900,58,2);
     c.fillStyle='#5D6582';c.font='600 32px '+F;c.fillText('Best duo  '+L[0].a.nk+', '+L[0].b.nk+'  '+L[0].g.sc+' pts',W/2,y+20);
-    if(L.length>2&&y+66<=H-165){c.fillText('Duo to watch  '+L[L.length-1].a.nk+', '+L[L.length-1].b.nk+'  '+L[L.length-1].g.sc+' pts',W/2,y+66);y+=46;}
+    if(L.length>2&&y+66<=H-165){c.fillText('Bickering duo  '+L[L.length-1].a.nk+', '+L[L.length-1].b.nk+'  '+L[L.length-1].g.sc+' pts',W/2,y+66);y+=46;}
     if(rows==1){var tmp=document.createElement('div');tmp.innerHTML=tYear(P,L);var evs=[].slice.call(tmp.querySelectorAll('p')).slice(1).map(function(e){return e.textContent;}).filter(function(t,i,arr){return i<2||i==arr.length-1;}).slice(0,3);
       c.font='600 30px '+F;var hs,tot,mk=function(){hs=evs.map(function(t){return lineCount(c,t.slice(t.indexOf(' ')+1),700,3)*40;});tot=hs.reduce(function(a,b){return a+b;},0)+(evs.length-1)*24+56;};mk();
       while(evs.length>1&&y+64+tot>H-165){evs.splice(evs.length>2?1:0,1);mk();}
@@ -1344,7 +1343,7 @@ function makeTeamCard(t,cb){
 }
 $('tmSave').onclick=function(){var btn=this,o=btn.textContent;if(!TCUR)return;track('team_img');btn.disabled=true;btn.textContent='Making your image…';var go=function(){makeTeamCard(TCUR,function(b,cv){btn.disabled=false;btn.textContent=o;imgSheet(b,cv,'our-company-'+TCUR.name.replace(/\s/g,'')+'.png','Our company image');});};
   if(document.fonts&&document.fonts.load)document.fonts.load('800 76px Pretendard').then(go,go);else go();};
-/* 결과 화면이 길어서, 원래 버튼이 화면에 없을 때 아래에 붙는 버튼 */
+
 (function(){
   var vis={};
   var upd=function(){var res=!$('result').hidden,fr=$('result').classList.contains('friend');
@@ -1353,13 +1352,13 @@ $('tmSave').onclick=function(){var btn=this,o=btn.textContent;if(!TCUR)return;tr
     $('sbar').hidden=!res||!!anchorIn||window.scrollY<300;};
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id]=e.isIntersecting;});upd();});['saveImg','share','fBanner'].forEach(function(id){io.observe($(id));});}
   window.addEventListener('scroll',upd,{passive:true});
-  $('payBtn').onclick=function(){track('990');$('payMsg').hidden=false;this.disabled=true;var sb=$('pay').querySelector('.panel > .sub');if(sb)sb.hidden=true;};
+  $('payBtn').onclick=function(){track('990');$('payMsg').hidden=false;this.disabled=true;$('payNote').hidden=true;};
 $('sbSave').onclick=function(){$('saveImg').onclick.call($('saveImg'));};
   $('sbShare').onclick=function(){shareMine(this);};
   $('sbFriend').onclick=function(){$('fGo').onclick();};
   window.SBAR=upd;
 })();
-/* ===== 우리 회사 차리기 ===== */
+
 var ROLES=[
  {n:'CEO',d:'Sets the company’s direction and makes the big calls.',w:{},y:{}},
  {n:'Planning',d:'Organizes the tasks and builds the schedule.',w:{D:1.3,V:1,Q:.6},y:{D:'Does things early, so they’re running the schedule.',V:'Sees the big picture first, so they’re on planning.',Q:'Calmly sorts things out alone, so they’re on planning.'}},
@@ -1427,7 +1426,7 @@ function tOpen(t,joined){
   if(inT&&P.length>=8){J0.innerHTML='<div class="panel"><b>All 8 are here</b><p class="sub" style="margin:6px 0 12px">Now save the company image and post it in your group chat. Seats, awards and this year’s grade are all on one card. Post the finished link too, so everyone can see the year in review.</p><button type="button" class="btn" id="tmFull" data-ev="team_full_img">Save company image</button><button type="button" class="btn ghost" id="tmShare" data-ev="team_share_full">Copy the finished link</button></div>';track('team_full');$('tmFull').onclick=function(){$('tmSave').click();};$('tmShare').onclick=function(){rp(this);};}
   else if(inT){J0.innerHTML='<div class="panel"><b>Post the latest link in your group chat</b><p class="sub" style="margin:6px 0 12px">Join through this link so everyone who is in so far shows up together. Always share the newest link, so everyone ends up in the same company.</p><button type="button" class="btn" id="tmShare" data-ev="team_share">Copy the latest link</button></div>';
     $('tmShare').onclick=function(){rp(this);};
-    if(joined){$('rpS').textContent='The first link in your group chat only shows '+(P.length-1)+' of you so far. Post this one now so everyone who joined shows up, and the next person joins the same company.';$('rpGo').onclick=function(){rp(this);setTimeout(rpClose,1600);};$('rpBg').hidden=false;shOpen();document.body.style.overflow='hidden';track('team_repost_show');setTimeout(function(){$('rpGo').focus();},30);}}
+    if(joined){$('rpS').textContent='Your seat: '+ro[mi].n+(aw0?', award: '+aw0:'')+'. The first link in your group chat only shows '+(P.length-1)+' of you so far. Post this one now so everyone who joined shows up, and the next person joins the same company.';$('rpGo').onclick=function(){rp(this);setTimeout(rpClose,1600);};$('rpBg').hidden=false;shOpen();document.body.style.overflow='hidden';track('team_repost_show');setTimeout(function(){$('rpGo').focus();},30);}}
   else if(P.length>=8){J0.innerHTML='<div class="panel"><b>All seats are taken</b><p class="sub" style="margin:6px 0 12px">All 8 people have joined this company. Take the test and start your own company.</p><button type="button" class="btn" id="tmGo">Take the test and start my company</button></div>';$('tmGo').onclick=function(){$('start').onclick();};}
   else if(me){J0.innerHTML='<div class="panel"><b>Want to join this company?</b><p class="sub" style="margin:6px 0 4px">We’ll pick your seat based on your character. Your nickname goes inside the company link, so use a nickname, not your real name.</p><label class="tm-lab" for="tmNick">Your nickname at work</label><input class="tm-in" id="tmNick" maxlength="10" placeholder="e.g. Captain" autocomplete="off"><button type="button" class="btn" id="tmIn">Join with my badge</button></div>';
     try{$('tmNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
@@ -1437,7 +1436,7 @@ function tOpen(t,joined){
   $('tmMine').hidden=!me;
   var L=P.length>1?tPairs(P):null;$('tmPairS').hidden=!L;
   if(L){var row=function(x,lab){return '<div class="tm-pair"><img alt="" src="'+avatar(x.a.c,x.a.m)+'"><img alt="" src="'+avatar(x.b.c,x.b.m)+'"><div class="tx"><span class="sub" style="font-size:13.5px">'+lab+'</span><b>'+esc(x.a.nk)+', '+esc(x.b.nk)+'</b></div><span class="sc">'+x.g.sc+' pts</span></div><p class="sub" style="margin:-4px 0 16px;font-size:14.5px">'+gLine(x.g,x.a.nk,x.b.nk)+'</p>';};
-    $('tmPair').innerHTML=row(L[0],L.length>1?'Best duo':'The two of us')+(L.length>2?row(L[L.length-1],'Duo to watch'):'');}
+    $('tmPair').innerHTML=row(L[0],L.length>1?'Best duo':'The two of us')+(L.length>2?row(L[L.length-1],'Bickering duo'):'');}
   var aw=L?tAwards(P):null;$('tmAwS').hidden=!aw;$('tmSave').hidden=!L;
   if(aw)$('tmAw').innerHTML=P.map(function(x,i){return '<div class="tm-pair"><img alt="" src="'+avatar(x.c,x.m)+'"><div class="tx"><span class="sub" style="font-size:13.5px">'+esc(x.nk)+'</span><b>'+aw[i][0]+'</b><span class="sub" style="font-size:14px;display:block">'+aw[i][1]+'</span></div></div>';}).join('');
   $('tmYear').innerHTML=L?tYear(P,L):'<p class="sub" style="margin:0">With just one more person, you’ll see things like: \'Quiet Fixer of the Year\', \'Best duo\', \'Everyone left on time in December\'.'+(inT?' Post the link in your group chat to bring people in.':'')+'</p>';
@@ -1452,7 +1451,7 @@ function tCardSetup(){
   try{if(!$('tNick').value)$('tNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
   var a=tAll(),ks=Object.keys(a);$('tList').innerHTML=ks.length?'<p class="sub" style="margin:16px 0 0">Companies opened on this phone</p>'+ks.slice(-4).map(function(k){return '<button type="button" class="btn ghost" data-t="'+esc(k)+'">'+esc(a[k].name||k)+' ('+a[k].mem.length+' people) View</button>';}).join('')+'<button type="button" class="linkbtn" id="tClear">Clear company history on this phone</button>':'';
   if($('tClear'))$('tClear').onclick=function(){try{['oct_teams','oct_nick','oct_pteam'].forEach(function(k){localStorage.removeItem(k);sessionStorage.removeItem(k);});}catch(e){}$('tList').innerHTML='<p class="sub" style="margin:16px 0 0">Company history on this phone is cleared.</p>';};
-  [].forEach.call($('tList').querySelectorAll('button'),function(b){b.onclick=function(){var t=tAll()[b.dataset.t];if(t)tOpen(t);};});
+  [].forEach.call($('tList').querySelectorAll('button[data-t]'),function(b){b.onclick=function(){var t=tAll()[b.dataset.t];if(t)tOpen(t);};});
 }
 $('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,20)||TNAMES[0],nk=$('tNick').value.trim().slice(0,10),me=LAST&&LAST.id;
   if(!nk){$('tNick').focus();$('tNick').placeholder='Add your nickname first';return;}if(!me)return;

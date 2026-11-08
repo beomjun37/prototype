@@ -456,7 +456,7 @@ h2{font-size:20px}
     </div>
   </div>
 
-  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">990원에 받아 보기 (준비 중)</button><p class="sub" style="margin:8px 0 0;font-size:13px">아직 열기 전이에요. 눌러도 결제되지 않아요. 얼마나 찾는지만 알아보고 있어요.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 열어 볼게요. 결제는 되지 않았어요.</p></div></div>
+  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">990원에 받아 보기 (준비 중)</button><p class="sub" id="payNote" style="margin:8px 0 0;font-size:13px">아직 열기 전이에요. 눌러도 결제되지 않아요. 얼마나 찾는지만 알아보고 있어요.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 열어 볼게요. 결제는 되지 않았어요.</p></div></div>
   </div>
   <div class="memo"><img id="rMasAv" class="avatar sm" alt=""><div><b id="rMasName"></b><div class="sub">해설 다 읽었어요? 같이 일하는 동료한테 이 링크를 보내 봐요. 그 사람이 테스트를 끝내고 돌려보내 주면 우리 둘 궁합을 같이 볼 수 있어요.</div></div></div>
   <button class="btn" id="share">카톡으로 내 사원증 보내기</button>
@@ -469,7 +469,7 @@ h2{font-size:20px}
   <div class="tm-grid" id="tmGrid"></div>
   <div class="sec" id="tmJoin" style="margin-top:22px"></div>
   <div class="sec" id="tmAwS"><div class="sec-head"><h2>연말 팀 어워즈</h2><p class="sub" style="margin:0">올해 우리 회사에서 상을 하나씩 받아요.</p></div><div class="panel" id="tmAw"></div></div>
-  <div class="sec" id="tmPairS"><div class="sec-head"><h2>최고의 콤비, 조심할 콤비</h2></div><div class="panel" id="tmPair"></div></div>
+  <div class="sec" id="tmPairS"><div class="sec-head"><h2>최고의 콤비, 티격태격 콤비</h2></div><div class="panel" id="tmPair"></div></div>
   <div class="sec"><div class="sec-head"><h2>우리 회사 1년 결산</h2><p class="sub" style="margin:0">지금 모인 사람들로 1년을 보내면 이렇게 될 거예요. 사람이 늘면 결산도 바뀌어요.</p></div><div class="panel tm-ev" id="tmYear"></div></div>
   <button type="button" class="btn" id="tmSave" style="margin-top:22px">우리 회사 이미지로 저장하기</button>
   <button type="button" class="btn ghost" id="tmMine">내 사원증 보기</button>
@@ -1406,15 +1406,15 @@ function makeTeamCard(t,cb){
     c.fillStyle='#5A5BD0';c.fillRect(0,0,W,250);
     c.textAlign='center';c.fillStyle='#FFC75B';c.font='700 36px '+F;c.fillText('2026 우리 회사 결산',W/2,90);
     c.fillStyle='#FFFFFF';c.font='800 76px '+F;c.fillText(t.name,W/2,185);
-    var cols=n<=4?n:4,rows=Math.ceil(n/cols),cw=232,ch=rows>1?330:380,gx=(W-cols*cw-(cols-1)*16)/2,top=290;
+    var cols=n<=4?n:4,rows=Math.ceil(n/cols),cw=232,ch=rows>1?318:380,gx=(W-cols*cw-(cols-1)*16)/2,top=rows>1?280:290;
     P.forEach(function(x,i){var r=Math.floor(i/cols),k=i%cols,rowN=Math.min(cols,n-r*cols),ox=(W-rowN*cw-(rowN-1)*16)/2,X=ox+k*(cw+16),Y=top+r*(ch+18);
       c.save();rr(c,X,Y,cw,ch,28);c.fillStyle='#FFFFFF';c.shadowColor='rgba(37,41,67,.10)';c.shadowBlur=24;c.shadowOffsetY=8;c.fill();c.restore();
       c.fillStyle='#DDF3E9';rr(c,X+46,Y+20,140,150,22);c.fill();
       c.save();rr(c,X+46,Y+20,140,150,22);c.clip();c.imageSmoothingEnabled=false;var im=ims[i],w=130,h=w*im.height/im.width;c.drawImage(im,X+51,Y+170-h+12,w,h);c.restore();
       var fz=26;do{c.font='750 '+fz+'px '+F;if(c.measureText(ro[i].n).width<=cw-48)break;fz-=2;}while(fz>16);c.fillStyle='#ECEDFC';var rw=c.measureText(ro[i].n).width+32;rr(c,X+cw/2-rw/2,Y+186,rw,42,21);c.fill();c.fillStyle='#5A5BD0';c.fillText(ro[i].n,X+cw/2,Y+216);
-      c.fillStyle='#252943';c.font='800 36px '+F;c.fillText(x.nk,X+cw/2,Y+270);
-      var at=aw[i][0].replace('올해의 ',''),az=23;do{c.font='600 '+az+'px '+F;if(c.measureText(at).width<=cw-24)break;az-=1;}while(az>(rows>1?15:18));c.fillStyle='#5D6582';wrapText(c,at,X+cw/2,Y+(rows>1?308:310),cw-24,az+3,rows>1?1:2);if(rows==1){c.fillStyle='#8A90A8';var cn=NM(x.c,x.m).n,cz=21;do{c.font='500 '+cz+'px '+F;if(c.measureText(cn).width<=cw-20)break;cz--;}while(cz>15);c.fillText(cn,X+cw/2,Y+ch-14);}});
-    var y=top+rows*(ch+18)+40,avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
+      c.fillStyle='#252943';c.font='800 36px '+F;c.fillText(x.nk,X+cw/2,Y+(rows>1?262:270));
+      var at=aw[i][0].replace('올해의 ',''),az=23;do{c.font='600 '+az+'px '+F;if(c.measureText(at).width<=cw-24)break;az-=1;}while(az>(rows>1?15:18));c.fillStyle='#5D6582';wrapText(c,at,X+cw/2,Y+(rows>1?298:310),cw-24,az+3,rows>1?1:2);if(rows==1){c.fillStyle='#8A90A8';var cn=NM(x.c,x.m).n,cz=21;do{c.font='500 '+cz+'px '+F;if(c.measureText(cn).width<=cw-20)break;cz--;}while(cz>15);c.fillText(cn,X+cw/2,Y+ch-14);}});
+    var y=top+rows*(ch+18)+(rows>1?28:40),avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
     var gr=tGrade(avg,P);
     c.fillStyle='#5D6582';c.font='600 32px '+F;c.fillText('올해 성적',W/2,y);
     c.fillStyle='#252943';var gz=44;do{c.font='800 '+gz+'px '+F;if(c.measureText(gr).width<=900||rows==1)break;gz-=2;}while(gz>30);y+=60+wrapText(c,gr,W/2,y+60,900,58,2);
@@ -1443,7 +1443,7 @@ $('tmSave').onclick=function(){var btn=this,o=btn.textContent;if(!TCUR)return;tr
     $('sbar').hidden=!res||!!anchorIn||window.scrollY<300;};
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id]=e.isIntersecting;});upd();});['saveImg','share','fBanner'].forEach(function(id){io.observe($(id));});}
   window.addEventListener('scroll',upd,{passive:true});
-  $('payBtn').onclick=function(){track('990');$('payMsg').hidden=false;this.disabled=true;var sb=$('pay').querySelector('.panel > .sub');if(sb)sb.hidden=true;};
+  $('payBtn').onclick=function(){track('990');$('payMsg').hidden=false;this.disabled=true;$('payNote').hidden=true;};
 $('sbSave').onclick=function(){$('saveImg').onclick.call($('saveImg'));};
   $('sbShare').onclick=function(){shareMine(this);};
   $('sbFriend').onclick=function(){$('fGo').onclick();};
@@ -1517,7 +1517,7 @@ function tOpen(t,joined){
   if(inT&&P.length>=8){J0.innerHTML='<div class="panel"><b>8명이 다 모였어요</b><p class="sub" style="margin:6px 0 12px">이제 회사 이미지를 저장해서 단톡방에 올려 보세요. 자리와 어워즈, 올해 성적이 한 장에 담겨요. 완성된 링크도 같이 올리면 다들 결산을 볼 수 있어요.</p><button type="button" class="btn" id="tmFull" data-ev="team_full_img">회사 이미지 저장하기</button><button type="button" class="btn ghost" id="tmShare" data-ev="team_share_full">완성된 링크 복사하기</button></div>';track('team_full');$('tmFull').onclick=function(){$('tmSave').click();};$('tmShare').onclick=function(){rp(this);};}
   else if(inT){J0.innerHTML='<div class="panel"><b>단톡방에 최신 링크를 올려 주세요</b><p class="sub" style="margin:6px 0 12px">이 링크로 들어와야 지금 들어온 사람까지 다 같이 보여요. 단톡방에는 가장 최근 링크 하나만 쓰세요. 그래야 방이 안 갈라져요.</p><button type="button" class="btn" id="tmShare" data-ev="team_share">최신 링크 복사하기</button></div>';
     $('tmShare').onclick=function(){rp(this);};
-    if(joined){$('rpS').textContent='단톡방에 처음 올라온 링크로는 아직 '+(P.length-1)+'명만 보여요. 지금 이 링크를 올려야 들어온 사람이 다 같이 보이고, 다음 사람도 같은 회사로 들어와요.';$('rpGo').onclick=function(){rp(this);setTimeout(rpClose,1600);};$('rpBg').hidden=false;shOpen();document.body.style.overflow='hidden';track('team_repost_show');setTimeout(function(){$('rpGo').focus();},30);}}
+    if(joined){$('rpS').textContent='내 자리는 '+ro[mi].n+(aw0?', 상은 '+aw0:'')+'예요. 단톡방에 처음 올라온 링크로는 아직 '+(P.length-1)+'명만 보여요. 지금 이 링크를 올려야 들어온 사람이 다 같이 보이고, 다음 사람도 같은 회사로 들어와요.';$('rpGo').onclick=function(){rp(this);setTimeout(rpClose,1600);};$('rpBg').hidden=false;shOpen();document.body.style.overflow='hidden';track('team_repost_show');setTimeout(function(){$('rpGo').focus();},30);}}
   else if(P.length>=8){J0.innerHTML='<div class="panel"><b>자리가 다 찼어요</b><p class="sub" style="margin:6px 0 12px">이 회사는 8명이 모두 들어왔어요. 테스트를 하고 내 회사를 새로 차려 보세요.</p><button type="button" class="btn" id="tmGo">테스트하고 내 회사 차리기</button></div>';$('tmGo').onclick=function(){$('start').onclick();};}
   else if(me){J0.innerHTML='<div class="panel"><b>이 회사에 들어갈까요?</b><p class="sub" style="margin:6px 0 4px">내 캐릭터를 보고 자리를 정해 드려요. 별명은 회사 링크 안에 들어가니, 실명 대신 별명을 써 주세요.</p><label class="tm-lab" for="tmNick">회사에서 부를 별명</label><input class="tm-in" id="tmNick" maxlength="6" placeholder="예: 민대리" autocomplete="off"><button type="button" class="btn" id="tmIn">내 사원증으로 들어가기</button></div>';
     try{$('tmNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
@@ -1542,7 +1542,7 @@ function tCardSetup(){
   try{if(!$('tNick').value)$('tNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
   var a=tAll(),ks=Object.keys(a);$('tList').innerHTML=ks.length?'<p class="sub" style="margin:16px 0 0">이 폰에서 열어 본 회사</p>'+ks.slice(-4).map(function(k){return '<button type="button" class="btn ghost" data-t="'+esc(k)+'">'+esc(a[k].name||k)+' ('+a[k].mem.length+'명) 보기</button>';}).join('')+'<button type="button" class="linkbtn" id="tClear">이 폰에 남은 회사 기록 지우기</button>':'';
   if($('tClear'))$('tClear').onclick=function(){try{['oct_teams','oct_nick','oct_pteam'].forEach(function(k){localStorage.removeItem(k);sessionStorage.removeItem(k);});}catch(e){}$('tList').innerHTML='<p class="sub" style="margin:16px 0 0">이 폰에 남은 회사 기록을 지웠어요.</p>';};
-  [].forEach.call($('tList').querySelectorAll('button'),function(b){b.onclick=function(){var t=tAll()[b.dataset.t];if(t)tOpen(t);};});
+  [].forEach.call($('tList').querySelectorAll('button[data-t]'),function(b){b.onclick=function(){var t=tAll()[b.dataset.t];if(t)tOpen(t);};});
 }
 $('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,12)||TNAMES[0],nk=$('tNick').value.trim().slice(0,6),me=LAST&&LAST.id;
   if(!nk){$('tNick').focus();$('tNick').placeholder='별명을 먼저 적어 주세요';return;}if(!me)return;
