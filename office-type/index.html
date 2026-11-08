@@ -332,7 +332,9 @@ h2{font-size:20px}
 #imgDl[hidden]{display:none}
 .sbar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(to top,var(--bg) 70%,transparent);animation:qin .2s ease both}
 .sbar-in{max-width:460px;margin:0 auto;display:flex;gap:8px}
-.sbar-in .btn{flex:1;margin:0;min-height:50px;font-size:15.5px}
+.sbar-in .btn{flex:1;margin:0;min-height:50px;font-size:15.5px;white-space:nowrap;padding-left:8px;padding-right:8px}
+@media (max-width:340px){.sbar-in .btn{font-size:14px}}
+#paneRead,#paneMatch,#rTabs{scroll-margin-top:72px}
 .sbar-in .btn[hidden]{display:none}
 .gfb{margin:18px 0 4px;padding:14px;border-radius:var(--r-md);background:var(--bg);border:1px solid var(--line)}
 .gfb>span{display:block;font-size:14.5px;font-weight:700;margin-bottom:10px}
@@ -356,7 +358,7 @@ h2{font-size:20px}
 .tm-ev p{margin:0 0 12px;line-height:1.6}.tm-ev p b{color:var(--accent)}.tm-grade{font-size:18px;font-weight:800;margin:4px 0 10px}
 .tm-list .btn{margin-top:8px}
 #tmAw .tm-pair{align-items:flex-start;margin-bottom:14px}#tmAw .tm-pair:last-child{margin-bottom:0}
-.thero{display:block;position:relative;width:100%;text-align:left;margin-top:16px;border:0;border-radius:22px;padding:18px 18px 16px;background:var(--accent);color:#fff;font:inherit;cursor:pointer;box-shadow:var(--shadow);overflow:hidden}
+.thero{display:block;position:relative;width:100%;text-align:left;margin-top:16px;border:0;border-radius:22px;padding:18px 18px 16px;background:var(--strap);color:#fff;font:inherit;cursor:pointer;box-shadow:var(--shadow);overflow:hidden}
 .thero b{display:block;font-size:21px;letter-spacing:-.02em;margin:12px 0 6px;color:#fff}.thero-s{display:block;font-size:14.5px;line-height:1.5;color:#fff;opacity:.92;padding-right:4px}
 .thero-k{display:inline-block;background:var(--hi);color:var(--hi-ink);font-size:12px;font-weight:800;border-radius:99px;padding:2px 9px}
 .thero-go{display:inline-block;margin-top:12px;background:#fff;color:#3B36B8;font-weight:800;font-size:15px;border-radius:12px;padding:10px 14px}
@@ -424,7 +426,7 @@ h2{font-size:20px}
   </div>
   <div class="rnext" id="rNext" hidden><p id="rNextT"></p><button class="btn" id="rNextB" type="button"></button></div>
   <button class="btn" id="saveImg" style="margin-top:14px">사원증 이미지로 저장하기</button>
-  <div class="rtalk" id="rTalk"><small>올해 연말 면담에서 이렇게 말해 보세요</small><p id="rTalkQ"></p><span>내 캐릭터에 맞춘 한마디예요. 상사 캐릭터별 대본은 궁합 보기 아래에 있어요.</span></div>
+  <div class="rtalk" id="rTalk"><small>올해 연말 면담에서 이렇게 말해 보세요</small><p id="rTalkQ"></p><span>내 캐릭터에 맞춘 한마디예요. 상사 캐릭터에 맞춘 대본은 궁합 보기 아래에서 준비하고 있어요.</span></div>
 
   <button type="button" class="thero" id="tHero"><span class="thero-av" id="tHeroAv"></span><b>친구들이랑 회사 차리기</b><span class="thero-s">단톡방에 링크 하나만 올리면 들어온 사람마다 자리를 정해 주고, 우리 회사의 1년 결산을 보여 줘요.</span><span class="thero-go">우리 회사 차리기 →</span></button>
 
@@ -452,7 +454,7 @@ h2{font-size:20px}
     </div>
   </div>
 
-  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">990원에 받아 보기 (준비 중)</button><p class="sub" style="margin:8px 0 0;font-size:13px">아직 열기 전이에요. 눌러도 결제되지 않아요. 얼마나 찾는지만 알아보고 있어요.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 12월에 열게요. 결제는 되지 않았어요.</p></div></div>
+  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">990원에 받아 보기 (준비 중)</button><p class="sub" style="margin:8px 0 0;font-size:13px">아직 열기 전이에요. 눌러도 결제되지 않아요. 얼마나 찾는지만 알아보고 있어요.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 열어 볼게요. 결제는 되지 않았어요.</p></div></div>
   </div>
   <div class="memo"><img id="rMasAv" class="avatar sm" alt=""><div><b id="rMasName"></b><div class="sub">해설 다 읽었어요? 같이 일하는 동료한테 이 링크를 보내 봐요. 그 사람이 테스트를 끝내고 돌려보내 주면 우리 둘 궁합을 같이 볼 수 있어요.</div></div></div>
   <button class="btn" id="share">카톡으로 내 사원증 보내기</button>
@@ -592,8 +594,8 @@ var PP={
 function J(w,a,b){var c=w.charCodeAt(w.length-1)-0xAC00;return w+((c>=0&&c%28)?a:b);}
 var KW={BRWD:'맡기기',BRWL:'미리 한 걸음',BRHD:'부탁하기',BRHL:'달력 쓰기',BVWD:'같이 그리기',BVWL:'중간 공유',BVHD:'내 시간 지키기',BVHL:'끝까지 가기',QRWD:'잘한 일 알리기',QRWL:'반쯤 했을 때 보여 주기',QRHD:'내 이름 걸기',QRHL:'거절 연습',QVWD:'과정 설명하기',QVWL:'쉬는 시간 정하기',QVHD:'먼저 말하기',QVHL:'5분만 시작하기'};
 var MOOD={
- C:{k:'덤덤한 편',pre:'일이 터져도 덤덤한',t:'멘탈이 단단해요. 일이 터져도 "일단 해 보자"가 먼저 나오고, 퇴근하면 회사 생각을 잘 꺼요. 덕분에 팀이 흔들릴 때 옆 사람이 기댈 수 있어요. 가끔은 걱정해 주는 동료의 말도 들어 보세요.'},
- N:{k:'걱정 많은 편',pre:'작은 일도 미리 걱정하는',t:'미리 걱정하는 만큼 준비를 꼼꼼히 하는 편이에요. 실수를 먼저 찾아내서 팀을 지켜 줘요. 대신 퇴근 후에도 머릿속에서 회의가 계속될 때가 있어요. "이 정도면 됐다"를 연습해 보세요.'}
+ C:{k:'C',pre:'일이 터져도 덤덤한',t:'멘탈이 단단해요. 일이 터져도 "일단 해 보자"가 먼저 나오고, 퇴근하면 회사 생각을 잘 꺼요. 덕분에 팀이 흔들릴 때 옆 사람이 기댈 수 있어요. 가끔은 걱정해 주는 동료의 말도 들어 보세요.'},
+ N:{k:'N',pre:'작은 일도 미리 걱정하는',t:'미리 걱정하는 만큼 준비를 꼼꼼히 하는 편이에요. 실수를 먼저 찾아내서 팀을 지켜 줘요. 대신 퇴근 후에도 머릿속에서 회의가 계속될 때가 있어요. "이 정도면 됐다"를 연습해 보세요.'}
 };
 
 /* 픽셀 아바타 (16x20 격자). 표정: 태연은 웃는 입, 걱정은 땀방울과 처진 눈썹 */
@@ -869,15 +871,15 @@ var GW=[[18,12],[20,8],[14,16],[20,6]],GM=[18,16,10];
    축 순서: 충전(B/Q), 일을 보는 눈(R/V), 기준(W/H), 마감 리듬(D/L), 일이 터졌을 때(C/N) */
 var REL={
  peer:{n:'옆자리 동료',t:[86,73,60],m:[[[14,10],[10,14]],[[14,12],[12,14]],[[10,16],[16,10]],[[20,6],[6,12]],[[18,16],[16,8]]]},
- boss:{n:'내 상사',t:[91,80,64],m:[[[10,8],[8,10]],[[16,7],[6,16]],[[12,11],[11,12]],[[20,16],[2,12]],[[18,12],[17,6]]]},
- junior:{n:'내 후임',t:[89,77,63],m:[[[12,10],[10,12]],[[15,8],[18,12]],[[11,14],[14,11]],[[20,4],[17,10]],[[18,18],[13,8]]]}
+ boss:{n:'내 상사',t:[91,80,64],m:[[[10,8],[8,10]],[[16,7],[6,16]],[[12,11],[11,12]],[[20,16],[2,12]],[[18,12],[17,9]]]},
+ junior:{n:'내 후임',t:[91,80,64],m:[[[10,8],[8,10]],[[16,6],[7,16]],[[12,11],[11,12]],[[20,2],[16,12]],[[18,17],[12,9]]]}
 };
 /* 방향이 중요한 칸은 관계별 문장으로 풀어 줘요. [나][상대] 순서 */
 var DIRL={
  boss:{1:[['보고할 때 같은 것부터 봐서 설명이 짧아도 통해요.','상사는 큰 그림을 먼저 듣고 싶어 해요. 보고 첫 줄에 "왜 하는지"를 넣으세요.'],['상사는 "그래서 뭘 언제까지?"를 먼저 듣고 싶어 해요. 보고 첫 줄에 할 일을 넣으세요.','보고할 때 같은 것부터 봐서 설명이 짧아도 통해요.']],
   3:[['둘 다 미리 하는 편이라 마감 걱정이 없어요.','상사는 막판형이지만 내가 미리 해 두니, 상사가 오히려 편해해요.'],['가장 조심할 조합이에요. 상사는 미리, 나는 막판이라 "왜 아직이야?"가 자주 나와요.','둘 다 막판형이라 마감 직전에 같이 바빠져요. 중간 점검을 하나 정해 두세요.']],
   4:[['둘 다 침착해서 일이 터져도 차분해요.','상사가 걱정할 때 "이렇게 해 보면 어떨까요?" 하고 방법을 정리해 드리면 신뢰가 쌓여요.'],['내가 걱정할 때 상사가 "괜찮아"라고 잡아 줘요. 든든한 조합이에요.','둘 다 걱정이 많아서 작은 일도 커질 수 있어요. 걱정은 할 일 목록으로 바꿔 보세요.']]},
- junior:{1:[['할 일이 분명해서 손발이 잘 맞아요.','후임이 "왜 해요?"를 자주 물을 수 있어요. 일을 줄 때 이유를 한 줄 붙여 주세요.'],['내가 방향을 주고 후임이 실행하는, 가장 좋은 조합이에요.','둘 다 큰 그림을 봐서 아이디어는 많지만, 실행할 사람이 필요해요.']],
+ junior:{1:[['할 일이 분명해서 손발이 잘 맞아요.','후임이 "왜 해요?"를 자주 물을 수 있어요. 일을 줄 때 이유를 한 줄 붙여 주세요.'],['후임은 "그래서 뭘 언제까지?"를 먼저 듣고 싶어 해요. 방향을 말한 뒤 할 일을 한 줄로 정리해 주세요.','둘 다 큰 그림을 봐서 아이디어는 많지만, 실행할 사람이 필요해요.']],
   3:[['둘 다 미리 하는 편이라 맡기기 편해요.','가장 조심할 조합이에요. 나는 불안하고 후임은 재촉받는 느낌이에요. 중간 점검 날짜를 같이 정하세요.'],['후임이 미리 챙겨 줘서 오히려 내가 도움을 받아요.','둘 다 막판형이라 마감 직전에 같이 바빠져요. 중간 점검을 하나 정해 두세요.']],
   4:[['둘 다 침착해서 일이 터져도 차분해요.','후임이 걱정할 때 내가 잡아 줄 수 있어요.'],['오히려 후임이 나를 다독여 주는 사이예요.','둘 다 걱정이 많아서 작은 일도 커질 수 있어요. 걱정은 할 일 목록으로 바꿔 보세요.']]}
 };
@@ -963,16 +965,16 @@ function gSetup(code,mood){
   var lowL=[],nN=0;all.slice().reverse().forEach(function(x){if(lowL.length>=3)return;if(x[1]=='N'){if(nN>=2)return;nN++;}lowL.push(x);});$('gLow').innerHTML=lowL.map(function(x){return row(x,1);}).join('');
   [].forEach.call(document.querySelectorAll('#gTop .gtop,#gLow .gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c+b.dataset.m;sel.onchange();$('gCard').scrollIntoView({behavior:'smooth'});};});
   };
-  var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);var PT={RW:'결과부터 말씀드리면, 올해 맡은 일은 이렇게 마무리했어요.',RH:'올해 같이 챙겨 주셔서 일이 끝까지 갈 수 있었어요. 결과부터 짧게 말씀드릴게요.',VW:'올해 한 일이 팀이 가는 방향에 어떻게 이어졌는지부터 말씀드릴게요.',VH:'올해 가장 고마웠던 순간부터 말씀드리고, 내년에 해 보고 싶은 일을 꺼내 볼게요.'};$('payT').textContent='고른 캐릭터가 내 상사라면, 대본 첫 줄은 이렇게 시작해요. "'+PT[c.substr(1,2)]+'"';gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람, ':'');
+  var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);var PT={RW:'결과부터 말씀드리면, 올해 맡은 일은 이렇게 마무리했어요.',RH:'올해 같이 챙겨 주셔서 일이 끝까지 갈 수 있었어요. 결과부터 짧게 말씀드릴게요.',VW:'올해 한 일이 팀이 가는 방향에 어떻게 이어졌는지부터 말씀드릴게요.',VH:'올해 가장 고마웠던 순간부터 말씀드리고, 내년에 해 보고 싶은 일을 꺼내 볼게요.'};var AV={D:'"막판에 몰아서 하면 돼요"라는 말은 피하세요. 미리 챙기는 상사에게는 불안하게 들려요.',L:'"벌써 다 정해 뒀어요"라는 말은 피하세요. 끝까지 고치고 싶은 상사에게는 답답하게 들려요.'};$('payT').innerHTML='<b style="display:block;margin-bottom:4px">이 캐릭터가 상사라면, 대본은 이렇게 시작해요</b>"'+PT[c.substr(1,2)]+'"<span style="display:block;margin-top:8px">'+esc(AV[c.charAt(3)])+'</span>';gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람, ':'');
     var gb=$('gBack'),isF=f&&f.id&&!f.back&&c==f.c&&m==f.m;gb.hidden=!isF;
     if(isF){var fn=NM(f.c,f.m).n,me=LAST&&LAST.nm?LAST.nm.n:NM(code,mood).n,sc=gScore(code,mood,c,m,CUR_REL).sc;gb.textContent='이 궁합 '+fn.split(' ').pop()+'에게 돌려보내기';
       gb.onclick=function(){var myId=(location.hash.match(/r=([0-9a-z]{5})/)||[])[1]||'';sendText('네 링크로 해 봤어! 나는 \''+me+'\'래. '+REL[CUR_REL].n+'로 보면 우리 궁합 '+sc+'점이래ㅋㅋ',sUrl('g','#g='+f.id+'-'+myId+'-'+CUR_REL),gb,INAPP?'복사했어요. 카톡방 입력창을 길게 눌러 붙여 넣어 주세요':'복사했어요. 카톡에 붙여 넣어 보세요');};}};
   [].forEach.call(document.querySelectorAll('#gRel button'),function(b){b.setAttribute('aria-pressed',b.dataset.rel==CUR_REL);b.onclick=function(){CUR_REL=b.dataset.rel;[].forEach.call(document.querySelectorAll('#gRel button'),function(x){x.setAttribute('aria-pressed',x===b);});go();top3();relH();};});relH();
   var syncPick=function(){var v=sel.value;$('gPickAv').src=avatar(v.substr(0,4),v.substr(4));$('gPickName').textContent=NM(v.substr(0,4),v.substr(4)).n;};
-  var closePick=function(){$('pickBg').hidden=true;document.body.style.overflow='';$('gPick').focus();};
+  var closePick=window.closePick=function(){shClose();$('pickBg').hidden=true;document.body.style.overflow='';$('gPick').focus();};
   $('gPick').onclick=function(){
     var g='';Object.keys(T).forEach(function(c){['C','N'].forEach(function(m){g+='<button type="button" class="pcell" data-v="'+c+m+'" aria-pressed="'+(sel.value==c+m)+'"><img alt="" src="'+avatar(c,m)+'"><b>'+NM(c,m).n+'</b></button>';});});
-    $('pickGrid').innerHTML=g;$('pickBg').hidden=false;document.body.style.overflow='hidden';
+    $('pickGrid').innerHTML=g;$('pickBg').hidden=false;shOpen();document.body.style.overflow='hidden';setTimeout(function(){$('pickX').focus();},30);
     [].forEach.call($('pickGrid').querySelectorAll('.pcell'),function(b){b.onclick=function(){sel.value=b.dataset.v;sel.onchange();closePick();};});
     var cur=$('pickGrid').querySelector('[aria-pressed="true"]');if(cur)cur.scrollIntoView({block:'center'});
   };
@@ -1018,14 +1020,36 @@ var COLD={
  N:['보낸 메시지에 답이 늦으면, 내가 뭘 잘못 썼나 다시 읽어 본 적 있죠?']
 };
 var LIGHT=['다만 쉬는 방법은 그날그날 달라요. 사람이 반가운 날도, 혼자 있고 싶은 날도 있죠.','다만 일을 볼 땐 눈앞의 일과 큰 그림 사이를 오가요. 상황에 따라 둘 다 쓰는 사람이에요.','다만 판단할 땐 일과 사람 사이에서 자주 고민해요. 그래서 결정 전에 한 번 더 생각하는 편이에요.','다만 마감 리듬은 일마다 달라요. 좋아하는 일은 미리, 싫은 일은 막판에 하게 되죠?'];
-function reading(code,sc){
+function reading(code,sc,mood){
   var a=[];for(var i=0;i<4;i++){var v=sc[i],k=v>=3?v:5-v;a.push({i:i,k:k,c:code[i]});}
   var strong=a.slice().sort(function(x,y){return y.k-x.k;})[0],light=a.filter(function(x){return x.k==3&&x.i!==strong.i;});
-  if(strong.k==3)return ['그날 상황에 따라 다른 모습이 나와서 "너는 속을 잘 모르겠어"라는 말을 들은 적도 있죠? 상황에 맞춰 유연하게 움직일 줄 아는 게 나의 힘이에요.'];
-  var out=[strong.k>=5?'특히 '+STRONG[strong.c]:SOFT[strong.c],'§'+COLD[strong.c][0]];
+  if(strong.k==3)return [SOFT[code[0]],SOFT[code[3]]];
+  var out=[strong.k>=5?'특히 '+STRONG[strong.c]:SOFT[strong.c],'§'+(QB[code+mood]&&strong.c=='B'?'회의 끝나고 "아까 그 말 할걸" 하고 혼자 생각한 적 있죠?':COLD[strong.c][0])];
   if(light.length)out.push(LIGHT[light[0].i]);
   return out;
 }
+/* 연말 면담에서 상사에게 꺼낼 첫마디(캐릭터별, 해설 문장과 겹치지 않게) */
+var TALK={
+ BRWD:'올해 회의마다 할 일을 먼저 정리했어요. 내년엔 팀원에게 정리를 한 번 맡겨 보고 싶어요.',
+ BRWL:'올해 급한 불은 제가 많이 껐어요. 내년엔 불이 덜 나게, 미리 정할 것부터 같이 정해 볼까요?',
+ BRHD:'올해 팀 일정과 사람을 같이 챙겼어요. 내년엔 새로 오는 분들 적응을 제가 맡아 봐도 될까요?',
+ BRHL:'올해 팀 분위기가 처질 때마다 먼저 나섰어요. 내년엔 그 힘을 프로젝트 하나에 제대로 써 보고 싶어요.',
+ BVWD:'올해 한 일이 내년 방향으로 어떻게 이어지는지 정리해 왔어요. 내년 계획을 세울 때 저도 같이 들어가고 싶어요.',
+ BVWL:'올해 새로 해 본 시도가 여럿 있었어요. 내년엔 그중 하나를 끝까지 밀어 보고 싶어요.',
+ BVHD:'올해 팀이 같은 방향을 보도록 많이 이야기했어요. 내년엔 팀 목표를 정하는 자리에 저도 불러 주세요.',
+ BVHL:'올해 아이디어를 많이 냈어요. 내년엔 그중 하나를 맡아서 끝까지 해 보고 싶어요.',
+ BVHLN:'올해 꺼내지 못한 아이디어가 몇 개 있어요. 내년엔 한 달에 하나씩 먼저 말씀드려 볼게요.',
+ QRWD:'올해 맡은 일은 미리 끝내 뒀어요. 숫자로 정리해 왔는데, 한번 같이 봐 주실 수 있을까요?',
+ QRWL:'올해 마감은 다 지켰어요. 내년엔 중간 점검을 먼저 잡아서 밤샘을 줄여 볼게요.',
+ QRHD:'올해 눈에 잘 안 띄는 뒷정리를 많이 했어요. 내년엔 그런 일도 성과로 같이 봐 주시면 좋겠어요.',
+ QRHL:'올해 동료들 부탁을 많이 들어줬어요. 내년엔 제 일의 우선순위를 같이 정해 주시면 큰 도움이 될 것 같아요.',
+ QVWD:'올해 미리 그려 둔 계획이 대부분 맞았어요. 내년 계획 초안을 제가 먼저 써 와도 될까요?',
+ QVWL:'올해 깊이 파고든 일에서 좋은 결과가 나왔어요. 내년에도 집중할 시간을 지켜 주시면 좋겠어요.',
+ QVHD:'올해 동료들 고민을 들으면서 팀에 필요한 게 보였어요. 내년에 해 보고 싶은 일을 한 가지 말씀드려도 될까요?',
+ QVHL:'올해 생각만 하고 꺼내지 못한 아이디어가 있어요. 내년엔 하나라도 먼저 제안해 볼게요.'
+};
+/* 북적 쪽이지만 조용한 캐릭터: 회의·말하기 문장은 조용한 쪽으로 */
+var QB={BVHLN:1};
 /* 캐릭터마다 하나뿐인 장면(한마디로)과 올해 가장 많이 들었을 말(2026년 결산) */
 var SCENE={
  BRWDC:'월요일 아침 9시, 다들 커피를 들고 있을 때 이미 이번 주 할 일을 화이트보드에 적고 있어요.',
@@ -1071,8 +1095,9 @@ var YEARQ={
  QRWDN:'여대리님이 확인했으면 됐어요.',QRWLN:'표대리님, 어젯밤에 메일 보내셨더라고요?',QRHDN:'회의실 정리 또 남주임님이 하셨어요?',QRHLN:'조사원, 하고 싶은 말 있으면 편하게 해요.',
  QVWDN:'권과장님, 이 정도면 충분히 완벽해요.',QVWLN:'엄대리님 새벽에 메일 보내셨던데, 잠은 잤어요?',QVHDN:'길차장님한테 고민 얘기하면 마음이 놓여요.',QVHLN:'변사원, 아까 무슨 생각 했어요?'
 };
-var YEAR_BX={BW:'올해 회의에서 먼저 말을 꺼내고 정리까지 한 건 대부분 나였어요.',BVHLN:'올해 먼저 말을 꺼내진 못한 날이 많았어도, 내 한마디가 회의 분위기를 바꾼 날이 꼭 있었어요.'};
+var YEAR_BX={QW:'올해도 조용히 맡은 일을 끝까지 해냈어요. 그걸 다 아는 사람은 생각보다 적어요.',QH:'올해 말없이 챙긴 일이 꽤 많았어요. 그걸 다 아는 사람은 생각보다 적어요.',QVWLC:'꽂힌 일은 누구보다 깊게 끝냈어요. 그동안 다른 일은 잠깐 잊었지만요.',QVWLN:'꽂힌 일은 누구보다 깊게 끝냈어요. 그동안 다른 일은 잠깐 잊었지만요.',BW:'올해 회의에서 먼저 말을 꺼내고 정리까지 한 건 대부분 나였어요.',BVHLN:'올해 먼저 말을 꺼내진 못한 날이 많았어도, 내 한마디가 회의 분위기를 바꾼 날이 꼭 있었어요.'};
 var YEAR_B={B:'올해 회의와 회식에서 분위기를 살린 건 대부분 나였어요.',Q:'올해도 조용히 맡은 일을 끝까지 해냈어요. 그걸 다 아는 사람은 생각보다 적어요.'};
+var YEAR_DX={QL:'마감은 늘 아슬아슬했지만, 한 번도 펑크는 안 냈어요.'};
 var YEAR_D={D:'미리 끝내 둔 일 덕분에 팀이 여러 번 숨을 돌렸어요.',L:'마감 직전의 집중력으로 여러 번 팀을 구했어요. 그 대신 마감 전날 밤을 꼴딱 새운 날도 많았죠.'};
 var FRIEND=null,LAST=null;
 var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
@@ -1155,23 +1180,23 @@ function showResult(code,mood,sc,sw){
   var nm=NM(code,mood);
   $('rBase').textContent=nm.pre;
   $('rName').textContent=nm.n;
-  $('rLine').textContent=nm.line;$('rNext').hidden=true;$('rTalkQ').textContent='"'+x[5].replace(/"/g,'')+'"';
+  $('rLine').textContent=nm.line;$('rNext').hidden=true;$('rTalkQ').textContent='"'+(TALK[code+mood]||TALK[code])+'"';
   $('rSting').textContent=STING[code][mood];
   LAST={code:code,mood:mood,nm:nm,pm:null,id:encId(code,mood,sc,sw)};if(typeof tCardSetup=='function')try{tCardSetup();rTab('read');$('tHeroAv').innerHTML=[[code,mood],(function(b){return [b.c,b.m];})(bestPeer(code,mood))].concat([['BVWD','C'],['QRHL','N']]).slice(0,3).map(function(x){return '<img alt="" src="'+avatar(x[0],x[1])+'">';}).join('');tNudge();}catch(e){}
-  var c0=code[0],c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
+  var c0=code[0],p0=QB[code+mood]?'Q':c0,c1=code[1],c2=code[2],c3=code[3],full=/full=1/.test(location.hash);
   var bq=x[5].replace(/"/g,''),bm1=bq.match(/^[^.?!]*[.?!]/),bossT=bm1?bm1[0]:bq,bRest=bq.slice(bossT.length).trim(),bossR=bRest?['이어서 "'+bRest+'" 하고 덧붙이면 더 잘 통해요.']:[];
   var bp=bestPeer(code,mood),gm=bp.sc,pm=NM(bp.c,bp.m);
   var items=[
-   ['한마디로',nm.hl,[SCENE[code+mood],t.d].concat(reading(code,sc)),'lightbulb'],
-   ['2026년 결산','올해 내가 팀에 남긴 것',['올해 팀에서 가장 많이 들었을 말은 아마 이거예요. "'+YEARQ[code+mood]+'"','올해 팀에서 나는 "'+nm.line+'"이었어요.',YEAR_BX[code+mood]||(c0=='B'&&YEAR_BX[c0+c2])||YEAR_B[c0],YEAR_D[c3],'그런데 혼자 몰래 찔렸던 한 줄도 있죠. '+STING[code][mood]+' 내년엔 이 말이 나한테 조금 덜 맞았으면 좋겠어요.'],'calendar'],
+   ['한마디로',nm.hl,[SCENE[code+mood],t.d].concat(reading(code,sc,mood)),'lightbulb'],
+   ['2026년 결산','올해 내가 팀에 남긴 것',['올해 팀에서 가장 많이 들었을 말은 아마 이거예요. "'+YEARQ[code+mood]+'"','올해 팀에서 나는 "'+nm.line+'"이었어요.',YEAR_BX[code+mood]||YEAR_BX[c0+c2]||YEAR_B[c0],YEAR_DX[code+mood]||YEAR_DX[c0+c3]||YEAR_D[c3],'그런데 혼자 몰래 찔렸던 한 줄도 있죠. '+STING[code][mood]+' 내년엔 이 말이 나한테 조금 덜 맞았으면 좋겠어요.'],'calendar'],
    ['쓴소리 좀 할게',y[1],[y[2],PP[c3].blunt],'notification'],
    ['어울리는 부서와 조직',DEPT[c1+c2][0],[DEPT[c1+c2][1],ORG[c0+c3],ORGM[mood],DEPT[c1+c2][2]+' 재미로 보는 추천이니, 실제 진로는 직접 겪어 보고 정하세요.'],'briefcase'],
    ['잘 맞는 동료',J(pm.n,'과','와')+' 같은 팀이면 반은 성공',['둘은 '+gLine(gScore(code,mood,bp.c,bp.m,'peer')).replace('<br>',', ').replace(/\u00a0사이$/,' 사이')+'예요.',J(pm.n,'은','는')+' "'+pm.line+'"이에요. 둘의 궁합 점수는 '+gm+'점이에요. 아래 궁합 보기에서 자세히 볼 수 있어요.'],'coffee'],
    ['나라는 사람',HL.M[c0+c1],[PP[c0].me,PP[c1].me,PP[c2].me],'team'],
-   ['일할 때 나',HL.WORK[c0+c3],[x[0],PP[c3].work,PP[c0].meet],'laptop'],
+   ['일할 때 나',HL.WORK[c0+c3],[x[0],PP[c3].work,PP[p0].meet],'laptop'],
    ['나만의 매력',HL.CHARM[c1+c2],[x[1],'일이 막히면 동료들이 나를 찾아요. 내가 '+(c1=='R'?'"일단 이것부터 하죠"라고 첫 단계를 짚어 주고, ':'"이렇게 해 보면 어때요?"라고 새로운 길을 보여 주고, ')+(c2=='W'?'애매한 상황도 깔끔하게 정리해 주거든요.':'지친 사람도 먼저 알아봐 주거든요.')],'crown'],
    ['잘 맞는 상사',HL.BOSS[c1],[HL.BOSSB[c1],PP[c2].boss],'briefcase'],
-   ['상사에게 통하는 한 마디',bossT,bossR.concat(['보고하거나 부탁할 때 이렇게 말해 보세요. 내가 뭘 할지 같이 말하면 상사도 편하게 들어요.',PP[c0].say]),'chat'],
+   ['상사에게 통하는 한 마디',bossT,bossR.concat([PP[p0].say]),'chat'],
    ['힘든 순간',HL.HARD[c2],['§'+COLD[c2][1],x[2],PP[c2].hard,'꿀팁: '+t.tip],'gear'],
    ['멘탈 풀이',HL.MIND[mood],['§'+COLD[mood][0],m.t,PP[mood].tip],'plant'],
    ['마지막 한마디',HL.YEAR[c3+mood],[HL.YEARB[c3+mood],'내년의 나에게 주는 키워드는 "'+nm.kw+'"'+J(nm.kw,'이에요','예요').slice(nm.kw.length)+'.'],'calendar']
@@ -1264,7 +1289,16 @@ $('devFloat').onclick=function(){this.hidden=true;devRender();show('dev');histor
 $('devGo').onclick=function(){devRender();show('dev');history.replaceState(null,'','#dev');};
 $('devBack').onclick=function(){history.replaceState(null,'','#');show('intro');$('devFloat').hidden=true;};/*/DEV*/
 $('start').onclick=function(){track('start');st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[]};history.replaceState(null,'','#');history.pushState({q:1},'','#');show('quiz');render();};
-window.addEventListener('popstate',function(){if(!$('quiz').hidden){if(st.i>0){$('qBack').onclick();history.pushState({q:1},'','#');}else show('intro');}else if(!$('result').hidden||!$('team').hidden){if(/#(t=|g=|r=)/.test(location.hash)){location.reload();return;}['tSheet','imgBg','pickBg','rpBg'].forEach(function(id){if($(id))$(id).hidden=true;});document.body.style.overflow='';history.replaceState(null,'',location.pathname+location.search);show('intro');}});
+/* 시트를 열면 기록을 하나 쌓아서, 뒤로 가기는 시트만 닫게 한다 */
+var SH=0,SHIGN=0;
+function shOpen(){if(SH)return;SH=1;try{history.pushState({sh:1},'',location.href);}catch(e){}}
+function shClose(){if(!SH)return;SH=0;if(history.state&&history.state.sh){SHIGN=1;history.back();}}
+document.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var bg=[].filter.call(document.querySelectorAll('.sheet-bg,#imgBg'),function(x){return !x.hidden;})[0];if(!bg)return;
+  var f=[].filter.call(bg.querySelectorAll('button,a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])'),function(x){return !x.disabled&&x.offsetParent!==null;});if(!f.length)return;
+  var a=f[0],z=f[f.length-1];if(!bg.contains(document.activeElement)){e.preventDefault();a.focus();}else if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}});
+window.addEventListener('popstate',function(){if(SHIGN){SHIGN=0;return;}
+  if(SH){SH=0;if(!$('imgBg').hidden)closeImg();if(!$('tSheet').hidden)tSheetClose(1);if(!$('pickBg').hidden&&window.closePick)window.closePick();if(!$('rpBg').hidden)rpClose();return;}
+  if(!$('quiz').hidden){if(st.i>0){$('qBack').onclick();history.pushState({q:1},'','#');}else show('intro');}else if(!$('result').hidden||!$('team').hidden){if(/#(t=|g=|r=)/.test(location.hash)){location.reload();return;}['tSheet','imgBg','pickBg','rpBg'].forEach(function(id){if($(id))$(id).hidden=true;});document.body.style.overflow='';history.replaceState(null,'',location.pathname+location.search);show('intro');}});
 $('qBack').onclick=function(){if(st.i<1)return;st.i--;var a=st.ans[st.i],qi=a[0],k=a[1],ax=Q[qi][0];if(k==0)st.sc[ax]--;st.n[ax]--;if(SW[qi]===k)st.sw--;render();window.scrollTo(0,0);};
 $('again').onclick=function(){FRIEND=null;try{sessionStorage.removeItem('oct_friend');}catch(e){}history.replaceState(null,'','#');show('intro');};
 /* 사원증 이미지(9:16) 만들기 */
@@ -1339,9 +1373,9 @@ function sendText(text,url,btn,done){
 }
 var UA=navigator.userAgent||'',INAPP=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp|band/i.test(UA),IOS=/iPhone|iPad|iPod/.test(UA)||(/Macintosh/.test(UA)&&navigator.maxTouchPoints>1);
 var IMGURL=null;
-document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(!$('imgBg').hidden)closeImg();if(!$('tSheet').hidden)tSheetClose();if($('rpBg')&&!$('rpBg').hidden){$('rpBg').hidden=true;document.body.style.overflow='';}});
+document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(!$('imgBg').hidden)closeImg();if(!$('tSheet').hidden)tSheetClose();if($('rpBg')&&!$('rpBg').hidden)rpClose();});
 var IMGF=null;
-function closeImg(){$('imgBg').hidden=true;document.body.style.overflow='';if(IMGF&&IMGF.focus&&document.body.contains(IMGF))IMGF.focus();}
+function closeImg(){shClose();$('imgBg').hidden=true;document.body.style.overflow='';if(IMGF&&IMGF.focus&&document.body.contains(IMGF))IMGF.focus();}
 $('imgX').onclick=closeImg;$('imgBg').onclick=function(e){if(e.target===this)closeImg();};
 $('saveImg').onclick=function(){
   var btn=this,o=btn.textContent;track('save_img');btn.disabled=true;btn.textContent='이미지 만드는 중…';
@@ -1358,7 +1392,7 @@ function imgSheet(blob,cv,name,title){
     var f=null;try{f=new File([blob],name,{type:'image/png'});}catch(e){}
     var cs=f&&navigator.canShare&&navigator.canShare({files:[f]});
     $('imgShare').hidden=!cs;$('imgShare').onclick=function(){navigator.share({files:[f]}).catch(function(){});};
-    IMGF=document.activeElement;$('imgBg').hidden=false;document.body.style.overflow='hidden';setTimeout(function(){$('imgX').focus();},30);
+    IMGF=document.activeElement;$('imgBg').hidden=false;shOpen();document.body.style.overflow='hidden';setTimeout(function(){$('imgX').focus();},30);
     if(!INAPP&&!IOS)$('imgDl').click();
 }
 function makeTeamCard(t,cb){
@@ -1375,19 +1409,23 @@ function makeTeamCard(t,cb){
       c.save();rr(c,X,Y,cw,ch,28);c.fillStyle='#FFFFFF';c.shadowColor='rgba(37,41,67,.10)';c.shadowBlur=24;c.shadowOffsetY=8;c.fill();c.restore();
       c.fillStyle='#DDF3E9';rr(c,X+46,Y+20,140,150,22);c.fill();
       c.save();rr(c,X+46,Y+20,140,150,22);c.clip();c.imageSmoothingEnabled=false;var im=ims[i],w=130,h=w*im.height/im.width;c.drawImage(im,X+51,Y+170-h+12,w,h);c.restore();
-      c.fillStyle='#ECEDFC';c.font='750 26px '+F;var rw=c.measureText(ro[i].n).width+32;rr(c,X+cw/2-rw/2,Y+186,rw,42,21);c.fill();c.fillStyle='#5A5BD0';c.fillText(ro[i].n,X+cw/2,Y+216);
+      var fz=26;do{c.font='750 '+fz+'px '+F;if(c.measureText(ro[i].n).width<=cw-48)break;fz-=2;}while(fz>16);c.fillStyle='#ECEDFC';var rw=c.measureText(ro[i].n).width+32;rr(c,X+cw/2-rw/2,Y+186,rw,42,21);c.fill();c.fillStyle='#5A5BD0';c.fillText(ro[i].n,X+cw/2,Y+216);
       c.fillStyle='#252943';c.font='800 36px '+F;c.fillText(x.nk,X+cw/2,Y+270);
-      c.fillStyle='#5D6582';c.font='600 23px '+F;wrapText(c,aw[i][0].replace('올해의 ',''),X+cw/2,Y+(rows>1?306:310),cw-24,28,2);});
+      var at=aw[i][0].replace('올해의 ',''),az=23;do{c.font='600 '+az+'px '+F;if(c.measureText(at).width<=cw-24)break;az-=1;}while(az>(rows>1?15:18));c.fillStyle='#5D6582';wrapText(c,at,X+cw/2,Y+(rows>1?308:310),cw-24,az+3,rows>1?1:2);if(rows==1){c.fillStyle='#8A90A8';var cn=NM(x.c,x.m).n,cz=21;do{c.font='500 '+cz+'px '+F;if(c.measureText(cn).width<=cw-20)break;cz--;}while(cz>15);c.fillText(cn,X+cw/2,Y+ch-14);}});
     var y=top+rows*(ch+18)+40,avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
-    var gr=avg>=80?'내년엔 회사를 더 키워도 되겠어요.':avg>=70?'무사히 살아남았어요. 내년이 더 기대돼요.':avg>=60?'티격태격했지만 결국 해냈어요.':'서로 달라서 하루도 안 심심했어요. 그래서 우리 회사가 재밌어요.';
+    var gr=avg>=86?'내년엔 회사를 더 키워도 되겠어요.':avg>=73?'무사히 살아남았어요. 내년이 더 기대돼요.':avg>=60?'티격태격했지만 결국 해냈어요.':'서로 달라서 하루도 안 심심했어요. 그래서 우리 회사가 재밌어요.';
     c.fillStyle='#5D6582';c.font='600 32px '+F;c.fillText('올해 성적',W/2,y);
-    c.fillStyle='#252943';c.font='800 44px '+F;y+=60+wrapText(c,gr,W/2,y+60,900,58,2);
+    c.fillStyle='#252943';var gz=44;do{c.font='800 '+gz+'px '+F;if(c.measureText(gr).width<=900||rows==1)break;gz-=2;}while(gz>30);y+=60+wrapText(c,gr,W/2,y+60,900,58,2);
     c.fillStyle='#5D6582';c.font='600 32px '+F;c.fillText('최고의 콤비  '+L[0].a.nk+', '+L[0].b.nk+'  '+L[0].g.sc+'점',W/2,y+20);
+    if(L.length>2&&y+66<=H-165){c.fillText('조심할 콤비  '+L[L.length-1].a.nk+', '+L[L.length-1].b.nk+'  '+L[L.length-1].g.sc+'점',W/2,y+66);y+=46;}
     if(rows==1){var tmp=document.createElement('div');tmp.innerHTML=tYear(P,L);var evs=[].slice.call(tmp.querySelectorAll('p')).slice(1).map(function(e){return e.textContent;}).filter(function(t,i,arr){return i<2||i==arr.length-1;}).slice(0,3);
-      c.font='600 30px '+F;var hs=evs.map(function(t){return lineCount(c,t.slice(t.indexOf(' ')+1),700,3)*40;}),tot=hs.reduce(function(a,b){return a+b;},0)+(evs.length-1)*24+56;
+      c.font='600 30px '+F;var hs,tot,mk=function(){hs=evs.map(function(t){return lineCount(c,t.slice(t.indexOf(' ')+1),700,3)*40;});tot=hs.reduce(function(a,b){return a+b;},0)+(evs.length-1)*24+56;};mk();
+      while(evs.length>1&&y+64+tot>H-165){evs.splice(evs.length>2?1:0,1);mk();}
+      if(y+64+tot>H-165)evs=[];}
+    if(rows==1&&evs.length){
       y+=64;c.fillStyle='#ECEDFC';rr(c,90,y,900,tot,32);c.fill();c.textAlign='left';y+=28+30;
       evs.forEach(function(t,i){var mo=t.split(' ')[0];c.fillStyle='#5A5BD0';c.font='800 30px '+F;c.fillText(mo,130,y);c.fillStyle='#252943';c.font='600 30px '+F;wrapText(c,t.slice(mo.length+1),240,y,700,40,3);y+=hs[i]+24;});c.textAlign='center';}
-    if(y<H-190){c.fillStyle='#5A5BD0';c.font='700 38px '+F;c.fillText('우리 회사에서 나는 어떤 자리일까?',W/2,H-90);}
+    if(y<=H-130){c.fillStyle='#5A5BD0';c.font='700 38px '+F;c.fillText('우리 회사에서 나는 어떤 자리일까?',W/2,H-90);}
     c.fillStyle='#5D6582';c.font='500 28px '+F;c.fillText('beomjun37.github.io/prototype/office-type',W/2,H-44);
     cv.toBlob(function(b){cb(b,cv);},'image/png');};
   ims.forEach(function(im){if(im.complete&&im.naturalWidth){if(!--left)draw();}else im.onload=im.onerror=function(){if(!--left)draw();};});
@@ -1429,8 +1467,9 @@ function tParse(h){var m=/#t=([^&]*)/.exec(h);if(!m)return null;var ps=m[1].spli
   var mem=[],seen={};ps.slice(1).forEach(function(x){var id=x.substr(0,5),nk;try{nk=dec(x.substr(5));}catch(e){nk='';}var r=decId(id);if(!r||seen[id]||mem.length>=8)return;seen[id]=1;mem.push({id:id,nk:nk.slice(0,6)||'이름 없음'});});
   return {name:name.slice(0,12),mem:mem};}
 function tAll(){try{return JSON.parse(localStorage.getItem('oct_teams')||'{}')||{};}catch(e){return {};}}
-function tSave(t){var a=tAll();a[t.name]=t;try{localStorage.setItem('oct_teams',JSON.stringify(a));}catch(e){}}
-function tMerge(t){var old=tAll()[t.name];if(!old)return t;var mem=t.mem.slice(),ids={};mem.forEach(function(m){ids[m.id]=1;});old.mem.forEach(function(m){if(!ids[m.id]&&mem.length<8){mem.push(m);ids[m.id]=1;}});return {name:t.name,mem:mem};}
+function tKey(t){return t.name+'|'+(t.mem[0]&&t.mem[0].id||'');}
+function tSave(t){var a=tAll();a[tKey(t)]=t;try{localStorage.setItem('oct_teams',JSON.stringify(a));}catch(e){}}
+function tMerge(t){var old=tAll()[tKey(t)];if(!old)return t;var mem=t.mem.slice(),ids={},add=0;mem.forEach(function(m){ids[m.id]=1;});old.mem.forEach(function(m){if(!ids[m.id]&&mem.length<8){mem.push(m);ids[m.id]=1;add++;}});if(add)track('team_fork');return {name:t.name,mem:mem};}
 function myId(){var h='';try{h=localStorage.getItem('oct_mine')||'';}catch(e){}return (/r=([0-9a-z]{5})/.exec(h)||[])[1]||'';}
 function tPeople(t){return t.mem.map(function(m){var r=decId(m.id);return {id:m.id,nk:m.nk,c:r.code,m:r.mood,a:r.code+r.mood,r:r};});}
 function rFit(ro,x){var v=0;x.a.split('').forEach(function(ch){v+=ro.w[ch]||0;});return v;}
@@ -1446,31 +1485,34 @@ function tYear(P,L){var n=P.length,cnt=function(k,ch){return P.filter(function(x
   if(maj(0,'B'))ev.push(['4월','회식을 네 번이나 했어요. 대신 회의는 짧아졌어요.']);else if(maj(0,'Q'))ev.push(['4월','회의실은 조용했는데 메신저 방은 하루 종일 바빴어요.']);
   var b=L[0];ev.push(['5월',tPt(b.a.nk,'과','와')+' '+tPt(b.b.nk,'이','가')+' 같이 맡은 일이 올해 회사에서 가장 잘됐어요.']);
   if(maj(4,'C'))ev.push(['7월','큰 거래처가 갑자기 계약을 미뤘어요. 그래도 다들 침착하게 다음 할 일을 찾았어요.']);else if(maj(4,'N'))ev.push(['7월',all(4,'N')?'작은 실수에도 다 같이 걱정했어요. 덕분에 큰 사고는 한 번도 없었어요.':'작은 실수에도 대부분 걱정했어요. 덕분에 큰 사고는 한 번도 없었어요.']);
-  if(n>2){var w=L[L.length-1];ev.push(['9월',tPt(w.a.nk,'과','와')+' '+tPt(w.b.nk,'이','가')+(w.g.sc>=73?' 일하는 방식이 달라서 회의가 길어진 날이 있었어요. 그래도 서로 빈 곳을 채워 줬어요.':' 일하는 방식 때문에 몇 번 부딪쳤어요. 점심 한 번 같이 먹고 풀었어요.')]);}
+  if(n>2){var w=L[L.length-1];ev.push(['9월',tPt(w.a.nk,'과','와')+' '+tPt(w.b.nk,'이','가')+(w.g.sc>=73?' 일하는 방식이 달라서 회의가 길어진 날이 있었어요. 그래도 서로 빈 곳을 채워 줬어요.':' 일하는 방식 때문에 몇 번 의견이 갈렸어요. 점심 한 번 같이 먹고 풀었어요.')]);}
   if(maj(2,'H'))ev.push(['10월','올해 회사를 떠난 사람이 한 명도 없어요. 생일 케이크는 '+n+'번 샀어요.']);else if(maj(2,'W'))ev.push(['10월','성과는 좋았어요. 대신 서운하다는 말이 한 번 나왔어요.']);
   if(maj(3,'D'))ev.push(['12월',all(3,'D')?'마감 일주일 전에 일이 다 끝났어요. 연말엔 다 같이 칼퇴했어요.':'마감 일주일 전에 일이 거의 끝났어요. 연말엔 대부분 칼퇴했어요.']);else if(maj(3,'L'))ev.push(['12월',all(3,'L')?'마감 전날 다 같이 밤을 새웠어요. 그래도 결국 해냈어요.':'마감 전날 대부분 밤을 새웠어요. 그래도 결국 해냈어요.']);else ev.push(['12월','미리 끝내는 사람과 막판에 몰아치는 사람이 부딪쳤어요. 중간 점검 날을 정하고 나서 조용해졌어요.']);
   var avg=Math.round(L.reduce(function(s,x){return s+x.g.sc;},0)/L.length);
-  var gr=avg>=80?'내년엔 회사를 더 키워도 되겠어요.':avg>=70?'무사히 살아남았어요. 내년이 더 기대돼요.':avg>=60?'티격태격했지만 결국 해냈어요.':'서로 달라서 하루도 안 심심했어요. 그래서 우리 회사가 재밌어요.';
+  var gr=avg>=86?'내년엔 회사를 더 키워도 되겠어요.':avg>=73?'무사히 살아남았어요. 내년이 더 기대돼요.':avg>=60?'티격태격했지만 결국 해냈어요.':'서로 달라서 하루도 안 심심했어요. 그래서 우리 회사가 재밌어요.';
   return '<div class="tm-grade">올해 성적: '+gr+'</div><p class="sub" style="margin:0 0 14px">우리 회사 사람들끼리 평균 궁합은 '+avg+'점이에요.</p>'+ev.map(function(e){return '<p><b>'+e[0]+'</b> '+e[1]+'</p>';}).join('');}
 var AW={B:['올해의 분위기 메이커상','회의실이 조용해질 때마다 먼저 말을 꺼냈어요.'],Q:['올해의 조용한 해결사상','말없이 일을 끝내 놓고 아무렇지 않게 퇴근했어요.'],R:['올해의 실속 챙김상','될 일과 안 될 일을 제일 먼저 가려냈어요.'],V:['올해의 아이디어 뱅크상','회의 때마다 새로운 아이디어를 꺼냈어요.'],W:['올해의 팩트 체크상','틀린 숫자는 하나도 그냥 넘어가지 않았어요.'],H:['올해의 다정상','힘들어하는 동료에게 제일 먼저 커피를 건넸어요.'],D:['올해의 칼퇴상','마감 전에 일을 끝내 놓고 제일 먼저 퇴근했어요.'],L:['올해의 막판 역전상','마감 전날 밤, 아무도 못 한 걸 끝내 놓았어요.'],C:['올해의 강철 멘탈상','일이 터진 날에도 표정 하나 안 바뀌었어요.'],N:['올해의 유비무환상','남들이 놓친 위험을 미리 챙겨서 팀을 구했어요.']};
+var AWQ={V:['올해의 아이디어 뱅크상','회의 땐 조용하더니, 다음 날 메신저로 아이디어를 세 개 보냈어요.'],H:['올해의 다정상','말없이 동료 책상에 간식을 놓고 갔어요.']};
 function tAwards(P){var fr={};P.forEach(function(x){x.a.split('').forEach(function(ch){fr[ch]=(fr[ch]||0)+1;});});
-  var opt=P.map(function(x){var o=x.a.split('').map(function(ch,k){var v=x.r.sc[k],st=v>=3?v:5-v;return {ch:ch,v:st*10-fr[ch]*3};});o.sort(function(a,b){return b.v-a.v;});return o;});
+  var opt=P.map(function(x){var o=x.a.split('').map(function(ch,k){var v=x.r.sc[k],st=v>=3?v:5-v;return {ch:ch,v:st*10-fr[ch]*3-(st==3?12:0)};});o.sort(function(a,b){return b.v-a.v||(a.ch<b.ch?-1:1);});return o;});
+  var ord=P.map(function(x,i){return i;}).sort(function(a,b){return P[a].id<P[b].id?-1:1;});
   var best=-1e9,bestA=null,cur=[],used={};
-  var go=function(i,sum){if(sum+(P.length-i)*50<=best)return;if(i==P.length){best=sum;bestA=cur.slice();return;}
-    opt[i].forEach(function(o){if(used[o.ch])return;used[o.ch]=1;cur[i]=o.ch;go(i+1,sum+o.v);used[o.ch]=0;});cur[i]='';go(i+1,sum);};
-  go(0,0);return P.map(function(x,i){return bestA[i]?AW[bestA[i]]:['올해의 개근상','한 해 동안 한 번도 빠지지 않고 자리를 지켰어요.'];});}
+  var go=function(j,sum){if(sum+(P.length-j)*50<=best)return;if(j==P.length){best=sum;bestA=cur.slice();return;}var i=ord[j];
+    opt[i].forEach(function(o){if(used[o.ch])return;used[o.ch]=1;cur[i]=o.ch;go(j+1,sum+o.v);used[o.ch]=0;});cur[i]='';go(j+1,sum);};
+  go(0,0);return P.map(function(x,i){return bestA[i]?((x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[bestA[i]]||AW[bestA[i]]):['올해의 개근상','한 해 동안 한 번도 빠지지 않고 자리를 지켰어요.'];});}
 var TCUR=null;
 function tOpen(t,joined){
-  if($('tSheet'))tSheetClose();TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
+  if($('tSheet')&&!$('tSheet').hidden)tSheetClose(1);TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
   var P=tPeople(t),me=myId(),ro=tRoles(P),inT=t.mem.some(function(m){return m.id==me;});
   $('tmName').textContent=t.name;
   $('tmCount').textContent='지금 '+P.length+'명이 일하고 있어요. 최대 8명까지 들어올 수 있어요.';
   $('tmGrid').innerHTML=P.map(function(x,i){var nm=NM(x.c,x.m);return '<div class="tm-m'+(x.id==me?' me':'')+'"><img alt="" src="'+avatar(x.c,x.m)+'"><span class="tm-role">'+ro[i].n+'</span><b>'+esc(x.nk)+(x.id==me?' (나)':'')+'</b><small>'+nm.n+'</small><p>'+ro[i].why+'</p></div>';}).join('');
   var J0=$('tmJoin');
-  if(inT){J0.innerHTML='<div class="panel"><b>단톡방에 최신 링크를 올려 주세요</b><p class="sub" style="margin:6px 0 12px">이 링크로 들어와야 지금 들어온 사람까지 다 같이 보여요. 단톡방에는 가장 최근 링크 하나만 쓰세요. 그래야 방이 안 갈라져요.</p><button type="button" class="btn" id="tmShare" data-ev="team_share">최신 링크 복사하기</button></div>';
+  if(inT&&P.length>=8){J0.innerHTML='<div class="panel"><b>8명이 다 모였어요</b><p class="sub" style="margin:6px 0 12px">이제 회사 이미지를 저장해서 단톡방에 올려 보세요. 자리와 어워즈, 1년 결산이 한 장에 담겨요.</p><button type="button" class="btn" id="tmFull" data-ev="team_full_img">회사 이미지 저장하기</button></div>';track('team_full');$('tmFull').onclick=function(){$('tmSave').click();};}
+  else if(inT){J0.innerHTML='<div class="panel"><b>단톡방에 최신 링크를 올려 주세요</b><p class="sub" style="margin:6px 0 12px">이 링크로 들어와야 지금 들어온 사람까지 다 같이 보여요. 단톡방에는 가장 최근 링크 하나만 쓰세요. 그래야 방이 안 갈라져요.</p><button type="button" class="btn" id="tmShare" data-ev="team_share">최신 링크 복사하기</button></div>';
     var rp=function(btn){sendText('\''+t.name+'\' '+P.length+'명 모였어ㅋㅋ 아직 안 들어온 사람은 이 링크로 들어와야 같이 나와. 3분 해 보면 네 자리랑 올해 어워즈가 나와.',sUrl('t',tHash(t)),btn,'복사했어요. 단톡방에 붙여 넣어 보세요');};
     $('tmShare').onclick=function(){rp(this);};
-    if(joined){$('rpS').textContent='단톡방에 처음 올라온 링크로는 아직 '+(P.length-1)+'명만 보여요. 지금 이 링크를 올려야 들어온 사람이 다 같이 보이고, 다음 사람도 같은 회사로 들어와요.';$('rpGo').onclick=function(){rp(this);setTimeout(function(){$('rpBg').hidden=true;document.body.style.overflow='';},1600);};$('rpBg').hidden=false;document.body.style.overflow='hidden';track('team_repost_show');setTimeout(function(){$('rpGo').focus();},30);}}
+    if(joined){$('rpS').textContent='단톡방에 처음 올라온 링크로는 아직 '+(P.length-1)+'명만 보여요. 지금 이 링크를 올려야 들어온 사람이 다 같이 보이고, 다음 사람도 같은 회사로 들어와요.';$('rpGo').onclick=function(){rp(this);setTimeout(rpClose,1600);};$('rpBg').hidden=false;shOpen();document.body.style.overflow='hidden';track('team_repost_show');setTimeout(function(){$('rpGo').focus();},30);}}
   else if(P.length>=8){J0.innerHTML='<div class="panel"><b>자리가 다 찼어요</b><p class="sub" style="margin:6px 0 12px">이 회사는 8명이 모두 들어왔어요. 테스트를 하고 내 회사를 새로 차려 보세요.</p><button type="button" class="btn" id="tmGo">테스트하고 내 회사 차리기</button></div>';$('tmGo').onclick=function(){$('start').onclick();};}
   else if(me){J0.innerHTML='<div class="panel"><b>이 회사에 들어갈까요?</b><p class="sub" style="margin:6px 0 4px">내 캐릭터를 보고 자리를 정해 드려요.</p><label class="tm-lab" for="tmNick">회사에서 부를 별명</label><input class="tm-in" id="tmNick" maxlength="6" placeholder="예: 민대리" autocomplete="off"><button type="button" class="btn" id="tmIn">내 사원증으로 들어가기</button></div>';
     try{$('tmNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
@@ -1486,13 +1528,14 @@ function tOpen(t,joined){
   $('tmYear').innerHTML=L?tYear(P,L):'<p class="sub" style="margin:0">한 명만 더 들어오면 이런 게 나와요: \'올해의 조용한 해결사상\', \'최고의 콤비\', \'12월에 다 같이 칼퇴했어요\'. 단톡방에 링크를 올려 불러 보세요.</p>';
   window.scrollTo(0,0);
 }
-$('rpX').onclick=function(){$('rpBg').hidden=true;document.body.style.overflow='';};$('rpBg').onclick=function(e){if(e.target===this){this.hidden=true;document.body.style.overflow='';}};
+function rpClose(){if($('rpBg').hidden)return;shClose();$('rpBg').hidden=true;document.body.style.overflow='';var f=$('tmShare');if(f)f.focus();}
+$('rpX').onclick=rpClose;$('rpBg').onclick=function(e){if(e.target===this)rpClose();};
 $('tmHome').onclick=function(){history.replaceState(null,'','#');show('intro');};
 $('tmMine').onclick=function(){var r=decId(myId());if(!r)return;FRIEND=null;history.replaceState(null,'','#r='+myId());setFriendView(null);showResult(r.code,r.mood,r.sc,r.w);};
 function tCardSetup(){
   if(!$('tName').value)$('tName').value=TNAMES[Math.floor(Math.random()*TNAMES.length)];
   try{if(!$('tNick').value)$('tNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
-  var a=tAll(),ks=Object.keys(a);$('tList').innerHTML=ks.length?'<p class="sub" style="margin:16px 0 0">이 폰에서 열어 본 회사</p>'+ks.slice(-4).map(function(k){return '<button type="button" class="btn ghost" data-t="'+esc(k)+'">'+esc(k)+' ('+a[k].mem.length+'명) 보기</button>';}).join(''):'';
+  var a=tAll(),ks=Object.keys(a);$('tList').innerHTML=ks.length?'<p class="sub" style="margin:16px 0 0">이 폰에서 열어 본 회사</p>'+ks.slice(-4).map(function(k){return '<button type="button" class="btn ghost" data-t="'+esc(k)+'">'+esc(a[k].name||k)+' ('+a[k].mem.length+'명) 보기</button>';}).join(''):'';
   [].forEach.call($('tList').querySelectorAll('button'),function(b){b.onclick=function(){var t=tAll()[b.dataset.t];if(t)tOpen(t);};});
 }
 $('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,12)||TNAMES[0],nk=$('tNick').value.trim().slice(0,6),me=LAST&&LAST.id;
@@ -1500,14 +1543,15 @@ $('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,12)||TNAMES
   try{localStorage.setItem('oct_nick',nk);if(!myId())localStorage.setItem('oct_mine','#r='+me);}catch(e){}
   var t=tMerge({name:nm,mem:[{id:me,nk:nk}]});track('team_make');tOpen(t);
   sendText('우리 회사 \''+t.name+'\' 차렸어ㅋㅋ 3분 해 보면 네 자리랑 올해 어워즈가 나와. 송년회 전에 다 같이 모이자.',sUrl('t',tHash(t)),$('tmShare'),'복사했어요. 단톡방에 붙여 넣어 보세요');};
+document.addEventListener('keydown',function(e){var b=e.target;if(!b.closest||!b.closest('#rTabs')||(e.key!=='ArrowRight'&&e.key!=='ArrowLeft'))return;var bs=[].slice.call(document.querySelectorAll('#rTabs button')),i=bs.indexOf(b),n=bs[(i+(e.key==='ArrowRight'?1:bs.length-1))%bs.length];e.preventDefault();n.focus();n.click();});
 function rTab(p){[].forEach.call(document.querySelectorAll('#rTabs button'),function(b){b.setAttribute('aria-selected',b.dataset.p==p);});$('paneRead').hidden=p!='read';$('paneMatch').hidden=p!='match';}
 [].forEach.call(document.querySelectorAll('#rTabs button'),function(b){b.onclick=function(){if(b.getAttribute('aria-selected')=='true')return;rTab(b.dataset.p);track('tab_'+b.dataset.p);var t=$('rTabs');if(t.getBoundingClientRect().top<0||window.scrollY>t.offsetTop)window.scrollTo(0,t.offsetTop);};});
 function goMatch(){rTab('match');setTimeout(function(){$('gCard').scrollIntoView({behavior:'smooth'});},60);}
 $('toMatch').onclick=function(){rTab('match');track('tab_match');window.scrollTo(0,$('rTabs').offsetTop);};
 var LASTF=null;
-function tSheetOpen(src){LASTF=document.activeElement;tCardSetup();$('tSheet').hidden=false;document.body.style.overflow='hidden';setTimeout(function(){$('tSheetX').focus();},30);track('team_sheet_'+src);try{localStorage.setItem('oct_tnudge','1');}catch(e){}}
-function tSheetClose(){$('tSheet').hidden=true;document.body.style.overflow='';if(LASTF&&LASTF.focus&&document.body.contains(LASTF))LASTF.focus();}
-$('tHero').onclick=function(){tSheetOpen('hero');};$('tSheetX').onclick=tSheetClose;$('tSheet').onclick=function(e){if(e.target===this)tSheetClose();};
+function tSheetOpen(src){LASTF=document.activeElement;tCardSetup();$('tSheet').hidden=false;shOpen();document.body.style.overflow='hidden';setTimeout(function(){$('tSheetX').focus();},30);track('team_sheet_'+src);try{localStorage.setItem('oct_tnudge','1');}catch(e){}}
+function tSheetClose(nb){if(!nb)shClose();else SH=0;$('tSheet').hidden=true;document.body.style.overflow='';if(LASTF&&LASTF.focus&&document.body.contains(LASTF))LASTF.focus();}
+$('tHero').onclick=function(){tSheetOpen('hero');};$('tSheetX').onclick=function(){tSheetClose();};$('tSheet').onclick=function(e){if(e.target===this)tSheetClose();};
 var TNUDGE=null;
 function tNudge(){return;clearTimeout(TNUDGE);var seen='';try{seen=localStorage.getItem('oct_tnudge')||'';}catch(e){}if(seen||navigator.webdriver)return;
   TNUDGE=setTimeout(function(){if($('result').hidden||$('result').classList.contains('friend')||!$('imgBg').hidden||!$('pickBg').hidden||!$('tSheet').hidden)return;$('tSheetT').textContent='내 캐릭터 봤으면, 이제 친구들이랑 회사 차려 볼까요?';tSheetOpen('nudge');},20000);}
@@ -1524,7 +1568,7 @@ setAv($('introAv'),'BVWD','C');setAv($('introAv2'),'BRWL','C');setAv($('introAv3
   if((m=/[#&]g=([0-9a-z]{5})-([0-9a-z]{5})(?:-(peer|boss|junior))?/.exec(h))){R=decId(m[1]);P=decId(m[2]);if(P)CUR_REL=({boss:'junior',junior:'boss'})[m[3]]||'peer';}
   else if((m=/r=([0-9a-z]{5})(?![0-9a-z])/.exec(h)))R=decId(m[1]);
   else if((m=/r=([BQ][RV][WH][DL])-([CN])&s=(\d{5})&w=(\d+)/.exec(h))&&T[m[1]])R={code:m[1],mood:m[2],sc:m[3].split('').map(Number),w:+m[4]};
-  if(!R)return;
+  if(!R){if(/[#&](r|g|t)=/.test(h)){var bad=document.createElement('p');bad.className='sub';bad.setAttribute('role','status');bad.style.cssText='margin:12px 0 0;font-size:14.5px';bad.textContent='링크가 잘렸거나 바뀌어서 결과를 열 수 없어요. 새로 해 보거나, 보낸 사람에게 링크를 다시 받아 주세요.';var eb=document.querySelector('#intro .eyebrow');if(eb)eb.parentNode.insertBefore(bad,eb);track('bad_link');}return;}
   R.id=R.id||encId(R.code,R.mood,R.sc,R.w);
   var mineH='';try{mineH=localStorage.getItem('oct_mine')||'';}catch(e){}
   var mine=mineH=='#r='+R.id||mineH==h;
@@ -1533,7 +1577,7 @@ setAv($('introAv'),'BVWD','C');setAv($('introAv2'),'BRWL','C');setAv($('introAv3
     goMatch();return;}
   if(mine&&!FRIEND){try{var fs=JSON.parse(sessionStorage.getItem('oct_friend')||'null');if(fs&&fs.id)FRIEND=fs;}catch(e){}}
   showResult(R.code,R.mood,R.sc,R.w);
-  if(!mine){var fn=NM(R.code,R.mood).n.split(' ').pop();setFriendView(fn);$('fBanner').querySelector('b').textContent='친구의 올해 사원증은 \''+NM(R.code,R.mood).n+'\'예요';track('friend_open');}
+  if(!mine){var fn=NM(R.code,R.mood).n.split(' ').pop();setFriendView(fn);var fnm=NM(R.code,R.mood).n;$('fBanner').querySelector('b').textContent='친구의 올해 사원증은 \''+fnm+'\''+J(fnm,'이에요','예요').slice(fnm.length);track('friend_open');}
   $('fGo').onclick=function(){FRIEND={c:R.code,m:R.mood,id:R.id};try{sessionStorage.setItem('oct_friend',JSON.stringify(FRIEND));}catch(e){}setFriendView(null);track('friend_start');$('start').onclick();};
 })();
 })();
