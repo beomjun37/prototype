@@ -1421,7 +1421,7 @@ function tPt(nk,a,b){return '<b>'+esc(nk)+'</b>'+J(nk,a,b).slice(nk.length);}
 function tYear(P,L){var n=P.length,cnt=function(k,ch){return P.filter(function(x){return x.a[k]==ch;}).length;},maj=function(k,ch){return cnt(k,ch)/n>=.6;},all=function(k,ch){return cnt(k,ch)==n;},ev=[];
   if(maj(1,'V'))ev.push(['Feb','Twelve new ideas came up. Two got finished.']);else if(maj(1,'R'))ev.push(['Feb','Few new projects, but every promise got kept.']);
   if(maj(0,'B'))ev.push(['Apr','Four happy hours. Somehow, shorter meetings.']);else if(maj(0,'Q'))ev.push(['Apr','Quiet meeting room, busy team chat.']);
-  var b=L[0];ev.push(['May',tPt(b.a.nk,'','')+' and '+tPt(b.b.nk,'','')+(n==2&&b.g.sc<60?' found every shared project a new adventure, and learned to sync up one step at a time.':' teamed up on the year’s biggest win.')]);
+  var b=L[0];ev.push(['May',tPt(b.a.nk,'','')+' and '+tPt(b.b.nk,'','')+(n==2&&b.g.sc<60?' figured out, one step at a time, how to work in sync.':' teamed up on the year’s biggest win.')]);
   if(maj(4,'C'))ev.push(['Jul','A big client stalled the deal. No one panicked.']);else if(maj(4,'N'))ev.push(['Jul',all(4,'N')?'All sweated the small stuff. Zero disasters.':'Most sweated the small stuff. No big disasters.']);
   if(n>2){var w=L[L.length-1];ev.push(['Sep',tPt(w.a.nk,'','')+' and '+tPt(w.b.nk,'','')+(w.g.sc>=73?' work differently, but they filled the gaps.':' clashed a few times. Lunch fixed it.')]);}
   if(maj(2,'H'))ev.push(['Oct','No one quit. You bought a birthday cake '+n+' times.']);else if(maj(2,'W'))ev.push(['Oct','Great results, but someone felt hurt once.']);

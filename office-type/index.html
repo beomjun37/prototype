@@ -1512,7 +1512,7 @@ function tPt(nk,a,b){return '<b>'+esc(nk)+'</b>'+J(nk,a,b).slice(nk.length);}
 function tYear(P,L){var n=P.length,cnt=function(k,ch){return P.filter(function(x){return x.a[k]==ch;}).length;},maj=function(k,ch){return cnt(k,ch)/n>=.6;},all=function(k,ch){return cnt(k,ch)==n;},ev=[];
   if(maj(1,'V'))ev.push(['2월','새 아이디어가 열두 개 나왔어요. 그중에 끝낸 건 두 개예요.']);else if(maj(1,'R'))ev.push(['2월','새로운 일은 적었지만, 하기로 한 일은 다 끝냈어요.']);
   if(maj(0,'B'))ev.push(['4월','회식을 네 번이나 했어요. 대신 회의는 짧아졌어요.']);else if(maj(0,'Q'))ev.push(['4월','회의실은 조용했는데 메신저 방은 하루 종일 바빴어요.']);
-  var b=L[0];ev.push(['5월',tPt(b.a.nk,'과','와')+' '+tPt(b.b.nk,'이','가')+(n==2&&b.g.sc<60?' 같이 맡은 일은 매번 새로웠어요. 둘이 맞춰 가는 법을 하나씩 찾았어요.':' 같이 맡은 일이 올해 회사에서 가장 잘됐어요.')]);
+  var b=L[0];ev.push(['5월',tPt(b.a.nk,'과','와')+' '+tPt(b.b.nk,'이','가')+(n==2&&b.g.sc<60?' 같이 일하면서 서로 맞춰 가는 법을 하나씩 찾았어요.':' 같이 맡은 일이 올해 회사에서 가장 잘됐어요.')]);
   if(maj(4,'C'))ev.push(['7월','큰 거래처가 갑자기 계약을 미뤘어요. 그래도 다들 침착하게 다음 할 일을 찾았어요.']);else if(maj(4,'N'))ev.push(['7월',all(4,'N')?'작은 실수에도 다 같이 걱정했어요. 덕분에 큰 사고는 한 번도 없었어요.':'작은 실수에도 대부분 걱정했어요. 덕분에 큰 사고는 한 번도 없었어요.']);
   if(n>2){var w=L[L.length-1];ev.push(['9월',tPt(w.a.nk,'과','와')+' '+tPt(w.b.nk,'이','가')+(w.g.sc>=73?' 일하는 방식이 달라서 회의가 길어진 날이 있었어요. 그래도 서로 빈 곳을 채워 줬어요.':' 일하는 방식 때문에 몇 번 의견이 갈렸어요. 점심 한 번 같이 먹고 풀었어요.')]);}
   if(maj(2,'H'))ev.push(['10월','올해 회사를 떠난 사람이 한 명도 없어요. 생일 케이크는 '+n+'번 샀어요.']);else if(maj(2,'W'))ev.push(['10월','성과는 좋았어요. 대신 서운하다는 말이 한 번 나왔어요.']);
