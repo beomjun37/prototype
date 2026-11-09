@@ -381,7 +381,7 @@ h2{font-size:20px}
     <div class="mini-id"><img id="introAv3" class="avatar" alt=""><span>Dreamer Juno</span></div>
   </div>
     <button class="btn" id="start">Get my 2026 work badge</button>
-  <p class="note" style="margin-top:14px">There are no right answers. This is a test just for fun, not a real personality test.<br>No sign-in. We only count visits anonymously, and your answers are never saved on a server.</p>
+  <p class="note" style="margin-top:14px">There are no right answers. This is a test just for fun, not a real personality test.<br>No login. We only count visits anonymously, and we don’t save your answers.</p>
   
 </section>
 
@@ -460,7 +460,7 @@ h2{font-size:20px}
 <div class="sheet-bg" id="tSheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="tSheetT">
   <div class="sheet-grip"></div>
   <div class="sheet-head"><h3 id="tSheetT">Start a company with friends</h3><button type="button" class="sheet-x" id="tSheetX" aria-label="Close">✕</button></div>
-  <p class="sub" style="margin:0 0 12px;font-size:14.5px">Pick a company name and your nickname to get an invite link. Names go inside the link, so choose carefully where you post it.</p>
+  <p class="sub" style="margin:0 0 12px;font-size:14.5px">Pick a company name and a nickname to get an invite link. The company name, nicknames and characters are saved so people in the same company can see them, and all of it is deleted at the end of January 2027. Please use a nickname, not your real name.</p>
   <label class="tm-lab" for="tName">Company name</label><input class="tm-in" id="tName" maxlength="20" autocomplete="off"><label class="tm-lab" for="tNick">Your nickname at work</label><input class="tm-in" id="tNick" maxlength="10" placeholder="e.g. Captain" autocomplete="off"><button type="button" class="btn" id="tMake">Create the company and send the invite</button><div class="tm-list" id="tList"></div>
 </div></div>
 <div class="sheet-bg" id="imgBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="imgTitle">
@@ -506,9 +506,9 @@ var Q=[
  [3,'The deadline is a week away.',['I finish it now|Then I enjoy the rest of the time stress-free','I cram right before the deadline|My brain works best when time is tight']],
  [3,'You’re relaxing when your boss messages you.',['I handle it right away|If I put it off, Monday gets busier','I deal with it all on Monday|Doing it all at once Monday morning is faster']],
  [3,'Before your holiday break, you need to write handoff notes.',['I write a bit at a time from a week before|I jot things down whenever they come to mind','I write it all on the last day|It comes together best right before I leave']],
- [4,'5 minutes before your presentation, the slides won’t open.',['I look for another way right away|It’ll work out somehow, so I just start moving','My heart drops|Still, in a panic, I somehow get it fixed']],
- [4,'Your boss says, "Got a minute?"',['It’s probably nothing|They called me, so I just go','I worry what it’s about|On the way, I replay everything I did lately']],
- [4,'You’re on your way home after work.',['I switch off fast|Once I’m out the door, the day is done','Today’s work keeps coming back|I keep chewing on one thing someone said']],
+ [4,'5 minutes before your presentation, the slides won’t open.',['I look for another way right away|It’ll work out somehow, so I just start moving','I pull out the backup I prepared|I saw this coming and brought a copy on a USB']],
+ [4,'Your boss says, "Got a minute?"',['It’s probably nothing|They called me, so I just go','I think about what it could be|On the way, I go over what I’m working on in my head']],
+ [4,'You’re on your way home after work.',['I switch off fast|Once I’m out the door, the day is done','I look back on the day once more|I note tomorrow’s to-dos in my memo app']],
  [0,'Team offsite, first night at the hotel.',['I stay up till the end|Nights like this are the best','I head to my room early|I hang out a while, then quietly slip away']],
  [0,'Work is totally stuck.',['I talk it out|Explaining it to the person next to me brings the answer','I write it out alone|Quietly writing it down brings the answer']],
  [1,'A senior coworker shows you a new task.',['I want the steps first|I listen for what to do first','I want the reason first|I listen for why this task matters']],
@@ -517,9 +517,23 @@ var Q=[
  [2,'You have to write reviews for your team.',['I write about results and numbers|Judging by results is the fairest','I write about their effort first|I make sure to credit work the numbers don’t show']],
  [3,'A business trip is set for next week.',['I book everything right away|Once it’s set, I can focus on other work','I decide right before I go|It’s easier to see how things are then']],
  [3,'You open this week’s to-do list.',['I go in the order I set|I cross things off from the top, one by one','I start with what I feel like that day|It’s fine if the order changes as I go']],
- [4,'You find a typo in an email you already sent.',['I let it go|Everyone will just shrug it off','It keeps bugging me|I wonder who saw it and think about sending a correction']],
- [4,'You have an important meeting tomorrow morning.',['I go to bed early as usual|I prepared enough, that’s that','Sleep comes late|I run through the meeting in my head a few more times']]
+ [4,'You find a typo in an email you already sent.',['I let it go|Everyone will just shrug it off','I’ll double-check next time|I add one more check before I hit send']],
+ [4,'You have an important meeting tomorrow morning.',['I go to bed early as usual|I prepared enough, that’s that','I jot down a few more likely questions|I flip through the slides once more before bed']]
 ];
+
+var QX=[
+ [0,'Friday evening, and you have no plans.',['I call someone, anyone|I ask the group chat who’s free tonight','I rest at home alone|I love a day with no one to see']],
+ [0,'You had four meetings back to back all day.',['It actually energizes me|Talking with people gets things moving','I’m drained|Now I want to work quietly on my own']],
+ [1,'A notice says everyone has to start using a new work tool.',['I just follow the how-to|Learning by using it is fastest','I want to know why we’re switching|I need to know what gets better first']],
+ [1,'At the year-end meeting, you’re planning next year.',['I start from this year’s numbers|I aim a bit higher than what we’ve done','I start with what I want to build|Dream big first, figure out how later']],
+ [2,'A junior shows you a draft report and asks what you think.',['I start with what to fix|Fixing it early makes it easier for them','I start with what’s good|They need the boost to have energy to fix it']],
+ [2,'Two teammates each say their own way is right.',['I pick the better one|I weigh them and settle on one','I make it work so neither feels left out|I mix the good parts so we go together']],
+ [3,'You get a report that’s due next Friday.',['I set up the outline today|I feel better once the frame is in place','I start around Wednesday|There’s still plenty of time']],
+ [3,'You get a week off.',['I make a schedule first|I plan where to go and what to do each day','I decide day by day|I wake up and go wherever I feel like']],
+ [4,'Tomorrow you have an outside meeting somewhere you’ve never been.',['I’ll figure it out there|I’ll just open the map app when I go','I look up the route first|I check ahead how long it takes']],
+ [4,'A client sends an email with one line: “Please check.”',['I check it and reply|A short email doesn’t mean anything','I check whether I missed something|I open the file I sent one more time']]
+];
+var XSAY=['Just a few more to wrap up. Each one takes a few seconds.','Pick whichever feels natural here too.','Just a little more.','You’re almost done.','This is really the last one.'];
 
 var SW={};
 var ORDER=[22,2,3,17,1,4,16,14,5,6,23,21,9,19,12,8,7,13,24,18,20,11,0,15,10];
@@ -1080,7 +1094,9 @@ var YEAR_B={B:'Most of the time this year, you were the one who lifted the mood 
 var YEAR_DX={BVHLN:'Deadlines were always close calls, but you never missed one.',QL:'Deadlines were always close calls, but you never missed one.'};
 var YEAR_D={D:'Thanks to work you finished early, the team got to breathe easy more than once.',L:'Your last-minute focus saved the team more than once. It also cost you plenty of all-nighters.'};
 var FRIEND=null,LAST=null;
-var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[]};
+var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[],xq:null,xa:[0,0,0,0,0]};
+function xqMake(){st.xq=[];st.xa=[0,0,0,0,0];QX.forEach(function(q,j){if(st.sc[q[0]]==2||st.sc[q[0]]==3)st.xq.push(j);});}
+function qTot(){return Q.length+(st.xq?st.xq.length:0);}
 function $(id){return document.getElementById(id);}
 function show(id){['intro','quiz','result','dev','team'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);if($('sbar'))$('sbar').hidden=true;}
 
@@ -1094,37 +1110,37 @@ var SAY=['Good morning. Just pick whatever comes to mind.','Just pick what you u
 'It’s already Tuesday.','Everyone thinks about this one for a while.','3 p.m. always feels long.','Almost halfway there.',
 'It’s Wednesday. Exactly halfway.','Grab a coffee and take your time.','There’s always a day like this.','Whichever feels easier is the right answer.',
 'Fewer than ten to go.','Want a snack?','It’s late. Still up?',
-'Finally, it’s Friday.','Five more and you get your badge.','Almost there. Hang in there.','Almost time to go home.','Just two left.','This is the last one. When you’re done, your badge comes out.'];
+'Finally, it’s Friday.','Five more and you get your badge.','Almost there. Hang in there.','Almost time to go home.','Just two left.','It’s the last night. You’re nearly done.'];
 var BUDDY=[[1,'C'],[6,'N'],[11,'C'],[12,'N'],[15,'C'],[15,'C'],[15,'C']];
 var LOCK=false,RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 function render(){
-  var qi=ORDER[st.i],q=Q[qi],day=WHEN[st.i][0];
-  $('qn').textContent=(st.i+1)+' / '+Q.length;
+  var bx=st.i>=Q.length,xj=st.i-Q.length,qi=bx?100+st.xq[xj]:ORDER[st.i],q=bx?QX[qi-100]:Q[qi],day=bx?6:WHEN[st.i][0];
+  $('qn').textContent=bx?'Bonus '+(xj+1)+' / '+st.xq.length:(st.i+1)+' / '+Q.length;
   $('qBack').hidden=st.i===0;
   var prev=st.ans&&st.ans[st.i];
-  $('pg').style.width=(st.i/Q.length*100)+'%';
+  $('pg').style.width=(st.i/qTot()*100)+'%';
   $('week').innerHTML=WD.map(function(d,k){return '<span class="'+(k<day?'past':k==day?'now':'')+'">'+d+'</span>';}).join('');
-  $('qtime').textContent=WD[day]+' '+WHEN[st.i][1];
+  $('qtime').textContent=WD[day]+' '+(bx?'11:30 PM':WHEN[st.i][1]);
   $('scene').textContent=q[1];
   var bk=Object.keys(T)[BUDDY[day][0]],bm=BUDDY[day][1],ba=$('buddyAv'),nb=ba.dataset.k!=bk+bm;
   if(nb){ba.src=avatar(bk,bm);ba.dataset.k=bk+bm;$('buddyName').textContent=(day>=5?'Teammate ':'Desk neighbor ')+NM(bk,bm).n;}
-  $('buddySay').textContent=SAY[st.i];
+  $('buddySay').textContent=bx?XSAY[xj==st.xq.length-1?4:Math.min(xj,3)]:SAY[st.i];
   var c=$('qcard'),bd=$('buddy');c.classList.remove('in');bd.classList.remove('pop');void c.offsetWidth;c.classList.add('in');if(nb)bd.classList.add('pop');
   var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';o.classList.remove('in');void o.offsetWidth;o.classList.add('in');
   idx.forEach(function(k){
     var b=document.createElement('button');b.type='button';b.className='opt';var op=q[2][k].split('|');b.innerHTML='<span class="ot"><b>'+op[0]+'</b>'+(op[1]?'<small>'+op[1]+'</small>':'')+'</span>';b.setAttribute('aria-label',op.join('. '));
-    if(prev&&prev[1]===k)b.className+=' was';
+    if(prev&&prev[0]===qi&&prev[1]===k)b.className+=' was';
     b.onclick=function(){if(LOCK)return;LOCK=true;b.classList.add('chosen');setTimeout(function(){LOCK=false;pick(qi,k);},RM?0:170);};o.appendChild(b);
   });
 }
 function pick(qi,k){
-  var ax=Q[qi][0];
   st.ans=st.ans||[];st.ans[st.i]=[qi,k];
-  if(k==0)st.sc[ax]++;st.n[ax]++;
-  if(SW[qi]===k)st.sw++;
+  if(qi>=100){if(k==0)st.xa[QX[qi-100][0]]++;}
+  else{var ax=Q[qi][0];if(k==0)st.sc[ax]++;st.n[ax]++;if(SW[qi]===k)st.sw++;}
   st.i++;
   if(st.i==10)track('q10');
-  if(st.i>=Q.length)finish();else render();
+  if(st.i==Q.length&&!st.xq){xqMake();if(st.xq.length)track('xq'+st.xq.length);}
+  if(st.i>=qTot())finish();else render();
 }
 function calc(){
   var code='';
@@ -1133,6 +1149,7 @@ function calc(){
   return {code:code,mood:mood};
 }
 function finish(){
+  if(st.xq)st.xq.forEach(function(j,n){var ax=QX[j][0];if(n%2==0)st.sc[ax]=st.sc[ax]+st.xa[ax]>=4?3:2;});
   var r=calc();
   var sc=st.sc.slice(),sw=st.sw;
   var hash='#r='+encId(r.code,r.mood,sc,sw);track(FRIEND?'friend_finish':'finish');track('ch'+(KEYS.indexOf(r.code+r.mood)+1));
@@ -1199,7 +1216,7 @@ function showResult(code,mood,sc,sw){
 
 
 
-$('start').onclick=function(){track('start');st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[]};history.replaceState(null,'','#');history.pushState({q:1},'','#');show('quiz');render();};
+$('start').onclick=function(){track('start');st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[],xq:null,xa:[0,0,0,0,0]};history.replaceState(null,'','#');history.pushState({q:1},'','#');show('quiz');render();};
 
 var SH=0,SHIGN=0;
 function shOpen(){if(SH)return;SH=1;try{history.pushState({sh:1},'',location.href);}catch(e){}}
@@ -1210,7 +1227,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var bg=[
 window.addEventListener('popstate',function(){if(SHIGN){SHIGN=0;return;}
   if(SH){SH=0;if(!$('imgBg').hidden)closeImg();if(!$('tSheet').hidden)tSheetClose(1);if(!$('pickBg').hidden&&window.closePick)window.closePick();if(!$('rpBg').hidden)rpClose();return;}
   if(!$('quiz').hidden){if(st.i>0){$('qBack').onclick();history.pushState({q:1},'','#');}else show('intro');}else if(!$('result').hidden||!$('team').hidden){if(/#(t=|g=|r=)/.test(location.hash)){location.reload();return;}['tSheet','imgBg','pickBg','rpBg'].forEach(function(id){if($(id))$(id).hidden=true;});document.body.style.overflow='';history.replaceState(null,'',location.pathname+location.search);show('intro');}});
-$('qBack').onclick=function(){if(st.i<1)return;st.i--;var a=st.ans[st.i],qi=a[0],k=a[1],ax=Q[qi][0];if(k==0)st.sc[ax]--;st.n[ax]--;if(SW[qi]===k)st.sw--;render();window.scrollTo(0,0);};
+$('qBack').onclick=function(){if(st.i<1)return;st.i--;var a=st.ans[st.i],qi=a[0],k=a[1];if(qi>=100){if(k==0)st.xa[QX[qi-100][0]]--;}else{var ax=Q[qi][0];if(k==0)st.sc[ax]--;st.n[ax]--;if(SW[qi]===k)st.sw--;st.xq=null;}render();window.scrollTo(0,0);};
 $('again').onclick=function(){FRIEND=null;try{sessionStorage.removeItem('oct_friend');}catch(e){}history.replaceState(null,'','#');show('intro');};
 
 function wrapText(c,text,x,y,maxW,lh,maxLines){
@@ -1373,15 +1390,22 @@ function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&am
 function tEnc(x){return encodeURIComponent(x).replace(/\./g,'%2E').replace(/~/g,'%7E');}
 function b64e(x){var b=unescape(encodeURIComponent(x));return btoa(b).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
 function b64d(x){x=x.replace(/-/g,'+').replace(/_/g,'/');while(x.length%4)x+='=';return decodeURIComponent(escape(atob(x)));}
-function tHash(t){return '#t=~'+b64e(t.name)+'.'+t.mem.map(function(m){return m.id+b64e(m.nk);}).join('.');}
+function tHash(t){return '#t=~'+b64e(t.name)+'.'+t.mem.map(function(m){return m.id+b64e(m.nk);}).join('.')+(t.sid?'&s='+t.sid:'');}
 function tParse(h){var m=/#t=([^&]*)/.exec(h);if(!m)return null;var ps=m[1].split('.'),name,v2=ps[0].charAt(0)=='~',dec=function(x){return v2?b64d(x):decodeURIComponent(x);};try{name=dec(v2?ps[0].slice(1):ps[0]);}catch(e){return null;}if(!name)return null;
   var mem=[],seen={};ps.slice(1).forEach(function(x){var id=x.substr(0,5),nk;try{nk=dec(x.substr(5));}catch(e){nk='';}var r=decId(id);if(!r||seen[id]||mem.length>=8)return;seen[id]=1;mem.push({id:id,nk:nk.slice(0,10)||'No name'});});
-  return {name:name.slice(0,20),mem:mem};}
+  var sm=/[&]s=([0-9A-Za-z]{10})/.exec(h);return {name:name.slice(0,20),mem:mem,sid:sm?sm[1]:''};}
 function tAll(){try{return JSON.parse(localStorage.getItem('oct_teams')||'{}')||{};}catch(e){return {};}}
 function tGrade(avg,P){var GR=[['Ready to go even bigger next year.','At this rate, you could go public next year.'],['You made it. Next year looks even better.','You worked well together. Bring on next year.'],['Some bickering, but you pulled it off.','Some rough days, but you went the distance.'],['So different, never a dull day.','So different, every day was new.']],b=avg>=86?0:avg>=73?1:avg>=60?2:3,h=0;P.forEach(function(x){h+=x.id.charCodeAt(0)+x.id.charCodeAt(4);});return GR[b][h%2];}
+
+var SB_URL='https://utcuijyyjmwfuvrczocx.supabase.co',SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0Y3Vpanl5am13ZnV2cmN6b2N4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQxNTk5MTksImV4cCI6MjEwOTczNTkxOX0.lXmM5p90uA8URyVvyDET9GgSEYAyZo_yDFsxdxqJaOY',FRESH={};
+function sbCall(fn,args){if(!SB_URL||!window.fetch)return Promise.reject(0);var ctl=window.AbortController?new AbortController():null;if(ctl)setTimeout(function(){ctl.abort();},4000);
+  return fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args),signal:ctl&&ctl.signal}).then(function(r){if(!r.ok)throw r.status;return r.json();});}
+function sbId(){var c='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',a=new Uint8Array(10),o='';try{crypto.getRandomValues(a);}catch(e){for(var i=0;i<10;i++)a[i]=Math.random()*256;}for(var j=0;j<10;j++)o+=c[a[j]%62];return o;}
+function tUnion(a,b){var mem=a.mem.slice(),ids={};mem.forEach(function(m){ids[m.id]=1;});(b.mem||[]).forEach(function(m){if(!ids[m.id]&&mem.length<8&&decId(m.id)){mem.push({id:m.id,nk:String(m.nk||'').slice(0,10)||'No name'});ids[m.id]=1;}});return {name:a.name,mem:mem,sid:a.sid||b.sid||''};}
+function tSync(t){if(!t.sid||FRESH[t.sid])return;FRESH[t.sid]=1;sbCall('team_get',{p_id:t.sid}).then(function(r){if(!r||!r.mem)return;var u=tUnion({name:t.name,mem:r.mem,sid:t.sid},t);if(u.mem.length!=t.mem.length||u.mem.some(function(m,i){return !t.mem[i]||t.mem[i].id!=m.id;})){track('team_sync');if(!$('team').hidden&&TCUR&&TCUR.sid==t.sid)tOpen(u,0,1);else tSave(u);}}).catch(function(){});}
 function tKey(t){return t.name+'|'+(t.mem[0]&&t.mem[0].id||'');}
 function tSave(t){var a=tAll();a[tKey(t)]=t;try{localStorage.setItem('oct_teams',JSON.stringify(a));}catch(e){}}
-function tMerge(t){var old=tAll()[tKey(t)];if(!old)return t;var mem=t.mem.slice(),ids={},add=0;mem.forEach(function(m){ids[m.id]=1;});old.mem.forEach(function(m){if(!ids[m.id]&&mem.length<8){mem.push(m);ids[m.id]=1;add++;}});if(add)track('team_fork');return {name:t.name,mem:mem,fork:add};}
+function tMerge(t){var old=tAll()[tKey(t)];if(!old)return t;var mem=t.mem.slice(),ids={},add=0;mem.forEach(function(m){ids[m.id]=1;});old.mem.forEach(function(m){if(!ids[m.id]&&mem.length<8){mem.push(m);ids[m.id]=1;add++;}});if(add&&!t.sid)track('team_fork');return {name:t.name,mem:mem,fork:t.sid?0:add,sid:t.sid||old.sid||''};}
 function myId(){var h='';try{h=localStorage.getItem('oct_mine')||'';}catch(e){}return (/r=([0-9a-z]{5})/.exec(h)||[])[1]||'';}
 function tPeople(t){return t.mem.map(function(m){var r=decId(m.id);return {id:m.id,nk:m.nk,c:r.code,m:r.mood,a:r.code+r.mood,r:r};});}
 function qa(x){return QB[x.a]?'Q'+x.a.slice(1):x.a;}
@@ -1414,7 +1438,7 @@ function tAwards(P){var fr={};P.forEach(function(x){qa(x).split('').forEach(func
     opt[i].forEach(function(o){if(used[o.ch])return;used[o.ch]=1;cur[i]=o.ch;go(j+1,sum+o.v);used[o.ch]=0;});cur[i]='';go(j+1,sum);};
   go(0,0);return P.map(function(x,i){return bestA[i]?((x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[bestA[i]]||AW[bestA[i]]):['Always There of the Year','Held down their seat all year without missing a day.'];});}
 var TCUR=null;
-function tOpen(t,joined){
+function tOpen(t,joined,quiet){
   if($('tSheet')&&!$('tSheet').hidden)tSheetClose(1);TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
   var P=tPeople(t),me=myId(),ro=tRoles(P),inT=t.mem.some(function(m){return m.id==me;});
   $('tmName').textContent=t.name;
@@ -1424,13 +1448,13 @@ function tOpen(t,joined){
   if(inT){var mi=0;P.forEach(function(x,i){if(x.id==me)mi=i;});var aw0=P.length>1?tAwards(P)[mi][0]:'',mine=' I\'m '+ro[mi].n+(aw0?' and got '+aw0+'.':'.');
     var rp=function(btn){sendText('\''+t.name+'\' '+(P.length>=8?'is full, all 8 of us lol.'+mine+' Seats, awards and our year in review are all up.':'has '+P.length+' people now lol.'+mine+' If you haven\'t joined yet, use this link so we all show up together. Take the 3-minute test to get your seat and this year\'s award.'),sUrl(P.length>1?'t/'+Math.min(8,P.length):'t',tHash(t)),btn,'Copied! Paste it into your group chat');};}
   if(inT&&P.length>=8){J0.innerHTML='<div class="panel"><b>All 8 are here</b><p class="sub" style="margin:6px 0 12px">Now save the company image and post it in your group chat. Seats, awards and this year’s grade are all on one card. Post the finished link too, so everyone can see the year in review.</p><button type="button" class="btn" id="tmFull" data-ev="team_full_img">Save company image</button><button type="button" class="btn ghost" id="tmShare" data-ev="team_share_full">Copy the finished link</button></div>';track('team_full');$('tmFull').onclick=function(){$('tmSave').click();};$('tmShare').onclick=function(){rp(this);};}
-  else if(inT){J0.innerHTML='<div class="panel"><b>Post the latest link in your group chat</b><p class="sub" style="margin:6px 0 12px">Join through this link so everyone who is in so far shows up together. Always share the newest link, so everyone ends up in the same company.</p><button type="button" class="btn" id="tmShare" data-ev="team_share">Copy the latest link</button></div>';
+  else if(inT){J0.innerHTML='<div class="panel">'+(t.sid?'<b>Call in the people who haven’t joined yet</b><p class="sub" style="margin:6px 0 12px">Even the first link brings everyone into the same company. As more people join, the duos, awards and year in review change.</p>':'<b>Post the latest link in your group chat</b><p class="sub" style="margin:6px 0 12px">Join through this link so everyone who is in so far shows up together. Always share the newest link, so everyone ends up in the same company.</p>')+'<button type="button" class="btn" id="tmShare" data-ev="team_share">Copy the latest link</button></div>';
     $('tmShare').onclick=function(){rp(this);};
     if(joined){$('rpS').textContent='Your seat: '+ro[mi].n+(aw0?', award: '+aw0:'')+'. The first link in your group chat only shows '+(P.length-1)+' of you so far. Post this one now so everyone who joined shows up, and the next person joins the same company.';$('rpGo').onclick=function(){rp(this);setTimeout(rpClose,1600);};$('rpBg').hidden=false;shOpen();document.body.style.overflow='hidden';track('team_repost_show');setTimeout(function(){$('rpGo').focus();},30);}}
   else if(P.length>=8){J0.innerHTML='<div class="panel"><b>All seats are taken</b><p class="sub" style="margin:6px 0 12px">All 8 people have joined this company. Take the test and start your own company.</p><button type="button" class="btn" id="tmGo">Take the test and start my company</button></div>';$('tmGo').onclick=function(){$('start').onclick();};}
-  else if(me){J0.innerHTML='<div class="panel"><b>Want to join this company?</b><p class="sub" style="margin:6px 0 4px">We’ll pick your seat based on your character. Your nickname goes inside the company link, so use a nickname, not your real name.</p><label class="tm-lab" for="tmNick">Your nickname at work</label><input class="tm-in" id="tmNick" maxlength="10" placeholder="e.g. Captain" autocomplete="off"><button type="button" class="btn" id="tmIn">Join with my badge</button></div>';
+  else if(me){J0.innerHTML='<div class="panel"><b>Want to join this company?</b><p class="sub" style="margin:6px 0 4px">We’ll pick your seat based on your character. Your nickname and character are saved so people in the same company can see them. Please use a nickname, not your real name.</p><label class="tm-lab" for="tmNick">Your nickname at work</label><input class="tm-in" id="tmNick" maxlength="10" placeholder="e.g. Captain" autocomplete="off"><button type="button" class="btn" id="tmIn">Join with my badge</button></div>';
     try{$('tmNick').value=localStorage.getItem('oct_nick')||'';}catch(e){}
-    $('tmIn').onclick=function(){var nk=$('tmNick').value.trim().slice(0,10);if(!nk){$('tmNick').focus();$('tmNick').placeholder='Add your nickname first';return;}try{localStorage.setItem('oct_nick',nk);sessionStorage.removeItem('oct_pteam');}catch(e){}t.mem.push({id:me,nk:nk});track('team_join');track('team_join_'+t.mem.length);tOpen(t,1);};}
+    $('tmIn').onclick=function(){var nk=$('tmNick').value.trim().slice(0,10);if(!nk){$('tmNick').focus();$('tmNick').placeholder='Add your nickname first';return;}try{localStorage.setItem('oct_nick',nk);sessionStorage.removeItem('oct_pteam');}catch(e){}t.mem.push({id:me,nk:nk});track('team_join');track('team_join_'+t.mem.length);tOpen(t,t.sid?0:1);if(t.sid)sbCall('team_join',{p_id:t.sid,p_rid:me,p_nk:nk}).then(function(r){if(r&&r.mem){FRESH[t.sid]=1;tOpen(tUnion({name:t.name,mem:r.mem,sid:t.sid},t),0,1);}}).catch(function(){});};}
   else{J0.innerHTML='<div class="panel"><b>Join this company too</b><p class="sub" style="margin:6px 0 12px">Once the 3-minute test shows your character, we’ll use it to give you a seat at this company.</p><button type="button" class="btn" id="tmGo">Take the 3-minute test and join</button></div>';
     $('tmGo').onclick=function(){try{sessionStorage.setItem('oct_pteam',tHash(t));}catch(e){}track('team_start');$('start').onclick();};}
   $('tmMine').hidden=!me;
@@ -1440,7 +1464,7 @@ function tOpen(t,joined){
   var aw=L?tAwards(P):null;$('tmAwS').hidden=!aw;$('tmSave').hidden=!L;
   if(aw)$('tmAw').innerHTML=P.map(function(x,i){return '<div class="tm-pair"><img alt="" src="'+avatar(x.c,x.m)+'"><div class="tx"><span class="sub" style="font-size:13.5px">'+esc(x.nk)+'</span><b>'+aw[i][0]+'</b><span class="sub" style="font-size:14px;display:block">'+aw[i][1]+'</span></div></div>';}).join('');
   $('tmYear').innerHTML=L?tYear(P,L):'<p class="sub" style="margin:0">With just one more person, you’ll see things like: \'Quiet Fixer of the Year\', \'Best duo\', \'Everyone left on time in December\'.'+(inT?' Post the link in your group chat to bring people in.':'')+'</p>';
-  window.scrollTo(0,0);
+  if(!quiet)window.scrollTo(0,0);tSync(t);
 }
 function rpClose(){if($('rpBg').hidden)return;shClose();$('rpBg').hidden=true;document.body.style.overflow='';var f=$('tmShare');if(f)f.focus();}
 $('rpX').onclick=rpClose;$('rpBg').onclick=function(e){if(e.target===this)rpClose();};
@@ -1456,7 +1480,7 @@ function tCardSetup(){
 $('tMake').onclick=function(){var nm=$('tName').value.trim().slice(0,20)||TNAMES[0],nk=$('tNick').value.trim().slice(0,10),me=LAST&&LAST.id;
   if(!nk){$('tNick').focus();$('tNick').placeholder='Add your nickname first';return;}if(!me)return;
   try{localStorage.setItem('oct_nick',nk);if(!myId())localStorage.setItem('oct_mine','#r='+me);}catch(e){}
-  var t=tMerge({name:nm,mem:[{id:me,nk:nk}]});track('team_make');tOpen(t);
+  var t=tMerge({name:nm,mem:[{id:me,nk:nk}]});if(!t.sid&&SB_URL){t.sid=sbId();FRESH[t.sid]=1;var sid=t.sid;sbCall('team_create',{p_id:sid,p_name:nm,p_rid:me,p_nk:nk}).then(function(r){if(r&&r.id)track('team_make_sb');}).catch(function(){});}track('team_make');tOpen(t);
   sendText('I started a company called \''+t.name+'\' lol. Take the 3-minute test to get your seat and this year’s award. Let’s do this before the holiday party.',sUrl('t',tHash(t)),$('tmShare'),'Copied! Paste it into your group chat');};
 document.addEventListener('keydown',function(e){var b=e.target;if(!b.closest||!b.closest('#rTabs')||(e.key!=='ArrowRight'&&e.key!=='ArrowLeft'))return;var bs=[].slice.call(document.querySelectorAll('#rTabs button')),i=bs.indexOf(b),n=bs[(i+(e.key==='ArrowRight'?1:bs.length-1))%bs.length];e.preventDefault();n.focus();n.click();});
 function rTab(p){[].forEach.call(document.querySelectorAll('#rTabs button'),function(b){b.setAttribute('aria-selected',b.dataset.p==p);});$('paneRead').hidden=p!='read';$('paneMatch').hidden=p!='match';}
