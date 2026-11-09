@@ -1445,7 +1445,7 @@ function tAwards(P){var fr={};P.forEach(function(x){qa(x).split('').forEach(func
   var best=-1e9,bestA=null,cur=[],used={};
   var go=function(j,sum){if(sum+(P.length-j)*50<=best)return;if(j==P.length){best=sum;bestA=cur.slice();return;}var i=ord[j];
     opt[i].forEach(function(o){if(used[o.ch])return;used[o.ch]=1;cur[i]=o.ch;go(j+1,sum+o.v);used[o.ch]=0;});cur[i]='';go(j+1,sum);};
-  go(0,0);return P.map(function(x,i){var ch=bestA[i];if(!ch)return ['Hidden Pillar of the Year','Nobody noticed, until the day they weren’t there.'];var qz=(x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[ch],v=x.r.sc[qa(x).indexOf(ch)];return qz?qz:[AW[ch][0],(v==5||v==0)?AW5[ch]:AW[ch][1]];});}
+  go(0,0);return P.map(function(x,i){var ch=bestA[i];if(!ch)return ['Hidden Pillar of the Year','Nobody noticed, until the day they weren’t there.'];var qz=(x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[ch],v=x.r.sc[qa(x).indexOf(ch)];return qz?qz:[AW[ch][0],(v==5||v==0)&&!QB[x.a]?AW5[ch]:AW[ch][1]];});}
 var TCUR=null;
 function tOpen(t,joined,quiet){
   if($('tSheet')&&!$('tSheet').hidden)tSheetClose(1);TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
