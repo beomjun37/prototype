@@ -511,7 +511,7 @@ var Q=[
  [4,'5 minutes before your presentation, the slides won’t open.',['I look for another way right away|It’ll work out somehow, so I just start moving','I check things one by one|I need to know what’s wrong before the next step']],
  [4,'Your boss says, "Got a minute?"',['It’s probably nothing|They called me, so I just go','I wonder what it’s about|On the way, I think about anything lately that might be an issue']],
  [4,'You’re on your way home after work.',['I switch off fast|Once I’m out the door, the day is done','I look back on the day once more|I wonder if what I said earlier was okay']],
- [0,'Team offsite, first night at the hotel.',['I stay up till the end|Nights like this are the best','I head to my room early|I hang out a while, then quietly slip away']],
+ [0,'A whole weekend day is wide open.',['I need to see someone to feel rested|I make at least one plan for the afternoon','I need to see no one to feel rested|I spend the whole day at home alone']],
  [0,'Work is totally stuck.',['I talk it out|Explaining it to the person next to me brings the answer','I write it out alone|Quietly writing it down brings the answer']],
  [1,'A senior coworker shows you a new task.',['I want the steps first|I listen for what to do first','I want the reason first|I listen for why this task matters']],
  [1,'Your team lead asks, "What would you like to try next year?"',['I want to get better at what I do|I want to make my current work more solid','I want to start something new|I want to try something no one has done yet']],
@@ -1159,7 +1159,7 @@ function finish(){
   history.replaceState(null,'',hash);
   try{localStorage.setItem('oct_mine',hash);}catch(e){}
   setFriendView(null);
-  showResult(r.code,r.mood,sc,sw);
+  ECHO=echoLine(r.code,sc);showResult(r.code,r.mood,sc,sw);ECHO='';
   var pt='';try{pt=sessionStorage.getItem('oct_pteam')||'';}catch(e){}
   var TT=pt?tParse(pt):null;
   if(TT){$('rNextT').textContent='\''+TT.name+'\' is waiting for you. Once you have seen your badge, go get your seat.';$('rNextB').textContent='Get my seat →';$('rNextB').onclick=function(){tOpen(tMerge(TT));setTimeout(function(){$('tmJoin').scrollIntoView({behavior:'smooth',block:'center'});},300);};$('rNext').hidden=false;}
@@ -1173,6 +1173,11 @@ function setFriendView(name){
   var mm=document.querySelector('#result .memo');if(mm)mm.hidden=on;
   $('fBanner').hidden=!on;
 }
+var ECHO='';
+
+function echoLine(code,sc){var bi=-1,bk=0;for(var i=0;i<4;i++){var k=sc[i]>=3?sc[i]:5-sc[i];if(k>bk){bk=k;bi=i;}}if(bk<4||!st.ans)return '';
+  var side=code[bi]==AX[bi].la?0:1,hit=st.ans.filter(function(a){return a&&a[0]<100&&Q[a[0]][0]==bi&&a[1]==side;});if(!hit.length)return '';
+  var b=Q[hit[hit.length-1][0]][2][side].split('|')[0];return 'You went with ‘'+b+'’ this week, right? That’s this character all over.';}
 function showResult(code,mood,sc,sw){
   var t=T[code],m=MOOD[mood],x=X[code],y=Y[code];
   show('result');
@@ -1187,7 +1192,7 @@ function showResult(code,mood,sc,sw){
   var bq=x[5].replace(/"/g,''),bm1=bq.match(/^[^.?!]*[.?!]/),bossT=bm1?bm1[0]:bq,bRest=bq.slice(bossT.length).trim(),bossR=bRest?['Then add "'+bRest+'" and it lands even better.']:[];
   var bp=bestPeer(code,mood),gm=bp.sc,pm=NM(bp.c,bp.m);
   var items=[
-   ['In a nutshell',nm.hl,[SCENE[code+mood],t.d].concat(reading(code,sc,mood)),'lightbulb'],
+   ['In a nutshell',nm.hl,[SCENE[code+mood],t.d].concat(reading(code,sc,mood)).concat(ECHO?[ECHO]:[]),'lightbulb'],
    ['Your 2026 review','What you left the team this year',['The line you probably heard most from your team this year: "'+YEARQ[code+mood]+'"','This year, you were '+nm.line.charAt(0).toLowerCase()+nm.line.slice(1)+'.',YEAR_BX[code+mood]||YEAR_BX[c0+c2]||YEAR_B[c0],YEAR_DX[code+mood]||YEAR_DX[c0+c3]||YEAR_D[c3],'But there’s also one line that secretly stung. '+STING[code][mood]+' Next year, let’s hope it fits you a little less.'],'calendar'],
    ['Some tough love',y[1],[y[2],PP[c3].blunt],'notification'],
    ['Teams and workplaces that suit you',DEPT[c1+c2][0],[DEPT[c1+c2][1],ORG[c0+c3],ORGM[mood],DEPT[c1+c2][2]+' These are just-for-fun suggestions, so find your real career path by trying things yourself.'],'briefcase'],
@@ -1432,6 +1437,7 @@ function tYear(P,L){var n=P.length,cnt=function(k,ch){return P.filter(function(x
   var gr=tGrade(avg,P);
   return '<div class="tm-grade">This year’s grade: '+gr+'</div><p class="sub" style="margin:0 0 14px">The average match score among everyone at our company is '+avg+'.</p>'+ev.map(function(e){return '<p><b>'+e[0]+'</b> '+e[1]+'</p>';}).join('');}
 var AW={B:['Mood Maker of the Year','Spoke up first every time the meeting room went quiet.'],Q:['Quiet Fixer of the Year','Got the work done without a word and went home like it was nothing.'],R:['Realist of the Year','First to sort out what would work and what wouldn’t.'],V:['Idea Bank of the Year','Brought out a new idea at every meeting.'],W:['Fact Checker of the Year','Never let a single wrong number slide.'],H:['Kindest Coworker of the Year','First to hand a coffee to a coworker having a hard time.'],D:['Clock-Out Champ of the Year','Finished before the deadline and was the first to go home.'],L:['Clutch Player of the Year','The night before the deadline, finished what no one else could.'],C:['Coolest Head of the Year','Didn’t even flinch on the day everything blew up.'],N:['Most Prepared of the Year','Saved the team by catching risks others missed.']};
+var AW5={B:'All year, spoke up first every time the meeting room went quiet.',Q:'All year, quietly got it done and headed home like it was nothing.',R:'All year, the first to tell what would work and what wouldn’t.',V:'All year, brought a new idea to every meeting.',W:'All year, never let a single wrong number slide.',H:'All year, the first to hand a coffee to a struggling coworker.',D:'All year, finished before the deadline and was the first to go home.',L:'All year, finished what no one else could, the night before every deadline.',C:'All year, didn’t flinch even on the days things blew up.',N:'All year, saved the team by catching risks others missed.'};
 var AWQ={V:['Idea Bank of the Year','Quiet in the meeting, then sent three ideas over chat the next day.'],H:['Kindest Coworker of the Year','Quietly left snacks on a teammate’s desk.']};
 function tAwards(P){var fr={};P.forEach(function(x){qa(x).split('').forEach(function(ch){fr[ch]=(fr[ch]||0)+1;});});
   var opt=P.map(function(x){var o=qa(x).split('').map(function(ch,k){var v=x.r.sc[k],st=v>=3?v:5-v;return {ch:ch,v:st*10-fr[ch]*3-(st==3?12:0)};}).filter(function(o){return !(o.ch=='R'&&x.a.charAt(2)=='H');});o.sort(function(a,b){return b.v-a.v||(a.ch<b.ch?-1:1);});return o;});
@@ -1439,7 +1445,7 @@ function tAwards(P){var fr={};P.forEach(function(x){qa(x).split('').forEach(func
   var best=-1e9,bestA=null,cur=[],used={};
   var go=function(j,sum){if(sum+(P.length-j)*50<=best)return;if(j==P.length){best=sum;bestA=cur.slice();return;}var i=ord[j];
     opt[i].forEach(function(o){if(used[o.ch])return;used[o.ch]=1;cur[i]=o.ch;go(j+1,sum+o.v);used[o.ch]=0;});cur[i]='';go(j+1,sum);};
-  go(0,0);return P.map(function(x,i){return bestA[i]?((x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[bestA[i]]||AW[bestA[i]]):['Hidden Pillar of the Year','Nobody noticed, until the day they weren’t there.'];});}
+  go(0,0);return P.map(function(x,i){var ch=bestA[i];if(!ch)return ['Hidden Pillar of the Year','Nobody noticed, until the day they weren’t there.'];var qz=(x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[ch],v=x.r.sc[qa(x).indexOf(ch)];return qz?qz:[AW[ch][0],(v==5||v==0)?AW5[ch]:AW[ch][1]];});}
 var TCUR=null;
 function tOpen(t,joined,quiet){
   if($('tSheet')&&!$('tSheet').hidden)tSheetClose(1);TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
