@@ -51,6 +51,7 @@ h2{font-size:21px;line-height:1.35;letter-spacing:-.025em;font-weight:750;margin
 .mini-id::before{content:"";display:block;width:22px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 8px}
 .mini-id:nth-child(1){transform:rotate(-5deg) translateY(6px)}
 .mini-id:nth-child(3){transform:rotate(5deg) translateY(6px)}
+.intro-co{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:16px 0 0;text-align:left}.intro-co b{display:block;font-size:14.5px;margin-bottom:8px}.intro-co .ic{display:flex;gap:8px;font-size:13.5px;color:var(--sub);padding:3px 0}.intro-co .ic span:first-child{color:var(--ink);font-weight:700;min-width:44px}.intro-co .ic span:nth-child(2){min-width:40px}.intro-co .ic-c{margin-top:6px;font-size:13.5px;color:var(--ink)}
 .mini-id span{display:block;font-size:12px;color:var(--sub);margin-top:4px;font-weight:600}
 .facts{display:flex;gap:18px;margin:0 0 22px;color:var(--sub);font-size:14px}
 .facts b{display:block;color:var(--ink);font-size:20px;font-weight:750;letter-spacing:-.02em}
@@ -392,6 +393,7 @@ h2{font-size:20px}
     <div class="mini-id"><img id="introAv3" class="avatar" alt=""><span>몽상가 윤사원</span></div>
   </div>
     <button class="btn" id="start">올해의 사원증 발급받기</button>
+  <div class="intro-co" aria-label="우리 회사 결과 예시"><b>단톡방에서 같이 하면 이렇게 나와요</b><div class="ic"><span>노대리</span><span>대표</span><span>올해의 조용한 해결사상</span></div><div class="ic"><span>임차장</span><span>기획</span><span>올해의 아이디어 뱅크상</span></div><div class="ic"><span>윤사원</span><span>디자인</span><span>올해의 분위기 메이커상</span></div><div class="ic-c">최고의 콤비는 임차장과 윤사원. 회의만 하면 아이디어가 쏟아지는 사이예요.</div></div>
   <p class="note" style="margin-top:14px">정답은 없어요. 재미로 보는 테스트이고 진짜 성격 검사는 아니에요.<br>로그인은 없고, 방문 수만 익명으로 세요. 답한 내용은 저장하지 않아요.</p>
   <!--DEV--><button class="devbtn" id="devGo">개발자 페이지 (캐릭터 결과 바로 보기)</button><!--/DEV-->
 </section>
@@ -982,7 +984,7 @@ function gSetup(code,mood){
   var lowL=[],nN=0;all.slice().reverse().forEach(function(x){if(lowL.length>=3)return;if(x[1]=='N'){if(nN>=2)return;nN++;}lowL.push(x);});$('gLow').innerHTML=lowL.map(function(x){return row(x,1);}).join('');
   [].forEach.call(document.querySelectorAll('#gTop .gtop,#gLow .gtop'),function(b){b.onclick=function(){sel.value=b.dataset.c+b.dataset.m;sel.onchange();$('gCard').scrollIntoView({behavior:'smooth'});};});
   };
-  var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);var PT={RW:'결과부터 말씀드리면, 올해 맡은 일은 이렇게 마무리했어요.',RH:'올해 같이 챙겨 주셔서 일이 끝까지 갈 수 있었어요. 결과부터 짧게 말씀드릴게요.',VW:'올해 한 일이 팀이 가는 방향에 어떻게 이어졌는지부터 말씀드릴게요.',VH:'올해 가장 고마웠던 순간부터 말씀드리고, 내년에 해 보고 싶은 일을 꺼내 볼게요.'};var AV={D:'"막판에 몰아서 하면 돼요"라는 말은 피하세요. 미리 챙기는 상사에게는 불안하게 들려요.',L:'"벌써 다 정해 뒀어요"라는 말은 피하세요. 끝까지 고치고 싶은 상사에게는 답답하게 들려요.'};$('payT').innerHTML='<b style="display:block;margin-bottom:4px">이 캐릭터가 상사라면, 대본은 이렇게 시작해요</b>"'+PT[c.substr(1,2)]+'"<span style="display:block;margin-top:8px">'+esc(AV[c.charAt(3)])+'</span>';gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람, ':'');
+  var go=function(){var v=sel.value,c=v.substr(0,4),m=v.substr(4);var PT={RW:'결과부터 말씀드리면, 올해 맡은 일은 이렇게 마무리했어요.',RH:'올해 같이 챙겨 주셔서 일이 끝까지 갈 수 있었어요. 결과부터 짧게 말씀드릴게요.',VW:'올해 한 일이 팀이 가는 방향에 어떻게 이어졌는지부터 말씀드릴게요.',VH:'올해 가장 고마웠던 순간부터 말씀드리고, 내년에 해 보고 싶은 일을 꺼내 볼게요.'};var AV={D:'"막판에 몰아서 하면 돼요"라는 말은 피하세요. 미리 챙기는 상사에게는 불안하게 들려요.',L:'"벌써 다 정해 뒀어요"라는 말은 피하세요. 끝까지 고치고 싶은 상사에게는 답답하게 들려요.'};$('payT').innerHTML='<b style="display:block;margin-bottom:4px">이 캐릭터가 상사라면, 대본은 이렇게 시작해요</b>"'+PT[c.substr(1,2)]+'"<span style="display:block;margin-top:8px">'+esc(AV[c.charAt(3)])+'</span><span style="display:block;margin-top:8px;color:var(--sub)">받는 것: 첫마디, 올해 한 일을 말하는 순서 3단계, 내년 계획 꺼내는 말, 피할 말 2개, 마무리 인사까지 한 장이에요.</span>';gRender(code,mood,c,m,f&&c==f.c&&m==f.m?'보내 준 사람, ':'');
     var gb=$('gBack'),isF=f&&f.id&&!f.back&&c==f.c&&m==f.m;gb.hidden=!isF;
     if(isF){var fn=NM(f.c,f.m).n,me=LAST&&LAST.nm?LAST.nm.n:NM(code,mood).n,sc=gScore(code,mood,c,m,CUR_REL).sc;gb.textContent='이 궁합 '+fn.split(' ').pop()+'에게 돌려보내기';
       gb.onclick=function(){var myId=(location.hash.match(/r=([0-9a-z]{5})/)||[])[1]||'';sendText('네 링크로 해 봤어! 나는 \''+me+'\'래. '+REL[CUR_REL].n+'로 보면 우리 궁합 '+sc+'점이래ㅋㅋ',sUrl('g','#g='+f.id+'-'+myId+'-'+CUR_REL),gb,INAPP?'복사했어요. 카톡방 입력창을 길게 눌러 붙여 넣어 주세요':'복사했어요. 카톡에 붙여 넣어 보세요');};}};
@@ -1528,7 +1530,7 @@ function tAwards(P){var fr={};P.forEach(function(x){qa(x).split('').forEach(func
   var best=-1e9,bestA=null,cur=[],used={};
   var go=function(j,sum){if(sum+(P.length-j)*50<=best)return;if(j==P.length){best=sum;bestA=cur.slice();return;}var i=ord[j];
     opt[i].forEach(function(o){if(used[o.ch])return;used[o.ch]=1;cur[i]=o.ch;go(j+1,sum+o.v);used[o.ch]=0;});cur[i]='';go(j+1,sum);};
-  go(0,0);return P.map(function(x,i){return bestA[i]?((x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[bestA[i]]||AW[bestA[i]]):['올해의 개근상','한 해 동안 한 번도 빠지지 않고 자리를 지켰어요.'];});}
+  go(0,0);return P.map(function(x,i){return bestA[i]?((x.a.charAt(0)=='Q'||QB[x.a])&&AWQ[bestA[i]]||AW[bestA[i]]):['올해의 숨은 기둥상','티는 안 났지만, 이 사람이 없는 날은 다들 알았어요.'];});}
 var TCUR=null;
 function tOpen(t,joined,quiet){
   if($('tSheet')&&!$('tSheet').hidden)tSheetClose(1);TCUR=t;tSave(t);history.replaceState(null,'',tHash(t));show('team');
