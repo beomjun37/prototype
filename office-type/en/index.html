@@ -304,6 +304,7 @@ h2{font-size:20px}
 .qcard .scene{margin:0 0 6px;min-height:0;font-size:23px}
 .opt.chosen{border-color:var(--accent);background:var(--accent-soft);transform:scale(.98)}
 .opt.chosen::before{background:var(--accent);color:var(--on)}
+.xqi{text-align:center;gap:10px}.xqi h2{margin:0;font-size:21px}.xqi p{margin:0;color:var(--sub);font-size:15px;line-height:1.55}.xqi .two{display:flex;justify-content:center;align-items:center;gap:14px;margin:6px 0}.xqi .two img{height:84px;image-rendering:pixelated}.xqi .two i{font-style:normal;font-size:26px;font-weight:800;color:var(--sub)}.xqi .who{font-size:17px;color:var(--ink)}.xqi .btn{margin-top:8px}
 .buddy{margin-top:auto;padding-top:20px;display:flex;align-items:flex-end;gap:10px}
 .buddy img{width:64px;flex:none;image-rendering:pixelated}
 .buddy>div{flex:1;min-width:0}
@@ -392,6 +393,7 @@ h2{font-size:20px}
   <div class="prog"><i id="pg"></i></div>
   <div class="week" id="week" aria-hidden="true"></div>
   <div class="qcard" id="qcard"><div class="qtime" id="qtime"></div><div class="scene" id="scene"></div></div>
+  <div class="qcard xqi" id="xqi" hidden></div>
   <div id="opts"></div>
   <div class="buddy" id="buddy" aria-live="polite"><img id="buddyAv" alt=""><div><div class="bname" id="buddyName"></div><div class="bubble" id="buddySay"></div></div></div>
 </section>
@@ -1116,7 +1118,17 @@ var SAY=['Good morning. Just pick whatever comes to mind.','Just pick what you u
 'Finally, it’s Friday.','Five more and you get your badge.','Almost there. Hang in there.','Almost time to go home.','Just two left.','It’s the last night. You’re nearly done.'];
 var BUDDY=[[1,'C'],[6,'N'],[11,'C'],[12,'N'],[15,'C'],[15,'C'],[15,'C']];
 var LOCK=false,RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function xqShow(){
+  var r=calc(),c=r.code,m=r.mood,ax=QX[st.xq[0]][0],c2=c,m2=m;
+  if(ax==4)m2=m=='C'?'N':'C';else c2=c.substr(0,ax)+(c[ax]==AX[ax].la?AX[ax].lb:AX[ax].la)+c.substr(ax+1);
+  var a=NM(c,m).n,b=NM(c2,m2).n,x=$('xqi');
+  $('qcard').hidden=true;$('opts').innerHTML='';x.hidden=false;$('qBack').hidden=false;$('qn').textContent='Almost badge time';$('pg').style.width=(Q.length-1)/Q.length*100+'%';
+  x.innerHTML='<h2>Wait, your badge is almost ready!</h2><p>HR just called. Looking at your answers this week, you’re split right between two characters.</p><div class="two"><img alt="" src="'+avatar(c,m)+'"><i>?</i><img alt="" src="'+avatar(c2,m2)+'"></div><p class="who"><b>'+a+'</b>, or <b>'+b+'</b>?</p><p>A few more answers will settle it. Questions left: '+st.xq.length+'.</p><button type="button" class="btn" id="xqGo">Keep going →</button>';
+  $('buddySay').textContent='You’re almost there. This is really the last stretch.';
+  $('xqGo').onclick=function(){render();window.scrollTo(0,0);};track('xq_intro');
+}
 function render(){
+  $('xqi').hidden=true;$('qcard').hidden=false;
   var bx=st.i>=Q.length,xj=st.i-Q.length,qi=bx?100+st.xq[xj]:ORDER[st.i],q=bx?QX[qi-100]:Q[qi],day=bx?6:WHEN[st.i][0];
   $('qn').textContent=bx?'Bonus '+(xj+1)+' / '+st.xq.length:(st.i+1)+' / '+Q.length;
   $('qBack').hidden=st.i===0;
@@ -1143,7 +1155,7 @@ function pick(qi,k){
   st.i++;
   if(st.i==10)track('q10');
   if(st.i==Q.length&&!st.xq){xqMake();if(st.xq.length)track('xq'+st.xq.length);}
-  if(st.i>=qTot())finish();else render();
+  if(st.i>=qTot())finish();else if(st.i==Q.length)xqShow();else render();
 }
 function calc(){
   var code='';
