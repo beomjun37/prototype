@@ -1101,7 +1101,7 @@ var YEAR_DX={BVHLN:'마감은 늘 아슬아슬했지만, 한 번도 펑크는 �
 var YEAR_D={D:'미리 끝내 둔 일 덕분에 팀이 여러 번 숨을 돌렸어요.',L:'마감 직전의 집중력으로 여러 번 팀을 구했어요. 그 대신 마감 전날 밤을 꼴딱 새운 날도 많았죠.'};
 var FRIEND=null,LAST=null;
 var st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,flip:[],xq:null,xa:[0,0,0,0,0]};
-function xqMake(){st.xq=[];st.xa=[0,0,0,0,0];QX.forEach(function(q,j){if(st.sc[q[0]]==2||st.sc[q[0]]==3)st.xq.push(j);});}
+function xqMake(){st.xq=[];st.xa=[0,0,0,0,0];var on={},n=0;QX.forEach(function(q,j){var ax=q[0];if(st.sc[ax]!=2&&st.sc[ax]!=3)return;if(!(ax in on))on[ax]=n++<3;if(on[ax])st.xq.push(j);});}
 function qTot(){return Q.length+(st.xq?st.xq.length:0);}
 function $(id){return document.getElementById(id);}
 function show(id){['intro','quiz','result','dev','team'].forEach(function(s){if($(s))$(s).hidden=s!=id;});window.scrollTo(0,0);if($('sbar'))$('sbar').hidden=true;}
