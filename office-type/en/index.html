@@ -234,7 +234,7 @@ h2{font-size:20px}
 #rLine{font-size:14.5px}
 .sting{margin:16px 18px 18px;border-radius:var(--r-md);padding:14px 16px 15px;background:var(--accent-soft);border:1px dashed color-mix(in srgb,var(--accent) 35%,transparent)}
 .sting small{letter-spacing:.02em}
-#saveImg{margin-top:16px!important}
+.ract{display:flex;gap:8px;margin-top:16px}.ract .btn{margin:0}.ract #share{flex:1.4}.ract #saveImg{flex:1}
 
 
 .fbanner{background:var(--inv-bg);color:var(--inv-ink);border-radius:var(--r-lg)}
@@ -411,15 +411,15 @@ h2{font-size:20px}
     <div class="sting"><small>The line that stings</small><p id="rSting"></p></div>
   </div>
   <div class="rnext" id="rNext" hidden><p id="rNextT"></p><button class="btn" id="rNextB" type="button"></button></div>
-  <button class="btn" id="saveImg" style="margin-top:14px">Save my badge as an image</button>
-  <div class="rtalk" id="rTalk"><small>Try saying this at your year-end review</small><p id="rTalkQ"></p><span>This line is matched to your character. Scripts matched to your boss are coming soon, under Match.</span></div>
+  <div class="ract"><button class="btn" id="share" type="button">Share</button><button class="btn ghost" id="saveImg" type="button">Save image</button></div>
+  <div class="rtalk" id="rTalk"><small>Try saying this at your year-end review</small><p id="rTalkQ"></p><span>This line is matched to your character.</span></div>
 
   <button type="button" class="thero" id="tHero"><span class="thero-av" id="tHeroAv"></span><b>Start a company with friends</b><span class="thero-s">Post one link in your group chat. Everyone who joins gets a seat, and you’ll see your company’s year in review.</span><span class="thero-go">Start our company →</span></button>
 
   <div class="rtabs" id="rTabs" role="tablist"><button type="button" role="tab" data-p="read" aria-selected="true">My readings</button><button type="button" role="tab" data-p="match" aria-selected="false">Matches</button></div>
   <div id="paneRead">
   <div class="sec">
-    <div class="sec-head"><h2 id="rListH">My 13 readings</h2><p class="sub" style="margin:0">Tap a title to open its reading.</p></div>
+    <div class="sec-head"><h2 id="rListH">My readings</h2><p class="sub" style="margin:0">Tap a title to open its reading.</p></div>
     <div class="list" id="rList"></div>
   </div>
   <button type="button" class="btn ghost" id="toMatch" style="margin-top:18px">Done reading? See my matches</button>
@@ -440,10 +440,9 @@ h2{font-size:20px}
     </div>
   </div>
 
-  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">Get a year-end review script</b><p class="sub" style="margin:6px 0 12px">Choose your boss’s character and we’ll lay out what order to say things in at your year-end review, and what to avoid saying.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">Get it for $0.99 (coming soon)</button><p class="sub" id="payNote" style="margin:8px 0 0;font-size:13px">It’s not open yet. Tapping won’t charge you. We’re just seeing how many people want it.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>It’s not open yet. Thanks for tapping. If enough people want it, we’ll open it. You haven’t been charged.</p></div></div>
+  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">Get a year-end review script</b><p class="sub" style="margin:6px 0 12px">Choose your boss’s character and we’ll lay out what order to say things in at your year-end review, and what to avoid saying.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn ghost" id="payBtn">I’d pay $0.99 for this</button><p class="sub" id="payNote" style="margin:8px 0 0;font-size:13px">It’s not open yet. Tapping won’t charge you. We’re just seeing how many people want it.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>It’s not open yet. Thanks for tapping. If enough people want it, we’ll open it. You haven’t been charged.</p></div></div>
   </div>
   <div class="memo"><img id="rMasAv" class="avatar sm" alt=""><div><b id="rMasName"></b><div class="sub">Done with your readings? Send this link to a coworker. Once they finish the test and send it back, you can both see your match.</div></div></div>
-  <button class="btn" id="share">Share my badge</button>
   <button class="btn ghost" id="again">Start over</button>
   <p class="note" style="margin-top:18px">This is a test just for fun. It’s not a real personality test or diagnosis, and your result may change with your mood that day.</p>
 </section>
@@ -475,7 +474,7 @@ h2{font-size:20px}
   <button class="btn ghost" id="imgShare" type="button" hidden>Share to your group chat or Instagram</button>
   <img id="imgPrev" alt="My badge image" style="display:block;width:72%;max-width:300px;margin:14px auto 0;border-radius:14px;border:1px solid var(--line)">
 </div></div>
-<div class="sbar" id="sbar" hidden><div class="sbar-in"><button class="btn" id="sbSave" type="button">Save image</button><button class="btn ghost" id="sbShare" type="button" data-ev="share">Send to a friend</button><button class="btn" id="sbFriend" type="button" hidden>Take it and see our match</button></div></div>
+<div class="sbar" id="sbar" hidden><div class="sbar-in"><button class="btn" id="sbShare" type="button" data-ev="share">Share</button><button class="btn ghost" id="sbSave" type="button">Save image</button><button class="btn" id="sbFriend" type="button" hidden>Take it and see our match</button></div></div>
 <div class="sheet-bg" id="rpBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rpT">
   <div class="sheet-grip"></div>
   <div class="sheet-head"><h3 id="rpT">Post this link in your group chat once</h3><button type="button" class="sheet-x" id="rpX" aria-label="Close">✕</button></div>
@@ -1180,7 +1179,7 @@ function finish(){
 
 function setFriendView(name){
   var on=!!name;$('result').classList.toggle('friend',on);
-  $('rListH').textContent=on?name+'\'s 13 readings':'My 13 readings';
+  $('rListH').textContent=on?name+'\'s readings':'My readings';
   if(on)rTab('read');['tHero','rTabs','toMatch','gCard','pay','saveImg','share','again','rTalk'].forEach(function(id){if($(id))$(id).hidden=on;});
   var mm=document.querySelector('#result .memo');if(mm)mm.hidden=on;
   $('fBanner').hidden=!on;

@@ -234,7 +234,7 @@ h2{font-size:20px}
 #rLine{font-size:14.5px}
 .sting{margin:16px 18px 18px;border-radius:var(--r-md);padding:14px 16px 15px;background:var(--accent-soft);border:1px dashed color-mix(in srgb,var(--accent) 35%,transparent)}
 .sting small{letter-spacing:.02em}
-#saveImg{margin-top:16px!important}
+.ract{display:flex;gap:8px;margin-top:16px}.ract .btn{margin:0}.ract #share{flex:1.4}.ract #saveImg{flex:1}
 
 /* 친구 배너: 다크에서도 눈부시지 않게 */
 .fbanner{background:var(--inv-bg);color:var(--inv-ink);border-radius:var(--r-lg)}
@@ -411,15 +411,15 @@ h2{font-size:20px}
     <div class="sting"><small>찔리는 한 줄</small><p id="rSting"></p></div>
   </div>
   <div class="rnext" id="rNext" hidden><p id="rNextT"></p><button class="btn" id="rNextB" type="button"></button></div>
-  <button class="btn" id="saveImg" style="margin-top:14px">사원증 이미지로 저장하기</button>
-  <div class="rtalk" id="rTalk"><small>올해 연말 면담에서 이렇게 말해 보세요</small><p id="rTalkQ"></p><span>내 캐릭터에 맞춘 한마디예요. 상사 캐릭터에 맞춘 대본은 궁합 보기 아래에서 준비하고 있어요.</span></div>
+  <div class="ract"><button class="btn" id="share" type="button">카톡으로 보내기</button><button class="btn ghost" id="saveImg" type="button">이미지 저장</button></div>
+  <div class="rtalk" id="rTalk"><small>올해 연말 면담에서 이렇게 말해 보세요</small><p id="rTalkQ"></p><span>내 캐릭터에 맞춘 한마디예요.</span></div>
 
   <button type="button" class="thero" id="tHero"><span class="thero-av" id="tHeroAv"></span><b>친구들이랑 회사 차리기</b><span class="thero-s">단톡방에 링크 하나만 올리면 들어온 사람마다 자리를 정해 주고, 우리 회사의 1년 결산을 보여 줘요.</span><span class="thero-go">우리 회사 차리기 →</span></button>
 
   <div class="rtabs" id="rTabs" role="tablist"><button type="button" role="tab" data-p="read" aria-selected="true">내 해설</button><button type="button" role="tab" data-p="match" aria-selected="false">궁합 보기</button></div>
   <div id="paneRead">
   <div class="sec">
-    <div class="sec-head"><h2 id="rListH">내 해설 13가지</h2><p class="sub" style="margin:0">제목을 누르면 풀이가 펼쳐져요.</p></div>
+    <div class="sec-head"><h2 id="rListH">내 해설</h2><p class="sub" style="margin:0">제목을 누르면 풀이가 펼쳐져요.</p></div>
     <div class="list" id="rList"></div>
   </div>
   <button type="button" class="btn ghost" id="toMatch" style="margin-top:18px">다 읽었으면 궁합 보러 가기</button>
@@ -440,10 +440,9 @@ h2{font-size:20px}
     </div>
   </div>
 
-  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn" id="payBtn">990원에 받아 보기 (준비 중)</button><p class="sub" id="payNote" style="margin:8px 0 0;font-size:13px">아직 열기 전이에요. 눌러도 결제되지 않아요. 얼마나 찾는지만 알아보고 있어요.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 열어 볼게요. 결제는 되지 않았어요.</p></div></div>
+  <div class="sec pay" id="pay"><div class="panel"><b class="pay-t">연말 면담 대본 받아 보기</b><p class="sub" style="margin:6px 0 12px">내 상사 캐릭터를 고르면, 연말 면담에서 어떤 순서로 말하면 좋은지와 피하면 좋은 말을 정리해 드려요.</p><p class="rtalk" id="payT" style="margin:0 0 12px;font-size:14.5px"></p><button type="button" class="btn ghost" id="payBtn">990원이면 받아 볼래요</button><p class="sub" id="payNote" style="margin:8px 0 0;font-size:13px">아직 열기 전이에요. 눌러도 결제되지 않아요. 얼마나 찾는지만 알아보고 있어요.</p><p class="sub" id="payMsg" style="margin:10px 0 0" hidden>아직 준비 중이에요. 눌러 줘서 고마워요. 찾는 분이 많으면 열어 볼게요. 결제는 되지 않았어요.</p></div></div>
   </div>
   <div class="memo"><img id="rMasAv" class="avatar sm" alt=""><div><b id="rMasName"></b><div class="sub">해설 다 읽었어요? 같이 일하는 동료한테 이 링크를 보내 봐요. 그 사람이 테스트를 끝내고 돌려보내 주면 우리 둘 궁합을 같이 볼 수 있어요.</div></div></div>
-  <button class="btn" id="share">카톡으로 내 사원증 보내기</button>
   <button class="btn ghost" id="again">처음부터 다시 하기</button>
   <p class="note" style="margin-top:18px">재미로 보는 테스트예요. 진짜 성격 검사나 진단이 아니고, 그날그날 기분에 따라 결과가 달라질 수 있어요.</p>
 </section>
@@ -475,7 +474,7 @@ h2{font-size:20px}
   <button class="btn ghost" id="imgShare" type="button" hidden>카톡·인스타로 바로 보내기</button>
   <img id="imgPrev" alt="내 사원증 이미지" style="display:block;width:72%;max-width:300px;margin:14px auto 0;border-radius:14px;border:1px solid var(--line)">
 </div></div>
-<div class="sbar" id="sbar" hidden><div class="sbar-in"><button class="btn" id="sbSave" type="button">이미지 저장</button><button class="btn ghost" id="sbShare" type="button" data-ev="share">친구에게 보내기</button><button class="btn" id="sbFriend" type="button" hidden>나도 해 보고 궁합 보기</button></div></div>
+<div class="sbar" id="sbar" hidden><div class="sbar-in"><button class="btn" id="sbShare" type="button" data-ev="share">카톡으로 보내기</button><button class="btn ghost" id="sbSave" type="button">이미지 저장</button><button class="btn" id="sbFriend" type="button" hidden>나도 해 보고 궁합 보기</button></div></div>
 <div class="sheet-bg" id="rpBg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rpT">
   <div class="sheet-grip"></div>
   <div class="sheet-head"><h3 id="rpT">단톡방에 이 링크를 한 번만 올려 주세요</h3><button type="button" class="sheet-x" id="rpX" aria-label="닫기">✕</button></div>
@@ -1181,7 +1180,7 @@ function finish(){
 /* 친구 링크로 들어온 화면: 남의 결과라는 게 보이게 바꾸고, 내 결과용 버튼은 숨긴다 */
 function setFriendView(name){
   var on=!!name;$('result').classList.toggle('friend',on);
-  $('rListH').textContent=on?name+'의 해설 13가지':'내 해설 13가지';
+  $('rListH').textContent=on?name+'의 해설':'내 해설';
   if(on)rTab('read');['tHero','rTabs','toMatch','gCard','pay','saveImg','share','again','rTalk'].forEach(function(id){if($(id))$(id).hidden=on;});
   var mm=document.querySelector('#result .memo');if(mm)mm.hidden=on;
   $('fBanner').hidden=!on;
