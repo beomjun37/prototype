@@ -2,7 +2,7 @@
 /*
  * office-type 문구 검수기 (샘플 · 초안)
  *
- * 사용: node tools/copy-lint.js [office-type/index.html 경로]
+ * 사용: node yumin/tools/copy-lint.js [office-type/index.html 경로]
  *
  * 하는 일: index.html 안의 결과 문구 사전(T, X, Y, PP, SCENE ...)을 읽어서
  *   1) 완전히 같은 문장이 둘 이상인지
@@ -20,7 +20,7 @@ const fs = require('fs');
 const vm = require('vm');
 const path = require('path');
 
-const FILE = process.argv[2] || path.join(__dirname, '..', 'office-type', 'index.html');
+const FILE = process.argv[2] || path.join(__dirname, '..', '..', 'office-type', 'index.html');
 
 const CFG = {
   siblingMax: 0.30,          // 같은 16유형 C/N 쌍의 평균 문장 일치율 상한
