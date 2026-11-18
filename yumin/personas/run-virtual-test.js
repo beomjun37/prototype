@@ -69,18 +69,22 @@ function simOriginal(persona, rand) {
       await page.click('#start');
       let guard = 0;
       while (await page.isVisible('#quiz') && guard++ < 40) {
+        // 화면이 다시 그려지는 중에는 기다린다(선택지 2개가 있고 잠금이 풀린 상태)
+        await page.waitForFunction(() => !LOCK && document.querySelectorAll('#opts .opt').length === 2 || !document.querySelector('#result').hidden, null, { timeout: 5000 });
+        if (!(await page.isVisible('#quiz'))) break;
         const info = await page.evaluate(() => {
           const qi = nextQ();
-          return qi < 0 ? null : { qi, axis: Q[qi][0], labels: Q[qi][2].map(o => o.split('|')[0]) };
+          return qi < 0 ? null : { qi, axis: Q[qi][0], labels: Q[qi][2].map(o => o.split('|')[0]), i: st.i };
         });
         if (!info) break;
         const k = rand() < p0(persona, info.axis) ? 0 : 1;
-        const btns = await page.$$('#opts .opt');
-        let idx = -1;
-        for (let b = 0; b < btns.length; b++) { const t = await btns[b].$eval('b', e => e.textContent); if (t === info.labels[k]) { idx = b; break; } }
-        if (idx < 0) throw new Error('선택지를 찾지 못함 ' + persona.id);
-        await btns[idx].click();
-        await page.waitForTimeout(8);
+        // 클릭은 페이지 안에서 한 번에 처리해서 요소가 바뀌는 경합을 피한다
+        const ok = await page.evaluate(label => {
+          const b = Array.from(document.querySelectorAll('#opts .opt')).find(x => x.querySelector('b').textContent === label);
+          if (!b) return false; b.click(); return true;
+        }, info.labels[k]);
+        if (!ok) throw new Error('선택지를 찾지 못함 ' + persona.id);
+        await page.waitForFunction(i => st.i !== i || !document.querySelector('#result').hidden, info.i, { timeout: 5000 });
       }
       await page.waitForSelector('#result:not([hidden])', { timeout: 5000 });
       const res = await page.evaluate(() => ({
