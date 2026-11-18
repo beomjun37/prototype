@@ -1600,6 +1600,7 @@ window.finish=function(){
   st.sc=[0,1,2,3,4].map(function(a){var A=v.A[a],B=v.N[a]-A;return A>=NEED?5-B:A;});
   var r=calc();
   var sc=st.sc.slice(),sw=st.sw||0;
+  track('bd'+sc.filter(function(v){return v==2||v==3;}).length);
   var hash='#r='+encId(r.code,r.mood,sc,sw);track(FRIEND?'friend_finish':'finish');track('ch'+(KEYS.indexOf(r.code+r.mood)+1));
   history.replaceState(null,'',hash);
   try{localStorage.setItem('oct_mine',hash);}catch(e){}
@@ -1617,7 +1618,7 @@ var _sr=window.showResult;
 window.showResult=function(code,mood,sc,sw){
   _sr(code,mood,sc,sw);
   var L=[];[0,1,2,3,4].forEach(function(a){if(sc[a]==2||sc[a]==3)L.push(BOUND[a]);});
-  var list=$('rList');if(!list||!L.length)return;
+  var list=$('rList');if(!list||L.length<2)return;
   var first=list.querySelector('.it');if(!first)return;
   var d=document.createElement('div');d.className='it';
   d.innerHTML='<button class="ith"><img class="ic" alt="" src="'+ICON.lightbulb+'"><span><small>상황에 따라 달라요</small><b>한쪽으로 단정하기 어려운 부분</b></span><i>▾</i></button><div class="itb" hidden><p>이번 답변에서 아래 부분은 거의 반반으로 나왔어요.</p>'+L.map(function(t){return '<p>'+t+'</p>';}).join('')+'</div>';

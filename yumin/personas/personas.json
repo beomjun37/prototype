@@ -1,0 +1,4306 @@
+{
+ "note": "가상 인물 100명. 실제 사람과 무관하며, 시험용 응답 모델의 입력으로만 쓴다.",
+ "seed": 20261118,
+ "personas": [
+  {
+   "id": "P001",
+   "name": "김지호",
+   "role": "구매",
+   "years": 16,
+   "title": "차장",
+   "age": 42,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "애매형",
+   "trueType": "BRHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.61
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.6
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.54
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.71
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.8
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "구매 16년차. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는, 마감 일주일 전에 끝내 두는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P002",
+   "name": "정수아",
+   "role": "생산·품질",
+   "years": 3,
+   "title": "사원",
+   "age": 27,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "QVHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.78
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.71
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.67
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.79
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.77
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "생산·품질 3년차. 마감 일주일 전에 끝내 두는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P003",
+   "name": "장예린",
+   "role": "구매",
+   "years": 3,
+   "title": "사원",
+   "age": 26,
+   "company": "공공기관",
+   "workstyle": "재택",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "BVWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.86
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.94
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.85
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.83
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.94
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "구매 3년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 회식 제안이 오면 메뉴부터 찾아보는 편이다."
+  },
+  {
+   "id": "P004",
+   "name": "권현우",
+   "role": "개발",
+   "years": 12,
+   "title": "차장",
+   "age": 35,
+   "company": "공공기관",
+   "workstyle": "하이브리드",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "뚜렷형",
+   "trueType": "QRWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.93
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.87
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.89
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.93
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.93
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.08,
+   "intro": "개발 12년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 마감 일주일 전에 끝내 두는 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P005",
+   "name": "윤보람",
+   "role": "인사",
+   "years": 16,
+   "title": "차장",
+   "age": 43,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "QRWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.52
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.74
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.59
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.75
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.54
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "인사 16년차. 마감 날 아침에 몰아서 하는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P006",
+   "name": "이지안",
+   "role": "연구개발",
+   "years": 8,
+   "title": "과장",
+   "age": 32,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "보통형",
+   "trueType": "BVWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.75
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.69
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.71
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.71
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.7
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0.08,
+   "intro": "연구개발 8년차. 회식 제안이 오면 메뉴부터 찾아보는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P007",
+   "name": "장지안",
+   "role": "마케팅",
+   "years": 11,
+   "title": "과장",
+   "age": 36,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "QRHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.93
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.83
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.94
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.89
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.9
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "마케팅 11년차. 실수를 보면 괜찮다고 먼저 말해 주는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P008",
+   "name": "임지안",
+   "role": "생산·품질",
+   "years": 10,
+   "title": "과장",
+   "age": 37,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "BRWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.69
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.77
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.73
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.75
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.71
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.12,
+   "intro": "생산·품질 10년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 마감 날 아침에 몰아서 하는 사람. 실수를 보면 뭐가 문제였는지부터 짚는 편이다."
+  },
+  {
+   "id": "P009",
+   "name": "정건우",
+   "role": "구매",
+   "years": 8,
+   "title": "과장",
+   "age": 34,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "애매형",
+   "trueType": "BRWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.79
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.57
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.73
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.62
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.61
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "구매 8년차. 회식 제안이 오면 메뉴부터 찾아보는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P010",
+   "name": "윤하준",
+   "role": "재무",
+   "years": 2,
+   "title": "사원",
+   "age": 25,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "QVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.92
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.9
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.91
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.84
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.82
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.06,
+   "intro": "재무 2년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 실수를 보면 괜찮다고 먼저 말해 주는 사람. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P011",
+   "name": "김로운",
+   "role": "마케팅",
+   "years": 4,
+   "title": "대리",
+   "age": 30,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "애매형",
+   "trueType": "QVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.54
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.75
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.75
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.62
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.52
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "마케팅 4년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 실수를 보면 괜찮다고 먼저 말해 주는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P012",
+   "name": "임아린",
+   "role": "인사",
+   "years": 2,
+   "title": "사원",
+   "age": 25,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "보통형",
+   "trueType": "BVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.77
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.67
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.65
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "인사 2년차. 회식 제안이 오면 메뉴부터 찾아보는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P013",
+   "name": "조지안",
+   "role": "개발",
+   "years": 2,
+   "title": "사원",
+   "age": 26,
+   "company": "공공기관",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "BRHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.85
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.87
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.85
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.84
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.89
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "개발 2년차. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 회식 제안이 오면 메뉴부터 찾아보는 편이다."
+  },
+  {
+   "id": "P014",
+   "name": "서태윤",
+   "role": "연구개발",
+   "years": 11,
+   "title": "과장",
+   "age": 37,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "보통형",
+   "trueType": "BVHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.77
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.8
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.7
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.71
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "연구개발 11년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 편이다."
+  },
+  {
+   "id": "P015",
+   "name": "황주원",
+   "role": "영업",
+   "years": 9,
+   "title": "과장",
+   "age": 36,
+   "company": "공공기관",
+   "workstyle": "하이브리드",
+   "entry": "회의 시작 전 5분",
+   "profile": "보통형",
+   "trueType": "BRHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.74
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.67
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.79
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.73
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "영업 9년차. 실수를 보면 괜찮다고 먼저 말해 주는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 마감 날 아침에 몰아서 하는 편이다."
+  },
+  {
+   "id": "P016",
+   "name": "황예린",
+   "role": "생산·품질",
+   "years": 9,
+   "title": "과장",
+   "age": 36,
+   "company": "공공기관",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "애매형",
+   "trueType": "QVWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.57
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.78
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.53
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.55
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.78
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "생산·품질 9년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P017",
+   "name": "정태윤",
+   "role": "재무",
+   "years": 11,
+   "title": "과장",
+   "age": 35,
+   "company": "공공기관",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "BVWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.66
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.67
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.76
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.66
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.76
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "재무 11년차. 실수를 보면 뭐가 문제였는지부터 짚는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P018",
+   "name": "류재윤",
+   "role": "생산·품질",
+   "years": 12,
+   "title": "차장",
+   "age": 35,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "BRWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.88
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.86
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.91
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.84
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.85
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.05,
+   "intro": "생산·품질 12년차. 실수를 보면 뭐가 문제였는지부터 짚는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P019",
+   "name": "송은호",
+   "role": "전략기획",
+   "years": 4,
+   "title": "대리",
+   "age": 27,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "애매형",
+   "trueType": "QVHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.58
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.71
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.6
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.59
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.75
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "전략기획 4년차. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P020",
+   "name": "신소율",
+   "role": "재무",
+   "years": 16,
+   "title": "차장",
+   "age": 42,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "QRHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.94
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.9
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.88
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.87
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.84
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "재무 16년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 실수를 보면 괜찮다고 먼저 말해 주는 편이다."
+  },
+  {
+   "id": "P021",
+   "name": "조건우",
+   "role": "인사",
+   "years": 10,
+   "title": "과장",
+   "age": 35,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "QRHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.91
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.86
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.93
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.88
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.84
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "인사 10년차. 실수를 보면 괜찮다고 먼저 말해 주는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 마감 날 아침에 몰아서 하는 편이다."
+  },
+  {
+   "id": "P022",
+   "name": "황지안",
+   "role": "연구개발",
+   "years": 3,
+   "title": "사원",
+   "age": 26,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "BRWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.9
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.83
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.93
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.92
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.86
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.1,
+   "intro": "연구개발 3년차. 실수를 보면 뭐가 문제였는지부터 짚는, 마감 일주일 전에 끝내 두는 사람. 회식 제안이 오면 메뉴부터 찾아보는 편이다."
+  },
+  {
+   "id": "P023",
+   "name": "안윤아",
+   "role": "개발",
+   "years": 11,
+   "title": "과장",
+   "age": 34,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "뚜렷형",
+   "trueType": "BVHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.92
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.84
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.94
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.83
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.82
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "개발 11년차. 실수를 보면 괜찮다고 먼저 말해 주는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P024",
+   "name": "송나연",
+   "role": "마케팅",
+   "years": 15,
+   "title": "차장",
+   "age": 41,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "보통형",
+   "trueType": "QVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.8
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.68
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.71
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.79
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.78
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.1,
+   "intro": "마케팅 15년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 마감 날 아침에 몰아서 하는 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P025",
+   "name": "최민준",
+   "role": "디자인",
+   "years": 6,
+   "title": "대리",
+   "age": 31,
+   "company": "공공기관",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "뚜렷형",
+   "trueType": "BRHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.92
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.94
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.93
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.94
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.93
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "디자인 6년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 마감 일주일 전에 끝내 두는 사람. 실수를 보면 괜찮다고 먼저 말해 주는 편이다."
+  },
+  {
+   "id": "P026",
+   "name": "강현우",
+   "role": "마케팅",
+   "years": 11,
+   "title": "과장",
+   "age": 36,
+   "company": "중견기업",
+   "workstyle": "재택",
+   "entry": "회의 시작 전 5분",
+   "profile": "보통형",
+   "trueType": "QVWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.79
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.66
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.77
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.67
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.71
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "마케팅 11년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 편이다."
+  },
+  {
+   "id": "P027",
+   "name": "김지민",
+   "role": "구매",
+   "years": 5,
+   "title": "대리",
+   "age": 31,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "QRWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.6
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.55
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.53
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.71
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.77
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "구매 5년차. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는, 마감 일주일 전에 끝내 두는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P028",
+   "name": "최이든",
+   "role": "개발",
+   "years": 3,
+   "title": "사원",
+   "age": 30,
+   "company": "중견기업",
+   "workstyle": "재택",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "애매형",
+   "trueType": "QVWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.8
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.57
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.75
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.61
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.6
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "개발 3년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P029",
+   "name": "임승민",
+   "role": "전략기획",
+   "years": 5,
+   "title": "대리",
+   "age": 28,
+   "company": "대기업",
+   "workstyle": "재택",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "보통형",
+   "trueType": "QRWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.76
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.76
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.69
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.7
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.7
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "전략기획 5년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 마감 날 아침에 몰아서 하는 편이다."
+  },
+  {
+   "id": "P030",
+   "name": "김세아",
+   "role": "구매",
+   "years": 14,
+   "title": "차장",
+   "age": 37,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "BVWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.92
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.95
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.89
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.89
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.9
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "구매 14년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 편이다."
+  },
+  {
+   "id": "P031",
+   "name": "강은호",
+   "role": "고객지원",
+   "years": 20,
+   "title": "부장",
+   "age": 44,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "뚜렷형",
+   "trueType": "QRWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.83
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.92
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.88
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.89
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.92
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "고객지원 20년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P032",
+   "name": "장도윤",
+   "role": "마케팅",
+   "years": 9,
+   "title": "과장",
+   "age": 36,
+   "company": "스타트업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "BRHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.76
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.53
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.61
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.58
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.71
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.09,
+   "intro": "마케팅 9년차. 회식 제안이 오면 메뉴부터 찾아보는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P033",
+   "name": "윤서연",
+   "role": "전략기획",
+   "years": 2,
+   "title": "사원",
+   "age": 27,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "BVWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.88
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.85
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.87
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.87
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.82
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0.07,
+   "intro": "전략기획 2년차. 회식 제안이 오면 메뉴부터 찾아보는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P034",
+   "name": "안지호",
+   "role": "재무",
+   "years": 3,
+   "title": "사원",
+   "age": 28,
+   "company": "공공기관",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "애매형",
+   "trueType": "BVWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.53
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.73
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.6
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.53
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "재무 3년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P035",
+   "name": "송다은",
+   "role": "영업",
+   "years": 8,
+   "title": "과장",
+   "age": 35,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "보통형",
+   "trueType": "QVWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.72
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.66
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.68
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.75
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.74
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "영업 8년차. 마감 날 아침에 몰아서 하는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 편이다."
+  },
+  {
+   "id": "P036",
+   "name": "장서연",
+   "role": "생산·품질",
+   "years": 2,
+   "title": "사원",
+   "age": 25,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "QRWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.55
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.53
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.8
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.56
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.74
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "생산·품질 2년차. 실수를 보면 뭐가 문제였는지부터 짚는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P037",
+   "name": "강소율",
+   "role": "고객지원",
+   "years": 6,
+   "title": "대리",
+   "age": 29,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "보통형",
+   "trueType": "QVWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.76
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.67
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.7
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.77
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.67
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "고객지원 6년차. 마감 날 아침에 몰아서 하는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 실수를 보면 뭐가 문제였는지부터 짚는 편이다."
+  },
+  {
+   "id": "P038",
+   "name": "안하람",
+   "role": "마케팅",
+   "years": 5,
+   "title": "대리",
+   "age": 32,
+   "company": "공공기관",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "전축 애매형",
+   "trueType": "QVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.59
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.56
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.59
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.52
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.56
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "마케팅 5년차. 충전 방식이 그날 일정에 따라 달라지는, 일에 따라 기준과 사람 사정 사이에서 흔들리는 사람. 눈앞의 일과 큰 그림 사이를 오가는 편이다."
+  },
+  {
+   "id": "P039",
+   "name": "최지우",
+   "role": "법무",
+   "years": 17,
+   "title": "부장",
+   "age": 41,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "BVHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.74
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.74
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.74
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.67
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.75
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "법무 17년차. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P040",
+   "name": "송주원",
+   "role": "재무",
+   "years": 12,
+   "title": "차장",
+   "age": 39,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "BRWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.61
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.58
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.74
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.79
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.56
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "재무 12년차. 마감 일주일 전에 끝내 두는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P041",
+   "name": "서이든",
+   "role": "인사",
+   "years": 11,
+   "title": "과장",
+   "age": 36,
+   "company": "대기업",
+   "workstyle": "재택",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "BVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.83
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.9
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.85
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.83
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.91
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "인사 11년차. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 실수를 보면 괜찮다고 먼저 말해 주는 편이다."
+  },
+  {
+   "id": "P042",
+   "name": "이지민",
+   "role": "연구개발",
+   "years": 10,
+   "title": "과장",
+   "age": 35,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "QRHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.66
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.76
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.71
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.76
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.72
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "연구개발 10년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 마감 일주일 전에 끝내 두는 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P043",
+   "name": "장윤아",
+   "role": "법무",
+   "years": 9,
+   "title": "과장",
+   "age": 32,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "애매형",
+   "trueType": "BVHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.79
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.71
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.52
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.58
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.56
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "법무 9년차. 회식 제안이 오면 메뉴부터 찾아보는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P044",
+   "name": "송하준",
+   "role": "고객지원",
+   "years": 17,
+   "title": "부장",
+   "age": 44,
+   "company": "스타트업",
+   "workstyle": "하이브리드",
+   "entry": "회의 시작 전 5분",
+   "profile": "뚜렷형",
+   "trueType": "BVHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.87
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.93
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.83
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.88
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.94
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "고객지원 17년차. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P045",
+   "name": "한이레",
+   "role": "전략기획",
+   "years": 2,
+   "title": "사원",
+   "age": 28,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "QVHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.95
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.9
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.92
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.82
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.94
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "전략기획 2년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 실수를 보면 괜찮다고 먼저 말해 주는 편이다."
+  },
+  {
+   "id": "P046",
+   "name": "박은호",
+   "role": "전략기획",
+   "years": 3,
+   "title": "사원",
+   "age": 29,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "뚜렷형",
+   "trueType": "QVWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.94
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.83
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.86
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.91
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.93
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "전략기획 3년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P047",
+   "name": "이다현",
+   "role": "영업",
+   "years": 6,
+   "title": "대리",
+   "age": 33,
+   "company": "스타트업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "뚜렷형",
+   "trueType": "QVWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.85
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.84
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.83
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.84
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.93
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "영업 6년차. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P048",
+   "name": "송건우",
+   "role": "생산·품질",
+   "years": 5,
+   "title": "대리",
+   "age": 31,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "애매형",
+   "trueType": "BVWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.55
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.74
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.8
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.58
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.58
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "생산·품질 5년차. 실수를 보면 뭐가 문제였는지부터 짚는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P049",
+   "name": "서수아",
+   "role": "구매",
+   "years": 8,
+   "title": "과장",
+   "age": 31,
+   "company": "대기업",
+   "workstyle": "재택",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "BRWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.52
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.59
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.6
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.78
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.78
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "구매 8년차. 마감 날 아침에 몰아서 하는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P050",
+   "name": "오현우",
+   "role": "생산·품질",
+   "years": 12,
+   "title": "차장",
+   "age": 36,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "BVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.8
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.56
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.78
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.5
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.56
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "생산·품질 12년차. 회식 제안이 오면 메뉴부터 찾아보는, 실수를 보면 괜찮다고 먼저 말해 주는 사람. 눈앞의 일과 큰 그림 사이를 오가는 편이다."
+  },
+  {
+   "id": "P051",
+   "name": "임나연",
+   "role": "디자인",
+   "years": 4,
+   "title": "대리",
+   "age": 28,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "보통형",
+   "trueType": "BVWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.66
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.74
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.69
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.79
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.79
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "디자인 4년차. 마감 일주일 전에 끝내 두는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P052",
+   "name": "신시우",
+   "role": "고객지원",
+   "years": 10,
+   "title": "과장",
+   "age": 35,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "BVHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.87
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.86
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.88
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.94
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.88
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "고객지원 10년차. 마감 날 아침에 몰아서 하는, 실수를 보면 괜찮다고 먼저 말해 주는 사람. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 편이다."
+  },
+  {
+   "id": "P053",
+   "name": "전하윤",
+   "role": "디자인",
+   "years": 13,
+   "title": "차장",
+   "age": 38,
+   "company": "대기업",
+   "workstyle": "재택",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "QVWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.68
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.72
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.73
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.69
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.66
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "디자인 13년차. 실수를 보면 뭐가 문제였는지부터 짚는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P054",
+   "name": "황건우",
+   "role": "마케팅",
+   "years": 17,
+   "title": "부장",
+   "age": 40,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "QRHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.87
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.92
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.85
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.94
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.87
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "마케팅 17년차. 마감 일주일 전에 끝내 두는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 편이다."
+  },
+  {
+   "id": "P055",
+   "name": "권준서",
+   "role": "개발",
+   "years": 18,
+   "title": "부장",
+   "age": 43,
+   "company": "스타트업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "뚜렷형",
+   "trueType": "QRWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.93
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.92
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.83
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.91
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.88
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0.08,
+   "intro": "개발 18년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 마감 날 아침에 몰아서 하는 편이다."
+  },
+  {
+   "id": "P056",
+   "name": "윤지민",
+   "role": "디자인",
+   "years": 18,
+   "title": "부장",
+   "age": 44,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "BRHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.77
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.65
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.69
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.71
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.72
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "디자인 18년차. 회식 제안이 오면 메뉴부터 찾아보는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P057",
+   "name": "신주원",
+   "role": "영업",
+   "years": 5,
+   "title": "대리",
+   "age": 32,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "회의 시작 전 5분",
+   "profile": "뚜렷형",
+   "trueType": "BRWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.86
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.87
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.88
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.92
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.83
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "영업 5년차. 마감 날 아침에 몰아서 하는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P058",
+   "name": "한하윤",
+   "role": "구매",
+   "years": 3,
+   "title": "사원",
+   "age": 30,
+   "company": "스타트업",
+   "workstyle": "하이브리드",
+   "entry": "회의 시작 전 5분",
+   "profile": "애매형",
+   "trueType": "QRWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.59
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.79
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.58
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.52
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.71
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "구매 3년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P059",
+   "name": "오다은",
+   "role": "연구개발",
+   "years": 6,
+   "title": "대리",
+   "age": 29,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "애매형",
+   "trueType": "QRHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.73
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.51
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.57
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.53
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.77
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "연구개발 6년차. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P060",
+   "name": "정채원",
+   "role": "법무",
+   "years": 9,
+   "title": "과장",
+   "age": 34,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "전축 애매형",
+   "trueType": "BVHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.53
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.55
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.58
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.57
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.55
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.07,
+   "intro": "법무 9년차. 일에 따라 기준과 사람 사정 사이에서 흔들리는, 일에 따라 미리 하기도 몰아서 하기도 하는 사람. 눈앞의 일과 큰 그림 사이를 오가는 편이다."
+  },
+  {
+   "id": "P061",
+   "name": "전이든",
+   "role": "생산·품질",
+   "years": 1,
+   "title": "사원",
+   "age": 26,
+   "company": "스타트업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "뚜렷형",
+   "trueType": "BVWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.89
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.9
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.83
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.9
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.85
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "생산·품질 1년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 마감 날 아침에 몰아서 하는 사람. 회식 제안이 오면 메뉴부터 찾아보는 편이다."
+  },
+  {
+   "id": "P062",
+   "name": "한로운",
+   "role": "영업",
+   "years": 3,
+   "title": "사원",
+   "age": 29,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "애매형",
+   "trueType": "QRHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.58
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.52
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.6
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.76
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "영업 3년차. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P063",
+   "name": "전로운",
+   "role": "전략기획",
+   "years": 4,
+   "title": "대리",
+   "age": 30,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "애매형",
+   "trueType": "QRHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.54
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.77
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.56
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.55
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.76
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "전략기획 4년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P064",
+   "name": "전서준",
+   "role": "구매",
+   "years": 9,
+   "title": "과장",
+   "age": 34,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "애매형",
+   "trueType": "QVWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.73
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.51
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.77
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.54
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.59
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "구매 9년차. 실수를 보면 뭐가 문제였는지부터 짚는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 그날 컨디션에 따라 걱정이 커졌다 줄었다 하는 편이다."
+  },
+  {
+   "id": "P065",
+   "name": "강시우",
+   "role": "전략기획",
+   "years": 11,
+   "title": "과장",
+   "age": 35,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "보통형",
+   "trueType": "QRHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.67
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.79
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.76
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.78
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.69
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "전략기획 11년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 마감 날 아침에 몰아서 하는 사람. 실수를 보면 괜찮다고 먼저 말해 주는 편이다."
+  },
+  {
+   "id": "P066",
+   "name": "오지우",
+   "role": "전략기획",
+   "years": 3,
+   "title": "사원",
+   "age": 27,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "BRHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.82
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.92
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.85
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.93
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.93
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "전략기획 3년차. 마감 날 아침에 몰아서 하는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P067",
+   "name": "전태윤",
+   "role": "법무",
+   "years": 6,
+   "title": "대리",
+   "age": 32,
+   "company": "스타트업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "뚜렷형",
+   "trueType": "QRWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.82
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.9
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.86
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.91
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.87
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "법무 6년차. 마감 날 아침에 몰아서 하는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P068",
+   "name": "류승민",
+   "role": "법무",
+   "years": 17,
+   "title": "부장",
+   "age": 43,
+   "company": "공공기관",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "QVHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.85
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.95
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.89
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.86
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.89
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "법무 17년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 실수를 보면 괜찮다고 먼저 말해 주는 사람. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 편이다."
+  },
+  {
+   "id": "P069",
+   "name": "송승민",
+   "role": "구매",
+   "years": 15,
+   "title": "차장",
+   "age": 40,
+   "company": "공공기관",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "애매형",
+   "trueType": "BVHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.59
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.58
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.52
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.72
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.79
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "구매 15년차. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는, 마감 날 아침에 몰아서 하는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P070",
+   "name": "박하람",
+   "role": "전략기획",
+   "years": 10,
+   "title": "과장",
+   "age": 34,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "애매형",
+   "trueType": "QVHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.57
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.71
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.78
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.6
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.56
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "전략기획 10년차. 실수를 보면 괜찮다고 먼저 말해 주는, 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 사람. 일에 따라 미리 하기도 몰아서 하기도 하는 편이다."
+  },
+  {
+   "id": "P071",
+   "name": "신가람",
+   "role": "영업",
+   "years": 2,
+   "title": "사원",
+   "age": 26,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "QVHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.57
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.79
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.62
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.52
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.08,
+   "intro": "영업 2년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P072",
+   "name": "강보람",
+   "role": "개발",
+   "years": 7,
+   "title": "과장",
+   "age": 33,
+   "company": "중견기업",
+   "workstyle": "재택",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "애매형",
+   "trueType": "QRHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.76
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.61
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.57
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.7
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.61
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "개발 7년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 마감 일주일 전에 끝내 두는 사람. 눈앞의 일과 큰 그림 사이를 오가는 편이다."
+  },
+  {
+   "id": "P073",
+   "name": "한주원",
+   "role": "생산·품질",
+   "years": 12,
+   "title": "차장",
+   "age": 37,
+   "company": "스타트업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "뚜렷형",
+   "trueType": "QVWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.89
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.86
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.91
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.91
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.93
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "생산·품질 12년차. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 마감 날 아침에 몰아서 하는 편이다."
+  },
+  {
+   "id": "P074",
+   "name": "임서준",
+   "role": "마케팅",
+   "years": 9,
+   "title": "과장",
+   "age": 36,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "애매형",
+   "trueType": "BRHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.73
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.53
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.6
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.54
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "마케팅 9년차. 회식 제안이 오면 메뉴부터 찾아보는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P075",
+   "name": "이주원",
+   "role": "법무",
+   "years": 12,
+   "title": "차장",
+   "age": 35,
+   "company": "스타트업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "QVWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.62
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.6
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.72
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.52
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.71
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.11,
+   "intro": "법무 12년차. 실수를 보면 뭐가 문제였는지부터 짚는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P076",
+   "name": "송지우",
+   "role": "전략기획",
+   "years": 12,
+   "title": "차장",
+   "age": 37,
+   "company": "스타트업",
+   "workstyle": "출근",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "QRHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.72
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.69
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.79
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.68
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.68
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "전략기획 12년차. 실수를 보면 괜찮다고 먼저 말해 주는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P077",
+   "name": "윤시현",
+   "role": "구매",
+   "years": 9,
+   "title": "과장",
+   "age": 34,
+   "company": "스타트업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "보통형",
+   "trueType": "QRWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.72
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.72
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.77
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.76
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.08,
+   "intro": "구매 9년차. 마감 일주일 전에 끝내 두는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P078",
+   "name": "김윤아",
+   "role": "인사",
+   "years": 14,
+   "title": "차장",
+   "age": 40,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "전축 애매형",
+   "trueType": "QVHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.54
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.54
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.54
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.58
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.51
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.11,
+   "intro": "인사 14년차. 일에 따라 미리 하기도 몰아서 하기도 하는, 충전 방식이 그날 일정에 따라 달라지는 사람. 눈앞의 일과 큰 그림 사이를 오가는 편이다."
+  },
+  {
+   "id": "P079",
+   "name": "안보람",
+   "role": "생산·품질",
+   "years": 2,
+   "title": "사원",
+   "age": 25,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "퇴근길 지하철",
+   "profile": "보통형",
+   "trueType": "BRWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.66
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.69
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.75
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.71
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0,
+   "intro": "생산·품질 2년차. 실수를 보면 뭐가 문제였는지부터 짚는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P080",
+   "name": "박윤아",
+   "role": "구매",
+   "years": 13,
+   "title": "차장",
+   "age": 39,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "BRHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.92
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.92
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.9
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.88
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.82
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.09,
+   "intro": "구매 13년차. 회식 제안이 오면 메뉴부터 찾아보는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 실수를 보면 괜찮다고 먼저 말해 주는 편이다."
+  },
+  {
+   "id": "P081",
+   "name": "한보람",
+   "role": "개발",
+   "years": 11,
+   "title": "과장",
+   "age": 38,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "보통형",
+   "trueType": "BRHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.75
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.79
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.68
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.78
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.69
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "개발 11년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 마감 날 아침에 몰아서 하는 사람. 회식 제안이 오면 메뉴부터 찾아보는 편이다."
+  },
+  {
+   "id": "P082",
+   "name": "안준서",
+   "role": "개발",
+   "years": 10,
+   "title": "과장",
+   "age": 35,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "보통형",
+   "trueType": "BRWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.79
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.74
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.66
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.74
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "개발 10년차. 회식 제안이 오면 메뉴부터 찾아보는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P083",
+   "name": "오다현",
+   "role": "구매",
+   "years": 13,
+   "title": "차장",
+   "age": 36,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "보통형",
+   "trueType": "QRWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.73
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.67
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.66
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.65
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.7
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "구매 13년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P084",
+   "name": "안시우",
+   "role": "디자인",
+   "years": 2,
+   "title": "사원",
+   "age": 28,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "회의 시작 전 5분",
+   "profile": "보통형",
+   "trueType": "QRWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.79
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.68
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.75
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.78
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.69
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "디자인 2년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 마감 날 아침에 몰아서 하는 사람. 실수를 보면 뭐가 문제였는지부터 짚는 편이다."
+  },
+  {
+   "id": "P085",
+   "name": "박소은",
+   "role": "디자인",
+   "years": 11,
+   "title": "과장",
+   "age": 35,
+   "company": "공공기관",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "보통형",
+   "trueType": "BVWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.66
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.67
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.71
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.74
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.77
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.08,
+   "intro": "디자인 11년차. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는, 마감 날 아침에 몰아서 하는 사람. 실수를 보면 뭐가 문제였는지부터 짚는 편이다."
+  },
+  {
+   "id": "P086",
+   "name": "안현우",
+   "role": "인사",
+   "years": 7,
+   "title": "과장",
+   "age": 32,
+   "company": "중견기업",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "전축 애매형",
+   "trueType": "BVHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.58
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.54
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.53
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.51
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.53
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "인사 7년차. 충전 방식이 그날 일정에 따라 달라지는, 눈앞의 일과 큰 그림 사이를 오가는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P087",
+   "name": "서서준",
+   "role": "개발",
+   "years": 9,
+   "title": "과장",
+   "age": 36,
+   "company": "공공기관",
+   "workstyle": "하이브리드",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "보통형",
+   "trueType": "BRHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.7
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.75
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.78
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.67
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.68
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "개발 9년차. 실수를 보면 괜찮다고 먼저 말해 주는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 회식 제안이 오면 메뉴부터 찾아보는 편이다."
+  },
+  {
+   "id": "P088",
+   "name": "안지안",
+   "role": "영업",
+   "years": 3,
+   "title": "사원",
+   "age": 27,
+   "company": "대기업",
+   "workstyle": "재택",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "BRWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.93
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.93
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.92
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.89
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.92
+    }
+   ],
+   "carelessness": 0.2,
+   "desirability": 0.11,
+   "intro": "영업 3년차. 회식 제안이 오면 메뉴부터 찾아보는, 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는 사람. 실수를 보면 뭐가 문제였는지부터 짚는 편이다."
+  },
+  {
+   "id": "P089",
+   "name": "한시우",
+   "role": "고객지원",
+   "years": 6,
+   "title": "대리",
+   "age": 33,
+   "company": "스타트업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "QVWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.94
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.85
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.95
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.94
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.9
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.07,
+   "intro": "고객지원 6년차. 실수를 보면 뭐가 문제였는지부터 짚는, 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 사람. 마감 일주일 전에 끝내 두는 편이다."
+  },
+  {
+   "id": "P090",
+   "name": "황수아",
+   "role": "재무",
+   "years": 6,
+   "title": "대리",
+   "age": 29,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "애매형",
+   "trueType": "BVWDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.55
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.61
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.6
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.79
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.73
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.06,
+   "intro": "재무 6년차. 마감 일주일 전에 끝내 두는, 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 사람. 눈앞의 일과 큰 그림 사이를 오가는 편이다."
+  },
+  {
+   "id": "P091",
+   "name": "황세아",
+   "role": "개발",
+   "years": 19,
+   "title": "부장",
+   "age": 42,
+   "company": "대기업",
+   "workstyle": "출근",
+   "entry": "회의 시작 전 5분",
+   "profile": "보통형",
+   "trueType": "QVHDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.73
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.77
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.77
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.7
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.7
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "개발 19년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 실수를 보면 괜찮다고 먼저 말해 주는 사람. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 편이다."
+  },
+  {
+   "id": "P092",
+   "name": "한동하",
+   "role": "마케팅",
+   "years": 2,
+   "title": "사원",
+   "age": 28,
+   "company": "스타트업",
+   "workstyle": "출근",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "뚜렷형",
+   "trueType": "QVHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.83
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.83
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.91
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.86
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.85
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "마케팅 2년차. 실수를 보면 괜찮다고 먼저 말해 주는, 마감 일주일 전에 끝내 두는 사람. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는 편이다."
+  },
+  {
+   "id": "P093",
+   "name": "강다현",
+   "role": "인사",
+   "years": 10,
+   "title": "과장",
+   "age": 34,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "보통형",
+   "trueType": "QVHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.76
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.65
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.66
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.73
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.69
+    }
+   ],
+   "carelessness": 0.1,
+   "desirability": 0,
+   "intro": "인사 10년차. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한, 마감 날 아침에 몰아서 하는 사람. 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 편이다."
+  },
+  {
+   "id": "P094",
+   "name": "김준서",
+   "role": "디자인",
+   "years": 3,
+   "title": "사원",
+   "age": 28,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "애매형",
+   "trueType": "BVHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.6
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.72
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.55
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.56
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "디자인 3년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 실수를 보면 괜찮다고 먼저 말해 주는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  },
+  {
+   "id": "P095",
+   "name": "정시우",
+   "role": "구매",
+   "years": 7,
+   "title": "과장",
+   "age": 34,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "보통형",
+   "trueType": "BRWLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.74
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.66
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.67
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.79
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.79
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "구매 7년차. 마감 날 아침에 몰아서 하는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 회식 제안이 오면 메뉴부터 찾아보는 편이다."
+  },
+  {
+   "id": "P096",
+   "name": "정은호",
+   "role": "디자인",
+   "years": 11,
+   "title": "과장",
+   "age": 38,
+   "company": "중견기업",
+   "workstyle": "출근",
+   "entry": "단톡방 링크를 눌러서",
+   "profile": "애매형",
+   "trueType": "BRHLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.73
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.61
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.62
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.57
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.75
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "디자인 11년차. 상사의 \"잠깐 얘기 좀\"에도 별일 아니겠지 하는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P097",
+   "name": "임시현",
+   "role": "전략기획",
+   "years": 3,
+   "title": "사원",
+   "age": 29,
+   "company": "스타트업",
+   "workstyle": "하이브리드",
+   "entry": "회의 시작 전 5분",
+   "profile": "보통형",
+   "trueType": "QRHLN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "Q",
+     "strength": 0.68
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.67
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.75
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.68
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.7
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.06,
+   "intro": "전략기획 3년차. 실수를 보면 괜찮다고 먼저 말해 주는, 상사의 \"잠깐 얘기 좀\"에 가는 내내 대본을 쓰는 사람. 점심은 이어폰 끼고 혼자 먹는 쪽이 편한 편이다."
+  },
+  {
+   "id": "P098",
+   "name": "송지안",
+   "role": "마케팅",
+   "years": 15,
+   "title": "차장",
+   "age": 39,
+   "company": "중견기업",
+   "workstyle": "재택",
+   "entry": "점심 먹고 남은 15분",
+   "profile": "보통형",
+   "trueType": "BVHDC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.77
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "H",
+     "strength": 0.8
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.66
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.72
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0,
+   "intro": "마케팅 15년차. 실수를 보면 괜찮다고 먼저 말해 주는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는 편이다."
+  },
+  {
+   "id": "P099",
+   "name": "이시현",
+   "role": "마케팅",
+   "years": 6,
+   "title": "대리",
+   "age": 31,
+   "company": "대기업",
+   "workstyle": "재택",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "애매형",
+   "trueType": "BRWLC",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.72
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "R",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.57
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "L",
+     "strength": 0.53
+    },
+    {
+     "axis": "멘탈",
+     "pole": "C",
+     "strength": 0.52
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.11,
+   "intro": "마케팅 6년차. 새 일은 \"그래서 이번 주에 뭘 하죠?\"부터 묻는, 회식 제안이 오면 메뉴부터 찾아보는 사람. 일에 따라 기준과 사람 사정 사이에서 흔들리는 편이다."
+  },
+  {
+   "id": "P100",
+   "name": "박시우",
+   "role": "개발",
+   "years": 7,
+   "title": "과장",
+   "age": 32,
+   "company": "대기업",
+   "workstyle": "하이브리드",
+   "entry": "야근하다 쉬는 시간",
+   "profile": "애매형",
+   "trueType": "BVWDN",
+   "axes": [
+    {
+     "axis": "충전",
+     "pole": "B",
+     "strength": 0.59
+    },
+    {
+     "axis": "일을 보는 눈",
+     "pole": "V",
+     "strength": 0.73
+    },
+    {
+     "axis": "기준",
+     "pole": "W",
+     "strength": 0.7
+    },
+    {
+     "axis": "마감 리듬",
+     "pole": "D",
+     "strength": 0.56
+    },
+    {
+     "axis": "멘탈",
+     "pole": "N",
+     "strength": 0.58
+    }
+   ],
+   "carelessness": 0,
+   "desirability": 0.06,
+   "intro": "개발 7년차. 새 일은 \"이게 왜 필요한 거죠?\"부터 묻는, 실수를 보면 뭐가 문제였는지부터 짚는 사람. 충전 방식이 그날 일정에 따라 달라지는 편이다."
+  }
+ ]
+}
