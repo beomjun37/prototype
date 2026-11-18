@@ -1,0 +1,145 @@
+{
+ "source": "IPIP 50-item lexical Big-Five markers (ipip.ori.org), 20-item short form (Mini-IPIP 구성으로 추정)",
+ "items": [
+  {
+   "no": 1,
+   "domain": 1,
+   "key": "+",
+   "en": "Am the life of the party.",
+   "ko": "나는 각종 모임에 다니는 것을 즐긴다."
+  },
+  {
+   "no": 6,
+   "domain": 1,
+   "key": "-",
+   "en": "Don't talk a lot.",
+   "ko": "나는 말이 적은 편이다."
+  },
+  {
+   "no": 16,
+   "domain": 1,
+   "key": "-",
+   "en": "Keep in the background.",
+   "ko": "나는 나서지 않는 편이다."
+  },
+  {
+   "no": 31,
+   "domain": 1,
+   "key": "+",
+   "en": "Talk to a lot of different people at parties.",
+   "ko": "나는 모임에서 여러 사람들과 이야기를 나누는 편이다."
+  },
+  {
+   "no": 17,
+   "domain": 2,
+   "key": "+",
+   "en": "Sympathize with others' feelings.",
+   "ko": "나는 다른 사람들의 감정을 잘 공감한다."
+  },
+  {
+   "no": 22,
+   "domain": 2,
+   "key": "-",
+   "en": "Am not interested in other people's problems.",
+   "ko": "나는 다른 사람들의 개인적인 문제에 관심이 없다."
+  },
+  {
+   "no": 32,
+   "domain": 2,
+   "key": "-",
+   "en": "Am not really interested in others.",
+   "ko": "나는 다른 사람들에 대해 별로 관심이 없다."
+  },
+  {
+   "no": 42,
+   "domain": 2,
+   "key": "+",
+   "en": "Feel others' emotions.",
+   "ko": "나는 주변 다른 사람들의 감정을 잘 알아차린다."
+  },
+  {
+   "no": 18,
+   "domain": 3,
+   "key": "-",
+   "en": "Make a mess of things.",
+   "ko": "나는 물건들을 어질러 놓는 편이다."
+  },
+  {
+   "no": 23,
+   "domain": 3,
+   "key": "+",
+   "en": "Get chores done right away.",
+   "ko": "나는 자질구레한 일들은 금방금방 해치운다."
+  },
+  {
+   "no": 28,
+   "domain": 3,
+   "key": "-",
+   "en": "Often forget to put things back in their proper place.",
+   "ko": "나는 물건들을 제자리에 되놓은 것을 자주 잊는다."
+  },
+  {
+   "no": 33,
+   "domain": 3,
+   "key": "+",
+   "en": "Like order.",
+   "ko": "나는 질서정연한 것을 좋아한다."
+  },
+  {
+   "no": 9,
+   "domain": 4,
+   "key": "+",
+   "en": "Am relaxed most of the time.",
+   "ko": "나는 대체적으로 이완된 상태이다."
+  },
+  {
+   "no": 19,
+   "domain": 4,
+   "key": "+",
+   "en": "Seldom feel blue.",
+   "ko": "나는 거의 우울함을 느끼지 않는 편이다."
+  },
+  {
+   "no": 29,
+   "domain": 4,
+   "key": "-",
+   "en": "Get upset easily.",
+   "ko": "나는 쉽게 속이 상한다."
+  },
+  {
+   "no": 39,
+   "domain": 4,
+   "key": "-",
+   "en": "Have frequent mood swings.",
+   "ko": "나는 감정의 기복이 심하다."
+  },
+  {
+   "no": 10,
+   "domain": 5,
+   "key": "-",
+   "en": "Have difficulty understanding abstract ideas.",
+   "ko": "나는 추상적인 것을 잘 이해하지 못한다."
+  },
+  {
+   "no": 15,
+   "domain": 5,
+   "key": "+",
+   "en": "Have a vivid imagination.",
+   "ko": "나는 생생한 상상력을 가지고 있다."
+  },
+  {
+   "no": 20,
+   "domain": 5,
+   "key": "-",
+   "en": "Am not interested in abstract ideas.",
+   "ko": "나는 복잡한 것은 질색이다."
+  },
+  {
+   "no": 30,
+   "domain": 5,
+   "key": "-",
+   "en": "Do not have a good imagination.",
+   "ko": "나는 상상력이 좋지 않다."
+  }
+ ]
+}
