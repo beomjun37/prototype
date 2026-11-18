@@ -1,0 +1,4504 @@
+{
+ "rows": [
+  {
+   "id": "P001",
+   "profile": "애매형",
+   "trueType": "BRHDC",
+   "runs": [
+    {
+     "code": "BRHD",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      5,
+      4,
+      1,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDC",
+     "orig": {
+      "code": "BRHDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRHD",
+     "mood": "C",
+     "q": 21,
+     "sc": [
+      2,
+      5,
+      1,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRHDC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P002",
+   "profile": "보통형",
+   "trueType": "QVHDC",
+   "runs": [
+    {
+     "code": "BRHD",
+     "mood": "C",
+     "q": 23,
+     "sc": [
+      3,
+      5,
+      2,
+      5,
+      5
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BRHDC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVHD",
+     "mood": "C",
+     "q": 21,
+     "sc": [
+      1,
+      1,
+      1,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDC",
+     "orig": {
+      "code": "QVHDC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P003",
+   "profile": "뚜렷형",
+   "trueType": "BVWLN",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      5,
+      0,
+      4,
+      1,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 18,
+     "sc": [
+      4,
+      0,
+      4,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P004",
+   "profile": "뚜렷형",
+   "trueType": "QRWDC",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      5,
+      4,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDC",
+     "orig": {
+      "code": "QRWDC",
+      "q": 25
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "C",
+     "q": 19,
+     "sc": [
+      1,
+      1,
+      4,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWDC",
+     "orig": {
+      "code": "QRWDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P005",
+   "profile": "애매형",
+   "trueType": "QRWLN",
+   "runs": [
+    {
+     "code": "QRWL",
+     "mood": "C",
+     "q": 24,
+     "sc": [
+      0,
+      4,
+      3,
+      0,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QRWLC",
+     "orig": {
+      "code": "QRWDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRHD",
+     "mood": "N",
+     "q": 21,
+     "sc": [
+      0,
+      3,
+      1,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRHDN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P006",
+   "profile": "보통형",
+   "trueType": "BVWDN",
+   "runs": [
+    {
+     "code": "BVHD",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      5,
+      0,
+      2,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVHDC",
+     "orig": {
+      "code": "BVWDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      3,
+      0,
+      5,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BVWDC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P007",
+   "profile": "뚜렷형",
+   "trueType": "QRHDC",
+   "runs": [
+    {
+     "code": "QRHD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      5,
+      0,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHDC",
+     "orig": {
+      "code": "QRHDC",
+      "q": 27
+     }
+    },
+    {
+     "code": "QRHD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      4,
+      0,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHDC",
+     "orig": {
+      "code": "QRHDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P008",
+   "profile": "보통형",
+   "trueType": "BRWLC",
+   "runs": [
+    {
+     "code": "BRWL",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      4,
+      5,
+      3,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLC",
+     "orig": {
+      "code": "BRWLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "C",
+     "q": 25,
+     "sc": [
+      4,
+      4,
+      3,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLC",
+     "orig": {
+      "code": "QRWLC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P009",
+   "profile": "애매형",
+   "trueType": "BRWDN",
+   "runs": [
+    {
+     "code": "BVWD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      4,
+      0,
+      4,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDC",
+     "orig": {
+      "code": "BVWDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      5,
+      0,
+      5,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BRWDN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P010",
+   "profile": "뚜렷형",
+   "trueType": "QVHLC",
+   "runs": [
+    {
+     "code": "QVHL",
+     "mood": "C",
+     "q": 15,
+     "sc": [
+      0,
+      0,
+      0,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHLC",
+     "orig": {
+      "code": "QVHLC",
+      "q": 27
+     }
+    },
+    {
+     "code": "QVHL",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      0,
+      1,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHLC",
+     "orig": {
+      "code": "QVHLC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P011",
+   "profile": "애매형",
+   "trueType": "QVHLC",
+   "runs": [
+    {
+     "code": "BVHL",
+     "mood": "C",
+     "q": 22,
+     "sc": [
+      4,
+      1,
+      0,
+      1,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHLC",
+     "orig": {
+      "code": "QVHLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BVHL",
+     "mood": "N",
+     "q": 28,
+     "sc": [
+      4,
+      0,
+      2,
+      1,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVHLN",
+     "orig": {
+      "code": "QVHLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P012",
+   "profile": "보통형",
+   "trueType": "BVHLC",
+   "runs": [
+    {
+     "code": "BVHL",
+     "mood": "C",
+     "q": 23,
+     "sc": [
+      4,
+      1,
+      1,
+      2,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVHLC",
+     "orig": {
+      "code": "BVHLC",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVHL",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      1,
+      1,
+      0,
+      1,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHLC",
+     "orig": {
+      "code": "BVHLC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P013",
+   "profile": "뚜렷형",
+   "trueType": "BRHDN",
+   "runs": [
+    {
+     "code": "BRHD",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      5,
+      5,
+      1,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDN",
+     "orig": {
+      "code": "BRHDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "BRHD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      5,
+      4,
+      1,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDN",
+     "orig": {
+      "code": "BRHDN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P014",
+   "profile": "보통형",
+   "trueType": "BVHLN",
+   "runs": [
+    {
+     "code": "BVHL",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      5,
+      0,
+      1,
+      0,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHLN",
+     "orig": {
+      "code": "BVHDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      4,
+      0,
+      4,
+      3,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P015",
+   "profile": "보통형",
+   "trueType": "BRHLN",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "N",
+     "q": 21,
+     "sc": [
+      4,
+      3,
+      0,
+      0,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRHLN",
+     "orig": {
+      "code": "BRHDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "BVHD",
+     "mood": "N",
+     "q": 18,
+     "sc": [
+      5,
+      1,
+      0,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHDN",
+     "orig": {
+      "code": "BRHLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P016",
+   "profile": "애매형",
+   "trueType": "QVWLN",
+   "runs": [
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      1,
+      1,
+      4,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWLN",
+     "orig": {
+      "code": "BVHLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      0,
+      1,
+      3,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWDN",
+     "orig": {
+      "code": "BVHLN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P017",
+   "profile": "보통형",
+   "trueType": "BVWLN",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      4,
+      0,
+      5,
+      2,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 29
+     }
+    },
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 23,
+     "sc": [
+      5,
+      0,
+      5,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P018",
+   "profile": "뚜렷형",
+   "trueType": "BRWLN",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      4,
+      5,
+      5,
+      3,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDN",
+     "orig": {
+      "code": "BRWLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      5,
+      5,
+      4,
+      1,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWLN",
+     "orig": {
+      "code": "BRWLN",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P019",
+   "profile": "애매형",
+   "trueType": "QVHDN",
+   "runs": [
+    {
+     "code": "QVHL",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      0,
+      1,
+      2,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVHLN",
+     "orig": {
+      "code": "QVHDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "C",
+     "q": 28,
+     "sc": [
+      0,
+      1,
+      3,
+      1,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVWLC",
+     "orig": {
+      "code": "QVHDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P020",
+   "profile": "뚜렷형",
+   "trueType": "QRHLC",
+   "runs": [
+    {
+     "code": "QRHL",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      0,
+      4,
+      0,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHLC",
+     "orig": {
+      "code": "QRHLC",
+      "q": 27
+     }
+    },
+    {
+     "code": "QRHL",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      5,
+      1,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHLC",
+     "orig": {
+      "code": "QRHLC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P021",
+   "profile": "뚜렷형",
+   "trueType": "QRHLN",
+   "runs": [
+    {
+     "code": "QRHL",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      0,
+      4,
+      1,
+      0,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHLN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRHL",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      0,
+      5,
+      1,
+      0,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHLN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P022",
+   "profile": "뚜렷형",
+   "trueType": "BRWDC",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      4,
+      5,
+      5,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 27
+     }
+    },
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      4,
+      4,
+      5,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P023",
+   "profile": "뚜렷형",
+   "trueType": "BVHDN",
+   "runs": [
+    {
+     "code": "BRHD",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      5,
+      4,
+      0,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDN",
+     "orig": {
+      "code": "BVHDN",
+      "q": 27
+     }
+    },
+    {
+     "code": "BVHD",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      4,
+      1,
+      0,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHDN",
+     "orig": {
+      "code": "BVHDN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P024",
+   "profile": "보통형",
+   "trueType": "QVHLC",
+   "runs": [
+    {
+     "code": "QRWL",
+     "mood": "C",
+     "q": 22,
+     "sc": [
+      0,
+      4,
+      4,
+      1,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWLC",
+     "orig": {
+      "code": "QVHDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      0,
+      5,
+      1,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWLC",
+     "orig": {
+      "code": "QVHLC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P025",
+   "profile": "뚜렷형",
+   "trueType": "BRHDC",
+   "runs": [
+    {
+     "code": "BRHD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      4,
+      5,
+      1,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDC",
+     "orig": {
+      "code": "BRHDC",
+      "q": 27
+     }
+    },
+    {
+     "code": "BRHD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      5,
+      5,
+      0,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDC",
+     "orig": {
+      "code": "BRHDC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P026",
+   "profile": "보통형",
+   "trueType": "QVWDN",
+   "runs": [
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 27,
+     "sc": [
+      5,
+      2,
+      4,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVWDN",
+     "orig": {
+      "code": "QVWLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "N",
+     "q": 23,
+     "sc": [
+      0,
+      0,
+      5,
+      4,
+      2
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWDN",
+     "orig": {
+      "code": "QVWDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P027",
+   "profile": "애매형",
+   "trueType": "QRWDC",
+   "runs": [
+    {
+     "code": "QVHD",
+     "mood": "C",
+     "q": 23,
+     "sc": [
+      1,
+      0,
+      0,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRWL",
+     "mood": "C",
+     "q": 35,
+     "sc": [
+      2,
+      3,
+      3,
+      2,
+      4
+     ],
+     "boundaryItem": true,
+     "bd": 4,
+     "full": "QRWLC",
+     "orig": {
+      "code": "QRHDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P028",
+   "profile": "애매형",
+   "trueType": "QVWDN",
+   "runs": [
+    {
+     "code": "QRHD",
+     "mood": "C",
+     "q": 24,
+     "sc": [
+      0,
+      3,
+      1,
+      5,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QRHDC",
+     "orig": {
+      "code": "QVWDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRWL",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      1,
+      4,
+      4,
+      2,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRWLN",
+     "orig": {
+      "code": "QRWDC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P029",
+   "profile": "보통형",
+   "trueType": "QRWLC",
+   "runs": [
+    {
+     "code": "QRWL",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      5,
+      5,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWLC",
+     "orig": {
+      "code": "QRWLC",
+      "q": 27
+     }
+    },
+    {
+     "code": "QRWD",
+     "mood": "C",
+     "q": 24,
+     "sc": [
+      1,
+      5,
+      4,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDC",
+     "orig": {
+      "code": "QRHLC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P030",
+   "profile": "뚜렷형",
+   "trueType": "BVWDN",
+   "runs": [
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 18,
+     "sc": [
+      4,
+      1,
+      5,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BVWDN",
+      "q": 27
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      5,
+      0,
+      4,
+      4,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BVWDN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P031",
+   "profile": "뚜렷형",
+   "trueType": "QRWDN",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      1,
+      5,
+      4,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDN",
+     "orig": {
+      "code": "QRWDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      0,
+      5,
+      5,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDN",
+     "orig": {
+      "code": "QRWDN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P032",
+   "profile": "애매형",
+   "trueType": "BRHLN",
+   "runs": [
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      5,
+      4,
+      3,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLN",
+     "orig": {
+      "code": "BRHLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      0,
+      3,
+      5,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRWDN",
+     "orig": {
+      "code": "BVHDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P033",
+   "profile": "뚜렷형",
+   "trueType": "BVWDC",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 19,
+     "sc": [
+      4,
+      5,
+      4,
+      4,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BVWDC",
+      "q": 27
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      5,
+      0,
+      5,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDC",
+     "orig": {
+      "code": "BVWDC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P034",
+   "profile": "애매형",
+   "trueType": "BVWLC",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 23,
+     "sc": [
+      5,
+      0,
+      5,
+      2,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BVWLC",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "C",
+     "q": 23,
+     "sc": [
+      1,
+      1,
+      4,
+      1,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWLC",
+     "orig": {
+      "code": "BVWLC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P035",
+   "profile": "보통형",
+   "trueType": "QVWLC",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "C",
+     "q": 26,
+     "sc": [
+      4,
+      1,
+      4,
+      1,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWLC",
+     "orig": {
+      "code": "QVWLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "C",
+     "q": 24,
+     "sc": [
+      2,
+      1,
+      5,
+      1,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWLC",
+     "orig": {
+      "code": "QVWLC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P036",
+   "profile": "애매형",
+   "trueType": "QRWDN",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      1,
+      4,
+      5,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDN",
+     "orig": {
+      "code": "QVWLN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 28,
+     "sc": [
+      1,
+      2,
+      4,
+      1,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWLN",
+     "orig": {
+      "code": "BVWDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P037",
+   "profile": "보통형",
+   "trueType": "QVWLN",
+   "runs": [
+    {
+     "code": "QRWL",
+     "mood": "N",
+     "q": 23,
+     "sc": [
+      1,
+      3,
+      4,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRWLN",
+     "orig": {
+      "code": "QVWLN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      1,
+      0,
+      5,
+      2,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QVWLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P038",
+   "profile": "전축 애매형",
+   "trueType": "QVHLC",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "C",
+     "q": 29,
+     "sc": [
+      3,
+      3,
+      1,
+      1,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 3,
+     "full": "BRHLC",
+     "orig": {
+      "code": "QRHDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      4,
+      3,
+      5,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDC",
+     "orig": {
+      "code": "QRHLC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P039",
+   "profile": "보통형",
+   "trueType": "BVHDN",
+   "runs": [
+    {
+     "code": "BVHD",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      4,
+      0,
+      1,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHDN",
+     "orig": {
+      "code": "BVHDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVHD",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      2,
+      2,
+      0,
+      5,
+      1
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVHDN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P040",
+   "profile": "애매형",
+   "trueType": "BRWDC",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      2,
+      4,
+      5,
+      5,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QRWDN",
+     "orig": {
+      "code": "BVWDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      2,
+      4,
+      4,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRWDN",
+     "orig": {
+      "code": "BRWDC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P041",
+   "profile": "뚜렷형",
+   "trueType": "BVHLC",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "C",
+     "q": 21,
+     "sc": [
+      4,
+      3,
+      1,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRHLC",
+     "orig": {
+      "code": "BVHLC",
+      "q": 25
+     }
+    },
+    {
+     "code": "BVHL",
+     "mood": "C",
+     "q": 23,
+     "sc": [
+      3,
+      0,
+      1,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVHLC",
+     "orig": {
+      "code": "BVHLC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P042",
+   "profile": "보통형",
+   "trueType": "QRHDC",
+   "runs": [
+    {
+     "code": "QVHL",
+     "mood": "C",
+     "q": 27,
+     "sc": [
+      0,
+      0,
+      1,
+      2,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVHLC",
+     "orig": {
+      "code": "QRHDN",
+      "q": 27
+     }
+    },
+    {
+     "code": "QRHD",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      0,
+      5,
+      1,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHDC",
+     "orig": {
+      "code": "QRWLC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P043",
+   "profile": "애매형",
+   "trueType": "BVHDN",
+   "runs": [
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      4,
+      0,
+      5,
+      3,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BVHLC",
+      "q": 29
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      5,
+      1,
+      5,
+      3,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVWDN",
+     "orig": {
+      "code": "BRHLC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P044",
+   "profile": "뚜렷형",
+   "trueType": "BVHDC",
+   "runs": [
+    {
+     "code": "BVHD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      5,
+      0,
+      0,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHDC",
+     "orig": {
+      "code": "BVHDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "BVHD",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      4,
+      0,
+      1,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHDC",
+     "orig": {
+      "code": "BVHDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P045",
+   "profile": "뚜렷형",
+   "trueType": "QVHLN",
+   "runs": [
+    {
+     "code": "QVHL",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHLN",
+     "orig": {
+      "code": "QVHLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "QVHL",
+     "mood": "N",
+     "q": 15,
+     "sc": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHLN",
+     "orig": {
+      "code": "QVHLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P046",
+   "profile": "뚜렷형",
+   "trueType": "QVWDN",
+   "runs": [
+    {
+     "code": "QVWD",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      2,
+      1,
+      5,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWDN",
+     "orig": {
+      "code": "QVWDN",
+      "q": 25
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      1,
+      0,
+      5,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWDN",
+     "orig": {
+      "code": "QVWDN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P047",
+   "profile": "뚜렷형",
+   "trueType": "QVWLC",
+   "runs": [
+    {
+     "code": "QVWL",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      1,
+      5,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWLC",
+     "orig": {
+      "code": "QVWLC",
+      "q": 25
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      0,
+      0,
+      4,
+      1,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWLC",
+     "orig": {
+      "code": "QVWLC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P048",
+   "profile": "애매형",
+   "trueType": "BVWLN",
+   "runs": [
+    {
+     "code": "BVWD",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      4,
+      0,
+      5,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDC",
+     "orig": {
+      "code": "BVWLC",
+      "q": 29
+     }
+    },
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      1,
+      3,
+      5,
+      3,
+      1
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QRWDN",
+     "orig": {
+      "code": "QVWLC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P049",
+   "profile": "애매형",
+   "trueType": "BRWLN",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      4,
+      0,
+      3,
+      0,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      5,
+      4,
+      4,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWLN",
+     "orig": {
+      "code": "BRWLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P050",
+   "profile": "애매형",
+   "trueType": "BVHLC",
+   "runs": [
+    {
+     "code": "BRHD",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      5,
+      5,
+      0,
+      4,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDN",
+     "orig": {
+      "code": "BVWLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVHL",
+     "mood": "C",
+     "q": 31,
+     "sc": [
+      2,
+      0,
+      2,
+      2,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 4,
+     "full": "QVHLC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P051",
+   "profile": "보통형",
+   "trueType": "BVWDC",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      4,
+      4,
+      5,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRWDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      4,
+      1,
+      4,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDN",
+     "orig": {
+      "code": "QVWDC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P052",
+   "profile": "뚜렷형",
+   "trueType": "BVHLN",
+   "runs": [
+    {
+     "code": "BVHL",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      4,
+      1,
+      0,
+      0,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHLN",
+     "orig": {
+      "code": "BVHLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "BVHL",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHLN",
+     "orig": {
+      "code": "BVHLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P053",
+   "profile": "보통형",
+   "trueType": "QVWDC",
+   "runs": [
+    {
+     "code": "QVWD",
+     "mood": "C",
+     "q": 25,
+     "sc": [
+      1,
+      0,
+      3,
+      4,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWDC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 27
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "C",
+     "q": 32,
+     "sc": [
+      2,
+      2,
+      3,
+      3,
+      4
+     ],
+     "boundaryItem": true,
+     "bd": 4,
+     "full": "QVWDC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P054",
+   "profile": "뚜렷형",
+   "trueType": "QRHDN",
+   "runs": [
+    {
+     "code": "QRHD",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      1,
+      5,
+      0,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHDN",
+     "orig": {
+      "code": "QRHDN",
+      "q": 25
+     }
+    },
+    {
+     "code": "QRHD",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      2,
+      5,
+      1,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRHDN",
+     "orig": {
+      "code": "QRHDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P055",
+   "profile": "뚜렷형",
+   "trueType": "QRWLN",
+   "runs": [
+    {
+     "code": "QRWL",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      0,
+      5,
+      5,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWLN",
+     "orig": {
+      "code": "QRWLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "QRWL",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      0,
+      5,
+      5,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWLN",
+     "orig": {
+      "code": "QRWLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P056",
+   "profile": "보통형",
+   "trueType": "BRHDC",
+   "runs": [
+    {
+     "code": "BVHD",
+     "mood": "C",
+     "q": 29,
+     "sc": [
+      4,
+      2,
+      2,
+      4,
+      4
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVHDC",
+     "orig": {
+      "code": "BVHDC",
+      "q": 27
+     }
+    },
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 25,
+     "sc": [
+      4,
+      5,
+      4,
+      3,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRHDC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P057",
+   "profile": "뚜렷형",
+   "trueType": "BRWLC",
+   "runs": [
+    {
+     "code": "BRWL",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      5,
+      5,
+      3,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLC",
+     "orig": {
+      "code": "BRWLC",
+      "q": 29
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      5,
+      5,
+      4,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWLC",
+     "orig": {
+      "code": "BRWLC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P058",
+   "profile": "애매형",
+   "trueType": "QRWLC",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      0,
+      4,
+      4,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDC",
+     "orig": {
+      "code": "QRWDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "C",
+     "q": 25,
+     "sc": [
+      3,
+      4,
+      4,
+      2,
+      5
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BRWLC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P059",
+   "profile": "애매형",
+   "trueType": "QRHLN",
+   "runs": [
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      1,
+      1,
+      4,
+      2,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QRHDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "N",
+     "q": 21,
+     "sc": [
+      0,
+      0,
+      3,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWDN",
+     "orig": {
+      "code": "QRWLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P060",
+   "profile": "전축 애매형",
+   "trueType": "BVHLN",
+   "runs": [
+    {
+     "code": "BRWL",
+     "mood": "C",
+     "q": 22,
+     "sc": [
+      4,
+      3,
+      4,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLC",
+     "orig": {
+      "code": "QVWLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 28,
+     "sc": [
+      3,
+      1,
+      3,
+      5,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 3,
+     "full": "BVWDN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P061",
+   "profile": "뚜렷형",
+   "trueType": "BVWLC",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      5,
+      1,
+      4,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWLC",
+     "orig": {
+      "code": "BVWLC",
+      "q": 25
+     }
+    },
+    {
+     "code": "BVWL",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      5,
+      1,
+      4,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWLC",
+     "orig": {
+      "code": "BVWLC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P062",
+   "profile": "애매형",
+   "trueType": "QRHDN",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      1,
+      5,
+      4,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDN",
+     "orig": {
+      "code": "QRWDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QRHD",
+     "mood": "N",
+     "q": 21,
+     "sc": [
+      0,
+      4,
+      1,
+      4,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHDN",
+     "orig": {
+      "code": "QRWLN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P063",
+   "profile": "애매형",
+   "trueType": "QRHLC",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 21,
+     "sc": [
+      4,
+      5,
+      3,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRHLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "C",
+     "q": 19,
+     "sc": [
+      5,
+      5,
+      5,
+      2,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P064",
+   "profile": "애매형",
+   "trueType": "QVWLC",
+   "runs": [
+    {
+     "code": "QVHD",
+     "mood": "C",
+     "q": 24,
+     "sc": [
+      2,
+      2,
+      1,
+      5,
+      5
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVHDC",
+     "orig": {
+      "code": "QVWDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QRWL",
+     "mood": "N",
+     "q": 31,
+     "sc": [
+      2,
+      3,
+      4,
+      0,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 3,
+     "full": "QRWLN",
+     "orig": {
+      "code": "QVWLC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P065",
+   "profile": "보통형",
+   "trueType": "QRHLC",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      4,
+      4,
+      0,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHLN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRHL",
+     "mood": "C",
+     "q": 25,
+     "sc": [
+      1,
+      4,
+      0,
+      2,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QRHLC",
+     "orig": {
+      "code": "BRHLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P066",
+   "profile": "뚜렷형",
+   "trueType": "BRHLN",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "N",
+     "q": 19,
+     "sc": [
+      5,
+      5,
+      0,
+      2,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRHLN",
+     "orig": {
+      "code": "BRHLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "BRHL",
+     "mood": "N",
+     "q": 15,
+     "sc": [
+      5,
+      5,
+      0,
+      0,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHLN",
+     "orig": {
+      "code": "BRHLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P067",
+   "profile": "뚜렷형",
+   "trueType": "QRWLC",
+   "runs": [
+    {
+     "code": "QRWL",
+     "mood": "C",
+     "q": 15,
+     "sc": [
+      0,
+      5,
+      5,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWLC",
+     "orig": {
+      "code": "QRWLC",
+      "q": 25
+     }
+    },
+    {
+     "code": "QRWL",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      0,
+      4,
+      4,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWLC",
+     "orig": {
+      "code": "QRWLC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P068",
+   "profile": "뚜렷형",
+   "trueType": "QVHDN",
+   "runs": [
+    {
+     "code": "QVHD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      1,
+      0,
+      0,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDN",
+     "orig": {
+      "code": "QVHDN",
+      "q": 25
+     }
+    },
+    {
+     "code": "QVHD",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      0,
+      0,
+      0,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDN",
+     "orig": {
+      "code": "QVHDN",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P069",
+   "profile": "애매형",
+   "trueType": "BVHLN",
+   "runs": [
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 29,
+     "sc": [
+      1,
+      1,
+      3,
+      1,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QVHLN",
+      "q": 25
+     }
+    },
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      5,
+      1,
+      3,
+      0,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P070",
+   "profile": "애매형",
+   "trueType": "QVHLN",
+   "runs": [
+    {
+     "code": "QRHL",
+     "mood": "C",
+     "q": 28,
+     "sc": [
+      2,
+      3,
+      1,
+      0,
+      4
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QRHLC",
+     "orig": {
+      "code": "QVHLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "QVHL",
+     "mood": "N",
+     "q": 26,
+     "sc": [
+      2,
+      1,
+      1,
+      2,
+      1
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVHLN",
+     "orig": {
+      "code": "QVHLC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P071",
+   "profile": "애매형",
+   "trueType": "QVHDC",
+   "runs": [
+    {
+     "code": "QVHL",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      2,
+      0,
+      0,
+      1,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVHLC",
+     "orig": {
+      "code": "BVHDC",
+      "q": 27
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      1,
+      0,
+      3,
+      1,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QVHLC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P072",
+   "profile": "애매형",
+   "trueType": "QRHDC",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "C",
+     "q": 25,
+     "sc": [
+      0,
+      4,
+      3,
+      4,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRWDC",
+     "orig": {
+      "code": "QRHDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      1,
+      0,
+      4,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWDC",
+     "orig": {
+      "code": "QRWDC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P073",
+   "profile": "뚜렷형",
+   "trueType": "QVWLN",
+   "runs": [
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      0,
+      0,
+      4,
+      0,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QVWLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      0,
+      0,
+      5,
+      0,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QVWLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P074",
+   "profile": "애매형",
+   "trueType": "BRHDN",
+   "runs": [
+    {
+     "code": "BVHD",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      4,
+      1,
+      0,
+      3,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVHDN",
+     "orig": {
+      "code": "BVHLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRWD",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      4,
+      4,
+      4,
+      3,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDN",
+     "orig": {
+      "code": "BRHDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P075",
+   "profile": "애매형",
+   "trueType": "QVWDC",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 27,
+     "sc": [
+      3,
+      5,
+      5,
+      4,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BRWDC",
+     "orig": {
+      "code": "QRWDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "C",
+     "q": 21,
+     "sc": [
+      1,
+      1,
+      5,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWDC",
+     "orig": {
+      "code": "QRWLC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P076",
+   "profile": "보통형",
+   "trueType": "QRHDN",
+   "runs": [
+    {
+     "code": "QRHD",
+     "mood": "N",
+     "q": 23,
+     "sc": [
+      0,
+      4,
+      2,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRHDN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QRHD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      1,
+      5,
+      1,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHDC",
+     "orig": {
+      "code": "QRHDN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P077",
+   "profile": "보통형",
+   "trueType": "QRWDC",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      1,
+      4,
+      5,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDC",
+     "orig": {
+      "code": "BRHDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "QRWD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      5,
+      5,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P078",
+   "profile": "전축 애매형",
+   "trueType": "QVHLC",
+   "runs": [
+    {
+     "code": "QRWD",
+     "mood": "N",
+     "q": 29,
+     "sc": [
+      1,
+      4,
+      3,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRWDN",
+     "orig": {
+      "code": "BRHDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      4,
+      2,
+      5,
+      1,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BRHDC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P079",
+   "profile": "보통형",
+   "trueType": "BRWDN",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      4,
+      5,
+      4,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWDN",
+     "orig": {
+      "code": "BRWDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BVWD",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      5,
+      0,
+      5,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWDN",
+     "orig": {
+      "code": "QRWDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P080",
+   "profile": "뚜렷형",
+   "trueType": "BRHLC",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "C",
+     "q": 15,
+     "sc": [
+      5,
+      5,
+      0,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHLC",
+     "orig": {
+      "code": "BRHLC",
+      "q": 27
+     }
+    },
+    {
+     "code": "BRHL",
+     "mood": "C",
+     "q": 15,
+     "sc": [
+      5,
+      5,
+      0,
+      0,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHLC",
+     "orig": {
+      "code": "BRHLN",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P081",
+   "profile": "보통형",
+   "trueType": "BRHLC",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      4,
+      5,
+      0,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHLC",
+     "orig": {
+      "code": "BRHLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRHL",
+     "mood": "C",
+     "q": 24,
+     "sc": [
+      4,
+      4,
+      0,
+      0,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHLC",
+     "orig": {
+      "code": "BRHLC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P082",
+   "profile": "보통형",
+   "trueType": "BRWDC",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 24,
+     "sc": [
+      5,
+      3,
+      4,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 19,
+     "sc": [
+      4,
+      5,
+      5,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P083",
+   "profile": "보통형",
+   "trueType": "QRWDN",
+   "runs": [
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      2,
+      0,
+      4,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QRWDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 26,
+     "sc": [
+      4,
+      4,
+      4,
+      2,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLN",
+     "orig": {
+      "code": "QRWLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P084",
+   "profile": "보통형",
+   "trueType": "QRWLN",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 21,
+     "sc": [
+      4,
+      1,
+      5,
+      0,
+      2
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BVWLN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 27
+     }
+    },
+    {
+     "code": "QRWL",
+     "mood": "N",
+     "q": 15,
+     "sc": [
+      0,
+      5,
+      5,
+      0,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWLN",
+     "orig": {
+      "code": "QVWLN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P085",
+   "profile": "보통형",
+   "trueType": "BVWLC",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "C",
+     "q": 21,
+     "sc": [
+      4,
+      1,
+      5,
+      1,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWLC",
+     "orig": {
+      "code": "QRWDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BVWL",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      4,
+      0,
+      5,
+      1,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVWLC",
+     "orig": {
+      "code": "QVWLN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P086",
+   "profile": "전축 애매형",
+   "trueType": "BVHDN",
+   "runs": [
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 26,
+     "sc": [
+      4,
+      3,
+      3,
+      1,
+      1
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BRWLN",
+     "orig": {
+      "code": "QRHDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      1,
+      0,
+      4,
+      1,
+      2
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QVWLN",
+     "orig": {
+      "code": "BRHDN",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P087",
+   "profile": "보통형",
+   "trueType": "BRHDN",
+   "runs": [
+    {
+     "code": "BRHL",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      5,
+      4,
+      0,
+      1,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHLN",
+     "orig": {
+      "code": "BRHLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRHD",
+     "mood": "N",
+     "q": 21,
+     "sc": [
+      5,
+      4,
+      1,
+      4,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDN",
+     "orig": {
+      "code": "BRHDN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P088",
+   "profile": "뚜렷형",
+   "trueType": "BRWDN",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      5,
+      4,
+      5,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWDN",
+     "orig": {
+      "code": "BRWDN",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRWD",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      4,
+      3,
+      4,
+      5,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDN",
+     "orig": {
+      "code": "BRHDN",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P089",
+   "profile": "뚜렷형",
+   "trueType": "QVWDC",
+   "runs": [
+    {
+     "code": "QVWD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      0,
+      4,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWDC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 25
+     }
+    },
+    {
+     "code": "QVWD",
+     "mood": "C",
+     "q": 16,
+     "sc": [
+      0,
+      1,
+      5,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVWDC",
+     "orig": {
+      "code": "QVWDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P090",
+   "profile": "애매형",
+   "trueType": "BVWDC",
+   "runs": [
+    {
+     "code": "QVHD",
+     "mood": "C",
+     "q": 28,
+     "sc": [
+      2,
+      2,
+      1,
+      3,
+      5
+     ],
+     "boundaryItem": true,
+     "bd": 3,
+     "full": "QVHDC",
+     "orig": {
+      "code": "BVWDC",
+      "q": 29
+     }
+    },
+    {
+     "code": "QRWD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      0,
+      4,
+      4,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRWDC",
+     "orig": {
+      "code": "BVWDN",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P091",
+   "profile": "보통형",
+   "trueType": "QVHDN",
+   "runs": [
+    {
+     "code": "QVHD",
+     "mood": "N",
+     "q": 16,
+     "sc": [
+      1,
+      0,
+      0,
+      5,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDN",
+     "orig": {
+      "code": "QVHDN",
+      "q": 27
+     }
+    },
+    {
+     "code": "QVHD",
+     "mood": "N",
+     "q": 17,
+     "sc": [
+      0,
+      0,
+      1,
+      4,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDN",
+     "orig": {
+      "code": "QVHDC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P092",
+   "profile": "뚜렷형",
+   "trueType": "QVHDC",
+   "runs": [
+    {
+     "code": "QVHD",
+     "mood": "C",
+     "q": 20,
+     "sc": [
+      1,
+      1,
+      0,
+      5,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDC",
+     "orig": {
+      "code": "QVHDC",
+      "q": 25
+     }
+    },
+    {
+     "code": "QVHD",
+     "mood": "C",
+     "q": 18,
+     "sc": [
+      0,
+      0,
+      1,
+      4,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHDC",
+     "orig": {
+      "code": "QVHDC",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P093",
+   "profile": "보통형",
+   "trueType": "QVHLN",
+   "runs": [
+    {
+     "code": "BVHL",
+     "mood": "C",
+     "q": 32,
+     "sc": [
+      3,
+      1,
+      1,
+      2,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 3,
+     "full": "BVHLC",
+     "orig": {
+      "code": "QVWDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVHL",
+     "mood": "N",
+     "q": 22,
+     "sc": [
+      1,
+      1,
+      1,
+      0,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QVHLN",
+     "orig": {
+      "code": "QVWLC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P094",
+   "profile": "애매형",
+   "trueType": "BVHDC",
+   "runs": [
+    {
+     "code": "BVHD",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      4,
+      0,
+      0,
+      5,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHDC",
+     "orig": {
+      "code": "BRHDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "BVHL",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      4,
+      0,
+      0,
+      1,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHLC",
+     "orig": {
+      "code": "BVHDC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P095",
+   "profile": "보통형",
+   "trueType": "BRWLN",
+   "runs": [
+    {
+     "code": "BVWL",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      3,
+      1,
+      5,
+      1,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "BVWLN",
+     "orig": {
+      "code": "BRWLN",
+      "q": 29
+     }
+    },
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 28,
+     "sc": [
+      5,
+      3,
+      4,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLN",
+     "orig": {
+      "code": "BVWLN",
+      "q": 25
+     }
+    }
+   ]
+  },
+  {
+   "id": "P096",
+   "profile": "애매형",
+   "trueType": "BRHLC",
+   "runs": [
+    {
+     "code": "BRWD",
+     "mood": "C",
+     "q": 25,
+     "sc": [
+      4,
+      5,
+      4,
+      4,
+      3
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWDC",
+     "orig": {
+      "code": "BRWDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRHL",
+     "mood": "C",
+     "q": 21,
+     "sc": [
+      5,
+      3,
+      1,
+      1,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRHLC",
+     "orig": {
+      "code": "BVHLC",
+      "q": 29
+     }
+    }
+   ]
+  },
+  {
+   "id": "P097",
+   "profile": "보통형",
+   "trueType": "QRHLN",
+   "runs": [
+    {
+     "code": "QRHD",
+     "mood": "N",
+     "q": 24,
+     "sc": [
+      0,
+      5,
+      2,
+      4,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "QRHDN",
+     "orig": {
+      "code": "QVHLN",
+      "q": 31
+     }
+    },
+    {
+     "code": "QRHL",
+     "mood": "N",
+     "q": 18,
+     "sc": [
+      0,
+      5,
+      1,
+      1,
+      1
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "QRHLN",
+     "orig": {
+      "code": "QRHLN",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P098",
+   "profile": "보통형",
+   "trueType": "BVHDC",
+   "runs": [
+    {
+     "code": "BVHD",
+     "mood": "C",
+     "q": 17,
+     "sc": [
+      5,
+      1,
+      0,
+      4,
+      5
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BVHDC",
+     "orig": {
+      "code": "BVHLC",
+      "q": 31
+     }
+    },
+    {
+     "code": "QVHD",
+     "mood": "C",
+     "q": 26,
+     "sc": [
+      1,
+      1,
+      1,
+      3,
+      3
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVHDC",
+     "orig": {
+      "code": "BVHDC",
+      "q": 27
+     }
+    }
+   ]
+  },
+  {
+   "id": "P099",
+   "profile": "애매형",
+   "trueType": "BRWLC",
+   "runs": [
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 18,
+     "sc": [
+      5,
+      4,
+      4,
+      1,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRWLN",
+     "orig": {
+      "code": "BRWDC",
+      "q": 31
+     }
+    },
+    {
+     "code": "BRHD",
+     "mood": "C",
+     "q": 22,
+     "sc": [
+      5,
+      4,
+      1,
+      4,
+      4
+     ],
+     "boundaryItem": false,
+     "bd": 0,
+     "full": "BRHDC",
+     "orig": {
+      "code": "BRWLC",
+      "q": 31
+     }
+    }
+   ]
+  },
+  {
+   "id": "P100",
+   "profile": "애매형",
+   "trueType": "BVWDN",
+   "runs": [
+    {
+     "code": "BRWL",
+     "mood": "N",
+     "q": 20,
+     "sc": [
+      5,
+      3,
+      5,
+      1,
+      0
+     ],
+     "boundaryItem": false,
+     "bd": 1,
+     "full": "BRWLN",
+     "orig": {
+      "code": "BVWDN",
+      "q": 29
+     }
+    },
+    {
+     "code": "QVWL",
+     "mood": "N",
+     "q": 25,
+     "sc": [
+      1,
+      2,
+      5,
+      1,
+      2
+     ],
+     "boundaryItem": true,
+     "bd": 2,
+     "full": "QVWLN",
+     "orig": {
+      "code": "QVWDC",
+      "q": 31
+     }
+    }
+   ]
+  }
+ ]
+}
