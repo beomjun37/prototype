@@ -3,7 +3,7 @@
  * 가상 페르소나 100명으로 office-type v2를 실제 브라우저에서 돌리는 시험 러너
  *
  * 준비: 저장소 루트에서 `python3 -m http.server 8765` 를 띄워 둔다.
- * 실행: node yumin/personas/run-virtual-test.js [페이지 주소] [출력 폴더]
+ * 실행: node yumin/personas/run-virtual-test.js [페이지 주소] [출력 폴더] [a|c]
  *
  * 페르소나마다 2번 응답해서 (1) 질문 수, (2) 결과가 의도한 유형과 같은지,
  * (3) 두 번 해도 같은 유형인지(재현), (4) 경계 축 개수와 경계 해설 노출을 잰다.
@@ -14,8 +14,10 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const URL = process.argv[2] || 'http://localhost:8765/yumin/office-type-v2/index.html';
+const MODE = (process.argv[4] || 'a').toLowerCase();   // a: 5문항 조기 종료, c: 3:2 축에 추가 질문 2개
+const URL = (process.argv[2] || 'http://localhost:8765/yumin/office-type-v2/index.html') + (MODE === 'c' ? '?mode=c' : '');
 const OUT = process.argv[3] || path.join(__dirname, '..', 'office-type-v2');
+const SUFFIX = MODE === 'c' ? '-c' : '';
 const personas = JSON.parse(fs.readFileSync(path.join(__dirname, 'personas.json'), 'utf8')).personas;
 
 function rng(seed) {
@@ -74,7 +76,9 @@ function simOriginal(persona, rand) {
         if (!(await page.isVisible('#quiz'))) break;
         const info = await page.evaluate(() => {
           const qi = nextQ();
-          return qi < 0 ? null : { qi, axis: Q[qi][0], labels: Q[qi][2].map(o => o.split('|')[0]), i: st.i };
+          if (qi < 0) return null;
+          const qq = qi >= 100 ? QX[qi - 100] : Q[qi];
+          return { qi, axis: qq[0], labels: qq[2].map(o => o.split('|')[0]), i: st.i };
         });
         if (!info) break;
         const k = rand() < p0(persona, info.axis) ? 0 : 1;
@@ -140,25 +144,25 @@ function simOriginal(persona, rand) {
   const qs = all.map(x => x.q).sort((a, b) => a - b);
 
   const md = [];
-  md.push('# office-type v2 가상 테스트 (페르소나 100명 x 2회 = 200회)', '',
+  md.push('# office-type v2 ' + (MODE === 'c' ? 'C안(3:2 축에 추가 질문 2개) ' : 'A안(5문항 조기 종료) ') + '가상 테스트 (페르소나 100명 x 2회 = 200회)', '',
     '실행: `node yumin/personas/run-virtual-test.js` (실제 브라우저에서 v2 페이지를 조작). 응답 모델은 가정이며, 실제 사람의 응답과 다를 수 있습니다. 원본 알고리즘은 같은 페르소나를 계산상으로 돌린 값입니다.', '',
     '## 전체 비교', '',
-    '| 지표 | 원본 (25문항 + 추가 질문) | v2 (5문항 조기 종료) |', '| --- | --- | --- |',
+    '| 지표 | 원본 (25문항 + 추가 질문) | v2 ' + (MODE === 'c' ? 'C안' : 'A안') + ' |', '| --- | --- | --- |',
     `| 평균 질문 수 | ${og.q} | ${v2.q} (최소 ${qs[0]}, 최대 ${qs[qs.length - 1]}) |`,
     `| 의도한 유형과 정확히 일치 | ${pct(og.exact, all.length)} | ${pct(v2.exact, all.length)} |`,
     `| 축별 일치 | ${pct(og.axisHit, all.length * 5)} | ${pct(v2.axisHit, all.length * 5)} |`,
     `| 두 번 해도 같은 유형 (재현) | ${pct(og.retest, rows.length)} | ${pct(v2.retest, rows.length)} |`, '',
-    '## 프로필별 (v2)', '',
+    '## 프로필별 (v2 ' + (MODE === 'c' ? 'C안' : 'A안') + ')', '',
     '| 프로필 | 횟수 | 평균 질문 | 유형 일치 | 축별 일치 | 재현 | 평균 경계 축 | 경계 해설 노출 | (참고) 원본 유형 일치 |', '| --- | --- | --- | --- | --- | --- | --- | --- | --- |',
     ...byProfile.map(b => `| ${b.p} | ${b.n} | ${b.q} | ${b.exact} | ${b.axis} | ${b.retest} | ${b.bd} | ${b.shown} | ${b.origExact} |`), '',
-    '## 경계 축 개수 분포 (v2, 200회)', '',
+    '## 경계 축 개수 분포 (v2 ' + (MODE === 'c' ? 'C안' : 'A안') + ', 200회)', '',
     '| 경계 축 수 | ' + [0, 1, 2, 3, 4, 5].join(' | ') + ' |', '| --- | ' + [0, 1, 2, 3, 4, 5].map(() => '---').join(' | ') + ' |',
     '| 횟수 | ' + bdDist.join(' | ') + ' |', '',
     `경계 해설 노출(경계 축 2개 이상): ${pct(all.filter(x => x.boundaryItem).length, all.length)} (${all.filter(x => x.boundaryItem).length}/${all.length})`, '',
     '## 축별 오답 (v2, 200회 중)', '',
     '| 축 | ' + AX.join(' | ') + ' |', '| --- | ' + AX.map(() => '---').join(' | ') + ' |',
     '| 의도와 다른 극 | ' + wrongAxis.join(' | ') + ' |', '');
-  fs.writeFileSync(path.join(OUT, 'virtual-test-100.md'), md.join('\n'));
-  fs.writeFileSync(path.join(OUT, 'virtual-test-100.json'), JSON.stringify({ rows }, null, 1));
+  fs.writeFileSync(path.join(OUT, 'virtual-test-100' + SUFFIX + '.md'), md.join('\n'));
+  fs.writeFileSync(path.join(OUT, 'virtual-test-100' + SUFFIX + '.json'), JSON.stringify({ rows }, null, 1));
   console.log(md.join('\n'));
 })();

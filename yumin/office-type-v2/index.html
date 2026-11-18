@@ -1544,9 +1544,12 @@ setAv($('introAv'),'BVWD','C');setAv($('introAv2'),'BRWL','C');setAv($('introAv3
 })();
 </script>
 <script>
-/* 추천안 프로토(1118 안건): 5문항 조기 종료, 경계 축 양면 서술. 위의 원본 코드는 그대로 두고 아래에서 덮어쓴다. */
+/* 추천안 프로토(1118 안건): 5문항 조기 종료(A), 경계 축 양면 서술.
+   주소에 ?mode=c 를 붙이면 C안: 3:2로 끝난 축에만 추가 질문 2개를 더 묻는다.
+   위의 원본 코드는 그대로 두고 아래에서 덮어쓴다. */
 (function(){
 var NEED=3;
+var MODEC=/[?&]mode=c\b/i.test(location.search);
 var BOUND=[
  '회식 다음 날은 혼자 점심을 먹고 싶고, 일이 막힌 날은 누구든 붙잡고 얘기하고 싶어져요. 충전하는 방식이 그날 일정에 따라 달라요.',
  '회의에서 "그래서 이번 주에 뭘 하죠?"가 궁금한 날도, "이게 왜 필요한 거죠?"가 궁금한 날도 있어요. 눈앞의 일과 큰 그림 사이를 오가요.',
@@ -1554,30 +1557,46 @@ var BOUND=[
  '어떤 일은 일주일 전에 끝내 두고, 어떤 일은 마감 날 아침에 시작해요. 일의 종류에 따라 속도가 달라요.',
  '같은 실수라도 어떤 날은 "됐어" 하고 넘기고, 어떤 날은 퇴근길까지 곱씹어요. 컨디션에 따라 달라요.'
 ];
-function votes(ans){var A=[0,0,0,0,0],N=[0,0,0,0,0];ans.forEach(function(a){if(!a)return;var ax=Q[a[0]][0];N[ax]++;if(a[1]==0)A[ax]++;});return {A:A,N:N};}
+function votes(ans){
+  var A=[0,0,0,0,0],N=[0,0,0,0,0],XA=[0,0,0,0,0],XN=[0,0,0,0,0];
+  ans.forEach(function(a){if(!a)return;var x=a[0]>=100,ax=x?QX[a[0]-100][0]:Q[a[0]][0];if(x){XN[ax]++;if(a[1]==0)XA[ax]++;}else{N[ax]++;if(a[1]==0)A[ax]++;}});
+  return {A:A,N:N,XA:XA,XN:XN};
+}
 function decided(v,ax){return v.A[ax]>=NEED||v.N[ax]-v.A[ax]>=NEED;}
+function bnd(v,ax){var a=v.A[ax],b=v.N[ax]-a;return (a==3&&b==2)||(a==2&&b==3);}
+function xidx(ax,n){var c=0;for(var j=0;j<QX.length;j++){if(QX[j][0]==ax){if(c==n)return j;c++;}}return -1;}
+function remaining(v){
+  var rem=0;
+  for(var a=0;a<5;a++){
+    if(!decided(v,a))rem+=NEED-Math.max(v.A[a],v.N[a]-v.A[a]);
+    else if(MODEC&&bnd(v,a))rem+=2-v.XN[a];
+  }
+  return rem;
+}
 window.nextQ=function(){
   var act=st.ans.slice(0,st.i),done={};act.forEach(function(a){done[a[0]]=1;});
   var v=votes(act);
   for(var j=0;j<ORDER.length;j++){var qi=ORDER[j];if(done[qi])continue;if(decided(v,Q[qi][0]))continue;return qi;}
+  if(MODEC){for(var ax=0;ax<5;ax++){if(bnd(v,ax)&&v.XN[ax]<2){var j2=xidx(ax,v.XN[ax]);if(j2>=0)return 100+j2;}}}
   return -1;
 };
 window.render=function(){
   $('xqi').hidden=true;$('qcard').hidden=false;
   var prev=st.ans[st.i],qi=prev?prev[0]:nextQ();
   if(qi<0){finish();return;}
-  var q=Q[qi],day=WHEN[st.i][0];
+  var ex=qi>=100,q=ex?QX[qi-100]:Q[qi];
+  var baseDone=st.ans.slice(0,st.i).filter(function(a){return a[0]<100;}).length,xDone=st.i-baseDone;
+  var day=ex?6:WHEN[baseDone][0];
   $('qn').textContent=(st.i+1)+'번째 질문';
   $('qBack').hidden=st.i===0;
-  var v=votes(st.ans.slice(0,st.i)),rem=0;
-  for(var a=0;a<5;a++){if(!decided(v,a))rem+=NEED-Math.max(v.A[a],v.N[a]-v.A[a]);}
+  var rem=remaining(votes(st.ans.slice(0,st.i)));
   $('pg').style.width=(st.i/(st.i+rem)*100)+'%';
   $('week').innerHTML=WD.map(function(d,k){return '<span class="'+(k<day?'past':k==day?'now':'')+'">'+d+'</span>';}).join('');
-  $('qtime').textContent=WD[day]+'요일 '+WHEN[st.i][1];
+  $('qtime').textContent=ex?'다음 주 어느 날':WD[day]+'요일 '+WHEN[baseDone][1];
   $('scene').textContent=q[1];
   var bk=Object.keys(T)[BUDDY[day][0]],bm=BUDDY[day][1],ba=$('buddyAv'),nb=ba.dataset.k!=bk+bm;
   if(nb){ba.src=avatar(bk,bm);ba.dataset.k=bk+bm;$('buddyName').textContent=(day>=5?'팀 동료 ':'옆자리 ')+NM(bk,bm).n;}
-  $('buddySay').textContent=SAY[st.i];
+  $('buddySay').textContent=ex?XSAY[Math.min(xDone,XSAY.length-1)]:SAY[baseDone];
   var c=$('qcard'),bd=$('buddy');c.classList.remove('in');bd.classList.remove('pop');void c.offsetWidth;c.classList.add('in');if(nb)bd.classList.add('pop');
   var flip=Math.random()<.5,idx=flip?[1,0]:[0,1],o=$('opts');o.innerHTML='';o.classList.remove('in');void o.offsetWidth;o.classList.add('in');
   idx.forEach(function(k){
@@ -1596,8 +1615,13 @@ window.pick=function(qi,k){
 };
 window.finish=function(){
   var v=votes(st.ans.slice(0,st.i));
-  /* 조기 종료 점수를 기존 0~5 점수로 환산: 3:0=5, 3:1=4, 3:2=3, 2:3=2, 1:3=1, 0:3=0 */
-  st.sc=[0,1,2,3,4].map(function(a){var A=v.A[a],B=v.N[a]-A;return A>=NEED?5-B:A;});
+  /* 조기 종료 점수를 기존 0~5 점수로 환산: 3:0=5, 3:1=4, 3:2=3, 2:3=2, 1:3=1, 0:3=0.
+     C안에서 추가 질문을 받은 축은 7표 중 첫째 극 표수로: 5표 이상=4, 4표=3, 3표=2, 2표 이하=1 */
+  st.sc=[0,1,2,3,4].map(function(a){
+    var A=v.A[a],B=v.N[a]-A;
+    if(MODEC&&bnd(v,a)&&v.XN[a]==2){var t=A+v.XA[a];return t>=4?(t>=5?4:3):(t<=2?1:2);}
+    return A>=NEED?5-B:A;
+  });
   var r=calc();
   var sc=st.sc.slice(),sw=st.sw||0;
   track('bd'+sc.filter(function(v){return v==2||v==3;}).length);
@@ -1613,7 +1637,6 @@ window.finish=function(){
 };
 $('start').onclick=function(){track('start');st={i:0,sc:[0,0,0,0,0],n:[0,0,0,0,0],sw:0,ans:[],xq:null,xa:[0,0,0,0,0]};history.replaceState(null,'','#');history.pushState({q:1},'','#');show('quiz');render();};
 $('qBack').onclick=function(){if(st.i<1)return;st.i--;render();window.scrollTo(0,0);};
-/* 경계 축(3:2, 2:3)은 한쪽으로 단정하지 않고 양면으로 서술하는 해설을 하나 더 붙인다 */
 var _sr=window.showResult;
 window.showResult=function(code,mood,sc,sw){
   _sr(code,mood,sc,sw);
