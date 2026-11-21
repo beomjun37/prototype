@@ -49,10 +49,12 @@ for k in 'CN':
             if not s: continue
             sents.append((name, s))
             ln = len(outside_quotes(s))
-            if ln > 60: issues.append(f'[A1 긴 문장 {ln}자, 대사 제외] {name}: {s}')
+            if ln > 50: issues.append(f'[A1 긴 문장 {ln}자(50자 기준), 대사 제외] {name}: {s}')
         jeok = len(re.findall(r'적(인|으로)|의 |것|들(은|이|을|의|도) ', o))
         if jeok >= 3: issues.append(f'[A2 적의것들 {jeok}개] {name}')
         if re.search(r'(것 |거 )?같(다|아요)|에 대한|중 하나', o): issues.append(f'[A3] {name}: 같다/에 대한/중 하나')
+        if len(re.findall(r'것이다|것이에요|거예요',o))>=2: issues.append(f'[L 것이다 반복] {name}')
+        if re.search(r'듯해요|듯하다|일지도|수도 있|것 같',o): issues.append(f'[L 추측 표현] {name}')
         for w in ADV:
             if w in o: issues.append(f'[A4 부사 "{w}"] {name}')
         for w in PROMO:
