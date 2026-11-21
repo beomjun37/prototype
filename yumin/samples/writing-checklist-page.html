@@ -1,0 +1,67 @@
+<title>결과지 문장 체크리스트</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 레이아웃: 위에 체크리스트(묶음별), 아래에 칸별 점검표. 점검표는 가로로 넓어서 자기 스크롤 안에 둠 */
+:root{--bg:#f6f7f5;--surface:#fff;--fg:#1d2421;--muted:#5d6762;--line:#dfe3df;--ok:#2f6f62;--ok-bg:#e6f1ee;--warn:#9a5b2a;--warn-bg:#f6ebe1;--bad:#a23b3b;--bad-bg:#f7e4e4;--chip:#eceee9;
+--font:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14181a;--surface:#1c2225;--fg:#e8ece9;--muted:#9aa5a0;--line:#2c3437;--ok:#6fc2b0;--ok-bg:#1b2b28;--warn:#e0a272;--warn-bg:#2d2319;--bad:#e08a8a;--bad-bg:#352021;--chip:#262e31;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14181a;--surface:#1c2225;--fg:#e8ece9;--muted:#9aa5a0;--line:#2c3437;--ok:#6fc2b0;--ok-bg:#1b2b28;--warn:#e0a272;--warn-bg:#2d2319;--bad:#e08a8a;--bad-bg:#352021;--chip:#262e31;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.65;padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:920px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px;text-wrap:balance}
+h2{font-size:17px;margin:32px 0 8px}
+.sub{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.grp{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 14px 8px;margin:0 0 10px}
+.grp h3{font-size:14px;margin:10px 0 2px}
+.it{display:grid;grid-template-columns:2.6em 1fr;gap:2px 8px;padding:8px 0;border-top:1px solid var(--line)}
+.it:first-of-type{border-top:none}
+.id{font-weight:700;font-variant-numeric:tabular-nums}
+.rule{margin:0;min-width:0;overflow-wrap:anywhere}
+.tags{grid-column:2;display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.tag{font-size:11.5px;background:var(--chip);color:var(--muted);border-radius:999px;padding:0 8px}
+.tag.auto{color:var(--ok);background:var(--ok-bg)}
+.sum{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.sum span{font-size:13px;border-radius:8px;padding:4px 10px;border:1px solid var(--line);background:var(--surface)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:13.5px}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+th{font-size:12px;color:var(--muted);font-weight:500;border-top:none;white-space:nowrap}
+td.s{text-align:center;white-space:nowrap;width:5.5em}
+.st{display:inline-block;min-width:2.4em;border-radius:6px;padding:0 6px;font-weight:700}
+.st.o{color:var(--ok);background:var(--ok-bg)}.st.t{color:var(--warn);background:var(--warn-bg)}.st.x{color:var(--bad);background:var(--bad-bg)}.st.n{color:var(--muted)}
+.cell{font-weight:500;white-space:nowrap}
+.memo{min-width:260px}
+.legend{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+</style>
+<main>
+<h1>결과지 문장 체크리스트</h1>
+<p class="sub">결과지 문구를 쓰고 고칠 때 쓰는 기준입니다. 아래에 지금 QVHD 샘플을 칸별로 점검한 결과가 있습니다.</p>
+<div id="groups"></div>
+<h2>QVHD 샘플 칸별 점검</h2>
+<p class="legend">○ 통과 · △ 일부 걸림 또는 의심 · ✕ 미통과 · — 해당 없음</p>
+<div class="sum" id="sum"></div>
+<div class="scroll"><table><thead><tr><th>칸</th><th>버전</th><th>문장·AI티·형식<br>(자동)</th><th>이야기<br>(C)</th><th>유형다움<br>(D)</th><th>메모</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="sub" id="note" style="margin-top:12px"></p>
+</main>
+<script>
+var D={"groups": [{"id": "A", "name": "문장", "items": [["A1", "한 문장에는 생각 하나. 60자(대사 제외)를 넘으면 나눌 수 있는지 봅니다.", "자동", "국립국어원"], ["A2", "적·의·것·들을 줄입니다. 자연스러운 '후배들' 같은 말은 둡니다.", "자동", "김정선"], ["A3", "관습적인 '같다', '-에 대한', '-중 하나'를 뺍니다. 대사 안은 예외.", "자동", "김정선"], ["A4", "꾸미는 부사(정말, 너무, 그냥, 바로)를 줄입니다. 뜻이 달라지는 부사는 둡니다.", "자동", "팀 피드백, Zinsser"], ["A5", "짧고 흔한 말을 씁니다. 보고서 말투를 피합니다.", "자동", "Orwell"]]}, {"id": "B", "name": "AI티", "items": [["B1", "격언식 대구를 쓰지 않습니다. ('A도, B해요', 'A가 아니라 B예요')", "자동", "팀 피드백, Wikipedia"], ["B2", "칸 끝에 교훈이나 앞 문장의 되풀이 요약을 붙이지 않습니다.", "자동+사람", "Wikipedia"], ["B3", "홍보하는 말을 쓰지 않습니다. (마법 같은, 완벽한)", "자동", "NN/g 1997"], ["B4", "상투적인 비유를 쓰지 않습니다. (빛나다, 나침반, 등대)", "자동", "Orwell"], ["B5", "이야기와 상관없는 요일과 시각을 넣지 않습니다.", "자동", "팀 피드백"], ["B6", "같은 연결어나 문장 첫머리를 한 결과지 안에서 되풀이하지 않습니다.", "자동", "팀 피드백"]]}, {"id": "C", "name": "이야기", "items": [["C1", "해석보다 행동과 대사로 보여 줍니다.", "사람", "Green & Brock 2000"], ["C2", "한 칸 안에서 앞뒤 문장이 원인과 결과로 이어집니다.", "사람", "팀 피드백"], ["C3", "에피소드를 읽고 '그래서 뭐가 힘들었는지'가 바로 보입니다.", "사람", "팀 피드백"], ["C4", "한 결과지 안에서 장소, 소품, 시간대를 되풀이하지 않습니다.", "사람", ""], ["C5", "문항과 선지 문장을 그대로 가져오지 않습니다.", "사람", "팀 피드백"]]}, {"id": "D", "name": "이 유형다움", "items": [["D1", "다른 유형에도 그대로 맞는 문장이면 다시 씁니다.", "사람", "Barnum 효과"], ["D2", "한 가지 특성만 되풀이하지 않습니다. 네 축이 고루 보이게 씁니다.", "사람", "팀 피드백"], ["D3", "장점도 지나치면 단점이 되는 모습을 탓하지 않는 톤으로 같이 씁니다.", "사람", "Pierce & Aguinis 2013"]]}, {"id": "E", "name": "형식", "items": [["E1", "칸별 길이 규격을 지킵니다.", "자동", "팀 제안"], ["E2", "해요체를 쓰고 '당신은' 같은 2인칭은 쓰지 않습니다.", "사람", ""]]}], "rows": [{"cell": "1 정체", "who": "C", "auto": "○", "story": "—", "type": "△", "memo": "'길이 보이게'가 상투 비유일 수 있고, 다른 내향 멘토형에도 맞는 말입니다."}, {"cell": "1 정체", "who": "N", "auto": "○", "story": "—", "type": "○", "memo": "'말은 한 번 더 고르는'이 신중함을 사람 모습으로 풀어 씁니다."}, {"cell": "2 장면", "who": "C", "auto": "○", "story": "○", "type": "△", "memo": "마지막 문장('속이 뻥 뚫리는 느낌')은 직접 쓰신 해석입니다. 후배 상담하는 멘토형 전반에 맞을 수 있습니다."}, {"cell": "2 장면", "who": "N", "auto": "○", "story": "○", "type": "○", "memo": "다음 날 먼저 찾아가는 행동이 신중함과 사람 중심을 같이 보여 줍니다."}, {"cell": "3 빛나는 순간", "who": "C", "auto": "○", "story": "○", "type": "△", "memo": "회의를 정리하는 모습은 다른 유형에도 있습니다. '~의 차례예요'가 구호처럼 읽힐 수 있습니다."}, {"cell": "3 빛나는 순간", "who": "N", "auto": "○", "story": "○", "type": "○", "memo": "큰 그림과 사람 중심이 같이 나오는 장면입니다."}, {"cell": "4 힘든 순간", "who": "C", "auto": "○", "story": "○", "type": "△", "memo": "본문과 에피소드가 이어집니다. 사람 중심 유형이면 대부분 겪는 상황입니다."}, {"cell": "4 힘든 순간", "who": "N", "auto": "○", "story": "✕", "type": "△", "memo": "본문은 '재촉받는 신중함', 에피소드는 '싸우는 팀원'으로 서로 다른 이야기입니다. 앞뒤 문장이 안 이어진다는 지적이 여기에도 해당합니다."}, {"cell": "5 멘탈 반응", "who": "C", "auto": "○", "story": "△", "type": "○", "memo": "본문은 의견이 갈릴 때, 에피소드는 메신저를 받을 때라 상황이 다릅니다. 같은 성향의 두 예시로 읽힙니다."}, {"cell": "5 멘탈 반응", "who": "N", "auto": "○", "story": "△", "type": "○", "memo": "같은 이유로 상황이 둘입니다. 신중함이 가장 선명하게 나오는 칸입니다."}, {"cell": "6 한마디", "who": "C", "auto": "○", "story": "—", "type": "△", "memo": "일반적인 업무 대사입니다. 이 유형만의 말투가 약합니다."}, {"cell": "6 한마디", "who": "N", "auto": "○", "story": "—", "type": "△", "memo": "위와 같습니다. '기다리시는 분들 일정에는 지장 없게'가 사람 중심을 조금 더합니다."}, {"cell": "7 올해 총평", "who": "C", "auto": "△", "story": "○", "type": "△", "memo": "'후배들'이 적·의·것·들에 걸립니다. 끝 문장('한 해였어요')이 요약식 마무리입니다."}, {"cell": "7 올해 총평", "who": "N", "auto": "△", "story": "○", "type": "○", "memo": "'후배들', '일정표를', '성격 덕에' 등이 걸립니다. 끝 문장이 요약식 마무리입니다."}, {"cell": "8 한 줄 처방", "who": "C", "auto": "○", "story": "—", "type": "△", "memo": "내향형 전반에 해당하는 처방입니다."}, {"cell": "8 한 줄 처방", "who": "N", "auto": "○", "story": "—", "type": "△", "memo": "'7할쯤'은 구체적이지만 신중형 전반에 해당하는 처방입니다."}, {"cell": "9 경계 문구", "who": "Q·V·H·D·C·N", "auto": "△", "story": "△", "type": "△", "memo": "세 번째 문장이 앞 두 문장을 되풀이해서 B2에 걸립니다. 선지 문장 느낌이 일부 남아 있습니다."}], "note": "자동 항목(A, B, E1)은 yumin/tools/sample-lint.py 결과이고, 이야기(C)와 유형다움(D) 판정은 제가 읽고 내린 의견입니다. INFJ 본인이 읽고 바로잡아 주세요."};
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+var gh="";
+D.groups.forEach(function(g){
+  gh+="<div class=\"grp\"><h3>"+esc(g.id)+". "+esc(g.name)+"</h3>";
+  g.items.forEach(function(it){
+    gh+="<div class=\"it\"><span class=\"id\">"+it[0]+"</span><p class=\"rule\">"+esc(it[1])+"</p><div class=\"tags\"><span class=\"tag"+(it[2].indexOf("자동")>=0?" auto":"")+"\">"+esc(it[2])+"</span>"+(it[3]?"<span class=\"tag\">"+esc(it[3])+"</span>":"")+"</div></div>";
+  });
+  gh+="</div>";
+});
+document.getElementById("groups").innerHTML=gh;
+var cls={"○":"o","△":"t","✕":"x","—":"n"},cnt={"○":0,"△":0,"✕":0},rh="";
+D.rows.forEach(function(r){
+  ["auto","story","type"].forEach(function(k){if(cnt[r[k]]!==undefined)cnt[r[k]]++;});
+  rh+="<tr><td class=\"cell\">"+esc(r.cell)+"</td><td>"+esc(r.who)+"</td>"+["auto","story","type"].map(function(k){return "<td class=\"s\"><span class=\"st "+cls[r[k]]+"\">"+r[k]+"</span></td>";}).join("")+"<td class=\"memo\">"+esc(r.memo)+"</td></tr>";
+});
+document.getElementById("rows").innerHTML=rh;
+document.getElementById("sum").innerHTML="<span>○ "+cnt["○"]+"곳</span><span>△ "+cnt["△"]+"곳</span><span>✕ "+cnt["✕"]+"곳</span>";
+document.getElementById("note").textContent=D.note;
+</script>
