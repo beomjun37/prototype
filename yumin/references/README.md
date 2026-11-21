@@ -23,3 +23,5 @@
 
 - `cn-axis-sources.md`: 5번째 축(C/N)의 근거와 우리 정의의 차이
 - 문항 초안: `../question-review/cn-items-draft.md`
+- `cell-insight-sources.md`: 결과지 칸 확장용 심리학 자료
+- `writing-groundrules.md`: 결과지 문장 그라운드룰(체크리스트). 자동 점검은 `yumin/tools/sample-lint.py`
