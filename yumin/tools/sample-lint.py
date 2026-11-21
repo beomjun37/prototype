@@ -16,6 +16,11 @@ DAYS = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요
 APHOR = [r'[^ ]+도, ', r'가 아니라', r'이 아니라', r'단순히']
 ENDSUM = [r'이유예요', r'가장 큰 일은', r'거예요\.$']
 
+def fill_name(t, name):
+    last = name[-1]
+    jong = (ord(last) - 0xAC00) % 28 if '가' <= last <= '힣' else 0
+    return t.replace('{이름은}', name + ('은' if jong else '는')).replace('{이름이}', name + ('이' if jong else '가')).replace('{이름을}', name + ('을' if jong else '를'))
+
 def outside_quotes(t):
     return re.sub(r'"[^"]*"', '', t)
 
@@ -29,8 +34,9 @@ def items(k):
             out.append((f"{c['no']}.{c['cell']}", v, c['limit'] if c['limit'][1] else None))
             if 'story' in c:
                 out.append((f"{c['no']}.{c['cell']} 에피소드", c['story'][k], c['story']['limit']))
+    nm = d['cells'][0][k]['name'].split()[-1]
     for b in ['Q', 'V', 'H', 'D', k]:
-        out.append((f"경계 {b}", d['boundary'][b], None))
+        out.append((f"경계 {b}", fill_name(d['boundary'][b], nm), None))
     return out
 
 total = 0
