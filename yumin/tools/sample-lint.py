@@ -8,7 +8,7 @@ from collections import Counter
 
 p = sys.argv[1] if len(sys.argv) > 1 else 'yumin/samples/qvhd-sample.json'
 d = json.load(open(p, encoding='utf8'))
-SPLIT = re.compile(r'(?<=[.?!])\s+|(?<=[.?!]")\s+')
+SPLIT = re.compile(r'(?<=[.?!])\s+|(?<=[.?!]")\s+|\n')
 ADV = ['정말', '너무', '굉장히', '그냥', '바로', '진짜', '엄청']
 PROMO = ['마법', '놀라운', '완벽한', '최고의', '특별한']
 CLICHE = ['빛나', '나침반', '등대', '길을 비추']
@@ -24,7 +24,7 @@ def items(k):
     for c in d['cells']:
         v = c[k]
         if isinstance(v, dict):
-            out.append((f"{c['no']}.{c['cell']}", ' '.join(v.values()), None))
+            out.append((f"{c['no']}.{c['cell']}", '\n'.join(v.values()), None))
         else:
             out.append((f"{c['no']}.{c['cell']}", v, c['limit'] if c['limit'][1] else None))
             if 'story' in c:
