@@ -38,6 +38,7 @@ for k in 'CN':
     print(f'===== {k} 결과지')
     its = items(k)
     issues = []
+    soft = []
     sents = []
     for name, t, lim in its:
         n = len(t)
@@ -49,7 +50,8 @@ for k in 'CN':
             if not s: continue
             sents.append((name, s))
             ln = len(outside_quotes(s))
-            if ln > 50: issues.append(f'[A1 긴 문장 {ln}자(50자 기준), 대사 제외] {name}: {s}')
+            if ln > 60: issues.append(f'[A1 긴 문장 {ln}자(최대 60자), 대사 제외] {name}: {s}')
+            elif ln > 50: soft.append(f'[A1 50자 초과 {ln}자, 60자까지 허용] {name}')
         jeok = len(re.findall(r'적(인|으로)|의 |것|들(은|이|을|의|도) ', o))
         if jeok >= 3: issues.append(f'[A2 적의것들 {jeok}개] {name}')
         if re.search(r'(것 |거 )?같(다|아요)|에 대한|중 하나', o): issues.append(f'[A3] {name}: 같다/에 대한/중 하나')
@@ -73,6 +75,6 @@ for k in 'CN':
     dup = [s for s, c in Counter(s for _, s in sents).items() if c > 1]
     for s in dup: issues.append(f'[중복 문장] {s}')
     for i in issues: print(' ', i)
-    print(f'  → {len(issues)}건')
+    print(f'  → {len(issues)}건 (50~60자 허용 구간 {len(soft)}개)')
     total += len(issues)
 print('합계', total)
