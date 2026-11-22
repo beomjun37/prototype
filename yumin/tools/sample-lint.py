@@ -16,9 +16,13 @@ DAYS = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요
 APHOR = [r'[^ ]+도, ', r'가 아니라', r'이 아니라', r'단순히']
 ENDSUM = [r'이유예요', r'가장 큰 일은', r'거예요\.$']
 
+import itertools
+_CNT = itertools.count()
+
 def fill_name(t, name):
     last = name[-1]
     jong = (ord(last) - 0xAC00) % 28 if '가' <= last <= '힣' else 0
+    t = re.sub(r'\{답변[12]\}', lambda m: 'x%d' % next(_CNT), t)
     return t.replace('{이름은}', name + ('은' if jong else '는')).replace('{이름이}', name + ('이' if jong else '가')).replace('{이름을}', name + ('을' if jong else '를'))
 
 def outside_quotes(t):
