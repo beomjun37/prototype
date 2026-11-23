@@ -193,7 +193,7 @@ $("copyAll").addEventListener("click",function(){
 });
 /* 시작: 기준 원문으로 먼저 그리고, 저장소가 열리면 고친 내용을 덮어쓴다 */
 try{var ls=JSON.parse(localStorage.getItem(LS)||"null");if(ls&&typeof ls==="object")over=ls;}catch(e){}
-render();status("기준 버전 11/21");
+render();status("기준 버전 v1.1 (11/23)");
 (async function(){
   var t=setTimeout(function(){status("공유 저장소에 아직 연결하지 못했어요. 이 기기에만 저장돼요");},10000);
   try{
