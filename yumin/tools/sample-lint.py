@@ -14,6 +14,7 @@ PROMO = ['마법', '놀라운', '완벽한', '최고의', '특별한']
 CLICHE = ['빛나', '나침반', '등대', '길을 비추']
 DAYS = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
 APHOR = [r'[^ ]+도, ', r'가 아니라', r'이 아니라', r'단순히']
+HEDGE = ['가끔', '때로는', '때로', '종종', '기분 내키', '상황에 따라', '경우에 따라']  # v1.1 L7 경고
 ENDSUM = [r'이유예요', r'가장 큰 일은', r'거예요\.$']
 
 import itertools
@@ -69,6 +70,8 @@ for k in 'CN':
         if re.search(r'듯해요|듯하다|일지도|수도 있|것 같',o): issues.append(f'[L 추측 표현] {name}')
         for w in ADV:
             if w in o: issues.append(f'[A4 부사 "{w}"] {name}')
+        for w in HEDGE:
+            if w in o: soft.append(f'[L7 도피성 부사 경고 "{w}"] {name}')
         for w in PROMO:
             if w in t: issues.append(f'[B3 홍보성 "{w}"] {name}')
         for w in CLICHE:
@@ -85,6 +88,8 @@ for k in 'CN':
     dup = [s for s, c in Counter(s for _, s in sents).items() if c > 1]
     for s in dup: issues.append(f'[중복 문장] {s}')
     for i in issues: print(' ', i)
-    print(f'  → {len(issues)}건 (50~60자 허용 구간 {len(soft)}개)')
+    for i in soft:
+        if i.startswith('[L7'): print(' ', i)
+    print(f'  → {len(issues)}건 (경고 {len(soft)}개: 50~60자 허용 구간, L7 도피성 부사)')
     total += len(issues)
 print('합계', total)
